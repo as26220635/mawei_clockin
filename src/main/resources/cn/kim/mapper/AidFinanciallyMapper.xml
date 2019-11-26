@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kim.mapper.AidFinanciallyMapper">
+
+    <!--查询资助-->
+    <select id="selectAidFinancially" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT BAF.*,
+        BS.BS_NAME,BS.BS_NUMBER,BC.BC_NAME,
+        BSC.BSC_TOTAL,BSC.BSC_RANK,BSC.BSC_ACADEMIC_RECORD,BSC.BSC_INTELLECTUAL_RANK
+        FROM(
+            SELECT * FROM BUS_AID_FINANCIALLY
+            <where>
+                <if test ="ID != NULL and ID != ''">
+                    AND ID = #{ID}
+                </if>
+                <if test ="BS_ID != NULL and BS_ID != ''">
+                    AND BS_ID = #{BS_ID}
+                </if>
+                <if test ="BAF_TYPE != NULL and BAF_TYPE != ''">
+                    AND BAF_TYPE = #{BAF_TYPE}
+                </if>
+                <if test ="BAF_YEAR != NULL and BAF_YEAR != ''">
+                    AND BAF_YEAR = #{BAF_YEAR}
+                </if>
+                <if test ="BAF_SEMESTER != NULL and BAF_SEMESTER != ''">
+                    AND BAF_SEMESTER = #{BAF_SEMESTER}
+                </if>
+            </where>
+        )BAF
+        INNER JOIN BUS_STUDENT BS ON BS.ID = BAF.BS_ID
+        INNER JOIN BUS_CLASS BC ON BC.ID = BS.BC_ID
+        LEFT JOIN BUS_STUDENT_COMPREHENSIVE BSC ON BSC.BS_ID = BAF.BS_ID AND BSC.BSC_YEAR = BAF.BAF_YEAR AND BSC.BSC_SEMESTER = BAF.BAF_SEMESTER
+    </select>
+
+    <!--查询资助-->
+    <select id="selectAidFinanciallyCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM BUS_AID_FINANCIALLY
+        <where>
+            <if test ="ID != NULL and ID != ''">
+                AND ID = #{ID}
+            </if>
+            <if test ="BS_ID != NULL and BS_ID != ''">
+                AND BS_ID = #{BS_ID}
+            </if>
+            <if test ="BAF_TYPE != NULL and BAF_TYPE != ''">
+                AND BAF_TYPE = #{BAF_TYPE}
+            </if>
+            <if test ="BAF_YEAR != NULL and BAF_YEAR != ''">
+                AND BAF_YEAR = #{BAF_YEAR}
+            </if>
+            <if test ="BAF_SEMESTER != NULL and BAF_SEMESTER != ''">
+                AND BAF_SEMESTER = #{BAF_SEMESTER}
+            </if>
+        </where>
+    </select>
+
+    <!--插入资助-->
+    <insert id="insertAidFinancially" parameterType="java.util.Map">
+        INSERT INTO BUS_AID_FINANCIALLY
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ID != null">ID,</if>
+            <if test="SO_ID != null">SO_ID,</if>
+            <if test="BS_ID != null">BS_ID,</if>
+            <if test="BAF_YEAR != null">BAF_YEAR,</if>
+            <if test="BAF_SEMESTER != null">BAF_SEMESTER,</if>
+            <if test="BAF_TYPE != null">BAF_TYPE,</if>
+            <if test="BAF_AID_TYPE != null">BAF_AID_TYPE,</if>
+            <if test="BAF_SUBSIDY_TYPE != null">BAF_SUBSIDY_TYPE,</if>
+            <if test="BAF_REDUCTION_QUOTA != null">BAF_REDUCTION_QUOTA,</if>
+            <if test="BAF_DIFFICULTY_QUOTA != null">BAF_DIFFICULTY_QUOTA,</if>
+            <if test="BAF_ENTRY_TIME != null">BAF_ENTRY_TIME,</if>
+            <if test="BUS_PROCESS != null">BUS_PROCESS,</if>
+            <if test="BUS_PROCESS2 != null">BUS_PROCESS2,</if>
+            <if test="BUS_REMARKS != null">BUS_REMARKS,</if>
+            <if test="BSC_TOTAL != null">BSC_TOTAL,</if>
+            <if test="BSC_TOTAL_RANK != null">BSC_TOTAL_RANK,</if>
+            <if test="BSC_ACADEMIC_RECORD != null">BSC_ACADEMIC_RECORD,</if>
+            <if test="BSC_ACADEMIC_RECORD_RANK != null">BSC_ACADEMIC_RECORD_RANK,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ID != null">#{ID},</if>
+            <if test="SO_ID != null">#{SO_ID},</if>
+            <if test="BS_ID != null">#{BS_ID},</if>
+            <if test="BAF_YEAR != null">#{BAF_YEAR},</if>
+            <if test="BAF_SEMESTER != null">#{BAF_SEMESTER},</if>
+            <if test="BAF_TYPE != null">#{BAF_TYPE},</if>
+            <if test="BAF_AID_TYPE != null">#{BAF_AID_TYPE},</if>
+            <if test="BAF_SUBSIDY_TYPE != null">#{BAF_SUBSIDY_TYPE},</if>
+            <if test="BAF_REDUCTION_QUOTA != null">#{BAF_REDUCTION_QUOTA},</if>
+            <if test="BAF_DIFFICULTY_QUOTA != null">#{BAF_DIFFICULTY_QUOTA},</if>
+            <if test="BAF_ENTRY_TIME != null">#{BAF_ENTRY_TIME},</if>
+            <if test="BUS_PROCESS != null">#{BUS_PROCESS},</if>
+            <if test="BUS_PROCESS2 != null">#{BUS_PROCESS2},</if>
+            <if test="BUS_REMARKS != null">#{BUS_REMARKS},</if>
+            <if test="BSC_TOTAL != null">#{BSC_TOTAL},</if>
+            <if test="BSC_TOTAL_RANK != null">#{BSC_TOTAL_RANK},</if>
+            <if test="BSC_ACADEMIC_RECORD != null">#{BSC_ACADEMIC_RECORD},</if>
+            <if test="BSC_ACADEMIC_RECORD_RANK != null">#{BSC_ACADEMIC_RECORD_RANK},</if>
+        </trim>
+    </insert>
+
+    <!--编辑资助-->
+    <update id="updateAidFinancially" parameterType="java.util.Map">
+        UPDATE BUS_AID_FINANCIALLY
+        <set>
+            <if test="ID != null">ID=#{ID},</if>
+            <if test="SO_ID != null">SO_ID=#{SO_ID},</if>
+            <if test="BS_ID != null">BS_ID=#{BS_ID},</if>
+            <if test="BAF_YEAR != null">BAF_YEAR=#{BAF_YEAR},</if>
+            <if test="BAF_SEMESTER != null">BAF_SEMESTER=#{BAF_SEMESTER},</if>
+            <if test="BAF_TYPE != null">BAF_TYPE=#{BAF_TYPE},</if>
+            <if test="BAF_AID_TYPE != null">BAF_AID_TYPE=#{BAF_AID_TYPE},</if>
+            <if test="BAF_SUBSIDY_TYPE != null">BAF_SUBSIDY_TYPE=#{BAF_SUBSIDY_TYPE},</if>
+            <if test="BAF_REDUCTION_QUOTA != null">BAF_REDUCTION_QUOTA=#{BAF_REDUCTION_QUOTA},</if>
+            <if test="BAF_DIFFICULTY_QUOTA != null">BAF_DIFFICULTY_QUOTA=#{BAF_DIFFICULTY_QUOTA},</if>
+            <if test="BAF_ENTRY_TIME != null">BAF_ENTRY_TIME=#{BAF_ENTRY_TIME},</if>
+            <if test="BUS_PROCESS != null">BUS_PROCESS=#{BUS_PROCESS},</if>
+            <if test="BUS_PROCESS2 != null">BUS_PROCESS2=#{BUS_PROCESS2},</if>
+            <if test="BUS_REMARKS != null">BUS_REMARKS=#{BUS_REMARKS},</if>
+            <if test="BSC_TOTAL != null">BSC_TOTAL=#{BSC_TOTAL},</if>
+            <if test="BSC_TOTAL_RANK != null">BSC_TOTAL_RANK=#{BSC_TOTAL_RANK},</if>
+            <if test="BSC_ACADEMIC_RECORD != null">BSC_ACADEMIC_RECORD=#{BSC_ACADEMIC_RECORD},</if>
+            <if test="BSC_ACADEMIC_RECORD_RANK != null">BSC_ACADEMIC_RECORD_RANK=#{BSC_ACADEMIC_RECORD_RANK},</if>
+        </set>
+        <where>
+            <if test="ID !=null">ID=#{ID}</if>
+        </where>
+    </update>
+
+    <!--删除资助-->
+    <delete id="deleteAidFinancially" parameterType="java.util.Map">
+		DELETE FROM BUS_AID_FINANCIALLY WHERE ID = #{ID}
+	</delete>
+
+    <!--查询国家奖学金-->
+    <select id="selectAidNationalScholarship" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM bus_aid_national_scholarship
+        <where>
+            <if test ="ID != NULL and ID != ''">
+                AND ID = #{ID}
+            </if>
+            <if test ="BAF_ID != NULL and BAF_ID != ''">
+                AND BAF_ID = #{BAF_ID}
+            </if>
+        </where>
+    </select>
+
+    <!--插入国家奖学金-->
+    <insert id="insertAidNationalScholarship" parameterType="java.util.Map">
+        INSERT INTO bus_aid_national_scholarship
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ID != null">ID,</if>
+            <if test="BAF_ID != null">BAF_ID,</if>
+            <if test="BANS_SCORE_RANK_TOTAL != null">BANS_SCORE_RANK_TOTAL,</if>
+            <if test="BANS_SCORE_RANK != null">BANS_SCORE_RANK,</if>
+            <if test="BANS_REQUIRED_COURSE_PASS_NUMBER != null">BANS_REQUIRED_COURSE_PASS_NUMBER,</if>
+            <if test="BANS_REQUIRED_COURSE_NUMBER != null">BANS_REQUIRED_COURSE_NUMBER,</if>
+            <if test="BANS_IS_COMPREHENSIVE_RANK != null">BANS_IS_COMPREHENSIVE_RANK,</if>
+            <if test="BANS_COMPREHENSIVE_RANK != null">BANS_COMPREHENSIVE_RANK,</if>
+            <if test="BANS_COMPREHENSIVE_RANK_NUMBER != null">BANS_COMPREHENSIVE_RANK_NUMBER,</if>
+            <if test="BANS_ACTUAL_AMOUNT != null">BANS_ACTUAL_AMOUNT,</if>
+            <if test="BANS_ISSUANCE_TIME != null">BANS_ISSUANCE_TIME,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ID != null">#{ID},</if>
+            <if test="BAF_ID != null">#{BAF_ID},</if>
+            <if test="BANS_SCORE_RANK_TOTAL != null">#{BANS_SCORE_RANK_TOTAL},</if>
+            <if test="BANS_SCORE_RANK != null">#{BANS_SCORE_RANK},</if>
+            <if test="BANS_REQUIRED_COURSE_PASS_NUMBER != null">#{BANS_REQUIRED_COURSE_PASS_NUMBER},</if>
+            <if test="BANS_REQUIRED_COURSE_NUMBER != null">#{BANS_REQUIRED_COURSE_NUMBER},</if>
+            <if test="BANS_IS_COMPREHENSIVE_RANK != null">#{BANS_IS_COMPREHENSIVE_RANK},</if>
+            <if test="BANS_COMPREHENSIVE_RANK != null">#{BANS_COMPREHENSIVE_RANK},</if>
+            <if test="BANS_COMPREHENSIVE_RANK_NUMBER != null">#{BANS_COMPREHENSIVE_RANK_NUMBER},</if>
+            <if test="BANS_ACTUAL_AMOUNT != null">#{BANS_ACTUAL_AMOUNT},</if>
+            <if test="BANS_ISSUANCE_TIME != null">#{BANS_ISSUANCE_TIME},</if>
+        </trim>
+    </insert>
+
+    <!--编辑国家奖学金-->
+    <update id="updateAidNationalScholarship" parameterType="java.util.Map">
+        UPDATE bus_aid_national_scholarship
+        <set>
+            <if test="ID != null">ID=#{ID},</if>
+            <if test="BAF_ID != null">BAF_ID=#{BAF_ID},</if>
+            <if test="BANS_SCORE_RANK_TOTAL != null">BANS_SCORE_RANK_TOTAL=#{BANS_SCORE_RANK_TOTAL},</if>
+            <if test="BANS_SCORE_RANK != null">BANS_SCORE_RANK=#{BANS_SCORE_RANK},</if>
+            <if test="BANS_REQUIRED_COURSE_PASS_NUMBER != null">BANS_REQUIRED_COURSE_PASS_NUMBER=#{BANS_REQUIRED_COURSE_PASS_NUMBER},</if>
+            <if test="BANS_REQUIRED_COURSE_NUMBER != null">BANS_REQUIRED_COURSE_NUMBER=#{BANS_REQUIRED_COURSE_NUMBER},</if>
+            <if test="BANS_IS_COMPREHENSIVE_RANK != null">BANS_IS_COMPREHENSIVE_RANK=#{BANS_IS_COMPREHENSIVE_RANK},</if>
+            <if test="BANS_COMPREHENSIVE_RANK != null">BANS_COMPREHENSIVE_RANK=#{BANS_COMPREHENSIVE_RANK},</if>
+            <if test="BANS_COMPREHENSIVE_RANK_NUMBER != null">BANS_COMPREHENSIVE_RANK_NUMBER=#{BANS_COMPREHENSIVE_RANK_NUMBER},</if>
+            <if test="BANS_ACTUAL_AMOUNT != null">BANS_ACTUAL_AMOUNT=#{BANS_ACTUAL_AMOUNT},</if>
+            <if test="BANS_ISSUANCE_TIME != null">BANS_ISSUANCE_TIME=#{BANS_ISSUANCE_TIME},</if>
+        </set>
+        <where>
+            <if test="ID !=null">ID=#{ID}</if>
+        </where>
+    </update>
+
+    <!--删除国家奖学金-->
+    <delete id="deleteAidNationalScholarship" parameterType="java.util.Map">
+		DELETE FROM bus_aid_national_scholarship WHERE ID = #{ID}
+	</delete>
+
+    <!--查询国家助学金-->
+    <select id="selectAidNationalGrants" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM BUS_AID_NATIONAL_GRANTS
+        <where>
+            <if test ="ID != NULL and ID != ''">
+                AND ID = #{ID}
+            </if>
+            <if test ="BAF_ID != NULL and BAF_ID != ''">
+                AND BAF_ID = #{BAF_ID}
+            </if>
+        </where>
+    </select>
+
+    <!--插入国家助学金-->
+    <insert id="insertAidNationalGrants" parameterType="java.util.Map">
+        INSERT INTO BUS_AID_NATIONAL_GRANTS
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ID != null">ID,</if>
+            <if test="BAF_ID != null">BAF_ID,</if>
+            <if test="BANG_FUNDING_STANDARDS != null">BANG_FUNDING_STANDARDS,</if>
+            <if test="BANG_AMOUNT_PAYABLE != null">BANG_AMOUNT_PAYABLE,</if>
+            <if test="BANG_ACTUAL_AMOUNT != null">BANG_ACTUAL_AMOUNT,</if>
+            <if test="BANG_APPLY_REASONS != null">BANG_APPLY_REASONS,</if>
+            <if test="BANG_ISSUANCE_TIME != null">BANG_ISSUANCE_TIME,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ID != null">#{ID},</if>
+            <if test="BAF_ID != null">#{BAF_ID},</if>
+            <if test="BANG_FUNDING_STANDARDS != null">#{BANG_FUNDING_STANDARDS},</if>
+            <if test="BANG_AMOUNT_PAYABLE != null">#{BANG_AMOUNT_PAYABLE},</if>
+            <if test="BANG_ACTUAL_AMOUNT != null">#{BANG_ACTUAL_AMOUNT},</if>
+            <if test="BANG_APPLY_REASONS != null">#{BANG_APPLY_REASONS},</if>
+            <if test="BANG_ISSUANCE_TIME != null">#{BANG_ISSUANCE_TIME},</if>
+        </trim>
+    </insert>
+
+    <!--编辑国家助学金-->
+    <update id="updateAidNationalGrants" parameterType="java.util.Map">
+        UPDATE BUS_AID_NATIONAL_GRANTS
+        <set>
+            <if test="ID != null">ID=#{ID},</if>
+            <if test="BAF_ID != null">BAF_ID=#{BAF_ID},</if>
+            <if test="BANG_FUNDING_STANDARDS != null">BANG_FUNDING_STANDARDS=#{BANG_FUNDING_STANDARDS},</if>
+            <if test="BANG_AMOUNT_PAYABLE != null">BANG_AMOUNT_PAYABLE=#{BANG_AMOUNT_PAYABLE},</if>
+            <if test="BANG_ACTUAL_AMOUNT != null">BANG_ACTUAL_AMOUNT=#{BANG_ACTUAL_AMOUNT},</if>
+            <if test="BANG_APPLY_REASONS != null">BANG_APPLY_REASONS=#{BANG_APPLY_REASONS},</if>
+            <if test="BANG_ISSUANCE_TIME != null">BANG_ISSUANCE_TIME=#{BANG_ISSUANCE_TIME},</if>
+        </set>
+        <where>
+            <if test="ID !=null">ID=#{ID}</if>
+        </where>
+    </update>
+
+    <!--删除国家助学金-->
+    <delete id="deleteAidNationalGrants" parameterType="java.util.Map">
+		DELETE FROM BUS_AID_NATIONAL_GRANTS WHERE ID = #{ID}
+	</delete>
+</mapper>
