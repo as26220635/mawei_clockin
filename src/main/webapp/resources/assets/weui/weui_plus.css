@@ -1,0 +1,32 @@
+.weui-avatar img{
+    border-radius: 4px;
+    height: 52px;
+    vertical-align: middle;
+    position: relative;
+    width: 52px;
+    display: inline-block;
+}
+.weui-avatar-circle img{
+    border-radius: 50%;
+    display: inline-block;
+    height: 50px;
+    margin-right: 13px;
+    position: relative;
+    vertical-align: middle;
+    width: 50px;
+}
+.weui-avatar,.weui-avatar-circle{
+    width: 50px;height:50px;
+    position:relative;
+}
+.weui-avatar span,.weui-avatar-circle span{
+    bottom: -2px;
+    height: 20px;
+    position: absolute;
+    right: -3px;
+    width: 20px;
+    border-radius:50%;
+    background-color: #fff;
+    font-size: 20px!important;
+}
+.weui-avatar span::before,.weui-avatar-circle span::before{margin:0;font-size: 20px!important;}

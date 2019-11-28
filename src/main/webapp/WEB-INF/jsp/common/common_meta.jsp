@@ -5,5 +5,5 @@
 <%--360切换极速模式--%>
 <meta name="renderer" content="webkit">
 <%--LOGO--%>
-<link rel="apple-touch-icon" sizes="76x76" href="${BASE_URL}resources/reception/images/favicon.ico">
-<link rel="icon" type="image/png" href="${BASE_URL}resources/reception/images/favicon.ico">
+<link rel="apple-touch-icon" sizes="76x76" href="${BASE_URL}resources/mobile/images/favicon.ico">
+<link rel="icon" type="image/png" href="${BASE_URL}resources/mobile/images/favicon.ico">

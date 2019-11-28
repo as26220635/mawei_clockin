@@ -9,6 +9,15 @@ public class MagicValue {
     public static final String DATA_GRID = "dataGrid";
 
     /**
+     * 登录类型
+     */
+    public static final String LOGIN_TYPE = "LOGIN_TYPE";
+
+    /**
+     * 微信登录用户
+     */
+    public static final String SESSION_WECHAT_USER = "wechatUser";
+    /**
      * 记录表名
      */
     public static final String SVR_TABLE_NAME = "SVR_TABLE_NAME";

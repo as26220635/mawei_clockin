@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kim.mapper.AchievementMapper">
+    <cache type="org.mybatis.caches.redis.RedisCache"/>
+
+    <!--查询-->
+    <select id="selectAchievement" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM BUS_ACHIEVEMENT
+        <where>
+            <if test ="ID != NULL and ID != ''">
+                AND ID = #{ID}
+            </if>
+        </where>
+    </select>
+
+    <!--前端使用-->
+    <select id="selectMAchievement" parameterType="java.util.Map" resultType="java.util.Map">
+       SELECT BA.* FROM BUS_ACHIEVEMENT BA WHERE BA.IS_STATUS = 1
+    </select>
+
+    <!--前端使用-->
+    <select id="selectMAchievementListByWechat" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            BA.*,
+            IFNULL(BAD.BAD_COUNT,0) BAD_COUNT,
+            SF.ID AS IMG_ID,SF.SF_SUFFIX
+        FROM BUS_ACHIEVEMENT BA
+        LEFT JOIN (SELECT BA_ID,COUNT(1) BAD_COUNT FROM BUS_ACHIEVEMENT_DETAIL WHERE BW_ID = #{ID} GROUP BY BA_ID)BAD ON BAD.BA_ID = BA.ID
+        LEFT JOIN sys_file SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID
+        WHERE BA.IS_STATUS = 1
+    </select>
+
+    <!--插入-->
+    <insert id="insertAchievement" parameterType="java.util.Map">
+        INSERT INTO BUS_ACHIEVEMENT
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ID != null">ID,</if>
+            <if test="BA_NAME != null">BA_NAME,</if>
+            <if test="BA_LONGITUDE != null">BA_LONGITUDE,</if>
+            <if test="BA_LATITUDE != null">BA_LATITUDE,</if>
+            <if test="BA_RANGE != null">BA_RANGE,</if>
+            <if test="BA_ENTRYTIME != null">BA_ENTRYTIME,</if>
+            <if test="SO_ID != null">SO_ID,</if>
+            <if test="IS_STATUS != null">IS_STATUS,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ID != null">#{ID},</if>
+            <if test="BA_NAME != null">#{BA_NAME},</if>
+            <if test="BA_LONGITUDE != null">#{BA_LONGITUDE},</if>
+            <if test="BA_LATITUDE != null">#{BA_LATITUDE},</if>
+            <if test="BA_RANGE != null">#{BA_RANGE},</if>
+            <if test="BA_ENTRYTIME != null">#{BA_ENTRYTIME},</if>
+            <if test="SO_ID != null">#{SO_ID},</if>
+            <if test="IS_STATUS != null">#{IS_STATUS},</if>
+        </trim>
+    </insert>
+
+    <!--编辑-->
+    <update id="updateAchievement" parameterType="java.util.Map">
+        UPDATE BUS_ACHIEVEMENT
+        <set>
+            <if test="ID != null">ID=#{ID},</if>
+            <if test="BA_NAME != null">BA_NAME=#{BA_NAME},</if>
+            <if test="BA_LONGITUDE != null">BA_LONGITUDE=#{BA_LONGITUDE},</if>
+            <if test="BA_LATITUDE != null">BA_LATITUDE=#{BA_LATITUDE},</if>
+            <if test="BA_RANGE != null">BA_RANGE=#{BA_RANGE},</if>
+            <if test="BA_ENTRYTIME != null">BA_ENTRYTIME=#{BA_ENTRYTIME},</if>
+            <if test="SO_ID != null">SO_ID=#{SO_ID},</if>
+            <if test="IS_STATUS != null">IS_STATUS=#{IS_STATUS},</if>
+        </set>
+        <where>
+            ID=#{ID}
+        </where>
+    </update>
+
+    <!--删除-->
+    <delete id="deleteAchievement" parameterType="java.util.Map">
+		DELETE FROM BUS_ACHIEVEMENT WHERE ID = #{ID}
+	</delete>
+
+    <!--查询-->
+    <select id="selectAchievementDetail" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM BUS_ACHIEVEMENT_DETAIL
+        <where>
+            <if test ="ID != NULL and ID != ''">
+                AND ID = #{ID}
+            </if>
+        </where>
+    </select>
+
+    <!--插入-->
+    <insert id="insertAchievementDetail" parameterType="java.util.Map">
+        INSERT INTO BUS_ACHIEVEMENT_DETAIL
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ID != null">ID,</if>
+            <if test="BA_ID != null">BA_ID,</if>
+            <if test="BW_ID != null">BW_ID,</if>
+            <if test="BAD_REMARKS != null">BAD_REMARKS,</if>
+            <if test="BAD_FILETYPE != null">BAD_FILETYPE,</if>
+            <if test="BAD_ENTERTIME != null">BAD_ENTERTIME,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ID != null">#{ID},</if>
+            <if test="BA_ID != null">#{BA_ID},</if>
+            <if test="BW_ID != null">#{BW_ID},</if>
+            <if test="BAD_REMARKS != null">#{BAD_REMARKS},</if>
+            <if test="BAD_FILETYPE != null">#{BAD_FILETYPE},</if>
+            <if test="BAD_ENTERTIME != null">#{BAD_ENTERTIME},</if>
+        </trim>
+    </insert>
+
+    <!--编辑-->
+    <update id="updateAchievementDetail" parameterType="java.util.Map">
+        UPDATE BUS_ACHIEVEMENT_DETAIL
+        <set>
+            <if test="ID != null">ID=#{ID},</if>
+            <if test="BA_ID != null">BA_ID=#{BA_ID},</if>
+            <if test="BW_ID != null">BW_ID=#{BW_ID},</if>
+            <if test="BAD_REMARKS != null">BAD_REMARKS=#{BAD_REMARKS},</if>
+            <if test="BAD_ENTERTIME != null">BAD_ENTERTIME=#{BAD_ENTERTIME},</if>
+        </set>
+        <where>
+            ID=#{ID}
+        </where>
+    </update>
+
+    <!--删除-->
+    <delete id="deleteAchievementDetail" parameterType="java.util.Map">
+		DELETE FROM BUS_ACHIEVEMENT_DETAIL WHERE ID = #{ID}
+	</delete>
+</mapper>

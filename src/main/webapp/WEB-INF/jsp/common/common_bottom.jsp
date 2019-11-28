@@ -9,9 +9,9 @@
 <%-- Bootstrap 3.3.6 --%>
 <script src="${BASE_URL}resources/static/bootstrap/js/bootstrap.min.js?ver=${VERSION}"></script>
 <%--pjax--%>
-<script src="${BASE_URL}resources/reception/plugins/jquery-pjax-master/jquery.pjax.js?ver=${VERSION}"
+<script src="${BASE_URL}resources/mobile/plugins/jquery-pjax-master/jquery.pjax.js?ver=${VERSION}"
         type="text/javascript"></script>
-<script src="${BASE_URL}resources/reception/plugins/arrival/arrival.min.js?ver=${VERSION}" type="text/javascript"></script>
+<script src="${BASE_URL}resources/mobile/plugins/arrival/arrival.min.js?ver=${VERSION}" type="text/javascript"></script>
 <%--zoom图片缩放--%>
 <script src="${BASE_URL}resources/static/plugins/zoom/dist/zoom.min.js?ver=${VERSION}"></script>
 <%-- Sparkline --%>
@@ -40,7 +40,7 @@
 <script src="${BASE_URL}resources/static/plugins/datatables/extensions/Select/js/dataTables.select.min.js?ver=${VERSION}"></script>
 <script src="${BASE_URL}resources/static/plugins/datatables/extensions/FixedColumns/js/dataTables.fixedColumns.min.js?ver=${VERSION}"></script>
 <%--加载条--%>
-<script src="${BASE_URL}resources/reception/plugins/nprogress/nprogress.js?ver=${VERSION}" type="text/javascript"></script>
+<script src="${BASE_URL}resources/mobile/plugins/nprogress/nprogress.js?ver=${VERSION}" type="text/javascript"></script>
 <%--Select2 --%>
 <script src="${BASE_URL}resources/static/plugins/select2/select2.full.min.js?ver=${VERSION}"></script>
 <script src="${BASE_URL}resources/static/plugins/select2/i18n/zh-CN.js?ver=${VERSION}"></script>
@@ -61,7 +61,7 @@
 <script src="${BASE_URL}resources/static/plugins/raphael/2.2.1/raphael.min.js?ver=${VERSION}"></script>
 <script src="${BASE_URL}resources/static/plugins/morris/morris.min.js?ver=${VERSION}"></script>
 <%--延迟点击--%>
-<script src="${BASE_URL}resources/reception/plugins/delay-button/delay-button.js?ver=${VERSION}"></script>
+<script src="${BASE_URL}resources/mobile/plugins/delay-button/delay-button.js?ver=${VERSION}"></script>
 <%--树形菜单--%>
 <script src="${BASE_URL}resources/static/plugins/bootstrap-treeview/bootstrap-treeview.js?ver=${VERSION}"></script>
 <%--树形列表--%>
@@ -71,8 +71,8 @@
 <%--切换按钮--%>
 <script src="${BASE_URL}resources/static/plugins/bootstrap-switch/js/bootstrap-switch.min.js?ver=${VERSION}"></script>
 <%--通知--%>
-<script src="${BASE_URL}resources/reception/myHome/js/bootstrap-notify.js?ver=${VERSION}"></script>
-<script src="${BASE_URL}resources/reception/myHome/js/main.js?ver=${VERSION}"></script>
+<script src="${BASE_URL}resources/mobile/js/bootstrap-notify.js?ver=${VERSION}"></script>
+<script src="${BASE_URL}resources/mobile/js/main.js?ver=${VERSION}"></script>
 <%--jquery-confirm--%>
 <script src="${BASE_URL}resources/static/plugins/jquery-confirm/jquery-confirm.min.js?ver=${VERSION}"></script>
 <%--主页js--%>

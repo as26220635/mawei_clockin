@@ -54,7 +54,9 @@
                 /login.jsp = anon
                 /login = login
                 <!--全部都要登录-->
-                /** = login
+                /admin/** = login
+                <!--移动端不用登陆-->
+                /** = anon
             </value>
         </property>
     </bean>

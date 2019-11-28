@@ -24,7 +24,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.LastModified;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -38,7 +40,12 @@ import java.util.UUID;
  */
 @Controller
 @RequestMapping("/file")
-public class FileController extends BaseController {
+public class FileController extends BaseController implements LastModified {
+
+    /**
+     * 缓存
+     */
+    private long lastModified = System.currentTimeMillis();
 
     @Autowired
     private FileService fileService;
@@ -52,7 +59,14 @@ public class FileController extends BaseController {
      * @throws Exception
      */
     @GetMapping("/preview/{ID}")
-    public void preview(@PathVariable("ID") String ID, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void preview(@PathVariable("ID") String ID, WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        /**
+         * 使用缓存
+         */
+        if (webRequest.checkNotModified(lastModified)) {
+            return;
+        }
+
         response.setCharacterEncoding("UTF-8");
 
         OutputStream os = null;
@@ -61,6 +75,7 @@ public class FileController extends BaseController {
         BufferedInputStream bis = null;
         InputStream inputStream = null;
         try {
+            ID = FileUtil.removeSuffix(ID);
             Map<String, Object> file = fileService.selectFile(ID);
 
             if (ValidateUtil.isEmpty(file)) {
@@ -214,6 +229,7 @@ public class FileController extends BaseController {
     public ResponseEntity<byte[]> download(@PathVariable("ID") String ID) throws Exception {
         InputStream inputStream = null;
         try {
+            ID = FileUtil.removeSuffix(ID);
             Map<String, Object> file = fileService.selectFile(ID);
 
             if (ValidateUtil.isEmpty(file)) {
@@ -346,15 +362,14 @@ public class FileController extends BaseController {
                 return null;
             }
 
-            boolean isSuccess = FileUtil.delServerFile(cxfState.getUrl(), TokenUtil.baseKey(key, SF_TABLE_NAME), SF_NAME, SF_PATH);
+            //删除服务器文件
+            FileUtil.delServerFile(cxfState.getUrl(), TokenUtil.baseKey(key, SF_TABLE_NAME), SF_NAME, SF_PATH);
 
-            if (isSuccess) {
-                Map<String, Object> resultMap = fileService.deleteFile(key);
+            Map<String, Object> resultMap = fileService.deleteFile(key);
 
-                resultJson.put("code", STATUS_SUCCESS);
-                resultJson.put("logMessage", "删除文件:" + SF_ORIGINAL_NAME + ",来源:" + title + ",成功!");
-                return resultJson;
-            }
+            resultJson.put("code", STATUS_SUCCESS);
+            resultJson.put("logMessage", "删除文件:" + SF_ORIGINAL_NAME + ",来源:" + title + ",成功!");
+            return resultJson;
         } catch (Exception e) {
         }
 
@@ -434,5 +449,10 @@ public class FileController extends BaseController {
             IOUtils.closeQuietly(inputStream);
         }
         return "admin/component/officePreview";
+    }
+
+    @Override
+    public long getLastModified(HttpServletRequest httpServletRequest) {
+        return lastModified;
     }
 }

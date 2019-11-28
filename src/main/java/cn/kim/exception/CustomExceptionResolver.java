@@ -5,7 +5,9 @@ import cn.kim.common.eu.UseType;
 import cn.kim.common.eu.SystemEnum;
 import cn.kim.controller.ManagerController;
 import cn.kim.common.attr.Attribute;
+import cn.kim.interceptor.PjaxInterceptor;
 import cn.kim.util.LogUtil;
+import cn.kim.util.ValidateUtil;
 import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -69,6 +71,12 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
 //        request.setAttribute("message", "发生错误,请重试!");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("message", message);
+
+        if (!ValidateUtil.isEmpty(request.getHeader(PjaxInterceptor.PJAX))) {
+            response.setHeader(PjaxInterceptor.PJAX, "true");
+            modelAndView.addObject("PJAX", true);
+        }
+
         //转向到错误 页面
         if (url.contains(ManagerController.MANAGER_URL)) {
             modelAndView.setViewName(Attribute.MANAGER_ERROR);

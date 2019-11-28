@@ -12,7 +12,7 @@
 <head>
     <%@ include file="/WEB-INF/jsp/common/common_meta.jsp" %>
     <title>500</title>
-    <%@ include file="/WEB-INF/jsp/reception/common/common_css.jsp" %>
+    <%@ include file="/WEB-INF/jsp/mobile/common/common_css.jsp" %>
 </head>
 <body class="index-page">
 

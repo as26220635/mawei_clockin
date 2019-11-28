@@ -34,11 +34,11 @@ public class Attribute {
     public static final String EXCEL_XLSX = ".xlsx";
 
     /*******************    前台使用 ******************/
-    public static final String LOADING_IMAGE = "resources/reception/assets/img/loading.gif";
+    public static final String LOADING_IMAGE = "resources/mobile/assets/img/loading.gif";
     /**
      * 错误图片
      */
-    public static final String IMAGE_ERROR = "reception/assets/img/error.jpg";
+    public static final String IMAGE_ERROR = "mobile/assets/img/error.jpg";
     /**
      * 权限错误
      */
@@ -60,4 +60,11 @@ public class Attribute {
      */
     public static final String MANAGER_ERROR = "error/error";
     public static final String RECEPTION_ERROR = "error/reception_error";
+
+    /**
+     * 文件类型
+     */
+    public static final String BUS_FILE_DEFAULT = "BUS_FILE_DEFAULT";
+
+    public static final String DEFAULT = "DEFAULT";
 }

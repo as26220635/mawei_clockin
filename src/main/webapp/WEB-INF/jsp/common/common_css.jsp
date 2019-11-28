@@ -6,7 +6,7 @@
 <%-- Ionicons --%>
 <link rel="stylesheet" href="${BASE_URL}resources/static/plugins/ionicons-2.0.1/css/ionicons.min.css?ver=${VERSION}">
 <link rel="stylesheet"
-      href="${BASE_URL}resources/reception/plugins/MaterialDesign-Webfont-master/css/materialdesignicons.min.css?ver=${VERSION}"/>
+      href="${BASE_URL}resources/mobile/plugins/MaterialDesign-Webfont-master/css/materialdesignicons.min.css?ver=${VERSION}"/>
 <%--Select2 --%>
 <link rel="stylesheet" href="${BASE_URL}resources/static/plugins/select2/select2.min.css?ver=${VERSION}">
 <%-- Theme style --%>
@@ -33,7 +33,7 @@ folder instead of downloading all of them to reduce the load. --%>
 <link rel="stylesheet" href="${BASE_URL}resources/static/plugins/datatables/css/dataTables.bootstrap.min.css?ver=${VERSION}">
 <link rel="stylesheet" href="${BASE_URL}resources/static/plugins/datatables/css/select.bootstrap.min.css?ver=${VERSION}">
 <%--加载条--%>
-<link rel="stylesheet" href="${BASE_URL}resources/reception/plugins/nprogress/nprogress.css?ver=${VERSION}"/>
+<link rel="stylesheet" href="${BASE_URL}resources/mobile/plugins/nprogress/nprogress.css?ver=${VERSION}"/>
 <%--文件上传--%>
 <link rel="stylesheet" href="${BASE_URL}resources/static/plugins/bootstrap-fileinput/css/fileinput.min.css?ver=${VERSION}">
 <link rel="stylesheet" href="${BASE_URL}resources/static/plugins/bootstrap-fileinput/themes/explorer/theme.css?ver=${VERSION}">
@@ -53,7 +53,7 @@ folder instead of downloading all of them to reduce the load. --%>
 <%--树形列表--%>
 <link rel="stylesheet" href="${BASE_URL}resources/static/plugins/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css?ver=${VERSION}">
 <%--动画--%>
-<link rel="stylesheet" href="${BASE_URL}resources/reception/plugins/animate/animate.min.css?ver=${VERSION}"/>
+<link rel="stylesheet" href="${BASE_URL}resources/mobile/plugins/animate/animate.min.css?ver=${VERSION}"/>
 <%--jquery-confirm--%>
 <link rel="stylesheet" href="${BASE_URL}resources/static/plugins/jquery-confirm/jquery-confirm.min.css?ver=${VERSION}"/>
 <%--首页--%>

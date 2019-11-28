@@ -12,7 +12,9 @@ public enum UseType {
     //使用
     USE(2),
     //用户
-    PERSONAL(9);
+    PERSONAL(9),
+    //微信登录
+    WECHAT(10);
 
     private int type;
 

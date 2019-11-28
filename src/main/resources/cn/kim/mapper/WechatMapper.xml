@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kim.mapper.WechatMapper">
+
+    <!--查询-->
+    <select id="selectWechat" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM BUS_WECHAT
+        <where>
+            <if test ="ID != NULL and ID != ''">
+                AND ID = #{ID}
+            </if>
+            <if test ="BW_OPENID != NULL and BW_OPENID != ''">
+                AND BW_OPENID = #{BW_OPENID}
+            </if>
+        </where>
+    </select>
+
+    <!--插入-->
+    <insert id="insertWechat" parameterType="java.util.Map">
+        INSERT INTO BUS_WECHAT
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ID != null">ID,</if>
+            <if test="SO_ID != null">SO_ID,</if>
+            <if test="BW_UUID != null">BW_UUID,</if>
+            <if test="BW_USERNAME != null">BW_USERNAME,</if>
+            <if test="BW_NICKNAME != null">BW_NICKNAME,</if>
+            <if test="BW_GENDER != null">BW_GENDER,</if>
+            <if test="BW_AVATAR != null">BW_AVATAR,</if>
+            <if test="BW_LOCATION != null">BW_LOCATION,</if>
+            <if test="BW_SOURCE != null">BW_SOURCE,</if>
+            <if test="BW_ACCESSTOKEN != null">BW_ACCESSTOKEN,</if>
+            <if test="BW_EXPIREIN != null">BW_EXPIREIN,</if>
+            <if test="BW_OPENID != null">BW_OPENID,</if>
+            <if test="BW_REFRESHTOKEN != null">BW_REFRESHTOKEN,</if>
+            <if test="BW_LOGINTIME != null">BW_LOGINTIME,</if>
+            <if test="IS_STATUS != null">IS_STATUS,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ID != null">#{ID},</if>
+            <if test="SO_ID != null">#{SO_ID},</if>
+            <if test="BW_UUID != null">#{BW_UUID},</if>
+            <if test="BW_USERNAME != null">#{BW_USERNAME},</if>
+            <if test="BW_NICKNAME != null">#{BW_NICKNAME},</if>
+            <if test="BW_GENDER != null">#{BW_GENDER},</if>
+            <if test="BW_AVATAR != null">#{BW_AVATAR},</if>
+            <if test="BW_LOCATION != null">#{BW_LOCATION},</if>
+            <if test="BW_SOURCE != null">#{BW_SOURCE},</if>
+            <if test="BW_ACCESSTOKEN != null">#{BW_ACCESSTOKEN},</if>
+            <if test="BW_EXPIREIN != null">#{BW_EXPIREIN},</if>
+            <if test="BW_OPENID != null">#{BW_OPENID},</if>
+            <if test="BW_REFRESHTOKEN != null">#{BW_REFRESHTOKEN},</if>
+            <if test="BW_LOGINTIME != null">#{BW_LOGINTIME},</if>
+            <if test="IS_STATUS != null">#{IS_STATUS},</if>
+        </trim>
+    </insert>
+
+    <!--编辑-->
+    <update id="updateWechat" parameterType="java.util.Map">
+        UPDATE BUS_WECHAT
+        <set>
+            <if test="ID != null">ID=#{ID},</if>
+            <if test="BW_UUID != null">BW_UUID=#{BW_UUID},</if>
+            <if test="BW_USERNAME != null">BW_USERNAME=#{BW_USERNAME},</if>
+            <if test="BW_NICKNAME != null">BW_NICKNAME=#{BW_NICKNAME},</if>
+            <if test="BW_GENDER != null">BW_GENDER=#{BW_GENDER},</if>
+            <if test="BW_AVATAR != null">BW_AVATAR=#{BW_AVATAR},</if>
+            <if test="BW_LOCATION != null">BW_LOCATION=#{BW_LOCATION},</if>
+            <if test="BW_SOURCE != null">BW_SOURCE=#{BW_SOURCE},</if>
+            <if test="BW_ACCESSTOKEN != null">BW_ACCESSTOKEN=#{BW_ACCESSTOKEN},</if>
+            <if test="BW_EXPIREIN != null">BW_EXPIREIN=#{BW_EXPIREIN},</if>
+            <if test="BW_OPENID != null">BW_OPENID=#{BW_OPENID},</if>
+            <if test="BW_REFRESHTOKEN != null">BW_REFRESHTOKEN=#{BW_REFRESHTOKEN},</if>
+            <if test="BW_LOGINTIME != null">BW_LOGINTIME=#{BW_LOGINTIME},</if>
+            <if test="IS_STATUS != null">IS_STATUS=#{IS_STATUS},</if>
+        </set>
+        <where>
+            ID=#{ID}
+        </where>
+    </update>
+
+    <!--删除-->
+    <delete id="deleteWechat" parameterType="java.util.Map">
+		DELETE FROM BUS_WECHAT WHERE ID = #{ID}
+	</delete>
+</mapper>

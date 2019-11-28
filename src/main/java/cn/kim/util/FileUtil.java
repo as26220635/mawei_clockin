@@ -1,5 +1,6 @@
 package cn.kim.util;
 
+import cn.kim.common.springmvc.BASE64DecodedMultipartFile;
 import cn.kim.entity.ActiveUser;
 import cn.kim.service.FileService;
 import cn.kim.service.FileWS;
@@ -17,16 +18,20 @@ import com.google.common.collect.Maps;
 import com.sun.istack.internal.ByteArrayDataSource;
 import lombok.extern.log4j.Log4j2;
 import net.coobird.thumbnailator.Thumbnails;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import sun.misc.BASE64Decoder;
 
 import javax.activation.DataHandler;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.ConnectException;
@@ -49,6 +54,8 @@ public class FileUtil {
     @Autowired
     private FileService fileService;
     private static FileUtil fileUtil;
+
+    private static BASE64Decoder decoder = new sun.misc.BASE64Decoder();
 
     public void setSysUploadFileService(FileService fileService) {
         this.fileService = fileService;
@@ -147,11 +154,11 @@ public class FileUtil {
                         return resultMap;
                     }
                     //查询原始类型
-                    if (!FileUtil.isCheckSuffix(fileType, ConfigProperties.ALLOW_SUFFIX_FILE)) {
-                        resultMap.put("code", Attribute.STATUS_ERROR);
-                        resultMap.put("message", "上传文件类型错误,请不要修改文件后缀上传!");
-                        return resultMap;
-                    }
+//                    if (!FileUtil.isCheckSuffix(fileType, ConfigProperties.ALLOW_SUFFIX_FILE)) {
+//                        resultMap.put("code", Attribute.STATUS_ERROR);
+//                        resultMap.put("message", "上传文件类型错误,请不要修改文件后缀上传!");
+//                        return resultMap;
+//                    }
                 } else {
                     if (!FileUtil.isCheckSuffix(originalFilename, ConfigProperties.ALLOW_SUFFIX_IMG)) {
                         resultMap.put("code", Attribute.STATUS_ERROR);
@@ -159,11 +166,11 @@ public class FileUtil {
                         return resultMap;
                     }
                     //查询原始类型
-                    if (!FileUtil.isCheckSuffix(fileType, ConfigProperties.ALLOW_SUFFIX_IMG)) {
-                        resultMap.put("code", Attribute.STATUS_ERROR);
-                        resultMap.put("message", "上传文件类型错误,请不要修改文件后缀上传!");
-                        return resultMap;
-                    }
+//                    if (!FileUtil.isCheckSuffix(fileType, ConfigProperties.ALLOW_SUFFIX_IMG)) {
+//                        resultMap.put("code", Attribute.STATUS_ERROR);
+//                        resultMap.put("message", "上传文件类型错误,请不要修改文件后缀上传!");
+//                        return resultMap;
+//                    }
                 }
 
                 //文件服务器存储路径
@@ -212,7 +219,7 @@ public class FileUtil {
                     byte[] fileBytes = toByteArray(newFile);
                     // 上传附件到附件服务器
                     //签发1分钟的有效token
-                    boolean isUpload = uploadCxfFile(TokenUtil.baseKey(UUID.randomUUID(), fileTableNAME), id, filepath, fileBytes);
+                    boolean isUpload = uploadCxfFile(TokenUtil.baseKey(UUID.randomUUID(), fileTableNAME), id + "." + suffix, filepath, fileBytes);
                     if (isUpload) {
                         //保存记录到数据库
                         Map<String, Object> fileMap = Maps.newHashMapWithExpectedSize(13);
@@ -223,7 +230,7 @@ public class FileUtil {
                         fileMap.put("SF_SDT_CODE", fileDictTypeCode);
                         fileMap.put("SF_SDI_CODE", fileDictInfoCode);
                         fileMap.put("SF_ORIGINAL_NAME", file.getOriginalFilename());
-                        fileMap.put("SF_NAME", id);
+                        fileMap.put("SF_NAME", id + "." + suffix);
                         fileMap.put("SF_PATH", filepath);
                         fileMap.put("SF_SUFFIX", suffix);
                         fileMap.put("SF_SIZE", file.getSize());
@@ -412,6 +419,19 @@ public class FileUtil {
     }
 
     /**
+     * 去除后缀
+     *
+     * @param fileName
+     * @return
+     */
+    public static String removeSuffix(String fileName) {
+        if (fileName.indexOf(".") != -1) {
+            return fileName.substring(0, fileName.indexOf("."));
+        }
+        return fileName;
+    }
+
+    /**
      * 判断是不是静态文件
      *
      * @return
@@ -421,7 +441,7 @@ public class FileUtil {
             return true;
         } else if (url.indexOf("/check.jpg") != -1) {
             return true;
-        } else if (url.indexOf("/reception/") != -1) {
+        } else if (url.indexOf("/mobile/") != -1) {
             return true;
         } else if (url.indexOf("/downloadFile/") != -1) {
             return true;
@@ -649,7 +669,7 @@ public class FileUtil {
         String SF_PATH = TextUtil.toString(file.get("SF_PATH"));
 
         boolean isSuccess = delServerFile(cxfState.getUrl(), TokenUtil.baseKey(key, SF_TABLE_NAME), SF_NAME, SF_PATH);
-        if(isSuccess){
+        if (isSuccess) {
             fileUtil.fileService.deleteFile(key);
         }
         return isSuccess;
@@ -916,6 +936,33 @@ public class FileUtil {
         }
 
         return false;
+    }
+
+    /**
+     * byte[] 转为MultipartFile
+     *
+     * @param base64
+     * @return
+     */
+    public static MultipartFile base64ToMultipart(String base64) {
+        try {
+            String[] baseStrs = base64.split(",");
+
+            BASE64Decoder decoder = new BASE64Decoder();
+            byte[] b = new byte[0];
+            b = decoder.decodeBuffer(baseStrs[1]);
+
+            for (int i = 0; i < b.length; ++i) {
+                if (b[i] < 0) {
+                    b[i] += 256;
+                }
+            }
+
+            return new BASE64DecodedMultipartFile(b, baseStrs[0]);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static void main(String[] args) throws IOException {

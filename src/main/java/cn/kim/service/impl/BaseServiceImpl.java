@@ -489,29 +489,6 @@ public abstract class BaseServiceImpl extends BaseData implements BaseService {
         return true;
     }
 
-    /**
-     * 根据ID查询学生
-     *
-     * @param id
-     * @return
-     */
-    protected Map<String, Object> selectStudentById(Object id) {
-        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
-        paramMap.put("ID", id);
-        return baseDao.selectOne(NameSpace.StudentMapper, "selectStudent", paramMap);
-    }
-
-    /**
-     * 根据学号查询学生
-     *
-     * @param studentNumber
-     * @return
-     */
-    protected Map<String, Object> selectStudentByNumber(Object studentNumber) {
-        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
-        paramMap.put("BS_NUMBER", studentNumber);
-        return baseDao.selectOne(NameSpace.StudentMapper, "selectStudent", paramMap);
-    }
 
 
     /**
@@ -538,47 +515,6 @@ public abstract class BaseServiceImpl extends BaseData implements BaseService {
         return baseDao.selectOne(NameSpace.OperatorMapper, "selectAccountInfo", paramMap);
     }
 
-    /**
-     * 插入宿舍日志
-     *
-     * @param baseDao
-     * @param BDB_ID 铺位ID
-     * @param BDP_OPERATOR_ID 人员ID
-     * @param BDL_TYPE        插入类型 1插入 2更新 3删除
-     */
-    protected void insertDormitoryLog(BaseDao baseDao, String BDB_ID, String BDP_OPERATOR_ID, int BDL_TYPE) {
-        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
-
-        paramMap.put("ID", BDB_ID);
-        Map<String, Object> berth = baseDao.selectOne(NameSpace.DormitoryMapper, "selectDormitoryBerth", paramMap);
-
-        paramMap.clear();
-        paramMap.put("ID", berth.get("BDR_ID"));
-        Map<String, Object> room = baseDao.selectOne(NameSpace.DormitoryMapper, "selectDormitoryRoom", paramMap);
-
-        paramMap.clear();
-        paramMap.put("ID", room.get("BDF_ID"));
-        Map<String, Object> floor = baseDao.selectOne(NameSpace.DormitoryMapper, "selectDormitoryFloor", paramMap);
-
-        Map<String, Object> accountInfo = selectAccountInfo(BDP_OPERATOR_ID);
-
-        paramMap.clear();
-        paramMap.put("ID", getId());
-        paramMap.put("BDF_ID", floor.get("ID"));
-        paramMap.put("BDR_ID", room.get("ID"));
-        paramMap.put("BDB_ID", BDB_ID);
-        paramMap.put("BDF_NAME", floor.get("BDF_NAME"));
-        paramMap.put("BDR_NAME", room.get("BDR_NAME"));
-        paramMap.put("BDB_NAME", berth.get("BDB_NAME"));
-        paramMap.put("BDL_JOIN_NAME", TextUtil.joinValue("-", toString(floor.get("BDF_NAME")), toString(room.get("BDR_NAME")), toString(berth.get("BDB_NAME"))));
-        paramMap.put("BDL_OPERATOR_ID", accountInfo.get("SO_ID"));
-        paramMap.put("BDL_OPERATOR_NAME", accountInfo.get("SAI_NAME"));
-        paramMap.put("BDL_OPERATOR_TYPE", accountInfo.get("SAI_TYPE"));
-        paramMap.put("BDL_ENRTY_TIME", getDate());
-        paramMap.put("BDL_TYPE", BDL_TYPE);
-        paramMap.put("SO_ID", getActiveUser().getId());
-        baseDao.selectOne(NameSpace.DormitoryMapper, "insertDormitoryLog", paramMap);
-    }
 
 
     /*****************  流程使用    *******************/
@@ -591,9 +527,9 @@ public abstract class BaseServiceImpl extends BaseData implements BaseService {
      */
     protected String getAuthorizationWhere() {
         Map<String, Object> fieldMap = Maps.newHashMapWithExpectedSize(3);
-        fieldMap.put(AuthorizationType.COLLEGE.toString(), "BDM_COLLEGE");
-        fieldMap.put(AuthorizationType.DEPARTMENT.toString(), "BDM_ID");
-        fieldMap.put(AuthorizationType.CLS.toString(), "BC_ID");
+//        fieldMap.put(AuthorizationType.COLLEGE.toString(), "BDM_COLLEGE");
+//        fieldMap.put(AuthorizationType.DEPARTMENT.toString(), "BDM_ID");
+//        fieldMap.put(AuthorizationType.CLS.toString(), "BC_ID");
         return getAuthorizationWhere(false, fieldMap);
     }
 
@@ -606,9 +542,9 @@ public abstract class BaseServiceImpl extends BaseData implements BaseService {
      */
     protected String getAuthorizationWhere(boolean isProcess) {
         Map<String, Object> fieldMap = Maps.newHashMapWithExpectedSize(3);
-        fieldMap.put(AuthorizationType.COLLEGE.toString(), "BDM_COLLEGE");
-        fieldMap.put(AuthorizationType.DEPARTMENT.toString(), "BDM_ID");
-        fieldMap.put(AuthorizationType.CLS.toString(), "BC_ID");
+//        fieldMap.put(AuthorizationType.COLLEGE.toString(), "BDM_COLLEGE");
+//        fieldMap.put(AuthorizationType.DEPARTMENT.toString(), "BDM_ID");
+//        fieldMap.put(AuthorizationType.CLS.toString(), "BC_ID");
         return getAuthorizationWhere(isProcess, fieldMap);
     }
 
@@ -622,46 +558,46 @@ public abstract class BaseServiceImpl extends BaseData implements BaseService {
     protected String getAuthorizationWhere(boolean isProcess, Map<String, Object> fieldMap) {
         StringBuilder builder = new StringBuilder();
 
-        //拿到当前用户的角色
-        ActiveUser activeUser = getActiveUser();
-        String operatorId = activeUser.getId();
-        String tableId = activeUser.getTableId();
-        int type = toInt(activeUser.getType());
-
-        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
-
-        if (type == SystemEnum.MANAGER.getType()) {
-            //管理员不过滤
-            return "";
-        } else if (type == SystemEnum.DIVISION.getType()) {
-            //部门
-            paramMap.put("ID", tableId);
-            Map<String, Object> division = baseDao.selectOne(NameSpace.DivisionMapper, "selectDivision", paramMap);
-
-            builder.append(" AND BDM_COLLEGE= " + division.get("BD_COLLEGE"));
-        } else if (type == SystemEnum.DEPARTMENT.getType()) {
-            //系部
-            paramMap.put("ID", tableId);
-            Map<String, Object> department = baseDao.selectOne(NameSpace.DepartmentMapper, "selectDepartment", paramMap);
-
-            builder.append(" AND BDM_ID = " + department.get("ID"));
-        } else if (type == SystemEnum.STUDENT.getType()) {
-            //学生
-            if (isProcess) {
-                builder.append(" AND (DG.SO_ID = " + operatorId + " OR SPS.SO_ID = " + operatorId + " OR SPS.SHOW_SO_ID = " + operatorId + ")");
-            } else {
-                builder.append(" AND SO_ID = " + operatorId);
-            }
-        } else if (type == SystemEnum.TEACHER.getType()) {
-            //教师
-            if (isProcess) {
-                builder.append(" AND (DG.SO_ID = " + operatorId + " OR SPS.SO_ID = " + operatorId + " OR SPS.SHOW_SO_ID = " + operatorId + ")");
-            } else {
-                builder.append(" AND SO_ID = " + operatorId);
-            }
-        } else {
-            throw new UnauthorizedException("当前用户类型错误!");
-        }
+//        //拿到当前用户的角色
+//        ActiveUser activeUser = getActiveUser();
+//        String operatorId = activeUser.getId();
+//        String tableId = activeUser.getTableId();
+//        int type = toInt(activeUser.getType());
+//
+//        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
+//
+//        if (type == SystemEnum.MANAGER.getType()) {
+//            //管理员不过滤
+//            return "";
+//        } else if (type == SystemEnum.DIVISION.getType()) {
+//            //部门
+//            paramMap.put("ID", tableId);
+//            Map<String, Object> division = baseDao.selectOne(NameSpace.DivisionMapper, "selectDivision", paramMap);
+//
+//            builder.append(" AND BDM_COLLEGE= " + division.get("BD_COLLEGE"));
+//        } else if (type == SystemEnum.DEPARTMENT.getType()) {
+//            //系部
+//            paramMap.put("ID", tableId);
+//            Map<String, Object> department = baseDao.selectOne(NameSpace.DepartmentMapper, "selectDepartment", paramMap);
+//
+//            builder.append(" AND BDM_ID = " + department.get("ID"));
+//        } else if (type == SystemEnum.STUDENT.getType()) {
+//            //学生
+//            if (isProcess) {
+//                builder.append(" AND (DG.SO_ID = " + operatorId + " OR SPS.SO_ID = " + operatorId + " OR SPS.SHOW_SO_ID = " + operatorId + ")");
+//            } else {
+//                builder.append(" AND SO_ID = " + operatorId);
+//            }
+//        } else if (type == SystemEnum.TEACHER.getType()) {
+//            //教师
+//            if (isProcess) {
+//                builder.append(" AND (DG.SO_ID = " + operatorId + " OR SPS.SO_ID = " + operatorId + " OR SPS.SHOW_SO_ID = " + operatorId + ")");
+//            } else {
+//                builder.append(" AND SO_ID = " + operatorId);
+//            }
+//        } else {
+//            throw new UnauthorizedException("当前用户类型错误!");
+//        }
 
         return builder.toString();
     }
@@ -775,26 +711,4 @@ public abstract class BaseServiceImpl extends BaseData implements BaseService {
         }
     }
 
-    /**
-     * 是否当前班级辅导员能修改
-     *
-     * @param BC_ID
-     * @return
-     */
-    public boolean isNowChangeInstructor(String BC_ID) {
-        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
-        paramMap.put("ID", BC_ID);
-        Map<String, Object> cls = baseDao.selectOne(NameSpace.ClsMapper, "selectClass", paramMap);
-
-        int BC_YEAR = toInt(cls.get("BC_YEAR"));
-        int BC_LENGTH = toInt(cls.get("BC_LENGTH"));
-
-        int startYear = getStudentYearStart();
-        int endYear = getStudentYearEnd();
-        if (BC_YEAR <= endYear && BC_YEAR > startYear - BC_LENGTH) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

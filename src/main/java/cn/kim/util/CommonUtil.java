@@ -127,6 +127,31 @@ public class CommonUtil {
     }
 
     /**
+     * 获取上传文件
+     *
+     * @param request
+     * @return
+     */
+    public static List<MultipartFile> getMultipartFileList(HttpServletRequest request) {
+        List<MultipartFile> multipartFiles = new ArrayList<>();
+
+        //创建一个通用的多部分解析器
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(request.getSession().getServletContext());
+        //判断 request 是否有文件上传,即多部分请求
+        if (multipartResolver.isMultipart(request)) {
+            //转换成多部分request
+            MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+            //取得request中的所有文件名
+            Iterator<String> iter = multiRequest.getFileNames();
+            while (iter.hasNext()) {
+                multipartFiles.add(multiRequest.getFile(iter.next()));
+            }
+        }
+
+        return multipartFiles;
+    }
+
+    /**
      * 返回单个文件解析器
      *
      * @param request
@@ -598,8 +623,8 @@ public class CommonUtil {
                 BeanUtil.idEncryptReflect(obj);
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new InvalidKeyException("无效的key");
+//            e.printStackTrace();
+//            throw new InvalidKeyException("无效的key");
         }
 
         return obj;
@@ -687,7 +712,7 @@ public class CommonUtil {
                 BeanUtil.idDecryptReflect(obj);
             }
         } catch (Exception e) {
-            throw new InvalidKeyException("无效的KEY!");
+//            throw new InvalidKeyException("无效的KEY!");
         }
         return obj;
     }

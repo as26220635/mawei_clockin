@@ -1,9 +1,9 @@
 package cn.kim.interceptor;
 
-import cn.kim.common.attr.Constants;
+import cn.kim.controller.LoginController;
 import cn.kim.controller.ManagerController;
-import cn.kim.controller.reception.LayoutController;
-import cn.kim.controller.reception.home.MyHomeController;
+import cn.kim.controller.mobile.LayoutController;
+import cn.kim.controller.mobile.home.MyHomeController;
 import cn.kim.entity.ActiveUser;
 import cn.kim.service.ManagerService;
 import cn.kim.util.AuthcUtil;
@@ -39,7 +39,7 @@ public class PjaxInterceptor implements HandlerInterceptor {
 
         String path = request.getServletPath();
         //不是主界面url，就返回
-        if (path.contains(LayoutController.LAYOUT_PATH) || path.contains(MyHomeController.LAYOUT_PATH) || path.contains(ManagerController.LAYOUT_PATH) || path.contains("error/")) {
+        if (path.contains(LoginController.OAUTH_PATH) || path.contains(LayoutController.LAYOUT_PATH) || path.contains(MyHomeController.LAYOUT_PATH) || path.contains(ManagerController.LAYOUT_PATH) || path.contains("error/")) {
             return true;
         }
 

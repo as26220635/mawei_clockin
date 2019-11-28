@@ -800,7 +800,7 @@ validator = {
  */
 model = {
     //模态框大小
-    size: {MAX: 'modal-max',LG: 'modal-lg', SM: 'modal-sm', NONE: ''},
+    size: {MAX: 'modal-max', LG: 'modal-lg', SM: 'modal-sm', NONE: ''},
     //模态框样式
     class: {
         DEFAULT: '',
@@ -901,7 +901,7 @@ model = {
     init: function (options) {
         var settings = $.extend({
             isConfirm: false,
-            isPassword:false,
+            isPassword: false,
             okBtnName: model.btnName.SAVE,
             closeBtnName: model.btnName.CLOSE,
             id: uuid(),
@@ -992,7 +992,7 @@ model = {
 
                     let password = $(jquery + " #model-edit-password-form #model_password").val();
                     settings.confirm(jquery, password);
-                }else{
+                } else {
                     settings.confirm(jquery);
                 }
             }
@@ -1767,6 +1767,9 @@ ajax = {
                     data = $.parseJSON(data);
                 }
                 callback(data);
+            },
+            error: function () {
+                callback({code: 0});
             }
         });
     },

@@ -40,7 +40,7 @@ import java.util.Map;
 @Component
 @Log4j2
 public class LogAspect extends BaseData {
-    
+
     @Autowired
     private MenuService menuService;
 

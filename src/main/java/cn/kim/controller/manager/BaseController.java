@@ -3,12 +3,10 @@ package cn.kim.controller.manager;
 import cn.kim.common.BaseData;
 import cn.kim.common.attr.Attribute;
 import cn.kim.common.attr.Constants;
+import cn.kim.common.attr.MagicValue;
 import cn.kim.common.attr.Tips;
 import cn.kim.controller.ManagerController;
-import cn.kim.entity.ActiveUser;
-import cn.kim.entity.ResultState;
-import cn.kim.entity.Tree;
-import cn.kim.entity.TreeState;
+import cn.kim.entity.*;
 import cn.kim.exception.NotFoundException;
 import cn.kim.interceptor.PjaxInterceptor;
 import cn.kim.interceptor.TokenInterceptor;
@@ -260,5 +258,33 @@ public abstract class BaseController extends BaseData {
         response.setContentType("application/vnd.ms-excel");
         response.setHeader("Content-disposition", "attachment;filename=" + new String(fileName.getBytes("UTF-8"), "ISO8859-1"));
         return response.getOutputStream();
+    }
+
+    /**
+     * 设置标题
+     *
+     * @param model
+     * @param title
+     */
+    protected void setHeaderTitle(Model model, String title) {
+        model.addAttribute("headerTitle", title);
+    }
+
+    /**
+     * 获取微信登录用户
+     *
+     * @return
+     */
+    protected WechatUser getWechatUser() {
+        return (WechatUser) SessionUtil.get(MagicValue.SESSION_WECHAT_USER);
+    }
+
+    /**
+     * 设置登录用户到model
+     *
+     * @param model
+     */
+    protected void setWechatUserToModel(Model model) {
+        model.addAttribute(MagicValue.SESSION_WECHAT_USER, getWechatUser());
     }
 }

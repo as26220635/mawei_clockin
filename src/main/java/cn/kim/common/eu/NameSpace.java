@@ -43,26 +43,10 @@ public enum NameSpace {
     FormatMapper("cn.kim.mapper.FormatMapper"),
     //授权
     AuthorizationMapper("cn.kim.mapper.AuthorizationMapper"),
-    //部门管理
-    DivisionMapper("cn.kim.mapper.DivisionMapper"),
-    //系部管理
-    DepartmentMapper("cn.kim.mapper.DepartmentMapper"),
-    //班级管理
-    ClsMapper("cn.kim.mapper.ClsMapper"),
-    //教师管理
-    TeacherMapper("cn.kim.mapper.TeacherMapper"),
-    //学生管理
-    StudentMapper("cn.kim.mapper.StudentMapper"),
-    //学生扩展
-    StudentExtendMapper("cn.kim.mapper.StudentExtendMapper"),
-    //资助
-    AidFinanciallyMapper("cn.kim.mapper.AidFinanciallyMapper"),
-    //文件
-    DocumentMapper("cn.kim.mapper.DocumentMapper"),
-    //勤工助学
-    DiligentStudyMapper("cn.kim.mapper.DiligentStudyMapper"),
-    //宿舍管理
-    DormitoryMapper("cn.kim.mapper.DormitoryMapper"),
+    //微信
+    WechatMapper("cn.kim.mapper.WechatMapper"),
+    //成就墙
+    AchievementMapper("cn.kim.mapper.AchievementMapper"),
     ;
 
     private final String value;

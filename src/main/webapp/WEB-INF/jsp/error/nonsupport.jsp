@@ -12,7 +12,7 @@
 <head>
     <%@ include file="/WEB-INF/jsp/common/common_meta.jsp" %>
     <title>不支持该版本浏览器!</title>
-    <%@ include file="/WEB-INF/jsp/reception/common/common_css.jsp" %>
+    <%@ include file="/WEB-INF/jsp/mobile/common/common_css.jsp" %>
     <style>
         .mdi {
             font-size: 55px;

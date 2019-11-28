@@ -176,6 +176,7 @@ public class ExceptionController extends BaseController {
         if (request.getRequestURI().contains(ManagerController.MANAGER_URL)) {
             modelAndView.setViewName(Attribute.MANAGER_ERROR);
         } else {
+            modelAndView.addObject("headerTitle", "错误");
             modelAndView.setViewName(Attribute.RECEPTION_ERROR);
         }
         modelAndView.addObject("message", "无效的key");

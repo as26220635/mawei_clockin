@@ -13,52 +13,20 @@
     <head>
         <%@ include file="/WEB-INF/jsp/common/common_meta.jsp" %>
         <title>404</title>
-        <%@ include file="/WEB-INF/jsp/reception/common/common_css.jsp" %>
+        <%@ include file="/WEB-INF/jsp/mobile/common/common_css.jsp" %>
         <%@ include file="/WEB-INF/jsp/common/common_js.jsp" %>
     </head>
     <body class="index-page">
 
-    <%@ include file="/WEB-INF/jsp/reception/common/common_top.jspf" %>
+    <%@ include file="/WEB-INF/jsp/mobile/common/common_top.jspf" %>
 </c:if>
 
-
-<div class="error-page">
-    <div class="main main-raised">
-        <div class="section section-basic" id="404Content">
-            <div class="text-center">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center">
-                        <div>
-                            <h1 class="text-info">404<i class="mdi mdi-help-circle-outline"></i></h1>
-                        </div>
-                        <h3>没有找到页面</h3>
-                        <div class="btn-group">
-                            <button class="btn btn-info col-md-6" onclick="backHtml()">上一页</button>
-                            <button class="btn btn-primary col-md-6" onclick="indexHtml()">主页</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="weui-msg">
+    <div class="weui-msg__icon-area"><i class="weui-icon-warn weui-icon_msg"></i></div>
+    <div class="weui-msg__text-area">
+        <h2 class="weui-msg__title">404</h2>
+        <p class="weui-msg__desc">没有找到页面</p>
     </div>
 </div>
 
-<c:if test="${empty PJAX}">
-    <script type="text/javascript">
-        function indexHtml() {
-            window.location.href = "${BASE_URL}index";
-        }
-
-        function backHtml() {
-            window.history.back();
-        }
-    </script>
-</c:if>
-
-<c:if test="${not empty PJAX}">
-    <script>
-        if (window.location.pathname.indexOf("/my_home/") == -1) {
-            $(".error-page").css("padding-top", "150px");
-        }
-    </script>
-</c:if>
+<%@ include file="/WEB-INF/jsp/mobile/common/common_footer.jspf" %>

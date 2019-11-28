@@ -9,14 +9,8 @@ public enum SystemEnum {
     SYSTEM(0),
     //管理员
     MANAGER(1),
-    //部门
-    DIVISION(2),
-    //系部
-    DEPARTMENT(3),
-    //学生
-    STUDENT(4),
-    //教师
-    TEACHER(5),
+    //微信用户
+    WECHAT(2),
     ;
 
     private int type;

@@ -7,7 +7,6 @@ import cn.kim.common.eu.Process;
 import cn.kim.dao.BaseDao;
 import cn.kim.entity.ProcessRunBean;
 import cn.kim.service.impl.BaseServiceImpl;
-import cn.kim.service.util.check.AidProcessCheck;
 import cn.kim.util.DateUtil;
 import com.google.common.collect.Maps;
 import org.checkerframework.checker.units.qual.A;
@@ -25,12 +24,6 @@ import java.util.Map;
  */
 @Component
 public class ProcessCheck extends BaseData {
-
-    /**
-     * 资助验证
-     */
-    @Autowired
-    private AidProcessCheck aidProcessCheck;
 
     /**
      * 前进校验
@@ -51,14 +44,9 @@ public class ProcessCheck extends BaseData {
         }
 
         //资助管理
-        if (Process.AID.toString().equals(busProcess)) {
-            error += aidProcessCheck.checkStudentPunishment(run);
-        }
-        //资助管理-年度表彰
-        if (Process.AID.toString().equals(busProcess) && Process.AID_COMMEND.toString().equals(busProcess2)) {
-            //检测成绩是否达到要求
-            error += aidProcessCheck.checkCommendScore(run);
-        }
+//        if (Process.AID.toString().equals(busProcess)) {
+//            error += aidProcessCheck.checkStudentPunishment(run);
+//        }
 
 
         return error;

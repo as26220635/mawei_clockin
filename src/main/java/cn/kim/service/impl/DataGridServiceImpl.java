@@ -2,7 +2,6 @@ package cn.kim.service.impl;
 
 import cn.kim.common.attr.Attribute;
 import cn.kim.common.attr.MagicValue;
-import cn.kim.common.eu.AuthorizationType;
 import cn.kim.common.eu.NameSpace;
 import cn.kim.common.eu.ProcessShowStatus;
 import cn.kim.entity.*;
@@ -142,17 +141,9 @@ public class DataGridServiceImpl extends BaseServiceImpl implements DataGridServ
                         Map<String, Object> definition = baseDao.selectOne(NameSpace.ProcessFixedMapper, "selectProcessDefinition", paramMap);
                         paramMap.clear();
                         //院系
-                        if (!isEmpty(definition.get("SPD_COLLEGE_FIELD"))) {
-                            paramMap.put(AuthorizationType.COLLEGE.toString(), definition.get("SPD_COLLEGE_FIELD"));
-                        }
-                        //系部
-                        if (!isEmpty(definition.get("SPD_DEPARTMENT_FIELD"))) {
-                            paramMap.put(AuthorizationType.DEPARTMENT.toString(), definition.get("SPD_DEPARTMENT_FIELD"));
-                        }
-                        //班级
-                        if (!isEmpty(definition.get("SPD_CLASS_FIELD"))) {
-                            paramMap.put(AuthorizationType.CLS.toString(), definition.get("SPD_CLASS_FIELD"));
-                        }
+//                        if (!isEmpty(definition.get("SPD_COLLEGE_FIELD"))) {
+//                            paramMap.put(AuthorizationType.COLLEGE.toString(), definition.get("SPD_COLLEGE_FIELD"));
+//                        }
                         //是授权过滤
                         if (!isEmpty(paramMap)) {
                             isAuthorizationFilter = true;

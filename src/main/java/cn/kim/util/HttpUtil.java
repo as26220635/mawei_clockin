@@ -3,7 +3,7 @@ package cn.kim.util;
 import cn.kim.common.attr.ConfigProperties;
 import cn.kim.common.attr.MagicValue;
 import cn.kim.controller.ManagerController;
-import cn.kim.controller.reception.home.MyHomeController;
+import cn.kim.controller.mobile.home.MyHomeController;
 import cn.kim.tools.HttpClient;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;

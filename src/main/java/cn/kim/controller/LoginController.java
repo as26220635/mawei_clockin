@@ -1,21 +1,35 @@
 package cn.kim.controller;
 
+import cn.kim.common.attr.MagicValue;
+import cn.kim.common.eu.SystemEnum;
 import cn.kim.controller.manager.BaseController;
-import cn.kim.controller.reception.home.MyHomeController;
+import cn.kim.controller.mobile.home.MyHomeController;
 import cn.kim.common.attr.Constants;
 import cn.kim.common.csrf.CsrfToken;
-import cn.kim.controller.manager.BaseController;
-import cn.kim.controller.reception.home.MyHomeController;
+import cn.kim.entity.ActiveUser;
+import cn.kim.entity.WechatUser;
 import cn.kim.exception.*;
-import cn.kim.util.AuthcUtil;
-import cn.kim.util.CreateImageCode;
-import cn.kim.util.SessionUtil;
+import cn.kim.remote.LogRemoteInterfaceAsync;
+import cn.kim.service.WechatService;
+import cn.kim.util.*;
+import com.alibaba.fastjson.JSONObject;
+import me.zhyd.oauth.config.AuthConfig;
+import me.zhyd.oauth.exception.AuthException;
+import me.zhyd.oauth.model.AuthCallback;
+import me.zhyd.oauth.model.AuthResponse;
+import me.zhyd.oauth.request.AuthRequest;
+import me.zhyd.oauth.request.AuthWeChatRequest;
+import me.zhyd.oauth.utils.AuthStateUtils;
+import me.zhyd.oauth.utils.UrlBuilder;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.web.util.WebUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,6 +38,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Map;
 
 /**
  * Created by 余庚鑫 on 2017/2/25.
@@ -31,6 +48,15 @@ import java.io.IOException;
  */
 @Controller
 public class LoginController extends BaseController {
+
+
+    /**
+     * 授权URL
+     */
+    public static final String OAUTH_PATH = "/oauth";
+
+    @Autowired
+    private WechatService wechatService;
 
     /**
      * 验证码
@@ -108,7 +134,7 @@ public class LoginController extends BaseController {
                     errorTips = "用户已经登陆,不能同时登陆";
                 } else if (exceptionClass instanceof ExcessiveAttemptsException) {
                     errorTips = "密码错误次数过多,请等待10分钟后尝试!";
-                } else if(exceptionClass instanceof AuthenticationException){
+                } else if (exceptionClass instanceof AuthenticationException) {
                     ((AuthenticationException) exceptionClass).printStackTrace();
                     errorTips = "服务器内部错误!";
                 } else if (exceptionClass instanceof UnknownTypeException) {
@@ -128,4 +154,93 @@ public class LoginController extends BaseController {
         return modelAndView;
     }
 
+    /**
+     * 登录
+     *
+     * @param source
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping("/oauth/render/{source}")
+    public void renderAuth(@PathVariable("source") String source, HttpServletResponse response) throws IOException {
+        AuthRequest authRequest = getAuthRequest(source);
+        String authorizeUrl = authRequest.authorize(AuthStateUtils.createState());
+        //替换参数
+        authorizeUrl = authorizeUrl.replace("https://open.weixin.qq.com/connect/qrconnect?", "https://open.weixin.qq.com/connect/oauth2/authorize?");
+        authorizeUrl = authorizeUrl.replace("scope=snsapi_login", "scope=snsapi_userinfo");
+//        System.out.println(authorizeUrl);
+        response.sendRedirect(authorizeUrl);
+    }
+
+    /**
+     * oauth平台中配置的授权回调地址
+     *
+     * @param source
+     * @param callback
+     * @return
+     */
+    @RequestMapping("/oauth/callback/{source}")
+    public void login(@PathVariable("source") String source, AuthCallback callback, HttpServletRequest request, HttpServletResponse response) throws Exception {
+//        System.out.println("进入callback：" + source + " callback params：" + JSONObject.toJSONString(callback));
+        AuthRequest authRequest = getAuthRequest(source);
+        AuthResponse res = authRequest.login(callback);
+
+        JSONObject data = JSONObject.parseObject(JSONObject.toJSONString(res.getData()));
+        JSONObject token = data.getJSONObject("token");
+        WechatUser user = new WechatUser();
+        user.setUuid(data.getString("uuid"));
+        user.setUsername(data.getString("username"));
+        user.setNickname(data.getString("nickname"));
+        user.setGender(data.getString("gender"));
+        user.setAvatar(data.getString("avatar"));
+        user.setLocation(data.getString("location"));
+        user.setSource(data.getString("source"));
+        user.setAccessToken(token.getString("accessToken"));
+        user.setExpireIn(token.getInteger("expireIn"));
+        user.setOpenId(token.getString("openId"));
+        user.setRefreshToken(token.getString("refreshToken"));
+        user.setIp(HttpUtil.getIpAddr(request));
+        //记录登录
+        Map<String, Object> resultMap = wechatService.wechatLogin(user);
+        if (!isSuccess(resultMap)) {
+            throw new CustomException("微信登录失败!");
+        }
+        user.setId(toString(resultMap.get(MagicValue.ID)));
+
+        //用户类型
+        ActiveUser activeUser = new ActiveUser();
+        //设置类型
+        activeUser.setId(user.getId());
+        activeUser.setUsername(user.getUsername());
+        activeUser.setType(SystemEnum.WECHAT.toString());
+
+        //放入seesion
+        SessionUtil.set(MagicValue.SESSION_WECHAT_USER, user);
+        SessionUtil.set(Constants.SESSION_USERNAME, activeUser);
+        //跳转前台
+        WebUtils.issueRedirect(request, response, "/clockin", null, true);
+    }
+
+    /**
+     * 第三方登录
+     *
+     * @param source
+     * @return
+     */
+    private AuthRequest getAuthRequest(String source) throws UnsupportedEncodingException {
+        AuthRequest authRequest = null;
+        switch (source) {
+            case "wechat":
+                authRequest = new AuthWeChatRequest(AuthConfig.builder()
+                        .clientId("wx7edf17f7ff512e13")
+                        .clientSecret("a5c5b2d4ec1462b453da891d5527fb69")
+                        .redirectUri("https://ygx.mynatapp.cc/mawei_clockin/oauth/callback/wechat")
+                        .build());
+                break;
+        }
+        if (null == authRequest) {
+            throw new AuthException("未获取到有效的Auth配置");
+        }
+        return authRequest;
+    }
 }
