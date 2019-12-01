@@ -58,6 +58,7 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
         } else if (ex instanceof FileNotFoundException) {
             customException = new CustomException("没有找到文件!");
         } else if (ex instanceof WechatNoLoginException) {
+            isSave = false;
             //微信登录
             try {
                 WebUtils.issueRedirect(request, response, "/oauth/render/wechat", null, true);
