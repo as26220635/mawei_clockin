@@ -232,6 +232,7 @@ public class FileInput extends BaseTagSupport {
             builder.append("var " + enclosureNameId + " = " + TextUtil.toString(initialPreviewConfig, false) + ";");
             builder.append("file.init({" +
                     "id:'#" + inputId + "'," +
+                    "numberId:'#" + numberId + "'," +
                     "theme:'" + theme + "'," +
                     "uploadExtraData:{SF_TABLE_ID:'" + idEncrypt(tableId) + "',SF_TABLE_NAME:'" + idEncrypt(tableName) + "',SF_TYPE_CODE:'" + idEncrypt(typeCode) + "',SF_SEE_TYPE:'" + idEncrypt(seeType) + "',SF_SDT_CODE:'" + idEncrypt(sdtCode) + "',SF_SDI_CODE:'" + idEncrypt(info.getSdiCode()) + "'}," +
                     "showUpload:" + toString(showUpload) + "," +
@@ -305,7 +306,7 @@ public class FileInput extends BaseTagSupport {
     public String getAccept(String allowFile) {
         if (IMAGE.equals(allowFile)) {
             return " accept='image/*' ";
-        } else if (IMAGE.equals(allowFile)) {
+        } else if (VIDEO.equals(allowFile)) {
             return " accept='video/*' ";
         }
         return " ";
@@ -320,7 +321,7 @@ public class FileInput extends BaseTagSupport {
     public String getAllowedFileExtensions(String allowFile) {
         if (IMAGE.equals(allowFile)) {
             return TextUtil.toString(ConfigProperties.ALLOW_SUFFIX_IMG);
-        } else if (IMAGE.equals(allowFile)) {
+        } else if (VIDEO.equals(allowFile)) {
             return TextUtil.toString(ConfigProperties.ALLOW_SUFFIX_VIDEO);
         }
         return TextUtil.toString(ConfigProperties.ALLOW_SUFFIX_FILE);

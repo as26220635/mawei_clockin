@@ -1,6 +1,17 @@
 <%@ include file="/WEB-INF/jsp/common/tag.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<script>
+    //头像
+    function imgFunc(targets, field) {
+        return {
+            targets: targets,
+            data: field,
+            render: function (data, type, full, meta) {
+                return '<img src="${BASE_URL}${AttributePath.FILE_PREVIEW_URL}' + data + '"  style="width:50px;height:43px" />';
+            }
+        };
+    }
+</script>
 <%--通用列表--%>
 <%@ include file="/WEB-INF/jsp/admin/component/grid/dataGrid.jsp" %>
 <script>

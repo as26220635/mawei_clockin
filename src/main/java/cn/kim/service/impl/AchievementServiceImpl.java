@@ -222,7 +222,7 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(10);
             String id = toString(mapParam.get("ID"));
             //记录日志
-            paramMap.put(MagicValue.SVR_TABLE_NAME, TableName.BUS_ACHIEVEMENT);
+            paramMap.put(MagicValue.SVR_TABLE_NAME, TableName.BUS_ACHIEVEMENT_DETAIL);
 
             paramMap.put("ID", id);
             paramMap.put("BA_ID", mapParam.get("BA_ID"));

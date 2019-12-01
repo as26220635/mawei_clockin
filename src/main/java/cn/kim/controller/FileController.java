@@ -166,6 +166,9 @@ public class FileController extends BaseController implements LastModified {
 
             if (!result.get("code").equals(STATUS_SUCCESS)) {
                 json.put("error", result.get("message"));
+            }else{
+                json.put("id", result.get("id"));
+                json.put("originName", result.get("originName"));
             }
         } catch (Exception e) {
             json.put("error", "上传文件失败,请重试!");

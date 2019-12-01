@@ -68,6 +68,7 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
                 paramMap.put("ID", ID);
                 paramMap.put("SO_ID", operatorId);
                 paramMap.put("BW_OPENID", wechatUser.getOpenId());
+                paramMap.put("BW_ENTRYTIME", getDate());
                 paramMap.put("IS_STATUS", STATUS_SUCCESS);
                 baseDao.insert(NameSpace.WechatMapper, "insertWechat", paramMap);
             } else {

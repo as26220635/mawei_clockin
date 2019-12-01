@@ -32,6 +32,7 @@
             <if test="BW_EXPIREIN != null">BW_EXPIREIN,</if>
             <if test="BW_OPENID != null">BW_OPENID,</if>
             <if test="BW_REFRESHTOKEN != null">BW_REFRESHTOKEN,</if>
+            <if test="BW_ENTRYTIME != null">BW_ENTRYTIME,</if>
             <if test="BW_LOGINTIME != null">BW_LOGINTIME,</if>
             <if test="IS_STATUS != null">IS_STATUS,</if>
         </trim>
@@ -49,6 +50,7 @@
             <if test="BW_EXPIREIN != null">#{BW_EXPIREIN},</if>
             <if test="BW_OPENID != null">#{BW_OPENID},</if>
             <if test="BW_REFRESHTOKEN != null">#{BW_REFRESHTOKEN},</if>
+            <if test="BW_ENTRYTIME != null">#{BW_ENTRYTIME},</if>
             <if test="BW_LOGINTIME != null">#{BW_LOGINTIME},</if>
             <if test="IS_STATUS != null">#{IS_STATUS},</if>
         </trim>

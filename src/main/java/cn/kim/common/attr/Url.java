@@ -280,4 +280,9 @@ public class Url {
     public static final String CLOCKIN_ADD_URL = CLOCKIN_BASE_URL + "add";
     public static final String CLOCKIN_UPDATE_URL = CLOCKIN_BASE_URL + "update";
     public static final String CLOCKIN_DELETE_URL = CLOCKIN_BASE_URL + "delete";
+    /**
+     * 微信用户管理
+     */
+    public static final String WECHAT_BASE_URL = MANAGER_URL + "wechat/";
+    public static final String WECHAT_SWITCHSTATUS_URL = WECHAT_BASE_URL + "switchStatus";
 }

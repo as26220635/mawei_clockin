@@ -1644,7 +1644,7 @@ ajax = {
                 }
                 try {
                     $.hideLoading();
-                }catch (e) {
+                } catch (e) {
                 }
                 //ajax访问超时ss
                 if (textStatus == 'timeout') {
@@ -1673,7 +1673,7 @@ ajax = {
         removeLoadingDiv();
         try {
             $.hideLoading();
-        }catch (e) {
+        } catch (e) {
         }
     },
     complete: function () {
@@ -1710,7 +1710,7 @@ ajax = {
             type: "GET",
             url: url,
             data: params,
-            beforeSend:function(){
+            beforeSend: function () {
                 beforeSend();
             },
             success: function (html) {
@@ -1744,6 +1744,7 @@ ajax = {
             url: url,
             data: params,
             dataType: "json",
+            async: params.isAsync == undefined ? true : params.isAsync,
             success: function (data) {
                 //成功
                 if (typeof data === "string") {
@@ -2237,7 +2238,7 @@ file = {
             initialPreviewConfig: [],
         }, options);
 
-        var fileInput = $(settings.id).fileinput({
+        var $fileInput = $(settings.id).fileinput({
             theme: settings.theme,
             language: 'zh', //设置语言
             uploadUrl: settings.uploadUrl, //
@@ -2263,6 +2264,33 @@ file = {
             slugCallback: function (filename) {
                 return filename.replace('(', '_').replace(']', '_');
             }
+        }).on('fileselect', function (event, numFiles, label) {
+            var multiple = $fileInput.attr('multiple');
+            var previewCount = $fileInput.fileinput('getPreview').config.length;
+            var fileCount = $fileInput.fileinput('getFilesCount');
+            if (multiple == undefined) {
+                //只允许上传一个文件 判断预览区的文件是否删除
+                if (previewCount >= 1 || fileCount > 1) {
+                    $fileInput.fileinput('clear');
+                    //提示
+                    demo.showNotify(ALERT_WARNING, '不允许多文件上传,要上传请删除原本的文件!');
+                }
+            } else {
+                if (previewCount + fileCount > settings.maxFilesNum) {
+                    $fileInput.fileinput('clear');
+                    //提示
+                    demo.showNotify(ALERT_WARNING, '超过最大允许上传数' + settings.maxFilesNum + '!');
+                }
+            }
+        }).on('filepreajax', function (event, previewId, index) {
+            var nowFileCount = $fileInput.fileinput('getPreview').config.length + $fileInput.fileinput('getFilesCount');
+            var numberCount = Number($(settings.numberId).text());
+            //超过最大允许数量 中止上传
+            if (nowFileCount > settings.maxFilesNum || numberCount >= settings.maxFilesNum) {
+                demo.showNotify(ALERT_WARNING, '超过最大允许上传数' + settings.maxFilesNum + '!');
+                $fileInput.fileinput('cancel');
+                return false;
+            }
         }).on("filebatchselected", function (event, files) {
             if (!settings.showUpload) {
                 //隐藏自带的上传
@@ -2286,6 +2314,23 @@ file = {
                     }
                 });
             });
+        }).on('fileuploaded', function (e, data, previewId, index) {
+            $('#' + previewId).attr('data-id', data.response.id);
+            $('#' + previewId).attr('data-originname', data.response.originName);
+        }).on('filesuccessremove', function (event, previewId) {
+            var isSuccess = true;
+            var id = $('#' + previewId).attr('data-id');
+            var originName = $('#' + previewId).attr('data-originname');
+            ajax.post(FILE_DEL, {key: id, title: originName, isAsync: false}, function (data) {
+                if (data.code == 0) {
+                    isSuccess = false;
+                    demo.showNotify(ALERT_WARNING, '删除文件' + originName + '失败!');
+                } else {
+                    isSuccess = true;
+                    demo.showNotify(ALERT_SUCCESS, '删除文件' + originName + '成功!');
+                }
+            });
+            return isSuccess;
         }).on('filedeleted', function (event, key, jqXHR, data) {
             demo.showNotify(ALERT_SUCCESS, '删除文件' + data.caption + '成功!');
         });
@@ -2304,7 +2349,7 @@ file = {
         } catch (e) {
         }
 
-        return fileInput;
+        return $fileInput;
     },
     //验证方法,返回object对象，flag ture为通过验证 false没有通过有message消息
     validate: function () {
