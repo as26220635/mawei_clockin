@@ -105,4 +105,52 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
         paramMap.put("BW_OPENID", mapParam.get("BW_OPENID"));
         return baseDao.selectOne(NameSpace.WechatMapper, "selectWechat", paramMap);
     }
+
+    @Override
+    public Map<String, Object> selectWechatRank(String BW_ID) {
+        Map<String, Object> resultMap = Maps.newHashMapWithExpectedSize(2);
+
+        List<Map<String, Object>> rankList = baseDao.selectList(NameSpace.WechatMapper, "selectWechatRank");
+
+        resultMap.put("ID", BW_ID);
+        Map<String, Object> myRank = baseDao.selectOne(NameSpace.WechatMapper, "selectWechatRankByWechatId", resultMap);
+
+        resultMap.clear();
+        resultMap.put("rankList", rankList);
+        resultMap.put("myRank", myRank);
+        return resultMap;
+    }
+
+    @Override
+    @Transactional
+    public Map<String, Object> changeWechatStatus(Map<String, Object> mapParam) {
+        Map<String, Object> resultMap = Maps.newHashMapWithExpectedSize(5);
+        int status = STATUS_ERROR;
+        String desc = SAVE_ERROR;
+        try {
+            Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(2);
+            String id = toString(mapParam.get("ID"));
+
+            paramMap.put("ID", id);
+            paramMap.put("IS_STATUS", mapParam.get("IS_STATUS"));
+
+            Map<String, Object> oldMap = Maps.newHashMapWithExpectedSize(1);
+            oldMap.put("ID", id);
+            oldMap = selectWechat(oldMap);
+            //记录日志
+            paramMap.put(MagicValue.SVR_TABLE_NAME, TableName.BUS_WECHAT);
+            baseDao.update(NameSpace.WechatMapper, "updateWechat", paramMap);
+            resultMap.put(MagicValue.LOG, "更新微信用户状态,名称:" + toString(oldMap.get("BW_USERNAME")) + ",状态更新为:" + ParamTypeResolve.statusExplain(mapParam.get("IS_STATUS")));
+
+            status = STATUS_SUCCESS;
+            desc = SAVE_SUCCESS;
+
+            resultMap.put("ID", id);
+        } catch (Exception e) {
+            desc = catchException(e, baseDao, resultMap);
+        }
+        resultMap.put(MagicValue.STATUS, status);
+        resultMap.put(MagicValue.DESC, desc);
+        return resultMap;
+    }
 }

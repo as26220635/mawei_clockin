@@ -31,10 +31,6 @@ public class LayoutController extends BaseController {
     @GetMapping("/mLayout")
     @WechaNotEmptyLogin
     public String layout(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
-        //判断是否登录
-        if (isEmpty(SessionUtil.get(MagicValue.SESSION_WECHAT_USER))) {
-            WebUtils.issueRedirect(request, response, "/oauth/render/wechat", null, true);
-        }
         return "mobile/common/main";
     }
 

@@ -28,7 +28,7 @@
                value="${achievement.BA_LATITUDE}">
     </div>
     <div class="form-group has-feedback">
-        <label>范围:</label>
+        <label>打卡范围:</label>
         <input type="text" class="form-control" ${fns:validField(TableName.BUS_ACHIEVEMENT, "BA_RANGE")}
                value="${achievement.BA_RANGE}">
     </div>

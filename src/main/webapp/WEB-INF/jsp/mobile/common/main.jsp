@@ -46,12 +46,12 @@
                    data-pjax="#${CONTAINER}">
                     <img src="${BASE_URL}resources/assets/images/main/clockin-min.png" alt="" class="weui-tabbar__icon">
                 </a>
-                <%--                <a id="activityTabbar" href="${BASE_URL}activity" class="weui-tabbar__item" data-pjax="#${CONTAINER}">--%>
-                <%--                    <img src="${BASE_URL}resources/assets/images/main/activity-min.png" alt="" class="weui-tabbar__icon">--%>
-                <%--                </a>--%>
-                <%--                <a id="rankTabbar" href="${BASE_URL}rank" class="weui-tabbar__item" data-pjax="#${CONTAINER}">--%>
-                <%--                    <img src="${BASE_URL}resources/assets/images/main/rank-min.png" alt="" class="weui-tabbar__icon">--%>
-                <%--                </a>--%>
+                <a id="activityTabbar" href="${BASE_URL}activity" class="weui-tabbar__item" data-pjax="#${CONTAINER}">
+                    <img src="${BASE_URL}resources/assets/images/main/activity-min.png" alt="" class="weui-tabbar__icon">
+                </a>
+                <a id="rankTabbar" href="${BASE_URL}rank" class="weui-tabbar__item" data-pjax="#${CONTAINER}">
+                    <img src="${BASE_URL}resources/assets/images/main/rank-min.png" alt="" class="weui-tabbar__icon">
+                </a>
                 <a id="achievementTabbar" href="${BASE_URL}achievement" class="weui-tabbar__item"
                    data-pjax="#${CONTAINER}">
                     <img src="${BASE_URL}resources/assets/images/main/achievement-min.png" alt=""

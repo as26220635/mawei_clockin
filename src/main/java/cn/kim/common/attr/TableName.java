@@ -126,6 +126,11 @@ public class TableName {
      */
     public static final String SYS_VALIDATE_REGEX = "SYS_VALIDATE_REGEX";
 
+
+    /**
+     * 微信用户
+     */
+    public static final String BUS_WECHAT = "BUS_WECHAT";
     /**
      * 成就墙
      */

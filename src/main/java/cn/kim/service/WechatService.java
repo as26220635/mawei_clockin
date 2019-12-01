@@ -26,4 +26,19 @@ public interface WechatService extends BaseService {
      * @return
      */
     Map<String, Object> selectWechat(Map<String, Object> mapParam);
+
+    /**
+     * 查询排名
+     * @param BW_ID
+     * @return
+     */
+    Map<String, Object> selectWechatRank(String BW_ID);
+
+    /**
+     * 变更状态
+     *
+     * @param mapParam
+     * @return
+     */
+    Map<String, Object> changeWechatStatus(Map<String, Object> mapParam);
 }

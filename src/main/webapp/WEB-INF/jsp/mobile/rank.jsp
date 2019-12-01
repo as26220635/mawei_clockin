@@ -51,138 +51,33 @@
     <div class="weui-cells">
         <div class="weui-cell weui-cell_example">
             <div class="weui-cell__rank">
-                1
+                ${myRank.WECHAT_RANK}
             </div>
             <div class="weui-cell__hd weui-avatar-circle">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII="
+                <img src="${myRank.BW_AVATAR}"
                      alt="" style="margin-right:16px;display:block"></div>
             <div class="weui-cell__bd">
-                <p>as26220635</p>
+                <p>${myRank.BW_USERNAME}</p>
             </div>
-            <div class="weui-cell__ft strong">5</div>
+            <div class="weui-cell__ft ${fns:trueOrFalse(myRank.WECHAT_RANK <= 3, 'strong' ,'')}">${myRank.CLOCKIN_COUNT}</div>
         </div>
     </div>
     <div class="weui-cells">
-        <div class="weui-cell weui-cell_example">
-            <div class="weui-cell__rank">
-                1
+        <c:forEach items="${rankList}" var="rank">
+            <div class="weui-cell weui-cell_example">
+                <div class="weui-cell__rank">
+                        ${rank.WECHAT_RANK}
+                </div>
+                <div class="weui-cell__hd weui-avatar-circle">
+                    <img src="${rank.BW_AVATAR}"
+                         alt="" style="margin-right:16px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>${rank.BW_USERNAME}</p>
+                </div>
+                    <%--前三名加粗--%>
+                <div class="weui-cell__ft ${fns:trueOrFalse(rank.WECHAT_RANK <= 3, 'strong' ,'')}">${rank.CLOCKIN_COUNT}</div>
             </div>
-            <div class="weui-cell__hd weui-avatar-circle">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII="
-                     alt="" style="margin-right:16px;display:block"></div>
-            <div class="weui-cell__bd">
-                <p>as26220635</p>
-            </div>
-            <div class="weui-cell__ft strong">5</div>
-        </div>
-        <div class="weui-cell weui-cell_example">
-            <div class="weui-cell__rank">
-                2
-            </div>
-            <div class="weui-cell__hd weui-avatar-circle">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII="
-                    alt="" style="margin-right:16px;display:block"></div>
-            <div class="weui-cell__bd">
-                <p>ygx</p>
-            </div>
-            <div class="weui-cell__ft">4</div>
-        </div>
-        <div class="weui-cell weui-cell_example">
-            <div class="weui-cell__rank">
-                2
-            </div>
-            <div class="weui-cell__hd weui-avatar-circle">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII="
-                     alt="" style="margin-right:16px;display:block"></div>
-            <div class="weui-cell__bd">
-                <p>ygx</p>
-            </div>
-            <div class="weui-cell__ft">4</div>
-        </div>
-        <div class="weui-cell weui-cell_example">
-            <div class="weui-cell__rank">
-                2
-            </div>
-            <div class="weui-cell__hd weui-avatar-circle">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII="
-                     alt="" style="margin-right:16px;display:block"></div>
-            <div class="weui-cell__bd">
-                <p>ygx</p>
-            </div>
-            <div class="weui-cell__ft">4</div>
-        </div>
-        <div class="weui-cell weui-cell_example">
-            <div class="weui-cell__rank">
-                2
-            </div>
-            <div class="weui-cell__hd weui-avatar-circle">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII="
-                     alt="" style="margin-right:16px;display:block"></div>
-            <div class="weui-cell__bd">
-                <p>ygx</p>
-            </div>
-            <div class="weui-cell__ft">4</div>
-        </div>
-        <div class="weui-cell weui-cell_example">
-            <div class="weui-cell__rank">
-                2
-            </div>
-            <div class="weui-cell__hd weui-avatar-circle">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII="
-                     alt="" style="margin-right:16px;display:block"></div>
-            <div class="weui-cell__bd">
-                <p>ygx</p>
-            </div>
-            <div class="weui-cell__ft">4</div>
-        </div>
-        <div class="weui-cell weui-cell_example">
-            <div class="weui-cell__rank">
-                2
-            </div>
-            <div class="weui-cell__hd weui-avatar-circle">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII="
-                     alt="" style="margin-right:16px;display:block"></div>
-            <div class="weui-cell__bd">
-                <p>ygx</p>
-            </div>
-            <div class="weui-cell__ft">4</div>
-        </div>
-        <div class="weui-cell weui-cell_example">
-            <div class="weui-cell__rank">
-                2
-            </div>
-            <div class="weui-cell__hd weui-avatar-circle">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII="
-                     alt="" style="margin-right:16px;display:block"></div>
-            <div class="weui-cell__bd">
-                <p>ygx</p>
-            </div>
-            <div class="weui-cell__ft">4</div>
-        </div>
-        <div class="weui-cell weui-cell_example">
-            <div class="weui-cell__rank">
-                2
-            </div>
-            <div class="weui-cell__hd weui-avatar-circle">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII="
-                     alt="" style="margin-right:16px;display:block"></div>
-            <div class="weui-cell__bd">
-                <p>ygx</p>
-            </div>
-            <div class="weui-cell__ft">4</div>
-        </div>
-        <div class="weui-cell weui-cell_example">
-            <div class="weui-cell__rank">
-                2
-            </div>
-            <div class="weui-cell__hd weui-avatar-circle">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC4AAAAuCAMAAABgZ9sFAAAAVFBMVEXx8fHMzMzr6+vn5+fv7+/t7e3d3d2+vr7W1tbHx8eysrKdnZ3p6enk5OTR0dG7u7u3t7ejo6PY2Njh4eHf39/T09PExMSvr6+goKCqqqqnp6e4uLgcLY/OAAAAnklEQVRIx+3RSRLDIAxE0QYhAbGZPNu5/z0zrXHiqiz5W72FqhqtVuuXAl3iOV7iPV/iSsAqZa9BS7YOmMXnNNX4TWGxRMn3R6SxRNgy0bzXOW8EBO8SAClsPdB3psqlvG+Lw7ONXg/pTld52BjgSSkA3PV2OOemjIDcZQWgVvONw60q7sIpR38EnHPSMDQ4MjDjLPozhAkGrVbr/z0ANjAF4AcbXmYAAAAASUVORK5CYII="
-                     alt="" style="margin-right:16px;display:block"></div>
-            <div class="weui-cell__bd">
-                <p>ygx</p>
-            </div>
-            <div class="weui-cell__ft">4</div>
-        </div>
+        </c:forEach>
     </div>
 </div>
 <script>
