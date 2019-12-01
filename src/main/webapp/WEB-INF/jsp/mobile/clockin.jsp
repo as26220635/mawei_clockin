@@ -110,7 +110,7 @@
     </div>
 
     <div id="clockinArea">
-        <img id="clockinAreaImg" src="${BASE_URL}resources/assets/images/main/map.jpg">
+        <img id="clockinAreaImg" src="${BASE_URL}resources/assets/images/main/map-min.jpg">
         <div id="clockinAreaCheck1" data-type="1">
 
         </div>
@@ -353,18 +353,18 @@
         $.showLoading();
         var type = $(this).attr('data-type');
         if (type == 1){
-            $('#clockinAreaImg').prop('src', '${BASE_URL}resources/assets/images/main/map_1.png');
+            $('#clockinAreaImg').prop('src', '${BASE_URL}resources/assets/images/main/map_1-min.png');
         }else if (type == 2){
-            $('#clockinAreaImg').prop('src', '${BASE_URL}resources/assets/images/main/map_2.png');
+            $('#clockinAreaImg').prop('src', '${BASE_URL}resources/assets/images/main/map_2-min.png');
         }else if (type == 3){
-            $('#clockinAreaImg').prop('src', '${BASE_URL}resources/assets/images/main/map_3.png');
+            $('#clockinAreaImg').prop('src', '${BASE_URL}resources/assets/images/main/map_3-min.png');
         }
         $('#clockinAreaCheck1,#clockinAreaCheck2,#clockinAreaCheck3').hide();
         $('#clockinAreaCheckDiv').fadeIn();
     });
     $('#clockinAreaCheckDiv').click(function () {
         $.showLoading();
-        $('#clockinAreaImg').prop('src', '${BASE_URL}resources/assets/images/main/map.jpg');
+        $('#clockinAreaImg').prop('src', '${BASE_URL}resources/assets/images/main/map-min.jpg');
         $('#clockinAreaCheckDiv').fadeOut();
         $('#clockinAreaCheck1,#clockinAreaCheck2,#clockinAreaCheck3').show();
     });

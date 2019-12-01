@@ -136,7 +136,7 @@
                                             </button>
                                         </c:if>
                                         <button type="button" class="btn btn-box-tool" data-widget="refresh"
-                                                id="refreshBtn${MENU.ID}"><i
+                                                id="refreshBtn${MENU.ID}" data-first="${isFirst}"><i
                                                 class="fa fa-refresh"></i>刷新
                                         </button>
                                             <%--流程查看切换按钮--%>

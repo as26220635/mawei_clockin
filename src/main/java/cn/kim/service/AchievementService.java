@@ -68,6 +68,30 @@ public interface AchievementService extends BaseService {
     Map<String, Object> selectAchievementDetail(Map<String, Object> mapParam);
 
     /**
+     * 查看打卡详细记录（前端使用）
+     *
+     * @param ID
+     * @return
+     */
+    Map<String, Object> selectMAchievementDetailById(String ID);
+
+    /**
+     * 查询列表
+     *
+     * @param BW_ID
+     * @return
+     */
+    DataTablesView<?> selectMAchievementDetailList(int offset, int limit, String BW_ID);
+
+    /**
+     * 查询打卡信息列表数量
+     *
+     * @param BW_ID
+     * @return
+     */
+    Integer selectAchievementDetailListCountByWechatId(String BW_ID);
+
+    /**
      * 插入或更新打卡信息
      *
      * @param mapParam

@@ -15,6 +15,7 @@ import cn.kim.util.*;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.UnsupportedEncodingException;
@@ -266,6 +267,16 @@ public abstract class BaseData {
      */
     protected String toString(Object str) {
         return TextUtil.toString(str);
+    }
+
+    /**
+     * html标签解析
+     *
+     * @param str
+     * @return
+     */
+    protected String unescapeHtml4(Object str) {
+        return StringEscapeUtils.unescapeHtml4(toString(str));
     }
 
     /**

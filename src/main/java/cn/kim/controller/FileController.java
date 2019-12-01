@@ -3,6 +3,7 @@ package cn.kim.controller;
 import cn.kim.common.annotation.SystemControllerLog;
 import cn.kim.common.attr.Attribute;
 import cn.kim.common.attr.AttributePath;
+import cn.kim.common.attr.ConfigProperties;
 import cn.kim.common.attr.MagicValue;
 import cn.kim.common.eu.UseType;
 import cn.kim.controller.manager.BaseController;
@@ -28,6 +29,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.LastModified;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -60,16 +62,9 @@ public class FileController extends BaseController implements LastModified {
      */
     @GetMapping("/preview/{ID}")
     public void preview(@PathVariable("ID") String ID, WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) throws Exception {
-        /**
-         * 使用缓存
-         */
-        if (webRequest.checkNotModified(lastModified)) {
-            return;
-        }
-
         response.setCharacterEncoding("UTF-8");
 
-        OutputStream os = null;
+        ServletOutputStream os = null;
         InputStream is = null;
         byte[] b = null;
         BufferedInputStream bis = null;
@@ -89,6 +84,13 @@ public class FileController extends BaseController implements LastModified {
             String SDT_ROLE_DOWN = TextUtil.toString(file.get("SDT_ROLE_DOWN"));
             Integer SF_SEE_TYPE = TextUtil.toInt(file.get("SF_SEE_TYPE"));
             String SF_PATH = TextUtil.toString(file.get("SF_PATH"));
+
+            /**
+             * 使用缓存
+             */
+            if (FileUtil.isCheckSuffix(SF_NAME, ConfigProperties.ALLOW_SUFFIX_IMG) && webRequest.checkNotModified(lastModified)) {
+                return;
+            }
 
             //判断权限
             if (SF_SEE_TYPE == STATUS_ERROR && (isEmpty(activeUser) ? true : !activeUser.getId().equals(SO_ID) && !containsRole(SDT_ROLE_DOWN))) {

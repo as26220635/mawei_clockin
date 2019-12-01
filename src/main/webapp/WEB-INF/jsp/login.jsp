@@ -15,7 +15,7 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/jsp/common/common_meta.jsp" %>
-    <title>${HEAD_TITLE}</title>
+    <title>${WEBCONFIG_FILE_SERVER_URL}</title>
     <%@ include file="/WEB-INF/jsp/common/common_css.jsp" %>
     <%@ include file="/WEB-INF/jsp/common/common_js.jsp" %>
     <style>
@@ -28,11 +28,11 @@
 
 <div class="login-box">
     <div class="login-logo">
-        <a href="../../index2.html"><b>${LOGIN_TIPS_TITLE}</a>
+        <a href="../../index2.html"><b>${WEBCONFIG_LOGIN_TITLE}</a>
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">登录到${LOGIN_TIPS_TITLE}</p>
+        <p class="login-box-msg">登录到${WEBCONFIG_LOGIN_TITLE}</p>
 
         <form class="form" method="post" action="${BASE_URL}login" id="submitForm">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

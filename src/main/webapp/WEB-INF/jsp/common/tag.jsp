@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="cn.kim.common.attr.WebConfig" %>
 <%@ page import="cn.kim.common.attr.Attribute " %>
 <%@ page import="cn.kim.common.attr.AttributePath" %>
 <%@ page import="cn.kim.common.attr.TableName " %>
@@ -7,6 +8,7 @@
 <%@ page import="cn.kim.common.eu.SystemEnum" %>
 <%@ page import="cn.kim.common.eu.ProcessStatus" %>
 <%@ page import="cn.kim.common.eu.ProcessType" %>
+<%@ page import="cn.kim.common.tag.FileInput" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
@@ -18,3 +20,4 @@
 <c:set var="CONTAINER" value="container"/>
 <%--URL地址--%>
 <c:set var="BASE_URL" value="${pageContext.request.contextPath}/"/>
+<c:set var="WEBCONFIG_FILE_SERVER_URL" value="${WebConfig.WEBCONFIG_FILE_SERVER_URL}"/>

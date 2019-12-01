@@ -1,5 +1,6 @@
 package cn.kim.controller.mobile;
 
+import cn.kim.common.annotation.WechaNotEmptyLogin;
 import cn.kim.controller.manager.BaseController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MRankController extends BaseController {
 
     @GetMapping("/rank")
+    @WechaNotEmptyLogin
     public String rank(Model model) {
         return "mobile/rank";
     }

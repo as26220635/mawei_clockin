@@ -1,8 +1,10 @@
 package cn.kim.controller.manager;
 
+import cn.kim.common.attr.MagicValue;
 import cn.kim.common.attr.Tips;
 import cn.kim.common.eu.UseType;
 import cn.kim.exception.NotFoundException;
+import cn.kim.exception.WechatNoLoginException;
 import cn.kim.interceptor.PjaxInterceptor;
 import cn.kim.common.attr.Attribute;
 import cn.kim.common.eu.SystemEnum;
@@ -17,6 +19,7 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authz.UnauthorizedException;
+import org.apache.shiro.web.util.WebUtils;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
@@ -181,6 +184,26 @@ public class ExceptionController extends BaseController {
         }
         modelAndView.addObject("message", "无效的key");
         log.error("解密错误:无效的key", Tips.LOG_ERROR);
+        return modelAndView;
+    }
+
+    /**
+     * 微信用户是否登录
+     *
+     * @param ex
+     * @param request
+     * @param response
+     * @return
+     */
+    @ExceptionHandler(value = {WechatNoLoginException.class})
+    public ModelAndView wechatNoLoginException(WechatNoLoginException ex, HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView modelAndView = new ModelAndView();
+        if (isEmpty(SessionUtil.get(MagicValue.SESSION_WECHAT_USER))) {
+            try {
+                WebUtils.issueRedirect(request, response, "/oauth/render/wechat", null, true);
+            } catch (IOException e) {
+            }
+        }
         return modelAndView;
     }
 }

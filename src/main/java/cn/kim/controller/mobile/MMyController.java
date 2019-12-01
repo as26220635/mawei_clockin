@@ -1,11 +1,23 @@
 package cn.kim.controller.mobile;
 
+import cn.kim.common.annotation.WechaNotEmptyLogin;
 import cn.kim.common.attr.MagicValue;
 import cn.kim.controller.manager.BaseController;
+import cn.kim.entity.DataTablesView;
+import cn.kim.entity.WechatUser;
+import cn.kim.service.AchievementService;
+import cn.kim.util.CommonUtil;
+import cn.kim.util.FileUtil;
+import com.google.common.collect.Lists;
+import org.checkerframework.checker.units.qual.A;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 余庚鑫 on 2019/11/26
@@ -14,8 +26,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class MMyController extends BaseController {
 
+    @Autowired
+    private AchievementService achievementService;
+
     @GetMapping("/my")
-    public String my(Model model) {
+    @WechaNotEmptyLogin
+    public String my(Model model) throws Exception{
         model.addAttribute(MagicValue.SESSION_WECHAT_USER, getWechatUser());
         return "mobile/my";
     }
@@ -26,9 +42,48 @@ public class MMyController extends BaseController {
      * @param model
      * @return
      */
-    @GetMapping("/my/clockin/{ID}")
-    public String clockinList(Model model) {
-        setHeaderTitle(model, "打卡列表");
+    @GetMapping("/my/clockin")
+    @WechaNotEmptyLogin
+    public String clockinList(Model model) throws Exception {
+        WechatUser wechatUser = getWechatUser();
+        int clockinCount = achievementService.selectAchievementDetailListCountByWechatId(wechatUser.getId());
+        model.addAttribute("clockinCount", clockinCount);
+        setHeaderTitle(model, "打卡记录");
         return "mobile/my/clockin_list";
+    }
+
+    /**
+     * 打卡列表记录
+     *
+     * @param model
+     * @return
+     */
+    @GetMapping("/my/clockin/{pageSize}/{page}")
+    public String clockinItemList(@PathVariable("pageSize") int pageSize, @PathVariable("page") int page, Model model) throws Exception {
+        WechatUser wechatUser = getWechatUser();
+        DataTablesView<?> dataTablesView = achievementService.selectMAchievementDetailList(toInt(CommonUtil.getStrat(page, pageSize)), pageSize, wechatUser.getId());
+
+        model.addAttribute("detailList", dataTablesView.getData());
+        return "mobile/my/clockin_data";
+    }
+
+    /**
+     * 查看打卡详细记录
+     *
+     * @param ID
+     * @param model
+     * @return
+     */
+    @GetMapping("/my/clockin/{ID}")
+    @WechaNotEmptyLogin
+    public String clockinItem(@PathVariable("ID") String ID, Model model) throws Exception {
+        Map<String, Object> detail = achievementService.selectMAchievementDetailById(ID);
+
+        List<String> fileIds = Lists.newArrayList(toString(detail.get("FILE_PATH")).split(","));
+
+        model.addAttribute("detail", detail);
+        model.addAttribute("fileIds", fileIds);
+        setHeaderTitle(model, "打卡明细");
+        return "mobile/my/clockin_item";
     }
 }

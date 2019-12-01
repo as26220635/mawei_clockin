@@ -76,6 +76,11 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
                 //更新登录记录
                 paramMap.put("ID", ID);
                 baseDao.update(NameSpace.WechatMapper, "updateWechat", paramMap);
+                //更新账号信息表
+                paramMap.clear();
+                paramMap.put("SEARCH_SO_ID", operatorId);
+                paramMap.put("SAI_NAME", wechatUser.getUsername());
+                baseDao.insert(NameSpace.OperatorMapper, "updateAccountInfo", paramMap);
             }
 
             resultMap.put(MagicValue.ID, ID);

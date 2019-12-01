@@ -189,6 +189,16 @@ public class CommonUtil {
     }
 
     /**
+     * 获得开始位置
+     * @param page
+     * @param length
+     * @return
+     */
+    public static int getStrat(int page, int length) {
+        return page == 0 ? page : page * length;
+    }
+
+    /**
      * 添加&nbsp;
      *
      * @param size 添加几个

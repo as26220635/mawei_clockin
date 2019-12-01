@@ -41,7 +41,7 @@
         </div>
     </div>
     <div class="weui-cells">
-        <a class="weui-cell weui-cell_access" href="${BASE_URL}my/clockin/test" data-pjax="#${CONTAINER}">
+        <a class="weui-cell weui-cell_access" href="${BASE_URL}my/clockin" data-pjax="#${CONTAINER}">
             <div class="weui-cell__bd">
                 <p>打卡记录</p>
             </div>

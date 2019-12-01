@@ -7,12 +7,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/jsp/common/tag.jsp" %>
+<%@ include file="/WEB-INF/jsp/common/common_config.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <title>${HEAD_TITLE}</title>
+<%--    <meta http-equiv="Access-Control-Allow-Origin" content="*" />--%>
+<%--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--%>
+    <title>${WEBCONFIG_HEAD_TITLE}</title>
     <%@ include file="/WEB-INF/jsp/mobile/common/common_css.jsp" %>
     <style>
         .container-page {
@@ -41,20 +44,21 @@
             <div class="weui-tabbar">
                 <a id="clockinTabbar" href="${BASE_URL}clockin" class="weui-tabbar__item weui-bar__item_on"
                    data-pjax="#${CONTAINER}">
-                    <img src="${BASE_URL}resources/assets/images/main/clockin.png" alt="" class="weui-tabbar__icon">
+                    <img src="${BASE_URL}resources/assets/images/main/clockin-min.png" alt="" class="weui-tabbar__icon">
                 </a>
                 <%--                <a id="activityTabbar" href="${BASE_URL}activity" class="weui-tabbar__item" data-pjax="#${CONTAINER}">--%>
-                <%--                    <img src="${BASE_URL}resources/assets/images/main/activity.png" alt="" class="weui-tabbar__icon">--%>
+                <%--                    <img src="${BASE_URL}resources/assets/images/main/activity-min.png" alt="" class="weui-tabbar__icon">--%>
                 <%--                </a>--%>
                 <%--                <a id="rankTabbar" href="${BASE_URL}rank" class="weui-tabbar__item" data-pjax="#${CONTAINER}">--%>
-                <%--                    <img src="${BASE_URL}resources/assets/images/main/rank.png" alt="" class="weui-tabbar__icon">--%>
+                <%--                    <img src="${BASE_URL}resources/assets/images/main/rank-min.png" alt="" class="weui-tabbar__icon">--%>
                 <%--                </a>--%>
                 <a id="achievementTabbar" href="${BASE_URL}achievement" class="weui-tabbar__item"
                    data-pjax="#${CONTAINER}">
-                    <img src="${BASE_URL}resources/assets/images/main/achievement.png" alt="" class="weui-tabbar__icon">
+                    <img src="${BASE_URL}resources/assets/images/main/achievement-min.png" alt=""
+                         class="weui-tabbar__icon">
                 </a>
                 <a id="myTabbar" href="${BASE_URL}my" class="weui-tabbar__item" data-pjax="#${CONTAINER}">
-                    <img src="${BASE_URL}resources/assets/images/main/my.png" alt="" class="weui-tabbar__icon">
+                    <img src="${BASE_URL}resources/assets/images/main/my-min.png" alt="" class="weui-tabbar__icon">
                 </a>
             </div>
         </div>
@@ -64,6 +68,8 @@
 <%--<%@ include file="/WEB-INF/jsp/common/common_params.jsp" %>--%>
 <%@ include file="/WEB-INF/jsp/mobile/common/common_bottom.jsp" %>
 <script type="text/javascript">
+    var SERVICE_SPLIT = ',';
+
     mainInit.initPjax();
     // 加载内容到指定容器
     $.pjax({url: this.href, container: '#${CONTAINER}', replace: true});

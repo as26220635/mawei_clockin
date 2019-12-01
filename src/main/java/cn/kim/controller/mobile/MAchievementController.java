@@ -1,8 +1,10 @@
 package cn.kim.controller.mobile;
 
+import cn.kim.common.annotation.WechaNotEmptyLogin;
 import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.WechatUser;
 import cn.kim.service.AchievementService;
+import cn.kim.util.FileUtil;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,10 +25,11 @@ public class MAchievementController extends BaseController {
     private AchievementService achievementService;
 
     @GetMapping("/achievement")
-    public String achievement(Model model) {
+    @WechaNotEmptyLogin
+    public String achievement(Model model) throws Exception {
         WechatUser wechatUser = getWechatUser();
         List<Map<String, Object>> list = achievementService.selectMAchievementListByWechat(wechatUser.getId());
-
+//        IMG_PATH
         int clockinCount = (int) list.stream().filter(m -> toInt(m.get("BAD_COUNT")) > 0).count();
 
         model.addAttribute("achievementList", list);

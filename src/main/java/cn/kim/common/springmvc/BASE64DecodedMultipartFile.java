@@ -6,6 +6,7 @@ import java.io.*;
 
 /**
  * Created by 余庚鑫 on 2019/11/28
+ * base64图片转为MultipartFile
  */
 public class BASE64DecodedMultipartFile implements MultipartFile {
 

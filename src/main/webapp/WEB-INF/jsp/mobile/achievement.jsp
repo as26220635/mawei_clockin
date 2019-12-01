@@ -33,59 +33,10 @@
         <p class="page__desc">已收集${clockinCount}/${achievementList.size()}个成就</p>
     </div>
     <div class="weui-grids">
-        <%--                <a href="javascript:;" class="weui-grid ">--%>
-        <%--                    <div class="weui-grid__icon">--%>
-        <%--                        <img src="${BASEURL}resources/assets/images/achievement/czbwg.png" alt="">--%>
-        <%--                    </div>--%>
-        <%--                    <p class="weui-grid__label">船政博物馆</p>--%>
-        <%--                </a>--%>
-        <%--                <a href="javascript:;" class="weui-grid">--%>
-        <%--                    <div class="weui-grid__icon">--%>
-        <%--                        <img src="${BASEURL}resources/assets/images/achievement/czgzy.png" alt="">--%>
-        <%--                    </div>--%>
-        <%--                    <p class="weui-grid__label">船政格致园</p>--%>
-        <%--                </a>--%>
-        <%--                <a href="javascript:;" class="weui-grid">--%>
-        <%--                    <div class="weui-grid__icon">--%>
-        <%--                        <img src="${BASEURL}resources/assets/images/achievement/hghgy.png" alt="">--%>
-        <%--                    </div>--%>
-        <%--                    <p class="weui-grid__label">红光湖公园</p>--%>
-        <%--                </a>--%>
-        <%--                <a href="javascript:;" class="weui-grid weui-grid__gray">--%>
-        <%--                    <div class="weui-grid__icon">--%>
-        <%--                        <img src="${BASEURL}resources/assets/images/achievement/jtlsy.png" alt="">--%>
-        <%--                    </div>--%>
-        <%--                    <p class="weui-grid__label">江涛烈士园</p>--%>
-        <%--                </a>--%>
-        <%--                <a href="javascript:;" class="weui-grid weui-grid__gray">--%>
-        <%--                    <div class="weui-grid__icon">--%>
-        <%--                        <img src="${BASEURL}resources/assets/images/achievement/lxt.png" alt="">--%>
-        <%--                    </div>--%>
-        <%--                    <p class="weui-grid__label">罗星塔</p>--%>
-        <%--                </a>--%>
-        <%--                <a href="javascript:;" class="weui-grid">--%>
-        <%--                    <div class="weui-grid__icon">--%>
-        <%--                        <img src="${BASEURL}resources/assets/images/achievement/magz.png" alt="">--%>
-        <%--                    </div>--%>
-        <%--                    <p class="weui-grid__label">闽安古镇</p>--%>
-        <%--                </a>--%>
-        <%--                <a href="javascript:;" class="weui-grid weui-grid__gray">--%>
-        <%--                    <div class="weui-grid__icon">--%>
-        <%--                        <img src="${BASEURL}resources/assets/images/achievement/mczx.png" alt="">--%>
-        <%--                    </div>--%>
-        <%--                    <p class="weui-grid__label">名城中心</p>--%>
-        <%--                </a>--%>
-        <%--                <a href="javascript:;" class="weui-grid">--%>
-        <%--                    <div class="weui-grid__icon">--%>
-        <%--                        <img src="${BASEURL}resources/assets/images/achievement/ndgmjyjd.png" alt="">--%>
-        <%--                    </div>--%>
-        <%--                    <p class="weui-grid__label">南兜革命教育基地</p>--%>
-        <%--                </a>--%>
-
         <c:forEach items="${achievementList}" var="achievement">
             <a href="javascript:;" class="weui-grid">
                 <div class="weui-grid__icon ${fns:trueOrFalse(achievement.BAD_COUNT > 0,'' , 'weui-grid__gray')}">
-                    <img src="${BASE_URL}${Url.IMG_URL}${achievement.IMG_ID}">
+                    <img src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${achievement.IMG_PATH}">
                 </div>
                 <p class="weui-grid__label">${achievement.BA_NAME}</p>
             </a>

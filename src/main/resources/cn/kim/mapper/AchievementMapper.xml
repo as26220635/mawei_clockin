@@ -23,10 +23,10 @@
         SELECT
             BA.*,
             IFNULL(BAD.BAD_COUNT,0) BAD_COUNT,
-            SF.ID AS IMG_ID,SF.SF_SUFFIX
+            CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATH
         FROM BUS_ACHIEVEMENT BA
         LEFT JOIN (SELECT BA_ID,COUNT(1) BAD_COUNT FROM BUS_ACHIEVEMENT_DETAIL WHERE BW_ID = #{ID} GROUP BY BA_ID)BAD ON BAD.BA_ID = BA.ID
-        LEFT JOIN sys_file SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID
+        LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID AND SF.ID = (SELECT MAX(SF.ID) FROM SYS_FILE SF WHERE SF.SF_TABLE_ID = BA.ID GROUP BY SF.SF_TABLE_ID)
         WHERE BA.IS_STATUS = 1
     </select>
 
@@ -128,4 +128,52 @@
     <delete id="deleteAchievementDetail" parameterType="java.util.Map">
 		DELETE FROM BUS_ACHIEVEMENT_DETAIL WHERE ID = #{ID}
 	</delete>
+
+    <select id="selectAchievementDetailListCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM V_ACHIEVEMENT_DETAIL
+        <where>
+            <if test="BW_ID != null and BW_ID != ''">
+                AND BW_ID = #{BW_ID}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectMAchievementDetailList" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT *
+        FROM V_ACHIEVEMENT_DETAIL
+        <where>
+            <if test="whereClause != null and whereClause != ''">
+                ${whereClause}
+            </if>
+        </where>
+        <if test="orderByClause != null and orderByClause != ''">
+            order by ${orderByClause}
+        </if>
+        <if test="limit != null">
+            <if test="offset != null">
+                limit ${offset}, ${limit}
+            </if>
+            <if test="offset == null">
+                limit ${limit}
+            </if>
+        </if>
+    </select>
+
+    <select id="selectMAchievementDetailListCount" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT COUNT(*)
+        FROM V_ACHIEVEMENT_DETAIL
+        <where>
+            <if test="whereClause != null and whereClause != ''">
+                ${whereClause}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectMAchievementDetail" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT VAD.*,SF.FILE_PATH
+        FROM V_ACHIEVEMENT_DETAIL VAD
+        LEFT JOIN (SELECT SF.SF_TABLE_ID,GROUP_CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) FILE_PATH FROM SYS_FILE SF WHERE SF.SF_SDT_CODE='BUS_FILE_DEFAULT' GROUP BY SF.SF_TABLE_ID)SF ON SF.SF_TABLE_ID = VAD.ID
+        WHERE VAD.ID = #{ID}
+    </select>
 </mapper>

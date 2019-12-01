@@ -3,6 +3,7 @@ package cn.kim.controller.manager;
 import cn.kim.common.annotation.SystemControllerLog;
 import cn.kim.common.annotation.Token;
 import cn.kim.common.annotation.Validate;
+import cn.kim.common.attr.WebConfig;
 import cn.kim.common.eu.UseType;
 import cn.kim.entity.ResultState;
 import cn.kim.service.AllocationService;
@@ -92,72 +93,49 @@ public class AllocationController extends BaseController {
 
     @GetMapping("/fileInputTest")
     public String fileInputTest(Model model) throws Exception {
-        model.addAttribute("tableId","fileInputTest");
+        model.addAttribute("tableId", "fileInputTest");
         return "admin/system/allocation/fileInputTest";
     }
 
-    /****************************   综合素质测评比例管理    *****************************/
+    /****************************   网站信息配置    *****************************/
 
-    @GetMapping("/comprehensive")
-    @RequiresPermissions("SYSTEM:ALLOCATION_COMPREHENSIVE")
-    @SystemControllerLog(useType = UseType.USE, event = "查看综合素质测评比例")
+    @GetMapping("/webConfig")
+    @RequiresPermissions("SYSTEM:ALLOCATION_WEBCONFIG")
+    @SystemControllerLog(useType = UseType.USE, event = "查看网站配置")
     @Token(save = true)
-    public String comprehensiveHome(Model model) throws Exception {
-        //德育
-        model.addAttribute("EDUCATION_PROPORTION", AllocationUtil.get("EDUCATION_PROPORTION", 30));
-        //智育
-        model.addAttribute("INTELLECTUAL_PROPORTION", AllocationUtil.get("INTELLECTUAL_PROPORTION", 60));
-        //志愿者
-        model.addAttribute("VOLUNTEER_PROPORTION", AllocationUtil.get("VOLUNTEER_PROPORTION", 10));
+    public String webConfig(Model model) throws Exception {
+        //网站头标题
+        model.addAttribute("WEBCONFIG_HEAD_TITLE", AllocationUtil.get("WEBCONFIG_HEAD_TITLE"));
+        //登录标题
+        model.addAttribute("WEBCONFIG_LOGIN_TITLE", AllocationUtil.get("WEBCONFIG_LOGIN_TITLE"));
+        //后台菜单标题
+        model.addAttribute("WEBCONFIG_MENU_TITLE", AllocationUtil.get("WEBCONFIG_MENU_TITLE"));
+        //后台菜单小标题
+        model.addAttribute("WEBCONFIG_MENU_SMALL_TITLE", AllocationUtil.get("WEBCONFIG_MENU_SMALL_TITLE"));
+        //文件服务器地址
+        model.addAttribute("WEBCONFIG_FILE_SERVER_URL", AllocationUtil.get("WEBCONFIG_FILE_SERVER_URL"));
 
-        return "admin/system/allocation/comprehensive/home";
+        return "admin/system/allocation/webconfig/home";
     }
 
-    @PutMapping("/comprehensive")
-    @RequiresPermissions("SYSTEM:ALLOCATION_COMPREHENSIVE_SAVE")
-    @SystemControllerLog(useType = UseType.USE, event = "修改综合素质测评比例")
+    @PutMapping("/webConfig")
+    @RequiresPermissions("SYSTEM:ALLOCATION_WEBCONFIG_SAVE")
+    @SystemControllerLog(useType = UseType.USE, event = "修改网站配置")
     @Token(remove = true)
     @Validate("SYS_ALLOCATION")
     @ResponseBody
-    public ResultState comprehensiveUpdate(@RequestParam Map<String, Object> mapParam) throws Exception {
+    public ResultState webConfigUpdate(@RequestParam Map<String, Object> mapParam) throws Exception {
         try {
-            AllocationUtil.put("EDUCATION_PROPORTION", mapParam.get("EDUCATION_PROPORTION"));
-            AllocationUtil.put("INTELLECTUAL_PROPORTION", mapParam.get("INTELLECTUAL_PROPORTION"));
-            AllocationUtil.put("VOLUNTEER_PROPORTION", mapParam.get("VOLUNTEER_PROPORTION"));
+            AllocationUtil.put("WEBCONFIG_HEAD_TITLE", mapParam.get("WEBCONFIG_HEAD_TITLE"));
+            AllocationUtil.put("WEBCONFIG_LOGIN_TITLE", mapParam.get("WEBCONFIG_LOGIN_TITLE"));
+            AllocationUtil.put("WEBCONFIG_MENU_TITLE", mapParam.get("WEBCONFIG_MENU_TITLE"));
+            AllocationUtil.put("WEBCONFIG_MENU_SMALL_TITLE", mapParam.get("WEBCONFIG_MENU_SMALL_TITLE"));
+            AllocationUtil.put("WEBCONFIG_FILE_SERVER_URL", unescapeHtml4(mapParam.get("WEBCONFIG_FILE_SERVER_URL")));
+            //刷新参数
+            WebConfig.init();
         } catch (Exception e) {
             return resultError(e);
         }
-        return resultSuccess("综合素质测评比例修改成功!", "修改综合素质测评比例为:" + toString(mapParam));
-    }
-
-    /****************************   迟到旷课处分配置管理    *****************************/
-
-    @GetMapping("/punishment")
-    @RequiresPermissions("SYSTEM:ALLOCATION_PUNISHMENT")
-    @SystemControllerLog(useType = UseType.USE, event = "查看迟到旷课处分配置")
-    @Token(save = true)
-    public String punishmentHome(Model model) throws Exception {
-        //迟到几节课算旷课
-        model.addAttribute("LATE_PROPORTION", AllocationUtil.get("LATE_PROPORTION", 2));
-        //旷课几节课算处分
-        model.addAttribute("ABSENTEEISM_PROPORTION", AllocationUtil.get("ABSENTEEISM_PROPORTION", 40));
-
-        return "admin/system/allocation/punishment/home";
-    }
-
-    @PutMapping("/punishment")
-    @RequiresPermissions("SYSTEM:ALLOCATION_PUNISHMENT_SAVE")
-    @SystemControllerLog(useType = UseType.USE, event = "修改迟到旷课处分配置")
-    @Token(remove = true)
-    @Validate("SYS_ALLOCATION")
-    @ResponseBody
-    public ResultState punishmentUpdate(@RequestParam Map<String, Object> mapParam) throws Exception {
-        try {
-            AllocationUtil.put("LATE_PROPORTION", mapParam.get("LATE_PROPORTION"));
-            AllocationUtil.put("ABSENTEEISM_PROPORTION", mapParam.get("ABSENTEEISM_PROPORTION"));
-        } catch (Exception e) {
-            return resultError(e);
-        }
-        return resultSuccess("迟到旷课处分配置修改成功!", "修改迟到旷课处分配置为:" + toString(mapParam));
+        return resultSuccess("网站配置修改成功!", "修改网站配置为:" + toString(mapParam));
     }
 }

@@ -48,7 +48,7 @@ public class DataTablesView<T> implements Serializable {
         this.draw = draw;
     }
 
-    public List<T> getData() throws InvalidKeyException {
+    public List<T> getData() {
 //        if (isEncrypt) {
 //            CommonUtil.idEncrypt(data);
 //        }

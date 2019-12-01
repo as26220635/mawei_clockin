@@ -29,6 +29,10 @@ public class AttributePath {
      */
     public static final String FILE_OFFICE_URL = FILE_URL + "office/";
     /**
+     * video访问路径
+     */
+    public static final String FILE_VIDEO_URL = FILE_URL + "video/";
+    /**
      * 服务器文件路径斜杠
      */
     public static final String SERVICE_PATH_SEPARATOR = File.separator;

@@ -1642,6 +1642,10 @@ ajax = {
                 if (typeof (removeLoadingDiv) == 'function') {
                     removeLoadingDiv();
                 }
+                try {
+                    $.hideLoading();
+                }catch (e) {
+                }
                 //ajax访问超时ss
                 if (textStatus == 'timeout') {
                     demo.showNotify(ALERT_WARNING, '访问服务器超时!');
@@ -1667,6 +1671,10 @@ ajax = {
         //所有点击model提交的时候防止多次重复提交
         $('button.model-ok').prop('disabled', false);
         removeLoadingDiv();
+        try {
+            $.hideLoading();
+        }catch (e) {
+        }
     },
     complete: function () {
 
@@ -1682,6 +1690,29 @@ ajax = {
             type: "GET",
             url: url,
             data: params,
+            success: function (html) {
+                //成功
+                callback(html);
+            },
+            error: function () {
+                callback({code: 0});
+            }
+        });
+    },
+    getMHtml: function (url, params, beforeSend, callback) {
+        var headers = {html: "true"};
+        //是否是pjax请求
+        if (!isEmpty(params['X-PJAX'])) {
+            headers['X-PJAX'] = true;
+        }
+        return $.ajax({
+            headers: headers,
+            type: "GET",
+            url: url,
+            data: params,
+            beforeSend:function(){
+                beforeSend();
+            },
             success: function (html) {
                 //成功
                 callback(html);
@@ -1702,6 +1733,9 @@ ajax = {
                 }
                 callback(data);
             },
+            error: function () {
+                callback({code: 0});
+            }
         });
     },
     post: function (url, params, callback) {
@@ -1717,6 +1751,9 @@ ajax = {
                 }
                 callback(data);
             },
+            error: function () {
+                callback({code: 0});
+            }
         });
     },
     put: function (url, params, callback) {
@@ -1732,6 +1769,9 @@ ajax = {
                 }
                 callback(data);
             },
+            error: function () {
+                callback({code: 0});
+            }
         });
     },
     del: function (url, params, callback) {
@@ -1748,6 +1788,9 @@ ajax = {
                 }
                 callback(data);
             },
+            error: function () {
+                callback({code: 0});
+            }
         });
     },
     /**

@@ -1,8 +1,6 @@
 package cn.kim.common.tag;
 
-import cn.kim.common.attr.Attribute;
-import cn.kim.common.attr.AttributePath;
-import cn.kim.common.attr.ConfigProperties;
+import cn.kim.common.attr.*;
 import cn.kim.entity.DictType;
 import cn.kim.service.FileService;
 import cn.kim.common.annotation.Validate;
@@ -32,6 +30,18 @@ import java.util.Random;
 @Setter
 @Getter
 public class FileInput extends BaseTagSupport {
+    /**
+     * 图片
+     */
+    public static final String IMAGE = "IAMGE";
+    /**
+     * 视频
+     */
+    public static final String VIDEO = "VIDEO";
+    /**
+     * 文件
+     */
+    public static final String FILE = "FILE";
     /**
      * 预览类型
      */
@@ -106,7 +116,7 @@ public class FileInput extends BaseTagSupport {
     /**
      * 上传类型 默认只能上传图片 为true可以上传文件
      */
-    private boolean allowFile = false;
+    private String allowFile = IMAGE;
     /**
      * 是否单上传模式
      */
@@ -175,7 +185,7 @@ public class FileInput extends BaseTagSupport {
 
             //内容DIV
             builder.append("<div id='" + collapseId + "' class='panel-collapse collapse " + collapseClass + "' aria-expanded='true' style='" + collapseStyle + "'>");
-            builder.append("<input id='" + inputId + "' name='" + inputId + "' type='file' class='file' " + (!allowFile ? " accept='image/*' " : " ") + (multiple ? "multiple" : "") + " >");
+            builder.append("<input id='" + inputId + "' name='" + inputId + "' type='file' class='file' " + getAccept(allowFile) + (multiple ? " multiple " : "") + " >");
             //插入格式化文件上传的JS
             builder.append("<script>");
 
@@ -184,6 +194,8 @@ public class FileInput extends BaseTagSupport {
             String[] initialPreviewConfig = new String[files.size()];
             FuncUtil.forEach(files, (i, file) -> {
                 String id = idEncrypt(file.get("ID"));
+                String SF_NAME = toString(file.get("SF_NAME"));
+                String SF_PATH = toString(file.get("SF_PATH"));
 
                 String fileType = getFileTypeName(toString(file.get("SF_SUFFIX")));
                 if (fileType.equals(FILE_TYPE_IMG)) {
@@ -192,6 +204,11 @@ public class FileInput extends BaseTagSupport {
                     initialPreview[i] = mosaicPdf(getBaseUrl() + AttributePath.FILE_PREVIEW_URL + id);
                 } else if (fileType.equals(FILE_TYPE_OFFICE)) {
                     initialPreview[i] = mosaicOffice(getBaseUrl() + AttributePath.FILE_OFFICE_URL + id);
+                } else if (fileType.equals(FILE_TYPE_VIDEO)) {
+                    //加密视频地址
+                    file.put("VIDEO_URL", SF_PATH + "@@@" + SF_NAME);
+                    FileUtil.filePathTobase64(file, "VIDEO_URL");
+                    initialPreview[i] = mosaicVideo(WebConfig.WEBCONFIG_FILE_SERVER_URL + Url.FILE_SERVER_PLAYER_URL + toString(file.get("VIDEO_URL")));
                 } else {
                     initialPreview[i] = mosaicDefault();
                 }
@@ -220,7 +237,7 @@ public class FileInput extends BaseTagSupport {
                     "showUpload:" + toString(showUpload) + "," +
                     "showRemove:" + toString(showRemove) + "," +
                     (isEmpty(nonModel) ? "" : "nonModel:" + toString(nonModel) + ",") +
-                    "allowedFileExtensions:" + TextUtil.toString(!allowFile ? ConfigProperties.ALLOW_SUFFIX_IMG : ConfigProperties.ALLOW_SUFFIX_FILE) + "," +
+                    "allowedFileExtensions:" + getAllowedFileExtensions(allowFile) + "," +
                     "maxFileSize:" + maxFileSize + "," +
                     "maxFilesNum:" + maxFilesNum + "," +
                     "maxFileCount:" + maxFileCount + "," +
@@ -274,10 +291,41 @@ public class FileInput extends BaseTagSupport {
         maxFilesNum = 99;
         maxFileCount = 99;
         maxFileSize = 8000;
-        allowFile = false;
+        allowFile = IMAGE;
         nonModel = "";
         return super.doEndTag();
     }
+
+    /**
+     * 可以接受参数
+     *
+     * @param allowFile
+     * @return
+     */
+    public String getAccept(String allowFile) {
+        if (IMAGE.equals(allowFile)) {
+            return " accept='image/*' ";
+        } else if (IMAGE.equals(allowFile)) {
+            return " accept='video/*' ";
+        }
+        return " ";
+    }
+
+    /**
+     * 获得接受类型
+     *
+     * @param allowFile
+     * @return
+     */
+    public String getAllowedFileExtensions(String allowFile) {
+        if (IMAGE.equals(allowFile)) {
+            return TextUtil.toString(ConfigProperties.ALLOW_SUFFIX_IMG);
+        } else if (IMAGE.equals(allowFile)) {
+            return TextUtil.toString(ConfigProperties.ALLOW_SUFFIX_VIDEO);
+        }
+        return TextUtil.toString(ConfigProperties.ALLOW_SUFFIX_FILE);
+    }
+
 
     /**
      * 获取文件类型名称
@@ -294,6 +342,8 @@ public class FileInput extends BaseTagSupport {
             return FILE_TYPE_PDF;
         } else if (fileName.endsWith("doc") || fileName.endsWith("docx") || fileName.endsWith("xls") || fileName.endsWith("xlsx") || fileName.endsWith("ppt") || fileName.endsWith("pptx")) {
             return FILE_TYPE_OFFICE;
+        } else if (fileName.endsWith("mov") || fileName.endsWith("mp4")) {
+            return FILE_TYPE_VIDEO;
         } else {
             return FILE_TYPE_OTHER;
         }
@@ -317,6 +367,10 @@ public class FileInput extends BaseTagSupport {
 
     private String mosaicOffice(Object url) {
         return "<iframe class=\"kv-preview-data file-preview-office\" src=\"" + toString(url) + "\"></iframe>";
+    }
+
+    private String mosaicVideo(Object url) {
+        return "<video class=\"kv-preview-data file-preview-video\" controls=\"\" style=\"width:213px;height:160px;\"><source src=\"" + toString(url) + "\" type=\"video/mp4\"><div class=\"file-preview-other\"><span class=\"file-other-icon\"><i class=\"glyphicon glyphicon-file\"></i></span></div></video>";
     }
 }
 

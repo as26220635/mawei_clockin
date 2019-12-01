@@ -24,22 +24,34 @@
                                 <form id="addAndEditForm">
                                     <input type="hidden" name="${SUBMIT_TOKEN_NAME}" value="${token}">
                                     <div class="form-group has-feedback">
-                                        <label>德育:</label>
+                                        <label>头标题:</label>
                                         <input type="text"
-                                               class="form-control" ${fns:validField("SYS_ALLOCATION", "EDUCATION_PROPORTION")}
-                                               value="${EDUCATION_PROPORTION}">
+                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WEBCONFIG_HEAD_TITLE")}
+                                               value="${WEBCONFIG_HEAD_TITLE}">
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <label>智育:</label>
+                                        <label>登录标题:</label>
                                         <input type="text"
-                                               class="form-control" ${fns:validField("SYS_ALLOCATION", "INTELLECTUAL_PROPORTION")}
-                                               value="${INTELLECTUAL_PROPORTION}">
+                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WEBCONFIG_LOGIN_TITLE")}
+                                               value="${WEBCONFIG_LOGIN_TITLE}">
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <label>志愿者:</label>
+                                        <label>后台菜单标题:</label>
                                         <input type="text"
-                                               class="form-control" ${fns:validField("SYS_ALLOCATION", "VOLUNTEER_PROPORTION")}
-                                               value="${VOLUNTEER_PROPORTION}">
+                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WEBCONFIG_MENU_TITLE")}
+                                               value="${WEBCONFIG_MENU_TITLE}">
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>后台菜单小标题:</label>
+                                        <input type="text"
+                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WEBCONFIG_MENU_SMALL_TITLE")}
+                                               value="${WEBCONFIG_MENU_SMALL_TITLE}">
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>文件服务器地址:</label>
+                                        <input type="text"
+                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WEBCONFIG_FILE_SERVER_URL")}
+                                               value="${WEBCONFIG_FILE_SERVER_URL}">
                                     </div>
                                 </form>
                             </div>
@@ -62,13 +74,8 @@
             return;
         }
         var params = packFormParams($form);
-        //比例判断相加必须等于100
-        if (Number(params.EDUCATION_PROPORTION) + Number(params.INTELLECTUAL_PROPORTION) + Number(params.VOLUNTEER_PROPORTION) != 100) {
-            demo.showNotify(ALERT_WARNING, "比例总和必须等于100%");
-            return;
-        }
 
-        ajax.put('${BASE_URL}${Url.COMPREHENSIVE_BASE_URL}', params, function (data) {
+        ajax.put('${BASE_URL}${Url.WEBCONFIG_BASE_URL}', params, function (data) {
             ajaxReturn.data(data, null, null, null);
         })
     });

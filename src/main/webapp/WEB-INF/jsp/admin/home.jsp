@@ -13,9 +13,10 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/jsp/common/common_meta.jsp" %>
-    <title>${HEAD_TITLE}管理系统</title>
+    <title>WEBCONFIG_HEAD_TITLE管理系统</title>
     <%@ include file="/WEB-INF/jsp/common/common_css.jsp" %>
     <%@ include file="/WEB-INF/jsp/common/common_js.jsp" %>
+    <%--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--%>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 
@@ -25,9 +26,9 @@
         <%--<!-- Logo -->--%>
         <a href="javascript:void(0)" class="logo">
             <%--<!-- mini logo for sidebar mini 50x50 pixels -->--%>
-            <span class="logo-mini">${MANAGER_HTML_MENU_SMALL_TITLE}</span>
+            <span class="logo-mini">${WEBCONFIG_MENU_SMALL_TITLE}</span>
             <%--<!-- logo for regular state and mobile devices -->--%>
-            <span class="logo-lg">${HEAD_TITLE}</span>
+            <span class="logo-lg">${WEBCONFIG_HEAD_TITLE}</span>
         </a>
         <%--<!-- Header Navbar: style can be found in header.less -->--%>
         <nav class="navbar navbar-static-top">
@@ -131,7 +132,7 @@
             </div>
             <%--<!--菜单-->--%>
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">${MANAGER_HTML_MENU_NAME}</li>
+                <li class="header">${WEBCONFIG_MENU_TITLE}</li>
                 <li class="treeview" id="homeTreeview">
                     <a href="${BASE_URL}admin/home" id="admin-home" data-pjax="#${CONTAINER}">
                         <i class="fa fa-dashboard"></i> <span>首页</span>

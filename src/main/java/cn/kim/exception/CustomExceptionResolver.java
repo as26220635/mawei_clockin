@@ -12,12 +12,14 @@ import lombok.extern.log4j.Log4j2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.session.UnknownSessionException;
+import org.apache.shiro.web.util.WebUtils;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * 自定义异常处理器
@@ -55,6 +57,13 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
             return new ModelAndView();
         } else if (ex instanceof FileNotFoundException) {
             customException = new CustomException("没有找到文件!");
+        } else if (ex instanceof WechatNoLoginException) {
+            //微信登录
+            try {
+                WebUtils.issueRedirect(request, response, "/oauth/render/wechat", null, true);
+            } catch (IOException e) {
+            }
+            return null;
         } else {
             //针对非CustomException异常，对这类重新构造成一个CustomException
             customException = new CustomException(ex.getMessage() != null ? ex.getMessage() : ex.getCause() != null ? ex.getCause().getMessage() : ex.toString());

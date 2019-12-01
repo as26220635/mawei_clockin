@@ -1,6 +1,8 @@
 package cn.kim.util;
 
+import cn.kim.common.ConfigLoad;
 import cn.kim.common.springmvc.BASE64DecodedMultipartFile;
+import cn.kim.common.tag.FileInput;
 import cn.kim.entity.ActiveUser;
 import cn.kim.service.FileService;
 import cn.kim.service.FileWS;
@@ -39,10 +41,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by 余庚鑫 on 2017/3/5.
@@ -77,7 +77,20 @@ public class FileUtil {
      * @throws IOException
      */
     public static Map<String, Object> saveFile(MultipartFile file, Map<String, Object> configure) throws IOException {
-        configure.put("isFile", true);
+        configure.put("allowFile", FileInput.FILE);
+        return saveFileToDisk(file, configure);
+    }
+
+    /**
+     * 保存视频
+     *
+     * @param file
+     * @param configure
+     * @return
+     * @throws IOException
+     */
+    public static Map<String, Object> saveVideo(MultipartFile file, Map<String, Object> configure) throws IOException {
+        configure.put("allowFile", FileInput.VIDEO);
         return saveFileToDisk(file, configure);
     }
 
@@ -90,7 +103,7 @@ public class FileUtil {
      * @throws IOException
      */
     public static Map<String, Object> saveImgFile(MultipartFile file, Map<String, Object> configure) throws IOException {
-        configure.put("isFile", false);
+        configure.put("allowFile", FileInput.IMAGE);
         return saveFileToDisk(file, configure);
     }
 
@@ -143,38 +156,32 @@ public class FileUtil {
                 //上传文件原始名称
                 String originalFilename = file.getOriginalFilename();
                 //判断后缀是否是允许的
-                Boolean isFile = (Boolean) configure.get("isFile");
+                String allowFile = TextUtil.toString(configure.get("allowFile"));
 
                 String fileType = FileTypeUtil.getFileType(file);
 
-                if (isFile) {
-                    if (!FileUtil.isCheckSuffix(originalFilename, ConfigProperties.ALLOW_SUFFIX_FILE)) {
-                        resultMap.put("code", Attribute.STATUS_ERROR);
-                        resultMap.put("message", "文件后缀不符合!");
-                        return resultMap;
-                    }
-                    //查询原始类型
-//                    if (!FileUtil.isCheckSuffix(fileType, ConfigProperties.ALLOW_SUFFIX_FILE)) {
-//                        resultMap.put("code", Attribute.STATUS_ERROR);
-//                        resultMap.put("message", "上传文件类型错误,请不要修改文件后缀上传!");
-//                        return resultMap;
-//                    }
-                } else {
+                if (FileInput.IMAGE.equals(allowFile)) {
                     if (!FileUtil.isCheckSuffix(originalFilename, ConfigProperties.ALLOW_SUFFIX_IMG)) {
                         resultMap.put("code", Attribute.STATUS_ERROR);
                         resultMap.put("message", "图片后缀不符合!");
                         return resultMap;
                     }
-                    //查询原始类型
-//                    if (!FileUtil.isCheckSuffix(fileType, ConfigProperties.ALLOW_SUFFIX_IMG)) {
-//                        resultMap.put("code", Attribute.STATUS_ERROR);
-//                        resultMap.put("message", "上传文件类型错误,请不要修改文件后缀上传!");
-//                        return resultMap;
-//                    }
+                } else if (FileInput.VIDEO.equals(allowFile)) {
+                    if (!FileUtil.isCheckSuffix(originalFilename, ConfigProperties.ALLOW_SUFFIX_VIDEO)) {
+                        resultMap.put("code", Attribute.STATUS_ERROR);
+                        resultMap.put("message", "文件后缀不符合!");
+                        return resultMap;
+                    }
+                } else {
+                    if (!FileUtil.isCheckSuffix(originalFilename, ConfigProperties.ALLOW_SUFFIX_FILE)) {
+                        resultMap.put("code", Attribute.STATUS_ERROR);
+                        resultMap.put("message", "文件后缀不符合!");
+                        return resultMap;
+                    }
                 }
 
                 //文件服务器存储路径
-                String filepath = typeCode + "/" + (ValidateUtil.isEmpty(extendName) ? "" : extendName + "/") + DateUtil.getDate(DateUtil.FORMAT2) + "/";
+                String filepath = typeCode + File.separator + (ValidateUtil.isEmpty(extendName) ? "" : extendName + File.separator) + DateUtil.getDate(DateUtil.FORMAT2) + File.separator;
                 //保存缓存文件
                 //保存的ID也是名称
                 String id = Sequence.getId();
@@ -265,6 +272,62 @@ public class FileUtil {
                 resultMap.put("code", Attribute.STATUS_ERROR);
                 resultMap.put("message", "没有找到文件!");
             }
+            return resultMap;
+        } catch (Exception e) {
+            resultMap.put("code", Attribute.STATUS_ERROR);
+            resultMap.put("message", e.getMessage());
+            e.printStackTrace();
+            return resultMap;
+        }
+    }
+
+    /**
+     * 保存文件信息到数据库
+     *
+     * @param configure
+     * @return
+     */
+    public static Map<String, Object> saveFileInfo(Map<String, Object> configure) {
+
+        Map<String, Object> resultMap = Maps.newHashMapWithExpectedSize(16);
+
+        try {
+            ActiveUser activeUser = AuthcUtil.getCurrentUser();
+            //操作员ID
+            String operatorId = TextUtil.toString(configure.get("SO_ID"));
+            //使用表ID
+            String fileTableId = TextUtil.toString(configure.get("SF_TABLE_ID"));
+            //使用表名
+            String fileTableNAME = TextUtil.toString(configure.get("SF_TABLE_NAME"));
+            //使用代码
+            String fileDictTypeCode = TextUtil.toString(configure.get("SF_SDT_CODE"));
+            String fileDictInfoCode = TextUtil.toString(configure.get("SF_SDI_CODE"));
+            //查看类型 0 不需要登录就可以查看 1需要登录
+            Integer seeType = TextUtil.toInt(configure.get("SF_SEE_TYPE"));
+            //设置操作员ID
+            if (!ValidateUtil.isEmpty(activeUser)) {
+                operatorId = activeUser.getId();
+            }
+
+            String id = ValidateUtil.isEmpty(configure.get("SF_NAME_NO")) ? TextUtil.toString(configure.get("ID")) : TextUtil.toString(configure.get("SF_NAME_NO"));
+
+            //保存记录到数据库
+            Map<String, Object> fileMap = Maps.newHashMapWithExpectedSize(13);
+            fileMap.put("ID", id);
+            fileMap.put("SO_ID", operatorId);
+            fileMap.put("SF_TABLE_ID", fileTableId);
+            fileMap.put("SF_TABLE_NAME", fileTableNAME);
+            fileMap.put("SF_SDT_CODE", fileDictTypeCode);
+            fileMap.put("SF_SDI_CODE", fileDictInfoCode);
+            fileMap.put("SF_ORIGINAL_NAME", configure.get("SF_ORIGINAL_NAME"));
+            fileMap.put("SF_NAME", configure.get("SF_NAME"));
+            fileMap.put("SF_PATH", configure.get("SF_PATH"));
+            fileMap.put("SF_SUFFIX", configure.get("SF_SUFFIX"));
+            fileMap.put("SF_SIZE", configure.get("SF_SIZE"));
+            fileMap.put("SF_SEE_TYPE", seeType);
+            fileMap.put("SF_ENTRY_TIME", DateUtil.getDate());
+            fileUtil.fileService.insertFile(fileMap);
+
             return resultMap;
         } catch (Exception e) {
             resultMap.put("code", Attribute.STATUS_ERROR);
@@ -962,6 +1025,53 @@ public class FileUtil {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    /**
+     * 文件路径字段base64
+     *
+     * @param list
+     * @param field
+     */
+    public static void filePathTobase64(List<Map<String, Object>> list, String field) {
+        if (list != null) {
+            for (Map<String, Object> map : list) {
+                filePathTobase64(map, field);
+            }
+        }
+    }
+
+    /**
+     * 文件路径字段base64
+     *
+     * @param map
+     * @param field
+     */
+    public static void filePathTobase64(Map<String, Object> map, String field) {
+        if (map != null) {
+            try {
+                String val = TextUtil.toString(map.get(field));
+                if (val.contains(",")) {
+                    //数组重新拼接
+                    val = Arrays.stream(val.split(",")).map(m -> {
+                        try {
+                            return new String(Base64.encode(m).getBytes("UTF-8"));
+                        } catch (UnsupportedEncodingException e) {
+                            return "";
+                        }
+                    }).collect(Collectors.joining(","));
+                } else {
+                    //地址是视频 添加缩略图位置
+                    if (FileUtil.isCheckSuffix(val, ConfigProperties.ALLOW_SUFFIX_VIDEO)) {
+                        String thumbnails = val.substring(0, val.lastIndexOf("."));
+                        map.put(field + "_THUMBNAILS", new String(Base64.encode(thumbnails + "-thumbnails.jpg").getBytes("UTF-8")));
+                    }
+                    val = new String(Base64.encode(val).getBytes("UTF-8"));
+                }
+                map.put(field, val);
+            } catch (UnsupportedEncodingException e) {
+            }
         }
     }
 

@@ -15,5 +15,9 @@
 <script type="text/javascript" src="${BASE_URL}resources/assets/weui/iscroll-lite.js?ver=${VERSION}"></script>
 <%--文件上传--%>
 <script src="${BASE_URL}resources/static/plugins/jquery-form/dist/jquery.form.min.js?ver=${VERSION}"></script>
+<%--视频播放--%>
+<script src="${BASE_URL}resources/assets/weui/DPlayer.min.js?ver=${VERSION}"></script>
 <%--通用组件--%>
 <script src="${BASE_URL}resources/static/create/js/component.js?ver=${VERSION}"></script>
+
+<script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.js"></script>

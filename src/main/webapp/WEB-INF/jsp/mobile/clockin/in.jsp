@@ -11,10 +11,6 @@
     .weui-form {
         padding-top: 0px;
     }
-
-    .weui-gallery {
-        height: 91%;
-    }
 </style>
 <style>
     /*a  upload */
@@ -67,7 +63,6 @@
     .weui-video {
         height: auto;
         width: 50%;
-        margin-left: 17px;
         display: none;
     }
 
@@ -78,7 +73,6 @@
     .weui-form__opr-area:last-child {
         margin-bottom: 10px;
     }
-
 </style>
 <div class="container container-page">
     <%@ include file="/WEB-INF/jsp/mobile/common/common_top.jspf" %>
@@ -92,6 +86,7 @@
                 <input type="hidden" name="BA_ID" value="${BA_ID}">
                 <input type="hidden" name="BW_ID" value="${BW_ID}">
                 <input type="hidden" id="BAD_FILETYPE" name="BAD_FILETYPE">
+                <input type="hidden" id="  " name="BAD_FILEPARAMS">
 
                 <div class="weui-cells__group weui-cells__group_form">
                     <div class="weui-cells__title">概述</div>
@@ -107,69 +102,87 @@
                     </div>
                 </div>
 
-                <!--图片上传-->
-                <div class="weui-gallery" id="gallery">
-                    <span class="weui-gallery__img" id="galleryImg"></span>
-                    <div class="weui-gallery__opr">
-                        <a href="javascript:" class="weui-gallery__del">
-                            <i class="weui-icon-delete weui-icon_gallery-delete"></i>
-                        </a>
-                    </div>
-                </div>
-
                 <div class="weui-tab" id="switchTab" style="height:44px;">
                     <div class="weui-navbar">
                         <div class="weui-navbar__item tab-green">
-                            上传图片 <span class="weui-uploader__info" id="uploader_count" data-total="9" data-val="0">0/9</span>
+                            上传图片 <span class="weui-uploader__info" id="uploader_count" data-total="9"
+                                       data-val="0">0/9</span>
                         </div>
                         <div class="weui-navbar__item">
                             上传视频
                         </div>
                     </div>
                 </div>
+            </form>
 
-                <div id="uploadImageArea" class="weui-cells weui-cells_form" style="display: none;">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <div class="weui-uploader">
-                                <div class="weui-uploader__bd">
+            <div id="uploadImageArea" class="weui-cells weui-cells_form" style="display: none;">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <div class="weui-uploader">
+                            <div class="weui-uploader__bd">
+                                <form id="imageForm" enctype="multipart/form-data" method="post">
+                                    <c:forEach items="${FILE_NAMES}" var="FILE_NAME">
+                                        <input type="hidden" name="fileNames" value="${FILE_NAME}">
+                                    </c:forEach>
+                                    <input type="hidden" name="uploadToken" value="${UPLOAD_TOKEN}">
+                                    <input type="hidden" name="SF_TYPE_CODE" value="${Attribute.BUS_FILE_DEFAULT}">
+                                    <input type="hidden" id="fileCount" name="fileCount">
                                     <ul class="weui-uploader__files" id="uploader_files"></ul>
                                     <div class="weui-uploader__input-box">
-                                        <input class="weui-uploader__input" id="uploader_input" type="file" accept="image/*" multiple="">
+                                        <input class="weui-uploader__input" id="uploader_input" type="file"
+                                               accept="image/*" multiple="">
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="uploadVideoArea" class="weui-cells weui-cells_form" style="display: none;">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <div class="weui-uploader">
-                                <video class="weui-video" src="" id="video0" controls="controls"></video>
-                                <form enctype="multipart/form-data" method="post">
-                                    <a id="uploadVideoAreaBtn" href="javascript:;" class="weui-a_upload"> <input
-                                            id="uploadVideo"
-                                            name="uploadVideo" class="uploadVideo" type="file"
-                                            accept="video/*" capture="camcorder">上传视频
-                                    </a>
-                                    <br>
-                                    <a id="removeVideoBtn" href="javascript:;" class="weui-a_upload weui-a_remove">移除视频
-                                    </a>
-                                    <span id="fileName" style="font-size: 18px"></span>
-                                    <div id="showFileName"></div>
                                 </form>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="weui-form__opr-area">
-                    <a class="weui-btn weui-btn_primary" href="javascript:" id="submitBtn">确定</a>
+            <div id="uploadVideoArea" class="weui-cells weui-cells_form" style="display: none;">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <div id="videoArea" class="weui-uploader">
+                            <video class="weui-video" src="" id="video0" controls="controls"
+                                   webkit-playsinline="true" playsinline="true" autoplay></video>
+                            <img id="test">
+
+                            <form id="videoForm" enctype="multipart/form-data" method="post">
+                                <input type="hidden" name="uploadToken" value="${UPLOAD_TOKEN}">
+                                <input type="hidden" name="fileName" value="${FILE_NAMES.get(0)}">
+                                <input type="hidden" name="SF_TYPE_CODE" value="${Attribute.BUS_FILE_DEFAULT}">
+                                <a id="uploadVideoAreaBtn" href="javascript:;" class="weui-a_upload"> <input
+                                        id="uploadVideo"
+                                        name="uploadVideo" class="uploadVideo" type="file"
+                                        accept="video/*">上传视频
+                                </a>
+                                <%--视频时长--%>
+                                <input type="hidden" id="video0Time">
+                                <br>
+                                <a id="removeVideoBtn" href="javascript:;" class="weui-a_upload weui-a_remove">移除视频
+                                </a>
+                                <span id="fileName" style="font-size: 18px"></span>
+                                <div id="showFileName"></div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-            </form>
+            <div class="weui-form__opr-area">
+                <a class="weui-btn weui-btn_primary" href="javascript:" id="submitBtn">确定</a>
+            </div>
+
+
+            <!--图片上传-->
+            <div class="weui-gallery" id="gallery">
+                <span class="weui-gallery__img" id="galleryImg"></span>
+                <div class="weui-gallery__opr">
+                    <a href="javascript:" class="weui-gallery__del">
+                        <i class="weui-icon-delete weui-icon_gallery-delete"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -178,6 +191,7 @@
     switchTabbar('clockinTabbar');
     mainInit.initPjax();
 
+    //提交打卡
     $('#submitBtn').click(function () {
         var $form = $('#addAndEditForm');
         if ($('#BAD_REMARKS').val() == '') {
@@ -195,18 +209,37 @@
                 $.toast("请上传视频", "forbidden");
                 return;
             }
-        }
-        $.showLoading('提交打卡中');
-        ajax.file('${BASE_URL}clockin/in/upload', $form, function (data) {
-            $.hideLoading();
-            if (data.code == 1) {
-                $.toast('打卡成功', 2000, function () {
-                    backHtml();
-                });
-            } else {
-                $.toast("打卡失败", "forbidden");
+            if ($('#video0Time').val() == undefined || $('#video0Time').val() == '') {
+                $.toast("获取视频总时长失败,请等待", "forbidden");
+                return;
             }
-        })
+            if ($('#video0Time').val() > 10) {
+                $.toast("上传视频不能大于10秒", "forbidden");
+                return;
+            }
+        }
+        if (BAD_FILETYPE == 1) {
+            $.showLoading('上传图片中');
+            ajax.file('${WEBCONFIG_FILE_SERVER_URL}uploadBase64Imgage', $('#imageForm'), function (data) {
+                $.hideLoading();
+                if (data.code == 1) {
+                    submitClockin(JSON.stringify(data.imageArray));
+                } else {
+                    $.toast("上传图片失败,请重试", "forbidden");
+                }
+            })
+        } else if (BAD_FILETYPE == 2) {
+            //先上传视频
+            $.showLoading('上传视频中');
+            ajax.file('${WEBCONFIG_FILE_SERVER_URL}upload', $('#videoForm'), function (data) {
+                $.hideLoading();
+                if (data.code == 1) {
+                    submitClockin(JSON.stringify(data.message));
+                } else {
+                    $.toast("上传视频失败,请重试", "forbidden");
+                }
+            })
+        }
     });
 
     $('#BAD_REMARKS').bind('input propertychange', function () {
@@ -228,6 +261,7 @@
                 $('#uploadVideoAreaBtn').show();
                 $('#removeVideoBtn').hide();
                 $('#uploadVideo').val('');
+                $('#video0Time').val('');
             } else if (index == 1) {
                 $('#uploadImageArea').hide();
                 $('#uploadVideoArea').show();
@@ -235,10 +269,30 @@
                 $('#BAD_FILETYPE').val('2');
                 //移除图片
                 $("#uploader_count").html("" + 0 + "/" + $("#uploader_count").attr('data-total') + "");
+                $('#fileCount').val(0);
                 $('#uploader_files').empty();
             }
         }
     })
+
+    function submitClockin(uploadInfo) {
+        var $form = $('#addAndEditForm');
+        var params = packFormParams($form);
+        //文件上传信息
+        params['uploadInfo'] = uploadInfo;
+
+        $.showLoading('提交打卡中');
+        ajax.post('${BASE_URL}clockin/in/upload', params, function (data) {
+            $.hideLoading();
+            if (data.code == 1) {
+                $.toast('打卡成功', 2000, function () {
+                    backHtml();
+                });
+            } else {
+                $.toast("打卡失败", "forbidden");
+            }
+        });
+    }
 </script>
 
 
@@ -259,7 +313,7 @@
         // 1024KB，也就是 1MB
         var maxSize = 1024 * 1024;
         // 图片最大宽度
-        var maxWidth = 300;
+        var maxWidth = 1000;
         // 最大上传图片数量
         var imgTotal = 0;
         // 记录当前已上传数量
@@ -281,7 +335,7 @@
                 imgCount = imgCount + 1;//数量+1；
                 //$uploaderFiles.append($(tmpl.replace('#url#', src)));
                 //新方法中对隐藏域的ID和value进行替换
-
+                $.showLoading();
                 var reader = new FileReader();
                 reader.onload = function (e) {
                     var img = new Image();
@@ -300,6 +354,7 @@
 
                         // 插入到预览区
                         $uploaderFiles.append($(tmpl.replace('#url#', base64).replace('#imgid#', "uploadImg" + imgCount).replace('#imgname#', "uploadImg").replace('#url#', base64)));
+                        $.hideLoading();
                     };
                     img.src = e.target.result;
                 };
@@ -328,6 +383,7 @@
         function updateImgCount() {
             $uploaderCount.attr("data-val", imgCount);
             $uploaderCount.html("" + imgCount + "/" + imgTotal + "");
+            $('#fileCount').val(imgCount);
             if (imgCount >= imgTotal) {
                 $('.weui-uploader__input-box').hide();
             } else {
@@ -343,6 +399,7 @@
         $('#uploadVideoAreaBtn').show();
         $('#removeVideoBtn').hide();
         $('#uploadVideo').val('');
+        $('#video0Time').val('');
     });
 
     $("#uploadVideoAreaBtn").on("change", "input[type='file']", function () {
@@ -359,6 +416,12 @@
             $('#removeVideoBtn').show();
         }
     })
+
+    //视频加载成功事件
+    document.getElementById("video0").oncanplay = function () {
+        var pl = document.getElementById("video0");
+        $('#video0Time').val(pl.duration);
+    }
 
     //建立一个可存取到该file的url
     function getObjectURL(file) {

@@ -15,6 +15,7 @@ import cn.kim.service.AchievementService;
 import cn.kim.service.AchievementService;
 import cn.kim.util.CommonUtil;
 import cn.kim.util.DictUtil;
+import cn.kim.util.FileUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.springframework.stereotype.Service;
@@ -46,7 +47,11 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
     public List<Map<String, Object>> selectMAchievementListByWechat(String ID) {
         Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
         paramMap.put("ID", ID);
-        return baseDao.selectList(NameSpace.AchievementMapper, "selectMAchievementListByWechat", paramMap);
+        List<Map<String, Object>> list = baseDao.selectList(NameSpace.AchievementMapper, "selectMAchievementListByWechat", paramMap);
+
+        //文件路径加密
+        FileUtil.filePathTobase64(list, "IMG_PATH");
+        return list;
     }
 
     @Override
@@ -171,6 +176,43 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
     }
 
     @Override
+    public Map<String, Object> selectMAchievementDetailById(String ID) {
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
+        paramMap.put("ID", ID);
+
+        Map<String, Object> map = baseDao.selectOne(NameSpace.AchievementMapper, "selectMAchievementDetail", paramMap);
+
+        //文件路径加密
+        FileUtil.filePathTobase64(map, "FILE_PATH");
+        return map;
+    }
+
+    @Override
+    public DataTablesView<?> selectMAchievementDetailList(int offset, int limit, String BW_ID) {
+        DataTablesView<Map<String, Object>> dataTablesView = new DataTablesView<>();
+        QuerySet querySet = new QuerySet();
+
+        //连接名称
+        querySet.set(QuerySet.EQ, "BW_ID", BW_ID);
+
+        querySet.setOffset(offset);
+        querySet.setLimit(limit);
+
+        querySet.setOrderByClause("BAD_ENTERTIME DESC");
+        List<Map<String, Object>> dataList = baseDao.selectList(NameSpace.AchievementMapper, "selectMAchievementDetailList", querySet.getWhereMap());
+        dataTablesView.setData(dataList);
+
+        return dataTablesView;
+    }
+
+    @Override
+    public Integer selectAchievementDetailListCountByWechatId(String BW_ID) {
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
+        paramMap.put("BW_ID", BW_ID);
+        return baseDao.selectOne(NameSpace.AchievementMapper, "selectAchievementDetailListCount", paramMap);
+    }
+
+    @Override
     @Transactional
     public Map<String, Object> insertAndUpdateAchievementDetail(Map<String, Object> mapParam) {
         Map<String, Object> resultMap = Maps.newHashMapWithExpectedSize(5);
@@ -246,4 +288,6 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
         resultMap.put(MagicValue.DESC, desc);
         return resultMap;
     }
+
+
 }

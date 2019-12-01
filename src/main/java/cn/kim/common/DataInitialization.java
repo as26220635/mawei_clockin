@@ -2,6 +2,7 @@ package cn.kim.common;
 
 import afu.org.checkerframework.checker.units.qual.A;
 import cn.kim.common.attr.ConfigProperties;
+import cn.kim.common.attr.WebConfig;
 import cn.kim.common.eu.NameSpace;
 import cn.kim.controller.manager.BaseDataController;
 import cn.kim.dao.BaseDao;
@@ -57,6 +58,9 @@ public class DataInitialization extends BaseData implements ApplicationListener<
 
             //加载邮箱配置
             EmailUtil.init();
+
+            //加载网站参数
+            WebConfig.init();
         }
     }
 }

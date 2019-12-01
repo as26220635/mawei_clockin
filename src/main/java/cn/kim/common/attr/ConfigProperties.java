@@ -29,6 +29,8 @@ public class ConfigProperties {
     public static String[] ALLOW_SUFFIX_IMG;
     //文件
     public static String[] ALLOW_SUFFIX_FILE;
+    //视频
+    public static String[] ALLOW_SUFFIX_VIDEO;
     //文件服务器地址
     public static String AFFIX_FILE_SERVER_URL;
     /**
@@ -80,6 +82,11 @@ public class ConfigProperties {
     @Value("#{config['allow.suffix.file']}")
     public void setAllowSuffixFile(String allowSuffixFile) {
         ALLOW_SUFFIX_FILE = allowSuffixFile.split(Attribute.SERVICE_SPLIT);
+    }
+
+    @Value("#{config['allow.suffix.video']}")
+    public void setAllowSuffixVideo(String allowSuffixVideo) {
+        ALLOW_SUFFIX_VIDEO = allowSuffixVideo.split(Attribute.SERVICE_SPLIT);
     }
 
     @Value("#{config['jwt.secret']}")

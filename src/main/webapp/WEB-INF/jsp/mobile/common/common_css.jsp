@@ -4,5 +4,5 @@
 <link rel="stylesheet" href="${BASE_URL}resources/assets/weui/weuix.css?ver=${VERSION}">
  <%--加载条--%>
 <link rel="stylesheet" href="${BASE_URL}resources/mobile/plugins/nprogress/nprogress.css?ver=${VERSION}"/>
-<%--地图--%>
-<%--<link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />--%>
+<%--视频播放--%>
+<link rel="stylesheet" href="${BASE_URL}resources/assets/weui/DPlayer.min.css?ver=${VERSION}"/>

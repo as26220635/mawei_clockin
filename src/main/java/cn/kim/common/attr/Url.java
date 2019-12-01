@@ -18,6 +18,13 @@ public class Url {
     public static final String DOWN_URL = AttributePath.FILE_DOWNLOAD_URL;
     public static final String DOWN_CACHE_URL = AttributePath.FILE_DOWNLOAD_URL + AttributePath.FILE_SERVICE_CACHE_PATH;
     /**
+     * 图片服务器预览地址
+     */
+    public static final String FILE_SERVER_PREVIEW_URL = "preview/";
+    public static final String FILE_SERVER_PLAYER_URL = "player/";
+    public static final String FILE_SERVER_DOWNLOAD_URL = "download/";
+    public static final String FILE_SERVER_UPLOAD_URL = "upload/";
+    /**
      * excel导出地址
      */
     public static final String EXPORT_URL = "file/export/";
@@ -37,13 +44,9 @@ public class Url {
     public static final String EMAIL_BASE_URL = ALLOCATION_BASE_URL + "email";
     public static final String EMAIL_CACHE_URL = EMAIL_BASE_URL + "/cache";
     /**
-     * 综合素质测评比例配置管理
+     * 网站配置地址
      */
-    public static final String COMPREHENSIVE_BASE_URL = ALLOCATION_BASE_URL + "comprehensive";
-    /**
-     * 迟到旷课处分配置管理
-     */
-    public static final String PUNISHMENT_BASE_URL = ALLOCATION_BASE_URL + "punishment";
+    public static final String WEBCONFIG_BASE_URL = ALLOCATION_BASE_URL + "webConfig";
     /**
      * 授权
      */
@@ -270,5 +273,11 @@ public class Url {
     public static final String ACHIEVEMENT_UPDATE_URL = ACHIEVEMENT_BASE_URL + "update";
     public static final String ACHIEVEMENT_SWITCHSTATUS_URL = ACHIEVEMENT_BASE_URL + "switchStatus";
     public static final String ACHIEVEMENT_DELETE_URL = ACHIEVEMENT_BASE_URL + "delete";
-
+    /**
+     * 打卡记录
+     */
+    public static final String CLOCKIN_BASE_URL = MANAGER_URL + "clockin/";
+    public static final String CLOCKIN_ADD_URL = CLOCKIN_BASE_URL + "add";
+    public static final String CLOCKIN_UPDATE_URL = CLOCKIN_BASE_URL + "update";
+    public static final String CLOCKIN_DELETE_URL = CLOCKIN_BASE_URL + "delete";
 }

@@ -30,6 +30,17 @@
         );
     });
 
+    //打卡记录
+    $dataGridTable.find('tbody').on('click', '#clockin', function () {
+        var data = getRowData(this);
+        var param = {
+            BA_ID: data.ID,
+            TITLE: data.BA_NAME,
+        };
+        //切换主界面
+        loadUrl('${BASE_URL}${fns:getUrlByMenuCode("MOBILE:CLOCKIN")}' + urlEncode(param));
+    });
+
     //修改
     $dataGridTable.find('tbody').on('click', '#edit', function () {
         var data = getRowData(this);

@@ -287,4 +287,5 @@ public abstract class BaseController extends BaseData {
     protected void setWechatUserToModel(Model model) {
         model.addAttribute(MagicValue.SESSION_WECHAT_USER, getWechatUser());
     }
+
 }
