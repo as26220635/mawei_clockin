@@ -372,6 +372,10 @@
         // 加载完成
         $.hideLoading();
     };
+    document.getElementById('clockinAreaImg').onerror=function(){
+        // 加载失败
+        $.hideLoading();
+    };
 </script>
 <script>
     getPosition();

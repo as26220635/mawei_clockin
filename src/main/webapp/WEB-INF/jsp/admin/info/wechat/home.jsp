@@ -7,7 +7,7 @@
             targets: targets,
             data: field,
             render: function (data, type, full, meta) {
-                return '<img src="' + data + '" class="img-rounded" style="width:45px;height:45px"/>';
+                return '<img src="' + data + '" class="img-rounded" style="width:45px;height:45px" data-action="zoom"/>';
             }
         };
 

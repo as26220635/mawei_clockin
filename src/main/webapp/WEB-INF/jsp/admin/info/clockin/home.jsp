@@ -51,7 +51,7 @@
 
         ajax.getHtml('${BASE_URL}${Url.CLOCKIN_UPDATE_URL}/' + id, {}, function (html) {
                 model.show({
-                    title: '修改打卡记录,微信用户:' + data.BW_USERNAME + ',时间;' + data.BAD_ENTERTIME,
+                    title: '修改打卡记录',
                     content: html,
                     footerModel: model.footerModel.ADMIN,
                     <shiro:hasPermission name="MOBILE:CLOCKIN_UPDATE_SAVE">

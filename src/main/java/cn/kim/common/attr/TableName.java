@@ -126,6 +126,15 @@ public class TableName {
      */
     public static final String SYS_VALIDATE_REGEX = "SYS_VALIDATE_REGEX";
 
+    /**
+     * 主页图片
+     */
+    public static final String BUS_MAIN_IMAGE = "BUS_MAIN_IMAGE";
+
+    /**
+     * 图片区域
+     */
+    public static final String BUS_MAIN_IMAGE_AREA = "BUS_MAIN_IMAGE_AREA";
 
     /**
      * 微信用户
@@ -139,4 +148,5 @@ public class TableName {
      * 打卡详细
      */
     public static final String BUS_ACHIEVEMENT_DETAIL = "BUS_ACHIEVEMENT_DETAIL";
+
 }

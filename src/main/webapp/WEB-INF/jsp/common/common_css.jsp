@@ -56,6 +56,8 @@ folder instead of downloading all of them to reduce the load. --%>
 <link rel="stylesheet" href="${BASE_URL}resources/mobile/plugins/animate/animate.min.css?ver=${VERSION}"/>
 <%--jquery-confirm--%>
 <link rel="stylesheet" href="${BASE_URL}resources/static/plugins/jquery-confirm/jquery-confirm.min.css?ver=${VERSION}"/>
+<%--切分图片区域--%>
+<link rel="stylesheet" href="${BASE_URL}resources/static/plugins/jquery-image-maps/imageHotAreaStyle.css?ver=${VERSION}"/>
 <%--首页--%>
 <link rel="stylesheet" href="${BASE_URL}resources/static/create/css/first.css?ver=${VERSION}">
 <%--通用--%>

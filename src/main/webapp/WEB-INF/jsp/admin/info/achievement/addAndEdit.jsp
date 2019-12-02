@@ -32,6 +32,11 @@
         <input type="text" class="form-control" ${fns:validField(TableName.BUS_ACHIEVEMENT, "BA_RANGE")}
                value="${achievement.BA_RANGE}">
     </div>
+    <div class="form-group has-feedback">
+        <label>对应主页图片点数:</label>
+        <input type="text" class="form-control" ${fns:validField(TableName.BUS_ACHIEVEMENT, "BA_POINT")}
+               value="${achievement.BA_POINT}">
+    </div>
     <s:fileInput title="附件" sdtCode="BUS_FILE_DEFAULT"
                  tableId="${not empty achievement ? achievement.ID: insertId}"
                  tableName="${TableName.BUS_ACHIEVEMENT}" typeCode="${TableName.BUS_ACHIEVEMENT}"

@@ -59,6 +59,7 @@ public class MMyController extends BaseController {
      * @return
      */
     @GetMapping("/my/clockin/{pageSize}/{page}")
+    @WechaNotEmptyLogin
     public String clockinItemList(@PathVariable("pageSize") int pageSize, @PathVariable("page") int page, Model model) throws Exception {
         WechatUser wechatUser = getWechatUser();
         DataTablesView<?> dataTablesView = achievementService.selectMAchievementDetailList(toInt(CommonUtil.getStrat(page, pageSize)), pageSize, wechatUser.getId());

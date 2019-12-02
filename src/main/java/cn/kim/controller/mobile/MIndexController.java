@@ -93,6 +93,7 @@ public class MIndexController extends BaseController {
     @PostMapping("/clockin/in/upload")
     @SystemControllerLog(useType = UseType.USE, event = "添加打卡信息")
     @Token(remove = true)
+    @WechaNotEmptyLogin
     @ResponseBody
     public ResultState upload(@RequestParam Map<String, Object> mapParam, HttpServletRequest request) throws Exception {
         Map<String, Object> resultMap = achievementService.insertAndUpdateAchievementDetail(mapParam);

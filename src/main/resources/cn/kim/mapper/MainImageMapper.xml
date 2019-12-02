@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kim.mapper.MainImageMapper">
+    <cache type="org.mybatis.caches.redis.RedisCache"/>
+
+    <!--查询-->
+    <select id="selectMainImage" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT BMI.*,SF.ID AS SF_ID
+        FROM(
+            SELECT * FROM BUS_MAIN_IMAGE
+            <where>
+                <if test ="ID != NULL and ID != ''">
+                    AND ID = #{ID}
+                </if>
+                <if test ="IS_STATUS != NULL and IS_STATUS != ''">
+                    AND IS_STATUS = #{IS_STATUS}
+                </if>
+            </where>
+        )BMI
+        LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_MAIN_IMAGE' AND SF.SF_TABLE_ID = BMI.ID AND SF.ID = (SELECT MAX(SF.ID) FROM SYS_FILE SF WHERE SF.SF_TABLE_ID = BMI.ID GROUP BY SF.SF_TABLE_ID)
+    </select>
+
+    <!--插入-->
+    <insert id="insertMainImage" parameterType="java.util.Map">
+        INSERT INTO BUS_MAIN_IMAGE
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ID != null">ID,</if>
+            <if test="BMI_NAME != null">BMI_NAME,</if>
+            <if test="BMI_REMARKS != null">BMI_REMARKS,</if>
+            <if test="BMI_ENTRYTIME != null">BMI_ENTRYTIME,</if>
+            <if test="BMI_UPDATETIME != null">BMI_UPDATETIME,</if>
+            <if test="SO_ID != null">SO_ID,</if>
+            <if test="IS_STATUS != null">IS_STATUS,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ID != null">#{ID},</if>
+            <if test="BMI_NAME != null">#{BMI_NAME},</if>
+            <if test="BMI_REMARKS != null">#{BMI_REMARKS},</if>
+            <if test="BMI_ENTRYTIME != null">#{BMI_ENTRYTIME},</if>
+            <if test="BMI_UPDATETIME != null">#{BMI_UPDATETIME},</if>
+            <if test="SO_ID != null">#{SO_ID},</if>
+            <if test="IS_STATUS != null">#{IS_STATUS},</if>
+        </trim>
+    </insert>
+
+    <!--编辑-->
+    <update id="updateMainImage" parameterType="java.util.Map">
+        UPDATE BUS_MAIN_IMAGE
+        <set>
+            <if test="ID != null">ID=#{ID},</if>
+            <if test="BMI_NAME != null">BMI_NAME=#{BMI_NAME},</if>
+            <if test="BMI_REMARKS != null">BMI_REMARKS=#{BMI_REMARKS},</if>
+            <if test="BMI_ENTRYTIME != null">BMI_ENTRYTIME=#{BMI_ENTRYTIME},</if>
+            <if test="BMI_UPDATETIME != null">BMI_UPDATETIME=#{BMI_UPDATETIME},</if>
+            <if test="SO_ID != null">SO_ID=#{SO_ID},</if>
+            <if test="IS_STATUS != null">IS_STATUS=#{IS_STATUS},</if>
+        </set>
+        <where>
+            ID=#{ID}
+        </where>
+    </update>
+
+    <!--删除-->
+    <delete id="deleteMainImage" parameterType="java.util.Map">
+		DELETE FROM BUS_MAIN_IMAGE WHERE ID = #{ID}
+	</delete>
+
+    <!--查询-->
+    <select id="selectMainImageArea" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM BUS_MAIN_IMAGE_AREA
+        <where>
+            <if test ="ID != NULL and ID != ''">
+                AND ID = #{ID}
+            </if>
+        </where>
+    </select>
+
+    <!--插入-->
+    <insert id="insertMainImageArea" parameterType="java.util.Map">
+        INSERT INTO BUS_MAIN_IMAGE_AREA
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ID != null">ID,</if>
+            <if test="BMI_ID != null">BMI_ID,</if>
+            <if test="BIMA_TITLE != null">BIMA_TITLE,</if>
+            <if test="BIMA_MAPINFO != null">BIMA_MAPINFO,</if>
+            <if test="BIMA_ENTRYTIME != null">BIMA_ENTRYTIME,</if>
+            <if test="BIMA_UPDATETIME != null">BIMA_UPDATETIME,</if>
+            <if test="SO_ID != null">SO_ID,</if>
+            <if test="IS_STATUS != null">IS_STATUS,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ID != null">#{ID},</if>
+            <if test="BMI_ID != null">#{BMI_ID},</if>
+            <if test="BIMA_TITLE != null">#{BIMA_TITLE},</if>
+            <if test="BIMA_MAPINFO != null">#{BIMA_MAPINFO},</if>
+            <if test="BIMA_ENTRYTIME != null">#{BIMA_ENTRYTIME},</if>
+            <if test="BIMA_UPDATETIME != null">#{BIMA_UPDATETIME},</if>
+            <if test="SO_ID != null">#{SO_ID},</if>
+            <if test="IS_STATUS != null">#{IS_STATUS},</if>
+        </trim>
+    </insert>
+
+    <!--编辑-->
+    <update id="updateMainImageArea" parameterType="java.util.Map">
+        UPDATE BUS_MAIN_IMAGE_AREA
+        <set>
+            <if test="ID != null">ID=#{ID},</if>
+            <if test="BMI_ID != null">BMI_ID=#{BMI_ID},</if>
+            <if test="BIMA_TITLE != null">BIMA_TITLE=#{BIMA_TITLE},</if>
+            <if test="BIMA_MAPINFO != null">BIMA_MAPINFO=#{BIMA_MAPINFO},</if>
+            <if test="BIMA_ENTRYTIME != null">BIMA_ENTRYTIME=#{BIMA_ENTRYTIME},</if>
+            <if test="BIMA_UPDATETIME != null">BIMA_UPDATETIME=#{BIMA_UPDATETIME},</if>
+            <if test="SO_ID != null">SO_ID=#{SO_ID},</if>
+            <if test="IS_STATUS != null">IS_STATUS=#{IS_STATUS},</if>
+        </set>
+        <where>
+            ID=#{ID}
+        </where>
+    </update>
+
+    <!--删除-->
+    <delete id="deleteMainImageArea" parameterType="java.util.Map">
+		DELETE FROM BUS_MAIN_IMAGE_AREA WHERE ID = #{ID}
+	</delete>
+</mapper>

@@ -13,6 +13,14 @@
     <input type="hidden" name="ID" value="${detail.ID}">
     <input type="hidden" name="insertId" value="${insertId}">
     <div class="form-group has-feedback">
+        <label>微信用户:</label>
+        ${detail.BW_USERNAME}
+    </div>
+    <div class="form-group has-feedback">
+        <label>打卡时间:</label>
+        ${detail.BAD_ENTERTIME}
+    </div>
+    <div class="form-group has-feedback">
         <label>概述:</label>
         <input type="text" class="form-control" ${fns:validField(TableName.BUS_ACHIEVEMENT_DETAIL, "BAD_REMARKS")}
                value="${detail.BAD_REMARKS}">

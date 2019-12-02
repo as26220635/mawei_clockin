@@ -1,6 +1,7 @@
 package cn.kim.common.tag;
 
 import cn.kim.common.attr.Constants;
+import cn.kim.common.eu.ButtonType;
 import cn.kim.service.MenuService;
 import cn.kim.common.attr.Constants;
 import cn.kim.common.sequence.Sequence;
@@ -42,7 +43,7 @@ public class Button extends BaseTagSupport {
     /**
      * 按钮类型 0 顶部按钮 1 列表按钮
      */
-    private int type = 0;
+    private int type = ButtonType.TOP.getType();
 
     private boolean back = true;
 
@@ -89,10 +90,10 @@ public class Button extends BaseTagSupport {
         }
 
 
-        if (type == 0) {
+        if (type == ButtonType.TOP.getType()) {
             //顶部按钮
             return top(pageContext.getOut(), buttons);
-        } else if (type == 1) {
+        } else if (type == ButtonType.LIST.getType()) {
             //列表按钮
             return list(pageContext.getOut(), buttons);
         }
@@ -109,7 +110,7 @@ public class Button extends BaseTagSupport {
     @Override
     public int doEndTag() throws JspException {
         smId = "";
-        type = 0;
+        type = ButtonType.TOP.getType();
         back = true;
         return super.doEndTag();
     }

@@ -151,6 +151,10 @@ public class BaseDataController extends BaseController {
             });
             //加密
             idEncrypt(exportList);
+            //移除不显示的列表字段
+            if (!isEmpty(columnList)) {
+                columnList.removeIf(map -> toInt(map.get("SCC_IS_VISIBLE")) == Attribute.STATUS_ERROR);
+            }
 
             //查询操作按钮
             mapParam.clear();

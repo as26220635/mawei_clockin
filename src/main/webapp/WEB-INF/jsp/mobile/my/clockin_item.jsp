@@ -26,6 +26,11 @@
         width: 50%;
         display: none;
     }
+
+    .weui-uploader__file img {
+        width: 100%;
+        height: 100%;
+    }
 </style>
 <div id="weuiCellsItems" class="container container-page">
     <%@ include file="/WEB-INF/jsp/mobile/common/common_top.jspf" %>
@@ -49,10 +54,6 @@
             <c:choose>
                 <c:when test="${detail.BAD_FILETYPE eq 1}">
                     <!--图片-->
-                    <div class="weui-gallery" id="gallery">
-                        <span class="weui-gallery__img" id="galleryImg"></span>
-                    </div>
-
                     <div class="weui-cells__group">
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
@@ -63,11 +64,14 @@
                                     <div class="weui-uploader__bd">
                                         <ul class="weui-uploader__files" id="uploader_files">
                                             <c:forEach items="${fileIds}" var="FILE_ID">
-                                                <li id="" class="weui-uploader__file"
-                                                    style="background-image:url(${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${FILE_ID})">
-                                                    <input type="hidden"
-                                                           value="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${FILE_ID}"/>
+                                                <li class="weui-uploader__file">
+                                                    <img src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${FILE_ID}">
                                                 </li>
+                                                <%--                                                <li id="" class="weui-uploader__file"--%>
+                                                <%--                                                    style="background-image:url(${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${FILE_ID})">--%>
+                                                <%--                                                    <input type="hidden"--%>
+                                                <%--                                                           value="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${FILE_ID}"/>--%>
+                                                <%--                                                </li>--%>
                                             </c:forEach>
                                         </ul>
                                     </div>
@@ -107,18 +111,8 @@
 <c:choose>
     <c:when test="${detail.BAD_FILETYPE eq 1}">
         <script>
-            $(function () {
-                var $gallery = $(".weui-gallery"),
-                    $galleryImg = $(".weui-gallery__img"),
-                    $uploaderFiles = $("#uploader_files")
-                ;
-                $uploaderFiles.on("click", "li", function () {
-                    $galleryImg.attr("style", this.getAttribute("style"));
-                    $gallery.fadeIn(100);
-                });
-                $gallery.on("click", function () {
-                    $gallery.fadeOut(100);
-                });
+            $('#uploader_files').viewer({
+                fullscreen: false
             });
         </script>
     </c:when>
@@ -133,7 +127,7 @@
                     thumbnails: '${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${detail.FILE_PATH_THUMBNAILS}'
                 }
             });
-            $('#dplayer').one('click',function () {
+            $('#dplayer').one('click', function () {
                 dp.play();
             })
         </script>

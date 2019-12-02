@@ -38,8 +38,9 @@
             <if test="BA_NAME != null">BA_NAME,</if>
             <if test="BA_LONGITUDE != null">BA_LONGITUDE,</if>
             <if test="BA_LATITUDE != null">BA_LATITUDE,</if>
-            <if test="BA_RANGE != null">BA_RANGE,</if>
             <if test="BA_ENTRYTIME != null">BA_ENTRYTIME,</if>
+            <if test="BA_RANGE != null">BA_RANGE,</if>
+            <if test="BA_POINT != null">BA_POINT,</if>
             <if test="SO_ID != null">SO_ID,</if>
             <if test="IS_STATUS != null">IS_STATUS,</if>
         </trim>
@@ -48,8 +49,9 @@
             <if test="BA_NAME != null">#{BA_NAME},</if>
             <if test="BA_LONGITUDE != null">#{BA_LONGITUDE},</if>
             <if test="BA_LATITUDE != null">#{BA_LATITUDE},</if>
-            <if test="BA_RANGE != null">#{BA_RANGE},</if>
             <if test="BA_ENTRYTIME != null">#{BA_ENTRYTIME},</if>
+            <if test="BA_RANGE != null">#{BA_RANGE},</if>
+            <if test="BA_POINT != null">#{BA_POINT},</if>
             <if test="SO_ID != null">#{SO_ID},</if>
             <if test="IS_STATUS != null">#{IS_STATUS},</if>
         </trim>
@@ -63,8 +65,9 @@
             <if test="BA_NAME != null">BA_NAME=#{BA_NAME},</if>
             <if test="BA_LONGITUDE != null">BA_LONGITUDE=#{BA_LONGITUDE},</if>
             <if test="BA_LATITUDE != null">BA_LATITUDE=#{BA_LATITUDE},</if>
-            <if test="BA_RANGE != null">BA_RANGE=#{BA_RANGE},</if>
             <if test="BA_ENTRYTIME != null">BA_ENTRYTIME=#{BA_ENTRYTIME},</if>
+            <if test="BA_RANGE != null">BA_RANGE=#{BA_RANGE},</if>
+            <if test="BA_POINT != null">BA_POINT=#{BA_POINT},</if>
             <if test="SO_ID != null">SO_ID=#{SO_ID},</if>
             <if test="IS_STATUS != null">IS_STATUS=#{IS_STATUS},</if>
         </set>
@@ -80,12 +83,16 @@
 
     <!--查询-->
     <select id="selectAchievementDetail" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT * FROM BUS_ACHIEVEMENT_DETAIL
-        <where>
-            <if test ="ID != NULL and ID != ''">
-                AND ID = #{ID}
-            </if>
-        </where>
+        SELECT BAD.*,BW.BW_USERNAME
+        FROM(
+            SELECT * FROM BUS_ACHIEVEMENT_DETAIL
+            <where>
+                <if test ="ID != NULL and ID != ''">
+                    AND ID = #{ID}
+                </if>
+            </where>
+        )BAD
+        INNER JOIN BUS_WECHAT BW ON BW.ID = BAD.BW_ID
     </select>
 
     <!--插入-->

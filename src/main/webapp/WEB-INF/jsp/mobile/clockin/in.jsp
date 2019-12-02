@@ -73,6 +73,11 @@
     .weui-form__opr-area:last-child {
         margin-bottom: 10px;
     }
+
+    .weui-dialog {
+        -webkit-transform: translate(0%, -50%);
+        transform: translate(0%, -50%);
+    }
 </style>
 <div class="container container-page">
     <%@ include file="/WEB-INF/jsp/mobile/common/common_top.jspf" %>
@@ -219,26 +224,28 @@
             }
         }
         if (BAD_FILETYPE == 1) {
-            $.showLoading('上传图片中');
-            ajax.file('${WEBCONFIG_FILE_SERVER_URL}uploadBase64Imgage', $('#imageForm'), function (data) {
-                $.hideLoading();
-                if (data.code == 1) {
-                    submitClockin(JSON.stringify(data.imageArray));
-                } else {
-                    $.toast("上传图片失败,请重试", "forbidden");
-                }
-            })
+            submitFile(BAD_FILETYPE, '${WEBCONFIG_FILE_SERVER_URL}uploadBase64Imgage', $('#imageForm'), '上传图片中');
+            <%--$.showProgress(progressId, '上传图片中');--%>
+            <%--ajax.file('${WEBCONFIG_FILE_SERVER_URL}uploadBase64Imgage', $('#imageForm'), function (data) {--%>
+            <%--    $.hideLoading();--%>
+            <%--    if (data.code == 1) {--%>
+            <%--        submitClockin(JSON.stringify(data.imageArray));--%>
+            <%--    } else {--%>
+            <%--        $.toast("上传图片失败,请重试", "forbidden");--%>
+            <%--    }--%>
+            <%--});--%>
         } else if (BAD_FILETYPE == 2) {
             //先上传视频
-            $.showLoading('上传视频中');
-            ajax.file('${WEBCONFIG_FILE_SERVER_URL}upload', $('#videoForm'), function (data) {
-                $.hideLoading();
-                if (data.code == 1) {
-                    submitClockin(JSON.stringify(data.message));
-                } else {
-                    $.toast("上传视频失败,请重试", "forbidden");
-                }
-            })
+            submitFile(BAD_FILETYPE, '${WEBCONFIG_FILE_SERVER_URL}upload', $('#videoForm'), '上传视频中');
+            <%--$.showProgress(progressId, '上传视频中');--%>
+            <%--ajax.fileProgress('${WEBCONFIG_FILE_SERVER_URL}upload', $('#videoForm'), function (data) {--%>
+            <%--    $.hideLoading();--%>
+            <%--    if (data.code == 1) {--%>
+            <%--        submitClockin(JSON.stringify(data.message));--%>
+            <%--    } else {--%>
+            <%--        $.toast("上传视频失败,请重试", "forbidden");--%>
+            <%--    }--%>
+            <%--})--%>
         }
     });
 
@@ -274,6 +281,37 @@
             }
         }
     })
+
+    /**
+     * 上传文件
+     * @param url
+     * @param $form
+     * @param progressId
+     * @param progressText
+     */
+    function submitFile(BAD_FILETYPE, url, $form, progressText) {
+        var progressId = uuid();
+        $.showProgress(progressId, progressText, function () {
+            //取消上传
+            var jqxhr = $($form).data('jqxhr');
+            jqxhr.abort();
+        });
+        ajax.fileProgress(url, $form, function (event, position, total, percentComplete) {
+            //进度条
+            $('#' + progressId).css('width', percentComplete + '%');
+        }, function (data) {
+            $.closeModal();
+            if (data.code == 1) {
+                if (BAD_FILETYPE == 1) {
+                    submitClockin(JSON.stringify(data.imageArray));
+                } else if (BAD_FILETYPE == 2) {
+                    submitClockin(JSON.stringify(data.message));
+                }
+            } else {
+                $.toast("上传文件失败,请重试", "forbidden");
+            }
+        })
+    }
 
     function submitClockin(uploadInfo) {
         var $form = $('#addAndEditForm');

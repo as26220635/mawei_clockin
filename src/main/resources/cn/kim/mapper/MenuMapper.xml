@@ -153,7 +153,7 @@
             WHERE SM.ID = #{SM_ID} AND SB.SB_CODE = 'RETURN'
         )TEMP
         <where>
-            <if test="SB_TYPE != null and SB_TYPE != '' ">
+            <if test="SB_TYPE != null">
                 AND SB_TYPE = #{SB_TYPE}
             </if>
         </where>

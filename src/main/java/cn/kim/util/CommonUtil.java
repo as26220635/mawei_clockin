@@ -991,7 +991,7 @@ public class CommonUtil {
 
         String id = TextUtil.toString(menu.get("ID"));
         String smUrl = TextUtil.toString(menu.get("SM_URL"));
-        String smUrlParams = TextUtil.toString(menu.get("SM_URL_PARAMS")) + "&SM_ID=" + id;
+        String smUrlParams = TextUtil.toString(menu.get("SM_URL_PARAMS")) + "&SM_ID=" + id + "&SM_PARENTID=" + TextUtil.toString(menu.get("SM_PARENTID"));
 
         return getMenuUrlJoin(id, smUrl, smUrlParams);
     }

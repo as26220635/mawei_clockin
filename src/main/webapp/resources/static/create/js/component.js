@@ -1817,6 +1817,26 @@ ajax = {
             }
         });
     },
+    fileProgress: function (url, form,uploadProgress, callback) {
+        return form.ajaxSubmit({
+            type: 'POST',
+            url: url,
+            dataType: "json",
+            uploadProgress: function (event, position, total, percentComplete) {
+                //上传进度
+                uploadProgress(event, position, total, percentComplete);
+            },
+            success: function (data) {
+                if (typeof data === "string") {
+                    data = $.parseJSON(data);
+                }
+                callback(data);
+            },
+            error: function () {
+                callback({code: 0});
+            }
+        });
+    },
 }
 
 /**
@@ -2724,6 +2744,41 @@ function packFormParams($form) {
     return params;
 }
 
+/**
+ * 获得URL参数
+ * @param name
+ * @returns {boolean|string[]}
+ */
+function getUrlParams(name) { // 不传name返回所有值，否则返回对应值
+    var url = window.location.search;
+    if (url.indexOf('?') == 1) { return false; }
+    url = url.substr(1);
+    url = url.split('&');
+    var name = name || '';
+    var nameres;
+    // 获取全部参数及其值
+    for(var i=0;i<url.length;i++) {
+        var info = url[i].split('=');
+        var obj = {};
+        obj[info[0]] = decodeURI(info[1]);
+        url[i] = obj;
+    }
+    // 如果传入一个参数名称，就匹配其值
+    if (name) {
+        for(var i=0;i<url.length;i++) {
+            for (const key in url[i]) {
+                if (key == name) {
+                    nameres = url[i][key];
+                }
+            }
+        }
+    } else {
+        nameres = url;
+    }
+    // 返回结果
+    return nameres;
+}
+
 //Html编码获取Html转义实体
 function htmlEncode(value) {
     return $('<div/>').text(value).html();
@@ -3000,4 +3055,21 @@ function isNotNullAndTips(obj, message) {
         return true;
     }
     return false;
+}
+
+//进度条
+$.showProgress = function(id,text,onClick) {
+    $.modal({
+        title: text,
+        text: '<div class="weui-progress">' +
+            '            <div class="weui-progress__bar">' +
+            '                <div class="weui-progress__inner-bar js_progress" style="width: 0%;" id="'+id+'"></div>' +
+            '            </div>' +
+            '        </div>',
+        buttons: [{
+            text: '取消',
+            className: "primary",
+            onClick: onClick
+        }]
+    });
 }

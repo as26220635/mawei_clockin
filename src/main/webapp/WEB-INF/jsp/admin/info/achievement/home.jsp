@@ -7,7 +7,7 @@
             targets: targets,
             data: field,
             render: function (data, type, full, meta) {
-                return '<img src="${BASE_URL}${AttributePath.FILE_PREVIEW_URL}' + data + '"  style="width:50px;height:43px" />';
+                return '<img src="${BASE_URL}${AttributePath.FILE_PREVIEW_URL}' + data + '"  style="width:50px;height:50px" data-action="zoom"/>';
             }
         };
     }

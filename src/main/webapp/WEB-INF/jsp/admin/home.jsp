@@ -230,7 +230,7 @@
     <%-- 设置全局ajax请求判断 --%>
     ajax.init();
     ajax.setup({
-        logouturl:'${BASE_URL}logout'
+        logouturl: '${BASE_URL}logout'
     });
 
     mainInit.initPjax();
@@ -381,11 +381,20 @@
     //解析URL
     function getUrlAnalysis() {
         var wUrl = window.location.pathname;
-        return wUrl.substring(BASE_URL.length, wUrl.length).replace(/\//g, '-');
+        wUrl =  wUrl.substring(BASE_URL.length, wUrl.length).replace(/\//g, '-');
+        if (!wUrl.startsWith('admin-dataGrid-')){
+            wUrl = 'admin-dataGrid-' + getUrlParams('SM_PARENTID');
+        }
+        console.log(wUrl)
+        return wUrl;
     }
 
     function getUrlAnalysisByTag(tag) {
         var mId = getUrlAnalysis();
+        if (mId == undefined || mId == null || mId == '') {
+            //直接找SM_ID参数
+            mId = getUrlParams('SM_PARENTID');
+        }
         return mId.substring(0, mId.indexOf(tag) + tag.length) + '-home';
     }
 

@@ -266,6 +266,18 @@ public class Url {
     public static final String PROCESS_SCHEDULE_CANCEL_URL = PROCESS_SCHEDULE_BASE_URL + "cancel";
 
     /**
+     * 主页图片
+     */
+    public static final String MAINIMAGE_BASE_URL = MANAGER_URL + "mainImage/";
+    public static final String MAINIMAGE_ADD_URL = MAINIMAGE_BASE_URL + "add";
+    public static final String MAINIMAGE_UPDATE_URL = MAINIMAGE_BASE_URL + "update";
+    public static final String MAINIMAGE_SWITCHSTATUS_URL = MAINIMAGE_BASE_URL + "switchStatus";
+    public static final String MAINIMAGE_DELETE_URL = MAINIMAGE_BASE_URL + "delete";
+    /**
+     * 主页图片区域管理
+     */
+    public static final String MAINIMAGE_AREA_UPDATE_URL = MAINIMAGE_BASE_URL + "area/update";
+    /**
      * 成就墙
      */
     public static final String ACHIEVEMENT_BASE_URL = MANAGER_URL + "achievement/";

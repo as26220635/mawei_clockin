@@ -72,12 +72,12 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             paramMap.put("BA_LONGITUDE", mapParam.get("BA_LONGITUDE"));
             paramMap.put("BA_LATITUDE", mapParam.get("BA_LATITUDE"));
             paramMap.put("BA_RANGE", mapParam.get("BA_RANGE"));
-            paramMap.put("BA_ENTRYTIME", mapParam.get("BA_ENTRYTIME"));
+            paramMap.put("BA_POINT", mapParam.get("BA_POINT"));
 
             if (isEmpty(id)) {
                 id = insertId;
                 paramMap.put("ID", id);
-                paramMap.put("BD_ENTER_TIME", getDate());
+                paramMap.put("BA_ENTRYTIME", getDate());
                 paramMap.put("SO_ID", getActiveUser().getId());
                 paramMap.put("IS_STATUS", STATUS_SUCCESS);
 

@@ -15,6 +15,9 @@
 <script type="text/javascript" src="${BASE_URL}resources/assets/weui/iscroll-lite.js?ver=${VERSION}"></script>
 <%--文件上传--%>
 <script src="${BASE_URL}resources/static/plugins/jquery-form/dist/jquery.form.min.js?ver=${VERSION}"></script>
+<%--图片展示--%>
+<script src="${BASE_URL}resources/assets/weui/viewerjs/viewer.min.js?ver=${VERSION}"></script>
+<script src="${BASE_URL}resources/assets/weui/viewerjs/jquery-viewer.min.js?ver=${VERSION}"></script>
 <%--视频播放--%>
 <script src="${BASE_URL}resources/assets/weui/DPlayer.min.js?ver=${VERSION}"></script>
 <%--通用组件--%>
