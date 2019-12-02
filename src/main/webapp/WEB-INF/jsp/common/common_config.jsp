@@ -8,4 +8,4 @@
 <c:set var="WEBCONFIG_MENU_SMALL_TITLE" value="${WebConfig.WEBCONFIG_MENU_SMALL_TITLE}"/>
 <c:set var="WEBCONFIG_FILE_SERVER_URL" value="${WebConfig.WEBCONFIG_FILE_SERVER_URL}"/>
 <%--js css版本--%>
-<c:set var="VERSION" value="201912021"/>
+<c:set var="VERSION" value="20191202"/>
