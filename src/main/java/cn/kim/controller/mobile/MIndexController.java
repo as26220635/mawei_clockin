@@ -1,36 +1,31 @@
 package cn.kim.controller.mobile;
 
+import cn.kim.common.annotation.NotEmptyLogin;
 import cn.kim.common.annotation.SystemControllerLog;
 import cn.kim.common.annotation.Token;
-import cn.kim.common.annotation.Validate;
 import cn.kim.common.annotation.WechaNotEmptyLogin;
 import cn.kim.common.attr.Attribute;
+import cn.kim.common.attr.MagicValue;
 import cn.kim.common.attr.TableName;
 import cn.kim.common.eu.UseType;
 import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.ResultState;
 import cn.kim.service.AchievementService;
-import cn.kim.util.CommonUtil;
+import cn.kim.service.MainImageService;
 import cn.kim.util.FileUtil;
-import cn.kim.util.TextUtil;
 import cn.kim.util.TokenUtil;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import org.apache.commons.lang3.StringEscapeUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 /**
  * Created by 余庚鑫 on 2018/4/10
@@ -42,12 +37,57 @@ public class MIndexController extends BaseController {
     @Autowired
     private AchievementService achievementService;
 
+    @Autowired
+    private MainImageService mainImageService;
+
+    @GetMapping("/clockin/mainImage/{BMI_RELATIONID}")
+    @WechaNotEmptyLogin
+    @ResponseBody
+    public ResultState mainImage(@PathVariable("BMI_RELATIONID") String BMI_RELATIONID) throws Exception {
+        Map<String, Object> resultMap = Maps.newHashMapWithExpectedSize(2);
+        resultMap.put("ID", getId());
+        //首页图片热区域
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(2);
+        paramMap.put("ID", BMI_RELATIONID);
+        paramMap.put("IS_STATUS", STATUS_SUCCESS);
+        Map<String, Object> mainImage = mainImageService.selectMainImage(paramMap);
+        mainImage.put("IS_TOP", "0".equals(toString(mainImage.get("BMI_PARENTID"))) ? 1 : 0);
+
+        paramMap.clear();
+        paramMap.put("BMI_ID", mainImage.get("ID"));
+        List<Map<String, Object>> areaList = mainImageService.selectMainImageAreaList(paramMap);
+
+        idEncrypt(mainImage);
+        idEncrypt(areaList);
+
+        //设置参数
+        JSONObject data = new JSONObject();
+        data.put("mainImage", mainImage);
+        data.put("areaList", areaList);
+
+        resultMap.put(MagicValue.STATUS, STATUS_SUCCESS);
+        resultMap.put(MagicValue.DATA, data);
+        return resultState(resultMap);
+    }
+
     @GetMapping("/clockin")
     @WechaNotEmptyLogin
     public String clockin(HttpServletRequest request, Model model) throws Exception {
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(2);
         //设置打卡地点
         List<Map<String, Object>> list = achievementService.selectMAchievementList();
+        //首页图片热区域
+        paramMap.put("IS_STATUS", STATUS_SUCCESS);
+        paramMap.put("BMI_PARENTID", 0);
+        Map<String, Object> mainImage = mainImageService.selectMainImage(paramMap);
+
+        paramMap.clear();
+        paramMap.put("BMI_ID", mainImage.get("ID"));
+        List<Map<String, Object>> areaList = mainImageService.selectMainImageAreaList(paramMap);
+
         model.addAttribute("achievementList", list);
+        model.addAttribute("mainImage", mainImage);
+        model.addAttribute("areaList", areaList);
         setWechatUserToModel(model);
         return "mobile/clockin";
     }

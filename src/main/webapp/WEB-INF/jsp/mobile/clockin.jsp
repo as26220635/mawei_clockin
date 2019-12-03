@@ -15,8 +15,6 @@
 
     #clockinAreaImg {
         width: 100%;
-        height: 250px;
-        margin-top: 30px;
     }
 
     #clockinAreaCheck1 {
@@ -40,6 +38,7 @@
         width: 50%;
         height: 130px;
     }
+
     #clockinAreaCheck3 {
         z-index: 100;
         top: 80px;
@@ -50,7 +49,8 @@
         width: 48%;
         height: 130px;
     }
-    #clockinAreaCheckDiv{
+
+    #clockinAreaCheckDiv {
         margin: auto 0;
         text-align: center;
         z-index: 99998;
@@ -110,16 +110,25 @@
     </div>
 
     <div id="clockinArea">
-        <img id="clockinAreaImg" src="${BASE_URL}resources/assets/images/main/map-min.jpg">
-        <div id="clockinAreaCheck1" data-type="1">
+        <img id="clockinAreaImg" border="0" usemap="#clockinAreaMap"
+             src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${mainImage.IMG_PATH}"
+             style="height: ${mainImage.BMI_HEIGHT}px;margin-top: ${mainImage.BMI_TOP}px;"/>
+        <map name="clockinAreaMap" id="clockinAreaMap">
+            <c:forEach items="${areaList}" var="area">
+                <area shape="rect" coords="${area.BIMA_MAPINFO}" data-main-id="${area.BMI_RELATIONID}"/>
+            </c:forEach>
+        </map>
+        <%--        <img id="clockinAreaImg" src="${BASE_URL}resources/assets/images/main/map-min.jpg">--%>
 
-        </div>
-        <div id="clockinAreaCheck2" data-type="2">
+        <%--        <div id="clockinAreaCheck1" data-type="1">--%>
 
-        </div>
-        <div id="clockinAreaCheck3" data-type="3">
+        <%--        </div>--%>
+        <%--        <div id="clockinAreaCheck2" data-type="2">--%>
 
-        </div>
+        <%--        </div>--%>
+        <%--        <div id="clockinAreaCheck3" data-type="3">--%>
+
+        <%--        </div>--%>
         <div id="clockinAreaCheckDiv">
             <a id="clockinAreaCheckBtn" href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default">返回</a>
         </div>
@@ -141,6 +150,109 @@
     showBottpmMenu();
     switchTabbar('clockinTabbar');
     mainInit.initPjax();
+</script>
+<script>
+    //调整area
+    adjust('${mainImage.BMI_AREAWIDTH}', '${mainImage.BMI_AREAHEIGHT}');
+
+    function adjust(imageWidth, imageHeigth) {
+        var map = document.getElementById("clockinAreaMap");
+        var area = map.getElementsByTagName('area');
+
+        for (var i = 0; i < area.length; i++) {
+            var oldCoords = area[i].getAttribute("coords");
+            var newcoords = adjustPosition(imageWidth, imageHeigth, oldCoords);
+            area[i].setAttribute("coords", newcoords);
+            $(area[i]).unbind('click').on('click', function () {
+                var mainId = $(this).attr('data-main-id');
+                switchMainImage(mainId);
+            })
+        }
+    }
+
+    function adjustPosition(imageWidth, imageHeigth, position) {
+        // 获取宽高
+        var pageWidth = $('#clockinAreaImg').width();
+        var pageHeight = $('#clockinAreaImg').height();
+        // 图片原始尺寸
+        var imageWidth = imageWidth;
+        var imageHeigth = imageHeigth;
+
+        var each = position.split(",");
+
+        for (var i = 0; i < each.length; i++) {
+            if (i % 2 != 0) {
+                // 新的y轴坐标
+                each[i] = Math.round(parseInt(each[i]) * pageHeight / imageHeigth).toString();
+            } else {
+                // 新的x轴坐标
+                each[i] = Math.round(parseInt(each[i]) * pageWidth / imageWidth).toString();
+            }
+        }
+        var newPosition = "";
+        for (var j = 0; j < each.length; j++) {
+            newPosition += each[j];
+            if (j < each.length - 1) {
+                newPosition += ",";
+            }
+        }
+        return newPosition;
+    }
+
+    function switchMainImage(mainId) {
+        $.showLoading();
+        ajax.get('${BASE_URL}clockin/mainImage/' + mainId, {}, function (res) { 
+            if (res.code == 1) {
+                var data = res.data;
+                var mainImage = data.mainImage;
+                var areaList = data.areaList;
+
+                var $clockinAreaImg = $('#clockinAreaImg');
+                var $clockinAreaMap = $('#clockinAreaMap');
+
+                //切换主区域
+                $clockinAreaImg.attr('src', '${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}' + mainImage.IMG_PATH);
+                $clockinAreaImg.css('height', mainImage.BMI_HEIGHT + 'px');
+                $clockinAreaImg.css('margin-top', mainImage.BMI_TOP + 'px');
+                //切换点击区域
+                $clockinAreaMap.empty();
+                if (areaList.length != 0) {
+                    var html = '';
+                    for (let i in areaList) {
+                        var area = areaList[i];
+                        html += '<area shape="rect" coords="' + area.BIMA_MAPINFO + '" data-main-id="' + area.BMI_RELATIONID + '"/>';
+                    }
+                    $clockinAreaMap.html(html);
+                }
+                //调整区域
+                adjust(mainImage.BMI_AREAWIDTH, mainImage.BMI_AREAHEIGHT);
+                //显示返回按钮
+                if (mainImage.IS_TOP == 0){
+                    $('#clockinAreaCheckBtn').attr('data-parent-id', mainImage.BMI_PARENTID);
+                    $('#clockinAreaCheckDiv').fadeIn();
+                }
+            } else {
+                $.hideLoading();
+                $.toast("切换失败", "forbidden");
+            }
+        });
+    }
+
+    //返回按钮点击事件
+    $('#clockinAreaCheckBtn').on('click', function () {
+        $('#clockinAreaCheckDiv').fadeOut();
+        var mainId = $(this).attr('data-parent-id');
+        switchMainImage(mainId);
+    });
+
+    $('#clockinAreaImg').on('load',function () {
+        // 加载完成
+        $.hideLoading();
+    });
+    $('#clockinAreaImg').on('error',function () {
+        // 加载完成
+        $.hideLoading();
+    });
 </script>
 <script>
     //打卡点坐标
@@ -349,33 +461,6 @@
             loadUrl('${BASE_URL}clockin/in/${wechatUser.id}/' + clockinGeolocaltionPoint);
         }
     });
-    $('#clockinAreaCheck1,#clockinAreaCheck2,#clockinAreaCheck3').click(function () {
-        $.showLoading();
-        var type = $(this).attr('data-type');
-        if (type == 1){
-            $('#clockinAreaImg').prop('src', '${BASE_URL}resources/assets/images/main/map_1-min.png');
-        }else if (type == 2){
-            $('#clockinAreaImg').prop('src', '${BASE_URL}resources/assets/images/main/map_2-min.png');
-        }else if (type == 3){
-            $('#clockinAreaImg').prop('src', '${BASE_URL}resources/assets/images/main/map_3-min.png');
-        }
-        $('#clockinAreaCheck1,#clockinAreaCheck2,#clockinAreaCheck3').hide();
-        $('#clockinAreaCheckDiv').fadeIn();
-    });
-    $('#clockinAreaCheckDiv').click(function () {
-        $.showLoading();
-        $('#clockinAreaImg').prop('src', '${BASE_URL}resources/assets/images/main/map-min.jpg');
-        $('#clockinAreaCheckDiv').fadeOut();
-        $('#clockinAreaCheck1,#clockinAreaCheck2,#clockinAreaCheck3').show();
-    });
-    document.getElementById('clockinAreaImg').onload=function(){
-        // 加载完成
-        $.hideLoading();
-    };
-    document.getElementById('clockinAreaImg').onerror=function(){
-        // 加载失败
-        $.hideLoading();
-    };
 </script>
 <script>
     getPosition();

@@ -31,9 +31,15 @@ public class MainImageServiceImpl extends BaseServiceImpl implements MainImageSe
 
     @Override
     public Map<String, Object> selectMainImage(Map<String, Object> mapParam) {
-        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(3);
         paramMap.put("ID", mapParam.get("ID"));
-        return baseDao.selectOne(NameSpace.MainImageMapper, "selectMainImage", paramMap);
+        paramMap.put("IS_STATUS", mapParam.get("IS_STATUS"));
+        paramMap.put("BMI_PARENTID", mapParam.get("BMI_PARENTID"));
+
+        Map<String, Object> mainImage = baseDao.selectOne(NameSpace.MainImageMapper, "selectMainImage", paramMap);
+        //文件路径加密
+        FileUtil.filePathTobase64(mainImage, "IMG_PATH");
+        return mainImage;
     }
 
     @Override
@@ -186,7 +192,11 @@ public class MainImageServiceImpl extends BaseServiceImpl implements MainImageSe
     public List<Map<String, Object>> selectMainImageAreaList(Map<String, Object> mapParam) {
         Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
         paramMap.put("BMI_ID", mapParam.get("BMI_ID"));
-        return baseDao.selectList(NameSpace.MainImageMapper, "selectMainImageArea", paramMap);
+        List<Map<String, Object>> list = baseDao.selectList(NameSpace.MainImageMapper, "selectMainImageArea", paramMap);
+
+        //文件路径加密
+        FileUtil.filePathTobase64(list, "IMG_PATH");
+        return list;
     }
 
     @Override
@@ -199,7 +209,7 @@ public class MainImageServiceImpl extends BaseServiceImpl implements MainImageSe
             Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(10);
             String id = toString(mapParam.get("ID"));
             String insertId = toString(mapParam.get("insertId"));
-            if (isEmpty(insertId)){
+            if (isEmpty(insertId)) {
                 insertId = getId();
             }
             //记录日志

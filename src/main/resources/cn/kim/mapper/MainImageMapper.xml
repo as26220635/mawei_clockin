@@ -5,7 +5,9 @@
 
     <!--查询-->
     <select id="selectMainImage" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT BMI.*,SF.ID AS SF_ID
+        SELECT
+            BMI.*,
+            SF.ID AS SF_ID,CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATH
         FROM(
         SELECT * FROM BUS_MAIN_IMAGE
         <where>
@@ -15,7 +17,7 @@
             <if test ="IS_STATUS != NULL and IS_STATUS != ''">
                 AND IS_STATUS = #{IS_STATUS}
             </if>
-            <if test ="BMI_PARENTID != NULL and BMI_PARENTID != ''">
+            <if test ="BMI_PARENTID != NULL">
                 AND BMI_PARENTID = #{BMI_PARENTID}
             </if>
         </where>
@@ -85,7 +87,9 @@
 
     <!--查询-->
     <select id="selectMainImageArea" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT BMIA.*,SF.ID AS SF_ID
+        SELECT
+            BMIA.*,
+            SF.ID AS SF_ID,SF.ID AS SF_ID,CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATH
         FROM(
             SELECT * FROM BUS_MAIN_IMAGE_AREA
             <where>
