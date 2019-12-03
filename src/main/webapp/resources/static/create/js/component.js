@@ -643,8 +643,7 @@ tableView = {
             };
         }
         //数据源模式
-        if (!isEmpty(options.data)) {
-            //设置数据源
+        if (!isEmpty(options.data) || (options.data != undefined && typeof options.data)) {
             optionData.data = options.data == '[]' ? '' : options.data;
             //关闭服务器模式
             optionData.serverSide = false;
@@ -653,7 +652,6 @@ tableView = {
             //不保存状态
             optionData.stateSave = false;
         }
-        console.log(optionData)
         //绘制表格
         let $table = options.object.DataTable(optionData);
 
@@ -1817,7 +1815,7 @@ ajax = {
             }
         });
     },
-    fileProgress: function (url, form,uploadProgress, callback) {
+    fileProgress: function (url, form, uploadProgress, callback) {
         return form.ajaxSubmit({
             type: 'POST',
             url: url,
@@ -2751,13 +2749,15 @@ function packFormParams($form) {
  */
 function getUrlParams(name) { // 不传name返回所有值，否则返回对应值
     var url = window.location.search;
-    if (url.indexOf('?') == 1) { return false; }
+    if (url.indexOf('?') == 1) {
+        return false;
+    }
     url = url.substr(1);
     url = url.split('&');
     var name = name || '';
     var nameres;
     // 获取全部参数及其值
-    for(var i=0;i<url.length;i++) {
+    for (var i = 0; i < url.length; i++) {
         var info = url[i].split('=');
         var obj = {};
         obj[info[0]] = decodeURI(info[1]);
@@ -2765,7 +2765,7 @@ function getUrlParams(name) { // 不传name返回所有值，否则返回对应�
     }
     // 如果传入一个参数名称，就匹配其值
     if (name) {
-        for(var i=0;i<url.length;i++) {
+        for (var i = 0; i < url.length; i++) {
             for (const key in url[i]) {
                 if (key == name) {
                     nameres = url[i][key];
@@ -3058,12 +3058,12 @@ function isNotNullAndTips(obj, message) {
 }
 
 //进度条
-$.showProgress = function(id,text,onClick) {
+$.showProgress = function (id, text, onClick) {
     $.modal({
         title: text,
         text: '<div class="weui-progress">' +
             '            <div class="weui-progress__bar">' +
-            '                <div class="weui-progress__inner-bar js_progress" style="width: 0%;" id="'+id+'"></div>' +
+            '                <div class="weui-progress__inner-bar js_progress" style="width: 0%;" id="' + id + '"></div>' +
             '            </div>' +
             '        </div>',
         buttons: [{

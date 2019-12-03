@@ -72,7 +72,7 @@ public class BaseDataController extends BaseController {
     @ResponseBody
     public ResultState getSequenceId() throws Exception {
         Map<String, Object> resultMap = Maps.newHashMapWithExpectedSize(2);
-        resultMap.put(MagicValue.ID, getId());
+        resultMap.put("ID", getId());
         resultMap.put(MagicValue.STATUS, STATUS_SUCCESS);
         return resultState(resultMap);
     }

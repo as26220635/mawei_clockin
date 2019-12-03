@@ -8,6 +8,8 @@ import cn.kim.entity.CustomParam;
 import cn.kim.entity.DataTablesView;
 import cn.kim.entity.Tree;
 import cn.kim.service.MenuService;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.sun.org.apache.xml.internal.security.keys.content.MgmtData;
@@ -190,6 +192,7 @@ public class CommonUtil {
 
     /**
      * 获得开始位置
+     *
      * @param page
      * @param length
      * @return
@@ -571,7 +574,17 @@ public class CommonUtil {
                 } else {
                     return AESUtil.encode(str);
                 }
-            } else if (obj instanceof DataTablesView) {
+            } else if (obj instanceof JSONArray) {
+                JSONArray jsonArray = (JSONArray) obj;
+                for (int i = 0; i < jsonArray.size(); i++) {
+                    JSONObject map = jsonArray.getJSONObject(i);
+                    for (String key : map.keySet()) {
+                        if (isEncrypt(key, map.get(key))) {
+                            map.put(key, idEncrypt(map.get(key)));
+                        }
+                    }
+                }
+            }  else if (obj instanceof DataTablesView) {
                 DataTablesView<?> datatablesView = (DataTablesView<?>) obj;
                 if (datatablesView.isEncrypt()) {
                     for (Object object : datatablesView.getData()) {
@@ -661,6 +674,16 @@ public class CommonUtil {
                     return TextUtil.interceptSymbol(p, Attribute.SERVICE_SPLIT);
                 } else {
                     return AESUtil.dncode(str);
+                }
+            } else if (obj instanceof JSONArray) {
+                JSONArray jsonArray = (JSONArray) obj;
+                for (int i = 0; i < jsonArray.size(); i++) {
+                    JSONObject map = jsonArray.getJSONObject(i);
+                    for (String key : map.keySet()) {
+                        if (isEncrypt(key, map.get(key))) {
+                            map.put(key, idDecrypt(map.get(key)));
+                        }
+                    }
                 }
             } else if (obj instanceof DataTablesView) {
                 DataTablesView<?> datatablesView = (DataTablesView<?>) obj;
@@ -787,14 +810,14 @@ public class CommonUtil {
         if (ValidateUtil.isEmpty(val)) {
             return false;
         }
-        return isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString()) && MagicValue.JAVA_LANG_STRING.equals(val.getClass().getName());
+        return !TextUtil.toString(key).toLowerCase().contains("width") && isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString()) && MagicValue.JAVA_LANG_STRING.equals(val.getClass().getName());
     }
 
     public static boolean isEncrypt(Object key, Class<?> type) {
         if (ValidateUtil.isEmpty(type)) {
             return false;
         }
-        return isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString()) && type == String.class;
+        return !TextUtil.toString(key).toLowerCase().contains("width") && isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString()) && type == String.class;
     }
 
     /**
@@ -808,14 +831,14 @@ public class CommonUtil {
         if (ValidateUtil.isEmpty(type)) {
             return false;
         }
-        return isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString()) && MagicValue.CLASS_JAVA_LANG_STRING.equals(type);
+        return !TextUtil.toString(key).toLowerCase().contains("width") && isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString()) && MagicValue.CLASS_JAVA_LANG_STRING.equals(type);
     }
 
     public static boolean isEncrypt(Object key, boolean isString) {
         if (!isString) {
             return false;
         }
-        return isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString());
+        return !TextUtil.toString(key).toLowerCase().contains("width") && isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString());
     }
 
     /**

@@ -10,6 +10,7 @@ import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.ActiveUser;
 import cn.kim.entity.CxfFileWrapper;
 import cn.kim.entity.CxfState;
+import cn.kim.entity.ResultState;
 import cn.kim.exception.CustomException;
 import cn.kim.service.FileService;
 import cn.kim.util.*;
@@ -33,6 +34,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -51,6 +54,29 @@ public class FileController extends BaseController implements LastModified {
 
     @Autowired
     private FileService fileService;
+
+    /**
+     * 获取信息
+     *
+     * @param ID
+     * @throws Exception
+     */
+    @GetMapping("/info/{SF_TABLE_ID}/{SF_TABLE_NAME}")
+    @ResponseBody
+    public ResultState info(@PathVariable("SF_TABLE_ID") String SF_TABLE_ID, @PathVariable("SF_TABLE_NAME") String SF_TABLE_NAME) throws Exception {
+        Map<String, Object> mapParam = Maps.newHashMapWithExpectedSize(1);
+        mapParam.put("SF_TABLE_ID", SF_TABLE_ID);
+        mapParam.put("SF_TABLE_NAME", SF_TABLE_NAME);
+        List<Map<String, Object>> fileList = fileService.selectFileList(mapParam);
+
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put(MagicValue.STATUS, STATUS_SUCCESS);
+        if (fileList.size() != 0) {
+            idEncrypt(fileList);
+            resultMap.put(MagicValue.DATA, fileList.size() == 1 ? fileList.get(0) : fileList);
+        }
+        return resultState(resultMap);
+    }
 
     /**
      * 预览图片
@@ -85,12 +111,9 @@ public class FileController extends BaseController implements LastModified {
             Integer SF_SEE_TYPE = TextUtil.toInt(file.get("SF_SEE_TYPE"));
             String SF_PATH = TextUtil.toString(file.get("SF_PATH"));
 
-            /**
-             * 使用缓存
-             */
-            if (FileUtil.isCheckSuffix(SF_NAME, ConfigProperties.ALLOW_SUFFIX_IMG) && webRequest.checkNotModified(lastModified)) {
-                return;
-            }
+//            if (FileUtil.isCheckSuffix(SF_NAME, ConfigProperties.ALLOW_SUFFIX_IMG) && webRequest.checkNotModified(lastModified)) {
+//                return;
+//            }
 
             //判断权限
             if (SF_SEE_TYPE == STATUS_ERROR && (isEmpty(activeUser) ? true : !activeUser.getId().equals(SO_ID) && !containsRole(SDT_ROLE_DOWN))) {
@@ -166,7 +189,7 @@ public class FileController extends BaseController implements LastModified {
 
             if (!result.get("code").equals(STATUS_SUCCESS)) {
                 json.put("error", result.get("message"));
-            }else{
+            } else {
                 json.put("id", result.get("id"));
                 json.put("originName", result.get("originName"));
             }

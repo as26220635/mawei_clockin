@@ -104,10 +104,10 @@ $.fn.imageMaps = function (setting) {
                 setting.params[attr] = '';
             }
             setting.params.index = index;
-            createAreaItem(null, index, '区域' + index, '0,0,90,30');
+            createAreaItem(null, index, '区域' + index, '0,0,90,30', initDeleteClickEvent);
             // $('#areaItems').append(createAreaItem(index,index,'0,0,90,30',setting.tag,setting.domCallBack(setting.params)));
             if (initFlag) {
-                setting.initCallBack(setting.params);
+                setting.initCallBack(setting.params, null, index, initDeleteClickEvent);
             }
             selectPosition();
             positionContainer.append('<div ref="' + index + '" class="map_position map_selected_position" style="left:0px;top:0px;width:90px;height:30px;"><div class="map_position_bg"></div><span class="link_number_text"> ' + index + '</span><span class="delete"></span><span class="resize"></span></div>');
@@ -146,6 +146,7 @@ $.fn.imageMaps = function (setting) {
                 index++;
             });
             updateAreaCount();
+            initDeleteClickEvent();
         });
     }
 
@@ -224,7 +225,7 @@ $.fn.imageMaps = function (setting) {
                         // $('#areaItems').append(createAreaItem(index, areaTitle, areaMapInfo,setting.tag,setting.domCallBack(setting.params)));
                         // createAreaItem(id, index, areaTitle, '0,0,90,30');
                         if (initFlag) {
-                            setting.initCallBack(setting.params, id, index);
+                            setting.initCallBack(setting.params, id, index,initDeleteClickEvent);
                         }
                         var coords = areaMapInfo.split(',');
                         positionContainer.append('<div ref="' + index + '" class="map_position" style="left:' + coords[0] + 'px;top:' + coords[1] + 'px;width:' + (coords[2] - coords[0]) + 'px;height:' + (coords[3] - coords[1]) + 'px;"><div class="map_position_bg"></div><span class="link_number_text"> ' + index + '</span><span class="delete"></span><span class="resize"></span></div>');
@@ -235,10 +236,10 @@ $.fn.imageMaps = function (setting) {
     }
 
     //done
-    function createAreaItem(id, index, areaTitle, areaMapInfo) {
+    function createAreaItem(id, index, areaTitle, areaMapInfo,delFun) {
         var item = [];
         //目前仅可使用table和ul li 样式
-        setting.createAreaItem(id, index, areaTitle, areaMapInfo);
+        setting.createAreaItem(id, index, areaTitle, areaMapInfo,delFun);
         // if (rowTagDom == "tr") {
         // 	item.push('<tr name = "areaItem" class="mt area_item" ref="'+ index + '">');
         // 	item.push('<td><span class="areaSort"><b>热区'+ index+ '</b></span></td>');
@@ -394,7 +395,7 @@ $.fn.imageMaps = function (setting) {
     //更新热区数量
     function updateAreaCount() {
         var maxCount = setting.maxAmount;
-        var rowCount = $(".area_item");
+        var rowCount = $(".map_position[ref]");
         if (rowCount != null) {
             var c = rowCount.length;
             $(".added_amount").html(c);

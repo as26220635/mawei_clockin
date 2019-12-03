@@ -95,9 +95,13 @@
                 <if test ="BMI_ID != NULL and BMI_ID != ''">
                     AND BMI_ID = #{BMI_ID}
                 </if>
+                <if test ="BMI_RELATIONID != NULL and BMI_RELATIONID != ''">
+                    AND BMI_RELATIONID = #{BMI_RELATIONID}
+                </if>
             </where>
         )BMIA
-        LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_MAIN_IMAGE' AND SF.SF_TABLE_ID = BMIA.ID
+        LEFT JOIN BUS_MAIN_IMAGE BMI ON BMI.ID = BMIA.BMI_RELATIONID
+        LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_MAIN_IMAGE' AND SF.SF_TABLE_ID = BMI.ID
     </select>
 
     <!--插入-->

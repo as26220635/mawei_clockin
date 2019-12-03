@@ -60,10 +60,20 @@ public class MainImageController extends BaseController {
 
     @GetMapping("/update/{ID}")
     @RequiresPermissions("MOBILE:MAINIMAGE_UPDATE")
-    public String updateHtml(Model model, @PathVariable("ID") String ID) throws Exception {
-        Map<String, Object> mapParam = Maps.newHashMapWithExpectedSize(1);
-        mapParam.put("ID", ID);
-        model.addAttribute("mainImage", mainImageService.selectMainImage(mapParam));
+    public String updateHtml(Model model, @PathVariable("ID") String ID, @RequestParam Map<String, Object> reqParam) throws Exception {
+        Map<String, Object> mainImage = null;
+        String isArea = toString(reqParam.get("IS_AREA"));
+        if ("1".equals(toString(reqParam.get("IS_AREA")))) {
+            //只操作图片
+            mainImage = new HashMap<>();
+            mainImage.put("ID", ID);
+        } else {
+            Map<String, Object> mapParam = Maps.newHashMapWithExpectedSize(1);
+            mapParam.put("ID", ID);
+            mainImage = mainImageService.selectMainImage(mapParam);
+        }
+        model.addAttribute("mainImage", mainImage);
+        model.addAttribute("IS_AREA", isArea);
         return "admin/info/mainImage/addAndEdit";
     }
 
@@ -132,6 +142,8 @@ public class MainImageController extends BaseController {
             areaInfoList.add(areaMap);
         }
 
+        idEncrypt(areaList);
+        idEncrypt(areaInfoList);
         model.addAttribute("mainImage", mainImage);
         model.addAttribute("areaList", TextUtil.toJSONString(areaList));
         model.addAttribute("areaInfoList", TextUtil.toJSONString(areaInfoList));
@@ -142,11 +154,11 @@ public class MainImageController extends BaseController {
 
     @PutMapping("/area/update")
     @RequiresPermissions("MOBILE:MAINIMAGE_AREA_SAVE")
-    @SystemControllerLog(useType = UseType.USE, event = "修改主页图片区域")
-    @Validate(value = "BUS_MAINIMAGE", required = true)
+    @SystemControllerLog(useType = UseType.USE, event = "主页图片区域管理")
+    @Validate(value = "BUS_MAINIMAGE")
     @ResponseBody
     public ResultState updateArea(@RequestParam Map<String, Object> mapParam) throws Exception {
-        Map<String, Object> resultMap = mainImageService.insertAndUpdateMainImage(mapParam);
+        Map<String, Object> resultMap = mainImageService.changeMainImageArea(mapParam);
         return resultState(resultMap);
     }
 

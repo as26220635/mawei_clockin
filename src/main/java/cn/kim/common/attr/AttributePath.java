@@ -12,6 +12,10 @@ public class AttributePath {
     public static final String FILE_URL = "file/";
     public static final String FILE_DOWNLOAD_URL = FILE_URL + "download/";
     /**
+     * 文件信息
+     */
+    public static final String FILE_INFO_URL = FILE_URL + "info/";
+    /**
      * 图片删除地址
      */
     public static final String FILE_DEL_URL = FILE_URL + "del/";

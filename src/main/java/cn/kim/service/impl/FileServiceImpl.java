@@ -32,8 +32,10 @@ public class FileServiceImpl extends BaseServiceImpl implements FileService {
 
     @Override
     public Map<String, Object> selectFile(Map<String, Object> mapParam) {
-        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(3);
         paramMap.put("ID", mapParam.get("ID"));
+        paramMap.put("SF_TABLE_ID", mapParam.get("SF_TABLE_ID"));
+        paramMap.put("SF_TABLE_NAME", mapParam.get("SF_TABLE_NAME"));
         return baseDao.selectOne(NameSpace.FileMapper, "selectFile", paramMap);
     }
 

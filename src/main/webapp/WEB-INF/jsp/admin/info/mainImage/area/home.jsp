@@ -29,7 +29,7 @@
                             <div class="box-body">
                                 <form id="addAndEditForm">
                                     <input type="hidden" name="${SUBMIT_TOKEN_NAME}" value="${token}">
-                                    <input type="hidden" name="${BMI_ID}" value="${mainImage.ID}">
+                                    <input type="hidden" name="BMI_ID" value="${mainImage.ID}">
 
                                     <div class="hot_area" id="areaContent">
                                         <!-- 可添加热区数量与还可添加热区数量实时显示（可选）：-->
@@ -66,17 +66,19 @@
 </c:if>
 <%@ include file="/WEB-INF/jsp/admin/component/setTitleParams.jsp" %>
 <script>
+    //绑定删除按钮点击事件
+    var deleteFun;
     //列表显示
     var objTable = $('#areaTable');
-
-    var $dataGridTable = tableView.init({
+    console.log(typeof [])
+    var $dataGrid = tableView.init({
         //table对象
         object: objTable,
         paging: false,
         pageLength: -1,
         cache: false,
         info: false,
-        data: '${areaList}',
+        data: ${areaList},
         //对应上面thead里面的序列
         columns: [
             {
@@ -98,6 +100,18 @@
                 className: 'text-center dataTable-column-min-width'
             },
             {
+                data: 'SF_ID',
+                title: '图片',
+                width: '60px',
+                className: 'text-center dataTable-column-min-width',
+                render: function (data, type, full, meta) {
+                    if (data == null) {
+                        return '';
+                    }
+                    return '<img src="${BASE_URL}${AttributePath.FILE_PREVIEW_URL}' + data + '"  style="width:50px;height:auto;" data-action="zoom"/>';
+                }
+            },
+            {
                 data: 'ID',
                 title: '操作',
                 width: '100px',
@@ -113,7 +127,41 @@
         ],
     });
 
+    function onEditClick() {
+        //修改
+        objTable.find('tbody').unbind('click').on('click', '#edit', function () {
+            var $this = $(this);
+            var data = tableView.rowData($dataGrid, $this);
+            var id = data.ID;
 
+            ajax.getHtml('${BASE_URL}${Url.MAINIMAGE_UPDATE_URL}/' + id, {IS_AREA: 1}, function (html) {
+                    model.show({
+                        title: '修改图片:' + data.BIMA_TITLE,
+                        content: html,
+                        footerModel: model.footerModel.ADMIN,
+                        cancel: function () {
+                            ajax.get('${BASE_URL}${AttributePath.FILE_INFO_URL}' + id + '/${TableName.BUS_MAIN_IMAGE}', {}, function (data) {
+                                if (data.code == STATUS_SUCCESS) {
+                                    var file = data.data;
+                                    if (file != null) {
+                                        //更新数据
+                                        $dataGrid.rows($this.parents('tr')).every(function () {
+                                            var d = this.data();
+                                            d.SF_ID = file.ID;
+                                            this.invalidate();
+                                        }).draw();
+                                    }
+                                    deleteFun();
+                                } else {
+                                    demo.showNotify(ALERT_WARNING, '获取区域图片失败');
+                                }
+                            });
+                        }
+                    });
+                }
+            );
+        });
+    }
 </script>
 <script>
     $(function () {
@@ -125,23 +173,27 @@
                 //'areaLink':'添加热区时的默认值',
                 //'areaType':'添加热区时的默认值'
             },
-            initCallBack: function (params, id, index) {
+            initCallBack: function (params, id, index, delFun) {
                 //设置索引
                 $('#' + id).attr('ref', index);
+                deleteFun = delFun;
             },
-            createAreaItem: function (id, index, areaTitle, areaMapInfo) {
+            createAreaItem: function (id, index, areaTitle, areaMapInfo, delFun) {
                 //获取ID
                 ajax.post('${BASE_URL}${Url.SEQUENCE_ID_URL}', {}, function (data) {
                     if (data.code == STATUS_SUCCESS) {
                         //创建行
-                        var $row = $dataGridTable.row.add({
-                            'ID': data.ID,
+                        var $row = $dataGrid.row.add({
+                            'ID': data.id,
                             'BIMA_INDEX': index,
                             'BIMA_TITLE': areaTitle,
                             'BIMA_MAPINFO': areaMapInfo,
                             'IS_INSERT': 1
                         }).draw().node();
                         $($row).attr('ref', index);
+                        onEditClick();
+                        deleteFun = delFun;
+                        deleteFun();
                     } else {
                         demo.showNotify(ALERT_WARNING, '获取ID失败');
                         $(".hot_area").find('.position_container').find('.map_position[ref=' + index + ']').remove();
@@ -150,25 +202,27 @@
             },
             changeCallBack: function ($this, index) {
                 //更新数据
-                $dataGridTable.rows($this).every(function () {
+                $dataGrid.rows($this).every(function () {
                     var data = this.data();
                     data.BIMA_INDEX = index;
                     data.BIMA_TITLE = '区域' + index;
                     this.invalidate();
                 }).draw();
+                deleteFun();
             },
             changeAreaInfoCallBack: function (index, left, top, right, bottom) {
                 //更新数据
-                $dataGridTable.rows($('.table tr[ref="' + index + '"]')).every(function () {
+                $dataGrid.rows($('.table tr[ref="' + index + '"]')).every(function () {
                     var data = this.data();
                     data.BIMA_INDEX = index;
                     data.BIMA_MAPINFO = new Array(Math.round(left), Math.round(top), Math.round(right), Math.round(bottom)).join(',');
                     this.invalidate();
                 }).draw();
+                deleteFun();
             },
             deleteCallBack: function ($this, index) {
                 //删除列表
-                $dataGridTable.row($this).remove().draw();
+                $dataGrid.row($this).remove().draw();
             },
             domCallBack: function (params) {
                 //console.log(params);
@@ -178,30 +232,39 @@
         }
 
         //初始化加载
-        var areas = "${areaInfoList}";
+        var areas = '${areaInfoList}';
         $("#hotAreas").val(areas);
 
-        //$('#hotAreas').val('');     //清空热区数据
-        //$('#image_map').imageMaps(setting);
-        //imageMaps.originalManual("./size.jpg",setting,true);
         imageMaps.proportionNoSameManual("${BASE_URL}${AttributePath.FILE_PREVIEW_URL}${mainImage.SF_ID}", setting, 1, 1, true);
     });
 </script>
 <script>
     //保存
-    $('#save').click(function () {
+    function save(){
         var $form = $('#addAndEditForm');
         //验证
         if (!validator.formValidate($form)) {
             demo.showNotify(ALERT_WARNING, VALIDATE_FAIL);
             return;
         }
+        var updateAreaList =[];
+        var data = $dataGrid.data();
+        for (let i = 0; i < data.length; i++) {
+            updateAreaList[i] = data[i];
+        }
         var params = packFormParams($form);
-        console.log($dataGridTable.data())
-        <%--ajax.put('${BASE_URL}${Url.WEBCONFIG_BASE_URL}', params, function (data) {--%>
-        <%--    ajaxReturn.data(data, null, null, null);--%>
-        <%--})--%>
-    });
+        params['updateAreaList'] = JSON.stringify(updateAreaList);
+        params['BMI_AREAHEIGHT'] =$('#photo').height();
+        params['BMI_AREAWIDTH'] =$('#photo').width();
+        console.log(params)
+        ajax.put('${BASE_URL}${Url.MAINIMAGE_AREA_UPDATE_URL}', params, function (data) {
+            ajaxReturn.data(data, null, null, null, {
+                success: function () {
+                    refresh();
+                }
+            });
+        })
+    }
 
     validator.init({
         //验证表单

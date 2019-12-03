@@ -44,11 +44,44 @@ public interface MainImageService extends BaseService {
     Map<String, Object> deleteMainImage(Map<String, Object> mapParam);
 
     /**
+     * 查询主页图片区域
+     *
+     * @param mapParam
+     * @return
+     */
+    Map<String, Object> selectMainImageArea(Map<String, Object> mapParam);
+
+    /**
      * 查询区域
      *
      * @param mapParam
      * @return
      */
     List<Map<String, Object>> selectMainImageAreaList(Map<String, Object> mapParam);
+
+
+    /**
+     * 插入或更新主页区域
+     *
+     * @param mapParam
+     * @return
+     */
+    Map<String, Object> insertAndUpdateMainImageArea(Map<String, Object> mapParam);
+
+    /**
+     * 删除主页图片区域
+     *
+     * @param mapParam
+     * @return
+     */
+    Map<String, Object> deleteMainImageArea(Map<String, Object> mapParam);
+
+    /**
+     * 改变主页图片区域
+     *
+     * @param mapParam
+     * @return
+     */
+    Map<String, Object> changeMainImageArea(Map<String, Object> mapParam);
 
 }
