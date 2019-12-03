@@ -1,19 +1,18 @@
 <%@ include file="/WEB-INF/jsp/common/tag.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<style>
+    .zoom-img-wrap{
+        position: absolute;
+    }
+</style>
 <script>
-    //头像
-    function imgFunc(targets, field) {
-        return {
-            targets: targets,
-            data: field,
-            render: function (data, type, full, meta) {
-                return '<img src="${BASE_URL}${AttributePath.FILE_PREVIEW_URL}' + data + '"  style="width:50px;height:auto;" data-action="zoom"/>';
-            }
-        };
+    //图片
+    function formatterImg(value, row, index) {
+        return '<img src="${BASE_URL}${AttributePath.FILE_PREVIEW_URL}' + value + '"  style="width:50px;height:auto;" data-action="zoom"/>';
     }
 </script>
 <%--通用列表--%>
-<%@ include file="/WEB-INF/jsp/admin/component/grid/dataGrid.jsp" %>
+<%@ include file="/WEB-INF/jsp/admin/component/grid/treeGrid.jsp" %>
 <script>
     //添加
     $('#addBtn').on('click', function () {
@@ -42,7 +41,7 @@
     });
 
     //区域管理
-    $dataGridTable.find('tbody').on('click', '#area', function () {
+    $treeGridTable.find('tbody').on('click', '#area', function () {
         var data = getRowData(this);
         var id = data.ID;
         var param = {
@@ -54,9 +53,10 @@
     });
 
     //修改
-    $dataGridTable.find('tbody').on('click', '#edit', function () {
+    $treeGridTable.find('tbody').on('click', '#edit', function () {
         var data = getRowData(this);
         var id = data.ID;
+        var index = $(this).attr("data-index");
 
         ajax.getHtml('${BASE_URL}${Url.MAINIMAGE_UPDATE_URL}/' + id, {}, function (html) {
                 model.show({
@@ -75,7 +75,14 @@
                         var params = packFormParams($form);
 
                         ajax.put('${BASE_URL}${Url.MAINIMAGE_UPDATE_URL}', params, function (data) {
-                            ajaxReturn.data(data, $model, $dataGrid, false);
+                            if (data.code == STATUS_SUCCESS) {
+                                model.hide($model);
+                                demo.showNotify(ALERT_SUCCESS, data.message);
+                                //刷新菜单
+                                $treeGridTable.bootstrapTable('updateRow', {index: index, row: params});
+                            } else {
+                                demo.showNotify(ALERT_WARNING, data.message);
+                            }
                         });
                     }
                     </shiro:hasPermission>
@@ -85,7 +92,7 @@
     });
 
     //删除
-    $dataGridTable.find('tbody').on('click', '#del', function () {
+    $treeGridTable.find('tbody').on('click', '#del', function () {
         var data = getRowData(this);
         var id = data.ID;
 
@@ -98,7 +105,13 @@
             isConfirm: true,
             confirm: function ($model) {
                 ajax.del('${BASE_URL}${Url.MAINIMAGE_DELETE_URL}/' + id, {}, function (data) {
-                    ajaxReturn.data(data, $model, $dataGrid, false);
+                    if (data.code == STATUS_SUCCESS) {
+                        model.hide($model);
+                        demo.showNotify(ALERT_SUCCESS, data.message);
+                        $treeGridTable.bootstrapTable('refresh', {silent: false});
+                    } else {
+                        demo.showNotify(ALERT_WARNING, data.message);
+                    }
                 })
             }
         });
@@ -115,7 +128,7 @@
                 demo.showNotify(ALERT_SUCCESS, '状态修改成功!');
             } else {
                 $this.bootstrapSwitch('toggleState', true);
-                demo.showNotify(ALERT_WARNING, '状态修改失败!');
+                demo.showNotify(ALERT_WARNING, data.message);
             }
             removeLoadingDiv();
         });

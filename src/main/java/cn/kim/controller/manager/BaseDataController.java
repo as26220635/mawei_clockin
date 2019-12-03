@@ -10,6 +10,7 @@ import cn.kim.common.eu.UseType;
 import cn.kim.common.tag.Button;
 import cn.kim.controller.manager.util.DataGridUtil;
 import cn.kim.entity.DataTablesView;
+import cn.kim.entity.ResultState;
 import cn.kim.entity.Tree;
 import cn.kim.entity.TreeState;
 import cn.kim.exception.CustomException;
@@ -26,10 +27,7 @@ import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -62,6 +60,23 @@ public class BaseDataController extends BaseController {
 
     @Autowired
     private DataGridUtil dataGridUtil;
+
+    /**
+     * 获取ID
+     *
+     * @return
+     * @throws Exception
+     */
+    @PostMapping("/getSequenceId")
+    @NotEmptyLogin
+    @ResponseBody
+    public ResultState getSequenceId() throws Exception {
+        Map<String, Object> resultMap = Maps.newHashMapWithExpectedSize(2);
+        resultMap.put(MagicValue.ID, getId());
+        resultMap.put(MagicValue.STATUS, STATUS_SUCCESS);
+        return resultState(resultMap);
+    }
+
 
     /**
      * 预览图片

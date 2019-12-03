@@ -6,8 +6,11 @@ import cn.kim.common.annotation.Validate;
 import cn.kim.common.eu.UseType;
 import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.ResultState;
+import cn.kim.entity.Tree;
 import cn.kim.service.MainImageService;
 import cn.kim.service.MenuService;
+import cn.kim.util.TextUtil;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.google.common.collect.Maps;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -110,8 +116,25 @@ public class MainImageController extends BaseController {
 
         map.clear();
         map.put("ID", mapParam.get("BMI_ID"));
-        model.addAttribute("mainImage", mainImageService.selectMainImage(map));
+        Map<String, Object> mainImage = mainImageService.selectMainImage(map);
 
+        //查询区域
+        map.clear();
+        map.put("BMI_ID", mapParam.get("BMI_ID"));
+        List<Map<String, Object>> areaList = mainImageService.selectMainImageAreaList(map);
+        List<Map<String, Object>> areaInfoList = new LinkedList<>();
+        for (Map<String, Object> area : areaList) {
+            Map<String, Object> areaMap = new HashMap<>();
+            areaMap.put("id", area.get("ID"));
+            areaMap.put("index", area.get("BIMA_INDEX"));
+            areaMap.put("areaTitle", area.get("BIMA_TITLE"));
+            areaMap.put("areaMapInfo", area.get("BIMA_MAPINFO"));
+            areaInfoList.add(areaMap);
+        }
+
+        model.addAttribute("mainImage", mainImage);
+        model.addAttribute("areaList", TextUtil.toJSONString(areaList));
+        model.addAttribute("areaInfoList", TextUtil.toJSONString(areaInfoList));
         model.addAttribute("MENU", menu);
         model.addAttribute("EXTRA", mapParam);
         return "admin/info/mainImage/area/home";

@@ -645,7 +645,7 @@ tableView = {
         //数据源模式
         if (!isEmpty(options.data)) {
             //设置数据源
-            optionData.data = options.data;
+            optionData.data = options.data == '[]' ? '' : options.data;
             //关闭服务器模式
             optionData.serverSide = false;
             //开启本地搜索
@@ -653,6 +653,7 @@ tableView = {
             //不保存状态
             optionData.stateSave = false;
         }
+        console.log(optionData)
         //绘制表格
         let $table = options.object.DataTable(optionData);
 
@@ -738,7 +739,6 @@ tableView = {
         }
         //关闭表格的头
         if (options.headLength == false) {
-            $()
         }
         //设置样式
         $('.card .material-datatables label').addClass('form-group');

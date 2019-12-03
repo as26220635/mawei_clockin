@@ -46,6 +46,8 @@ public class MainImageServiceImpl extends BaseServiceImpl implements MainImageSe
 
             paramMap.put("ID", id);
             paramMap.put("BMI_NAME", mapParam.get("BMI_NAME"));
+            paramMap.put("BMI_HEIGHT", mapParam.get("BMI_HEIGHT"));
+            paramMap.put("BMI_TOP", mapParam.get("BMI_TOP"));
             paramMap.put("BMI_REMARKS", mapParam.get("BMI_REMARKS"));
             paramMap.put("BMI_UPDATETIME", getDate());
             paramMap.put("SO_ID", getActiveUser().getId());
@@ -89,10 +91,12 @@ public class MainImageServiceImpl extends BaseServiceImpl implements MainImageSe
             Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(2);
             //作废其他启用记录
             int IS_STATUS = toInt(mapParam.get("IS_STATUS"));
+            paramMap.clear();
+            paramMap.put("IS_STATUS", STATUS_SUCCESS);
+            paramMap.put("BMI_PARENTID", 0);
+            List<Map<String, Object>> list = baseDao.selectList(NameSpace.MainImageMapper, "selectMainImage", paramMap);
+
             if (IS_STATUS == STATUS_SUCCESS) {
-                paramMap.clear();
-                paramMap.put("IS_STATUS", IS_STATUS);
-                List<Map<String, Object>> list = baseDao.selectList(NameSpace.MainImageMapper, "selectMainImage", paramMap);
                 for (Map<String, Object> main : list) {
                     //作废
                     paramMap.clear();
@@ -100,6 +104,8 @@ public class MainImageServiceImpl extends BaseServiceImpl implements MainImageSe
                     paramMap.put("IS_STATUS", STATUS_ERROR);
                     baseDao.update(NameSpace.MainImageMapper, "updateMainImage", paramMap);
                 }
+            }else{
+                throw new CustomException("只少有一个主页图片启用!");
             }
             //启用当前记录
             String id = toString(mapParam.get("ID"));
@@ -158,6 +164,13 @@ public class MainImageServiceImpl extends BaseServiceImpl implements MainImageSe
         resultMap.put(MagicValue.STATUS, status);
         resultMap.put(MagicValue.DESC, desc);
         return resultMap;
+    }
+
+    @Override
+    public List<Map<String, Object>> selectMainImageAreaList(Map<String, Object> mapParam) {
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
+        paramMap.put("BMI_ID", mapParam.get("BMI_ID"));
+        return baseDao.selectList(NameSpace.MainImageMapper, "selectMainImageArea", paramMap);
     }
 
 

@@ -385,7 +385,6 @@
         if (!wUrl.startsWith('admin-dataGrid-')){
             wUrl = 'admin-dataGrid-' + getUrlParams('SM_PARENTID');
         }
-        console.log(wUrl)
         return wUrl;
     }
 

@@ -634,7 +634,7 @@ public class CommonUtil {
             }
         } catch (Exception e) {
 //            e.printStackTrace();
-//            throw new InvalidKeyException("无效的key");
+            throw new InvalidKeyException("无效的key");
         }
 
         return obj;
@@ -722,7 +722,7 @@ public class CommonUtil {
                 BeanUtil.idDecryptReflect(obj);
             }
         } catch (Exception e) {
-//            throw new InvalidKeyException("无效的KEY!");
+            throw new InvalidKeyException("无效的KEY!");
         }
         return obj;
     }

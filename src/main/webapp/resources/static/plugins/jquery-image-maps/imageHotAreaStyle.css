@@ -49,7 +49,6 @@
     cursor: nw-resize;
 }
 .map_position .delete {
-    background: url(./images/btnsprite.png) no-repeat right -158px;
     width: 13px;
     height: 13px;
     position: absolute;

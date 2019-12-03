@@ -7,17 +7,20 @@
     <select id="selectMainImage" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT BMI.*,SF.ID AS SF_ID
         FROM(
-            SELECT * FROM BUS_MAIN_IMAGE
-            <where>
-                <if test ="ID != NULL and ID != ''">
-                    AND ID = #{ID}
-                </if>
-                <if test ="IS_STATUS != NULL and IS_STATUS != ''">
-                    AND IS_STATUS = #{IS_STATUS}
-                </if>
-            </where>
+        SELECT * FROM BUS_MAIN_IMAGE
+        <where>
+            <if test ="ID != NULL and ID != ''">
+                AND ID = #{ID}
+            </if>
+            <if test ="IS_STATUS != NULL and IS_STATUS != ''">
+                AND IS_STATUS = #{IS_STATUS}
+            </if>
+            <if test ="BMI_PARENTID != NULL and BMI_PARENTID != ''">
+                AND BMI_PARENTID = #{BMI_PARENTID}
+            </if>
+        </where>
         )BMI
-        LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_MAIN_IMAGE' AND SF.SF_TABLE_ID = BMI.ID AND SF.ID = (SELECT MAX(SF.ID) FROM SYS_FILE SF WHERE SF.SF_TABLE_ID = BMI.ID GROUP BY SF.SF_TABLE_ID)
+        LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_MAIN_IMAGE' AND SF.SF_TABLE_ID = BMI.ID
     </select>
 
     <!--插入-->
@@ -25,7 +28,12 @@
         INSERT INTO BUS_MAIN_IMAGE
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="ID != null">ID,</if>
+            <if test="BMI_PARENTID != null">BMI_PARENTID,</if>
             <if test="BMI_NAME != null">BMI_NAME,</if>
+            <if test="BMI_HEIGHT != null">BMI_HEIGHT,</if>
+            <if test="BMI_TOP != null">BMI_TOP,</if>
+            <if test="BMI_AREAHEIGHT != null">BMI_AREAHEIGHT,</if>
+            <if test="BMI_AREAWIDTH != null">BMI_AREAWIDTH,</if>
             <if test="BMI_REMARKS != null">BMI_REMARKS,</if>
             <if test="BMI_ENTRYTIME != null">BMI_ENTRYTIME,</if>
             <if test="BMI_UPDATETIME != null">BMI_UPDATETIME,</if>
@@ -34,7 +42,12 @@
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="ID != null">#{ID},</if>
+            <if test="BMI_PARENTID != null">#{BMI_PARENTID},</if>
             <if test="BMI_NAME != null">#{BMI_NAME},</if>
+            <if test="BMI_HEIGHT != null">#{BMI_HEIGHT},</if>
+            <if test="BMI_TOP != null">#{BMI_TOP},</if>
+            <if test="BMI_AREAHEIGHT != null">#{BMI_AREAHEIGHT},</if>
+            <if test="BMI_AREAWIDTH != null">#{BMI_AREAWIDTH},</if>
             <if test="BMI_REMARKS != null">#{BMI_REMARKS},</if>
             <if test="BMI_ENTRYTIME != null">#{BMI_ENTRYTIME},</if>
             <if test="BMI_UPDATETIME != null">#{BMI_UPDATETIME},</if>
@@ -48,7 +61,12 @@
         UPDATE BUS_MAIN_IMAGE
         <set>
             <if test="ID != null">ID=#{ID},</if>
+            <if test="BMI_PARENTID != null">BMI_PARENTID=#{BMI_PARENTID},</if>
             <if test="BMI_NAME != null">BMI_NAME=#{BMI_NAME},</if>
+            <if test="BMI_HEIGHT != null">BMI_HEIGHT=#{BMI_HEIGHT},</if>
+            <if test="BMI_TOP != null">BMI_TOP=#{BMI_TOP},</if>
+            <if test="BMI_AREAHEIGHT != null">BMI_AREAHEIGHT=#{BMI_AREAHEIGHT},</if>
+            <if test="BMI_AREAWIDTH != null">BMI_AREAWIDTH=#{BMI_AREAWIDTH},</if>
             <if test="BMI_REMARKS != null">BMI_REMARKS=#{BMI_REMARKS},</if>
             <if test="BMI_ENTRYTIME != null">BMI_ENTRYTIME=#{BMI_ENTRYTIME},</if>
             <if test="BMI_UPDATETIME != null">BMI_UPDATETIME=#{BMI_UPDATETIME},</if>
@@ -67,12 +85,19 @@
 
     <!--查询-->
     <select id="selectMainImageArea" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT * FROM BUS_MAIN_IMAGE_AREA
-        <where>
-            <if test ="ID != NULL and ID != ''">
-                AND ID = #{ID}
-            </if>
-        </where>
+        SELECT BMIA.*,SF.ID AS SF_ID
+        FROM(
+            SELECT * FROM BUS_MAIN_IMAGE_AREA
+            <where>
+                <if test ="ID != NULL and ID != ''">
+                    AND ID = #{ID}
+                </if>
+                <if test ="BMI_ID != NULL and BMI_ID != ''">
+                    AND BMI_ID = #{BMI_ID}
+                </if>
+            </where>
+        )BMIA
+        LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_MAIN_IMAGE' AND SF.SF_TABLE_ID = BMIA.ID
     </select>
 
     <!--插入-->
@@ -81,6 +106,8 @@
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="ID != null">ID,</if>
             <if test="BMI_ID != null">BMI_ID,</if>
+            <if test="BMI_RELATIONID != null">BMI_RELATIONID,</if>
+            <if test="BIMA_INDEX != null">BIMA_INDEX,</if>
             <if test="BIMA_TITLE != null">BIMA_TITLE,</if>
             <if test="BIMA_MAPINFO != null">BIMA_MAPINFO,</if>
             <if test="BIMA_ENTRYTIME != null">BIMA_ENTRYTIME,</if>
@@ -91,6 +118,8 @@
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="ID != null">#{ID},</if>
             <if test="BMI_ID != null">#{BMI_ID},</if>
+            <if test="BMI_RELATIONID != null">#{BMI_RELATIONID},</if>
+            <if test="BIMA_INDEX != null">#{BIMA_INDEX},</if>
             <if test="BIMA_TITLE != null">#{BIMA_TITLE},</if>
             <if test="BIMA_MAPINFO != null">#{BIMA_MAPINFO},</if>
             <if test="BIMA_ENTRYTIME != null">#{BIMA_ENTRYTIME},</if>
@@ -106,6 +135,8 @@
         <set>
             <if test="ID != null">ID=#{ID},</if>
             <if test="BMI_ID != null">BMI_ID=#{BMI_ID},</if>
+            <if test="BMI_RELATIONID != null">BMI_RELATIONID=#{BMI_RELATIONID},</if>
+            <if test="BIMA_INDEX != null">BIMA_INDEX=#{BIMA_INDEX},</if>
             <if test="BIMA_TITLE != null">BIMA_TITLE=#{BIMA_TITLE},</if>
             <if test="BIMA_MAPINFO != null">BIMA_MAPINFO=#{BIMA_MAPINFO},</if>
             <if test="BIMA_ENTRYTIME != null">BIMA_ENTRYTIME=#{BIMA_ENTRYTIME},</if>

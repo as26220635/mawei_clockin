@@ -43,4 +43,12 @@ public interface MainImageService extends BaseService {
      */
     Map<String, Object> deleteMainImage(Map<String, Object> mapParam);
 
+    /**
+     * 查询区域
+     *
+     * @param mapParam
+     * @return
+     */
+    List<Map<String, Object>> selectMainImageAreaList(Map<String, Object> mapParam);
+
 }

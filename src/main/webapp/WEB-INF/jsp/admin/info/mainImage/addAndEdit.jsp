@@ -18,6 +18,16 @@
                value="${mainImage.BMI_NAME}">
     </div>
     <div class="form-group has-feedback">
+        <label>高度:</label>
+        <input type="text" class="form-control" ${fns:validField(TableName.BUS_MAIN_IMAGE, "BMI_HEIGHT")}
+               value="${mainImage.BMI_HEIGHT}">
+    </div>
+    <div class="form-group has-feedback">
+        <label>顶部距离:</label>
+        <input type="text" class="form-control" ${fns:validField(TableName.BUS_MAIN_IMAGE, "BMI_TOP")}
+               value="${mainImage.BMI_TOP}">
+    </div>
+    <div class="form-group has-feedback">
         <label>备注:</label>
         <textarea ${fns:validField(TableName.BUS_MAIN_IMAGE,"BMI_REMARKS")}
                 class="form-control form-textarea"

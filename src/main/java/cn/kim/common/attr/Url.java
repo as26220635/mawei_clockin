@@ -12,6 +12,10 @@ public class Url {
     public static final String EDIT_USER = MANAGER_URL + "editUser";
     public static final String EDIT_PASSWORD = MANAGER_URL + "editPwd";
     /**
+     * 获取ID
+     */
+    public static final String SEQUENCE_ID_URL = "getSequenceId";
+    /**
      * 图片地址url
      */
     public static final String IMG_URL = AttributePath.FILE_PREVIEW_URL;
