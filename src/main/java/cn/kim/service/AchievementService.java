@@ -107,4 +107,20 @@ public interface AchievementService extends BaseService {
      */
     Map<String, Object> deleteAchievementDetail(Map<String, Object> mapParam);
 
+    /**
+     * 获取成就墙树数据
+     *
+     * @param mapParam
+     * @return
+     */
+    List<Tree> selectAchievementTree(Map<String, Object> mapParam);
+
+    /**
+     * 更新主页图片关联成就墙
+     *
+     * @param mapParam
+     * @return
+     */
+    Map<String, Object> updateAchievementMainImage(Map<String, Object> mapParam);
+
 }

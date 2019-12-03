@@ -10,6 +10,9 @@
             <if test ="ID != NULL and ID != ''">
                 AND ID = #{ID}
             </if>
+            <if test ="IS_STATUS != NULL and IS_STATUS != ''">
+                AND IS_STATUS = #{IS_STATUS}
+            </if>
         </where>
     </select>
 
@@ -26,8 +29,9 @@
             CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATH
         FROM BUS_ACHIEVEMENT BA
         LEFT JOIN (SELECT BA_ID,COUNT(1) BAD_COUNT FROM BUS_ACHIEVEMENT_DETAIL WHERE BW_ID = #{ID} GROUP BY BA_ID)BAD ON BAD.BA_ID = BA.ID
-        LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID AND SF.ID = (SELECT MAX(SF.ID) FROM SYS_FILE SF WHERE SF.SF_TABLE_ID = BA.ID GROUP BY SF.SF_TABLE_ID)
+        LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID
         WHERE BA.IS_STATUS = 1
+        ORDER BY BAD.BAD_COUNT DESC,BA.BA_ENTRYTIME ASC
     </select>
 
     <!--插入-->
@@ -183,4 +187,76 @@
         LEFT JOIN (SELECT SF.SF_TABLE_ID,GROUP_CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) FILE_PATH FROM SYS_FILE SF WHERE SF.SF_SDT_CODE='BUS_FILE_DEFAULT' GROUP BY SF.SF_TABLE_ID)SF ON SF.SF_TABLE_ID = VAD.ID
         WHERE VAD.ID = #{ID}
     </select>
+
+    <!--查询-->
+    <select id="selectMainImageAchievement" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        BMIA.*,
+        BA.BA_NAME,SF.ID AS SF_ID,CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATH
+        FROM(
+        SELECT * FROM BUS_MAIN_IMAGE_ACHIEVEMENT
+        <where>
+            <if test ="ID != NULL and ID != ''">
+                AND ID = #{ID}
+            </if>
+            <if test ="BMI_ID != NULL and BMI_ID != ''">
+                AND BMI_ID = #{BMI_ID}
+            </if>
+            <if test ="BMI_ID_LIST != NULL and BMI_ID_LIST != ''">
+                AND BMI_ID IN(${BMI_ID_LIST})
+            </if>
+        </where>
+        )BMIA
+        INNER JOIN BUS_ACHIEVEMENT BA ON BA.ID = BMIA.BA_ID
+        LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID
+    </select>
+
+    <!--插入-->
+    <insert id="insertMainImageAchievement" parameterType="java.util.Map">
+        INSERT INTO BUS_MAIN_IMAGE_ACHIEVEMENT
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ID != null">ID,</if>
+            <if test="BA_ID != null">BA_ID,</if>
+            <if test="BMI_ID != null">BMI_ID,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ID != null">#{ID},</if>
+            <if test="BA_ID != null">#{BA_ID},</if>
+            <if test="BMI_ID != null">#{BMI_ID},</if>
+        </trim>
+    </insert>
+
+    <!--编辑-->
+    <update id="updateMainImageAchievement" parameterType="java.util.Map">
+        UPDATE BUS_MAIN_IMAGE_ACHIEVEMENT
+        <set>
+            <if test="ID != null">ID=#{ID},</if>
+            <if test="BA_ID != null">BA_ID=#{BA_ID},</if>
+            <if test="BMI_ID != null">BMI_ID=#{BMI_ID},</if>
+        </set>
+        <where>
+            ID=#{ID}
+        </where>
+    </update>
+
+    <!--删除-->
+    <delete id="deleteMainImageAchievement" parameterType="java.util.Map">
+		DELETE FROM BUS_MAIN_IMAGE_ACHIEVEMENT
+        <where>
+            <if test="ID !=null and ID != ''">
+                AND ID=#{ID}
+            </if>
+            <if test="BA_ID !=null and BA_ID != ''">
+                AND BA_ID=#{BA_ID}
+            </if>
+            <if test="BMI_ID !=null and BMI_ID != ''">
+                AND BMI_ID=#{BMI_ID}
+            </if>
+        </where>
+	</delete>
+
+    <!--查询成就墙被谁选了-->
+    <select id="selectAchievementSelected" parameterType="java.util.Map" resultType="java.util.Map">
+    </select>
+
 </mapper>

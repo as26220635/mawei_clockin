@@ -2,6 +2,7 @@ package cn.kim.common;
 
 import afu.org.checkerframework.checker.units.qual.A;
 import cn.kim.common.attr.ConfigProperties;
+import cn.kim.common.attr.MobileBottomMenu;
 import cn.kim.common.attr.WebConfig;
 import cn.kim.common.eu.NameSpace;
 import cn.kim.controller.manager.BaseDataController;
@@ -47,7 +48,6 @@ public class DataInitialization extends BaseData implements ApplicationListener<
     private RedissonClient redisson;
 
 
-
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         if (contextRefreshedEvent.getApplicationContext().getParent() == null) {
@@ -61,6 +61,9 @@ public class DataInitialization extends BaseData implements ApplicationListener<
 
             //加载网站参数
             WebConfig.init();
+
+            //前端底部菜单配置
+            MobileBottomMenu.init();
         }
     }
 }

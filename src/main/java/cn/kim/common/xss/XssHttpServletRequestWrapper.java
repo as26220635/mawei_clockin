@@ -23,6 +23,16 @@ import java.util.Map;
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
     public XssHttpServletRequestWrapper(HttpServletRequest servletRequest) {
         super(servletRequest);
+        //打印URL
+        String url = "";
+//        url = servletRequest.getScheme() +"://" + servletRequest.getServerName()
+//                + ":" +servletRequest.getServerPort()
+//                +
+        url = "访问地址:" + servletRequest.getServletPath();
+//        if (servletRequest.getQueryString() != null) {
+//            url += "?" + servletRequest.getQueryString();
+//        }
+        System.out.println(url);
     }
 
     @Override

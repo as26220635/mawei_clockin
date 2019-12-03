@@ -195,7 +195,8 @@
     hideBottpmMenu();
     switchTabbar('clockinTabbar');
     mainInit.initPjax();
-
+</script>
+<script>
     //提交打卡
     $('#submitBtn').click(function () {
         var $form = $('#addAndEditForm');
@@ -215,7 +216,7 @@
                 return;
             }
             if ($('#video0Time').val() == undefined || $('#video0Time').val() == '') {
-                $.toast("获取视频总时长失败,请等待", "forbidden");
+                $.toast("获取视频总时长失败,请重试", "forbidden");
                 return;
             }
             if ($('#video0Time').val() > 10) {
@@ -225,27 +226,9 @@
         }
         if (BAD_FILETYPE == 1) {
             submitFile(BAD_FILETYPE, '${WEBCONFIG_FILE_SERVER_URL}uploadBase64Imgage', $('#imageForm'), '上传图片中');
-            <%--$.showProgress(progressId, '上传图片中');--%>
-            <%--ajax.file('${WEBCONFIG_FILE_SERVER_URL}uploadBase64Imgage', $('#imageForm'), function (data) {--%>
-            <%--    $.hideLoading();--%>
-            <%--    if (data.code == 1) {--%>
-            <%--        submitClockin(JSON.stringify(data.imageArray));--%>
-            <%--    } else {--%>
-            <%--        $.toast("上传图片失败,请重试", "forbidden");--%>
-            <%--    }--%>
-            <%--});--%>
         } else if (BAD_FILETYPE == 2) {
             //先上传视频
             submitFile(BAD_FILETYPE, '${WEBCONFIG_FILE_SERVER_URL}upload', $('#videoForm'), '上传视频中');
-            <%--$.showProgress(progressId, '上传视频中');--%>
-            <%--ajax.fileProgress('${WEBCONFIG_FILE_SERVER_URL}upload', $('#videoForm'), function (data) {--%>
-            <%--    $.hideLoading();--%>
-            <%--    if (data.code == 1) {--%>
-            <%--        submitClockin(JSON.stringify(data.message));--%>
-            <%--    } else {--%>
-            <%--        $.toast("上传视频失败,请重试", "forbidden");--%>
-            <%--    }--%>
-            <%--})--%>
         }
     });
 
@@ -332,10 +315,7 @@
         });
     }
 </script>
-
-
 <script>
-
     $(function () {
         //var tmpl = '<li id="" class="weui-uploader__file" style="background-image:url(#url#)"></li>',//weui.js中的方法
         //var tmpl = '<li id="" class="weui-uploader__file" style="background-image:url(#url#)"><input type="hidden" id="#imgid#" name="#imgid#" value="#url#" /></li>',
@@ -473,6 +453,4 @@
         }
         return url;
     }
-
-
 </script>

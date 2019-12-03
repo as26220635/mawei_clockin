@@ -3,6 +3,7 @@ package cn.kim.controller.manager;
 import cn.kim.common.annotation.SystemControllerLog;
 import cn.kim.common.annotation.Token;
 import cn.kim.common.annotation.Validate;
+import cn.kim.common.attr.MobileBottomMenu;
 import cn.kim.common.attr.WebConfig;
 import cn.kim.common.eu.UseType;
 import cn.kim.entity.ResultState;
@@ -137,5 +138,47 @@ public class AllocationController extends BaseController {
             return resultError(e);
         }
         return resultSuccess("网站配置修改成功!", "修改网站配置为:" + toString(mapParam));
+    }
+
+    /****************************   前端底部菜单配置    *****************************/
+
+    @GetMapping("/mobileBottomMenu")
+    @RequiresPermissions("SYSTEM:ALLOCATION_MOBILE_BOTTOM_MENU")
+    @SystemControllerLog(useType = UseType.USE, event = "查看前端底部菜单")
+    @Token(save = true)
+    public String mobileBottomMenu(Model model) throws Exception {
+        //青春打卡
+        model.addAttribute("MOBILE_BOTTOM_MENU_CLOCKIN", AllocationUtil.get("MOBILE_BOTTOM_MENU_CLOCKIN"));
+        //活动
+        model.addAttribute("MOBILE_BOTTOM_MENU_ACTIVITY", AllocationUtil.get("MOBILE_BOTTOM_MENU_ACTIVITY"));
+        //排行榜
+        model.addAttribute("MOBILE_BOTTOM_MENU_RANK", AllocationUtil.get("MOBILE_BOTTOM_MENU_RANK"));
+        //成就墙
+        model.addAttribute("MOBILE_BOTTOM_MENU_ACHIEVEMENT", AllocationUtil.get("MOBILE_BOTTOM_MENU_ACHIEVEMENT"));
+        //个人中心
+        model.addAttribute("MOBILE_BOTTOM_MENU_MY", AllocationUtil.get("MOBILE_BOTTOM_MENU_MY"));
+
+        return "admin/system/allocation/mobile/bottomMenu";
+    }
+
+    @PutMapping("/mobileBottomMenu")
+    @RequiresPermissions("SYSTEM:ALLOCATION_MOBILE_BOTTOM_MENU_SAVE")
+    @SystemControllerLog(useType = UseType.USE, event = "修改前端底部菜单")
+    @Token(remove = true)
+    @Validate("SYS_ALLOCATION")
+    @ResponseBody
+    public ResultState mobileBottomMenuUpdate(@RequestParam Map<String, Object> mapParam) throws Exception {
+        try {
+            AllocationUtil.put("MOBILE_BOTTOM_MENU_CLOCKIN", mapParam.get("MOBILE_BOTTOM_MENU_CLOCKIN"));
+            AllocationUtil.put("MOBILE_BOTTOM_MENU_ACTIVITY", mapParam.get("MOBILE_BOTTOM_MENU_ACTIVITY"));
+            AllocationUtil.put("MOBILE_BOTTOM_MENU_RANK", mapParam.get("MOBILE_BOTTOM_MENU_RANK"));
+            AllocationUtil.put("MOBILE_BOTTOM_MENU_ACHIEVEMENT", mapParam.get("MOBILE_BOTTOM_MENU_ACHIEVEMENT"));
+            AllocationUtil.put("MOBILE_BOTTOM_MENU_MY", unescapeHtml4(mapParam.get("MOBILE_BOTTOM_MENU_MY")));
+            //刷新参数
+            MobileBottomMenu.init();
+        } catch (Exception e) {
+            return resultError(e);
+        }
+        return resultSuccess("前端底部菜单成功!", "修改前端底部菜单为:" + toString(mapParam));
     }
 }

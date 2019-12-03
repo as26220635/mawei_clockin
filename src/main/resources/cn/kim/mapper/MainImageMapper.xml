@@ -161,4 +161,27 @@
     <delete id="deleteMainImageArea" parameterType="java.util.Map">
 		DELETE FROM BUS_MAIN_IMAGE_AREA WHERE ID = #{ID}
 	</delete>
+
+    <!--查询成就墙最顶级父类-->
+    <select id="selectMainImageTopIdByChildrenId" parameterType="java.util.Map" resultType="java.lang.String">
+        SELECT
+        T2.ID
+        FROM
+        (
+        SELECT
+        @R AS _ID,
+        ( SELECT @R := BMI_PARENTID FROM BUS_MAIN_IMAGE WHERE ID = _ID ) AS BMI_PARENTID,
+        @L := @L + 1 AS LVL
+        FROM
+        ( SELECT @R := #{BMI_ID}, @L := 0 ) VARS,
+        BUS_MAIN_IMAGE H
+        WHERE
+        @R != 0
+        ) T1
+        JOIN BUS_MAIN_IMAGE T2 ON T1._ID = T2.ID
+        WHERE
+        T2.BMI_PARENTID = 0
+        ORDER BY
+        T1.LVL DESC
+    </select>
 </mapper>

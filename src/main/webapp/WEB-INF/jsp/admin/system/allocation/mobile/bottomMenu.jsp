@@ -24,34 +24,36 @@
                                 <form id="addAndEditForm">
                                     <input type="hidden" name="${SUBMIT_TOKEN_NAME}" value="${token}">
                                     <div class="form-group has-feedback">
-                                        <label>头标题:</label>
-                                        <input type="text"
-                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WEBCONFIG_HEAD_TITLE")}
-                                               value="${WEBCONFIG_HEAD_TITLE}">
+                                        <label>青春打卡:</label>
+                                        <s:combobox sdtCode="SYS_YES_NO"
+                                                    custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_BOTTOM_MENU_CLOCKIN")}'
+                                                    value="${MOBILE_BOTTOM_MENU_CLOCKIN}" defaultValue="1"></s:combobox>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <label>登录标题:</label>
-                                        <input type="text"
-                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WEBCONFIG_LOGIN_TITLE")}
-                                               value="${WEBCONFIG_LOGIN_TITLE}">
+                                        <label>活动:</label>
+                                        <s:combobox sdtCode="SYS_YES_NO"
+                                                    custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_BOTTOM_MENU_ACTIVITY")}'
+                                                    value="${MOBILE_BOTTOM_MENU_ACTIVITY}"
+                                                    defaultValue="1"></s:combobox>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <label>后台菜单标题:</label>
-                                        <input type="text"
-                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WEBCONFIG_MENU_TITLE")}
-                                               value="${WEBCONFIG_MENU_TITLE}">
+                                        <label>排行榜:</label>
+                                        <s:combobox sdtCode="SYS_YES_NO"
+                                                    custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_BOTTOM_MENU_RANK")}'
+                                                    value="${MOBILE_BOTTOM_MENU_RANK}" defaultValue="1"></s:combobox>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <label>后台菜单小标题:</label>
-                                        <input type="text"
-                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WEBCONFIG_MENU_SMALL_TITLE")}
-                                               value="${WEBCONFIG_MENU_SMALL_TITLE}">
+                                        <label>成就墙:</label>
+                                        <s:combobox sdtCode="SYS_YES_NO"
+                                                    custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_BOTTOM_MENU_ACHIEVEMENT")}'
+                                                    value="${MOBILE_BOTTOM_MENU_ACHIEVEMENT}"
+                                                    defaultValue="1"></s:combobox>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <label>文件服务器地址:</label>
-                                        <input type="text"
-                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WEBCONFIG_FILE_SERVER_URL")}
-                                               value="${WEBCONFIG_FILE_SERVER_URL}">
+                                        <label>个人中心:</label>
+                                        <s:combobox sdtCode="SYS_YES_NO"
+                                                    custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_BOTTOM_MENU_MY")}'
+                                                    value="${MOBILE_BOTTOM_MENU_MY}" defaultValue="1"></s:combobox>
                                     </div>
                                 </form>
                             </div>
@@ -65,7 +67,7 @@
 
 
 <script>
-    editMenuTitle('网站配置');
+    editMenuTitle('前端底部菜单管理');
     //保存
     $('#save').click(function () {
         var $form = $('#addAndEditForm');
@@ -76,7 +78,7 @@
         }
         var params = packFormParams($form);
 
-        ajax.put('${BASE_URL}${Url.WEBCONFIG_BASE_URL}', params, function (data) {
+        ajax.put('${BASE_URL}${Url.MOBILE_BOTTOM_MENU_BASE_URL}', params, function (data) {
             ajaxReturn.data(data, null, null, null);
         })
     });

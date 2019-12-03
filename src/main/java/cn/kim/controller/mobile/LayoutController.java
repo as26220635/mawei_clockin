@@ -2,6 +2,7 @@ package cn.kim.controller.mobile;
 
 import cn.kim.common.annotation.WechaNotEmptyLogin;
 import cn.kim.common.attr.MagicValue;
+import cn.kim.common.attr.MobileBottomMenu;
 import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.ResultState;
 import cn.kim.util.HttpUtil;
@@ -31,6 +32,8 @@ public class LayoutController extends BaseController {
     @GetMapping("/mLayout")
     @WechaNotEmptyLogin
     public String layout(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
+        //底部菜单配置
+        model.addAttribute("bottomMenuConfig", MobileBottomMenu.getConfig());
         return "mobile/common/main";
     }
 

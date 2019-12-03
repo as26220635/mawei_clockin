@@ -151,10 +151,25 @@ public class TextUtil {
     }
 
     public static String toString(List<String> list) {
+        return toString(list, false);
+    }
+
+    /**
+     * 是否要冒号
+     *
+     * @param list
+     * @param isColon
+     * @return
+     */
+    public static String toString(List<String> list, boolean isColon) {
         StringBuilder stringBuilder = new StringBuilder();
-        list.forEach(role -> {
-            stringBuilder.append(role + Attribute.SERVICE_SPLIT);
-        });
+        String comma = "";
+        if (isColon) {
+            comma = "'";
+        }
+        for (String s : list) {
+            stringBuilder.append(comma + s + comma + Attribute.SERVICE_SPLIT);
+        }
         return clearFirstAndLastComma(stringBuilder.toString());
     }
 
@@ -495,18 +510,20 @@ public class TextUtil {
 
     /**
      * 连接参数
+     *
      * @param symbol
      * @param params
      * @return
      */
-    public static String joinValue(String symbol,String... params) {
-        StringBuilder builder =new StringBuilder();
+    public static String joinValue(String symbol, String... params) {
+        StringBuilder builder = new StringBuilder();
         for (String param : params) {
-            builder.append(param+symbol);
+            builder.append(param + symbol);
         }
 
         return interceptSymbol(builder.toString(), symbol);
     }
+
     /**
      * BASE64加密
      *

@@ -7,6 +7,7 @@ import cn.kim.common.eu.UseType;
 import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.ResultState;
 import cn.kim.entity.Tree;
+import cn.kim.service.AchievementService;
 import cn.kim.service.MainImageService;
 import cn.kim.service.MenuService;
 import cn.kim.util.TextUtil;
@@ -29,6 +30,9 @@ import java.util.Map;
 @Controller
 @RequestMapping("/admin/mainImage")
 public class MainImageController extends BaseController {
+
+    @Autowired
+    private AchievementService achievementService;
 
     @Autowired
     private MainImageService mainImageService;
@@ -118,6 +122,7 @@ public class MainImageController extends BaseController {
      */
     @GetMapping("/area")
     @RequiresPermissions("MOBILE:MAINIMAGE_AREA")
+    @Token(save = true)
     public String updateAreaHtml(Model model, @RequestParam Map<String, Object> mapParam) throws Exception {
         Map<String, Object> map = Maps.newHashMapWithExpectedSize(1);
         String SM_ID = toString(mapParam.get("SM_ID"));
@@ -155,6 +160,7 @@ public class MainImageController extends BaseController {
     @PutMapping("/area/update")
     @RequiresPermissions("MOBILE:MAINIMAGE_AREA_SAVE")
     @SystemControllerLog(useType = UseType.USE, event = "主页图片区域管理")
+    @Token(remove = true)
     @Validate(value = "BUS_MAINIMAGE")
     @ResponseBody
     public ResultState updateArea(@RequestParam Map<String, Object> mapParam) throws Exception {
@@ -162,4 +168,36 @@ public class MainImageController extends BaseController {
         return resultState(resultMap);
     }
 
+    /**
+     * 拿到成就墙列表
+     *
+     * @param BMI_ID
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/achievementTreeData")
+    @RequiresPermissions("MOBILE:MAINIMAGE_ACHIEVEMENT")
+    @ResponseBody
+    public List<Tree> getMenuButtonTreeData(String BMI_ID) throws Exception {
+        Map<String, Object> mapParam = Maps.newHashMapWithExpectedSize(1);
+        mapParam.put("BMI_ID", BMI_ID);
+        List<Tree> treeList = achievementService.selectAchievementTree(mapParam);
+        return treeList;
+    }
+
+    /**
+     * 更新按钮权限
+     *
+     * @param mapParam
+     * @return
+     * @throws Exception
+     */
+    @PutMapping("/updateAchievementMainImage")
+    @RequiresPermissions("MOBILE:MAINIMAGE_ACHIEVEMENT")
+    @SystemControllerLog(useType = UseType.USE, event = "设置主页图片成就墙")
+    @ResponseBody
+    public ResultState updateMenuButton(@RequestParam Map<String, Object> mapParam) throws Exception {
+        Map<String, Object> resultMap = achievementService.updateAchievementMainImage(mapParam);
+        return resultState(resultMap);
+    }
 }

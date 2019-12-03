@@ -13,8 +13,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-<%--    <meta http-equiv="Access-Control-Allow-Origin" content="*" />--%>
-<%--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--%>
+    <%--    <meta http-equiv="Access-Control-Allow-Origin" content="*" />--%>
+    <%--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--%>
     <title>${WEBCONFIG_HEAD_TITLE}</title>
     <%@ include file="/WEB-INF/jsp/mobile/common/common_css.jsp" %>
     <style>
@@ -42,24 +42,38 @@
 
             </div>
             <div class="weui-tabbar">
-                <a id="clockinTabbar" href="${BASE_URL}clockin" class="weui-tabbar__item weui-bar__item_on"
-                   data-pjax="#${CONTAINER}">
-                    <img src="${BASE_URL}resources/assets/images/main/clockin-min.png" alt="" class="weui-tabbar__icon">
-                </a>
-                <a id="activityTabbar" href="${BASE_URL}activity" class="weui-tabbar__item" data-pjax="#${CONTAINER}">
-                    <img src="${BASE_URL}resources/assets/images/main/activity-min.png" alt="" class="weui-tabbar__icon">
-                </a>
-                <a id="rankTabbar" href="${BASE_URL}rank" class="weui-tabbar__item" data-pjax="#${CONTAINER}">
-                    <img src="${BASE_URL}resources/assets/images/main/rank-min.png" alt="" class="weui-tabbar__icon">
-                </a>
-                <a id="achievementTabbar" href="${BASE_URL}achievement" class="weui-tabbar__item"
-                   data-pjax="#${CONTAINER}">
-                    <img src="${BASE_URL}resources/assets/images/main/achievement-min.png" alt=""
-                         class="weui-tabbar__icon">
-                </a>
-                <a id="myTabbar" href="${BASE_URL}my" class="weui-tabbar__item" data-pjax="#${CONTAINER}">
-                    <img src="${BASE_URL}resources/assets/images/main/my-min.png" alt="" class="weui-tabbar__icon">
-                </a>
+                <c:if test="${bottomMenuConfig.MOBILE_BOTTOM_MENU_CLOCKIN ne Attribute.STATUS_ERROR}">
+                    <a id="clockinTabbar" href="${BASE_URL}clockin" class="weui-tabbar__item weui-bar__item_on"
+                       data-pjax="#${CONTAINER}">
+                        <img src="${BASE_URL}resources/assets/images/main/clockin-min.png" alt=""
+                             class="weui-tabbar__icon">
+                    </a>
+                </c:if>
+                <c:if test="${bottomMenuConfig.MOBILE_BOTTOM_MENU_ACTIVITY ne Attribute.STATUS_ERROR}">
+                    <a id="activityTabbar" href="${BASE_URL}activity" class="weui-tabbar__item"
+                       data-pjax="#${CONTAINER}">
+                        <img src="${BASE_URL}resources/assets/images/main/activity-min.png" alt=""
+                             class="weui-tabbar__icon">
+                    </a>
+                </c:if>
+                <c:if test="${bottomMenuConfig.MOBILE_BOTTOM_MENU_RANK ne Attribute.STATUS_ERROR}">
+                    <a id="rankTabbar" href="${BASE_URL}rank" class="weui-tabbar__item" data-pjax="#${CONTAINER}">
+                        <img src="${BASE_URL}resources/assets/images/main/rank-min.png" alt=""
+                             class="weui-tabbar__icon">
+                    </a>
+                </c:if>
+                <c:if test="${bottomMenuConfig.MOBILE_BOTTOM_MENU_ACHIEVEMENT ne Attribute.STATUS_ERROR}">
+                    <a id="achievementTabbar" href="${BASE_URL}achievement" class="weui-tabbar__item"
+                       data-pjax="#${CONTAINER}">
+                        <img src="${BASE_URL}resources/assets/images/main/achievement-min.png" alt=""
+                             class="weui-tabbar__icon">
+                    </a>
+                </c:if>
+                <c:if test="${bottomMenuConfig.MOBILE_BOTTOM_MENU_MY ne Attribute.STATUS_ERROR}">
+                    <a id="myTabbar" href="${BASE_URL}my" class="weui-tabbar__item" data-pjax="#${CONTAINER}">
+                        <img src="${BASE_URL}resources/assets/images/main/my-min.png" alt="" class="weui-tabbar__icon">
+                    </a>
+                </c:if>
             </div>
         </div>
     </div>

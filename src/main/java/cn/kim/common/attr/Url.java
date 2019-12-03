@@ -52,6 +52,10 @@ public class Url {
      */
     public static final String WEBCONFIG_BASE_URL = ALLOCATION_BASE_URL + "webConfig";
     /**
+     * 前端底部菜单管理
+     */
+    public static final String MOBILE_BOTTOM_MENU_BASE_URL = ALLOCATION_BASE_URL + "mobileBottomMenu";
+    /**
      * 授权
      */
     public static final String AUTHORIZATION_BASE_URL = MANAGER_URL + "authorization/";
@@ -277,6 +281,11 @@ public class Url {
     public static final String MAINIMAGE_UPDATE_URL = MAINIMAGE_BASE_URL + "update";
     public static final String MAINIMAGE_SWITCHSTATUS_URL = MAINIMAGE_BASE_URL + "switchStatus";
     public static final String MAINIMAGE_DELETE_URL = MAINIMAGE_BASE_URL + "delete";
+    /**
+     * 主页图片关联成就墙
+     */
+    public static final String MAINIMAGE_TREE_DATA_URL = MAINIMAGE_BASE_URL + "achievementTreeData";
+    public static final String MAINIMAGE_TREE_UPDATE_URL = MAINIMAGE_BASE_URL + "updateAchievementMainImage";
     /**
      * 主页图片区域管理
      */

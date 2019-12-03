@@ -91,6 +91,35 @@
         );
     });
 
+    //成就墙
+    $treeGridTable.find('tbody').on('click', '#achievement', function () {
+        var data = getRowData(this);
+        var id = data.ID;
+
+        treeBox.init({
+            title: '选择成就墙',
+            url:'${BASE_URL}${Url.MAINIMAGE_TREE_DATA_URL}',
+            modelSize: model.size.LG,
+            searchParams: {
+                BMI_ID: id
+            },
+            isConfirm: true,
+            confirm: function ($model, nodes) {
+                var achievementIds = "";
+                for (var i = 0; i < nodes.length; i++) {
+                    achievementIds += (nodes[i].id + SERVICE_SPLIT);
+                }
+                var params = {};
+                params.ID = id;
+                params.achievementIds = achievementIds;
+
+                ajax.put('${BASE_URL}${Url.MAINIMAGE_TREE_UPDATE_URL}', params, function (data) {
+                    ajaxReturn.tree(data, $model, null, null);
+                })
+            }
+        });
+    });
+
     //删除
     $treeGridTable.find('tbody').on('click', '#del', function () {
         var data = getRowData(this);
