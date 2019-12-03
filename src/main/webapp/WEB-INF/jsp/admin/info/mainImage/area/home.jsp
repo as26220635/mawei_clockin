@@ -70,7 +70,6 @@
     var deleteFun;
     //列表显示
     var objTable = $('#areaTable');
-    console.log(typeof [])
     var $dataGrid = tableView.init({
         //table对象
         object: objTable,
@@ -125,6 +124,9 @@
                 }
             },
         ],
+        endCallback: function () {
+            onEditClick();
+        },
     });
 
     function onEditClick() {
@@ -132,7 +134,7 @@
         objTable.find('tbody').unbind('click').on('click', '#edit', function () {
             var $this = $(this);
             var data = tableView.rowData($dataGrid, $this);
-            var id = data.ID;
+            var id = data.BMI_RELATIONID;
 
             ajax.getHtml('${BASE_URL}${Url.MAINIMAGE_UPDATE_URL}/' + id, {IS_AREA: 1}, function (html) {
                     model.show({
@@ -240,30 +242,39 @@
 </script>
 <script>
     //保存
-    function save(){
-        var $form = $('#addAndEditForm');
-        //验证
-        if (!validator.formValidate($form)) {
-            demo.showNotify(ALERT_WARNING, VALIDATE_FAIL);
-            return;
-        }
-        var updateAreaList =[];
-        var data = $dataGrid.data();
-        for (let i = 0; i < data.length; i++) {
-            updateAreaList[i] = data[i];
-        }
-        var params = packFormParams($form);
-        params['updateAreaList'] = JSON.stringify(updateAreaList);
-        params['BMI_AREAHEIGHT'] =$('#photo').height();
-        params['BMI_AREAWIDTH'] =$('#photo').width();
-        console.log(params)
-        ajax.put('${BASE_URL}${Url.MAINIMAGE_AREA_UPDATE_URL}', params, function (data) {
-            ajaxReturn.data(data, null, null, null, {
-                success: function () {
-                    refresh();
+    function save() {
+        model.show({
+            title: '是否保存',
+            content: '保存后无法还原之前配置,请确认!',
+            class: model.class.WARNING,
+            footerModel: model.footerModel.ADMIN,
+            isConfirm: true,
+            confirm: function ($model) {
+                var $form = $('#addAndEditForm');
+                //验证
+                if (!validator.formValidate($form)) {
+                    demo.showNotify(ALERT_WARNING, VALIDATE_FAIL);
+                    return;
                 }
-            });
-        })
+                var updateAreaList = [];
+                var data = $dataGrid.data();
+                for (let i = 0; i < data.length; i++) {
+                    updateAreaList[i] = data[i];
+                }
+                var params = packFormParams($form);
+                params['updateAreaList'] = JSON.stringify(updateAreaList);
+                params['BMI_AREAHEIGHT'] = $('#photo').height();
+                params['BMI_AREAWIDTH'] = $('#photo').width();
+
+                ajax.put('${BASE_URL}${Url.MAINIMAGE_AREA_UPDATE_URL}', params, function (data) {
+                    ajaxReturn.data(data, $model, null, null, {
+                        success: function () {
+                            refresh();
+                        }
+                    });
+                });
+            }
+        });
     }
 
     validator.init({
