@@ -78,6 +78,8 @@ public class LogAspect extends BaseData {
         String event = systemControllerLog.event();
         //日志类型
         int logType = systemControllerLog.useType().getType();
+        //是否是导出
+        boolean isSuccess = systemControllerLog.isSuccess();
         //是否是配置列表
         boolean isDataGrid = systemControllerLog.isDataGrid();
         //是否是导出
@@ -86,7 +88,7 @@ public class LogAspect extends BaseData {
         String message = "";
 
         //是否成功
-        int code = 0;
+        int code = isSuccess ? Attribute.STATUS_SUCCESS : Attribute.STATUS_ERROR;
 
         if (isDataGrid) {
             code = Attribute.STATUS_SUCCESS;

@@ -31,6 +31,11 @@ public class WebConfig {
      * 文件服务器地址
      */
     public static String WEBCONFIG_FILE_SERVER_URL;
+    /**
+     * 百度地图（AK）
+     */
+    public static String WEBCONFIG_BAIDU_MAP_AK;
+
 
     /**
      * 初始化
@@ -41,5 +46,6 @@ public class WebConfig {
         WEBCONFIG_MENU_TITLE = TextUtil.toString(AllocationUtil.get("WEBCONFIG_MENU_TITLE"));
         WEBCONFIG_MENU_SMALL_TITLE = TextUtil.toString(AllocationUtil.get("WEBCONFIG_MENU_SMALL_TITLE"));
         WEBCONFIG_FILE_SERVER_URL = TextUtil.toString(AllocationUtil.get("WEBCONFIG_FILE_SERVER_URL"));
+        WEBCONFIG_BAIDU_MAP_AK = TextUtil.toString(AllocationUtil.get("WEBCONFIG_BAIDU_MAP_AK"));
     }
 }

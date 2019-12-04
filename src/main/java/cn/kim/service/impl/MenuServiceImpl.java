@@ -78,6 +78,19 @@ public class MenuServiceImpl extends BaseServiceImpl implements MenuService {
     }
 
     /**
+     * 查询父菜单
+     *
+     * @param id
+     * @return
+     */
+    @Override
+    public Map<String, Object> queryParentMenuById(String id) {
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
+        paramMap.put("ID", queryMenuById(id).get("SM_PARENTID"));
+        return baseDao.selectOne(NameSpace.MenuMapper, "selectMenu", paramMap);
+    }
+
+    /**
      * 插入或菜单
      *
      * @param mapParam

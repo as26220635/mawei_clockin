@@ -7,6 +7,7 @@ import cn.kim.common.annotation.WechaNotEmptyLogin;
 import cn.kim.common.attr.Attribute;
 import cn.kim.common.attr.MagicValue;
 import cn.kim.common.attr.TableName;
+import cn.kim.common.attr.WebConfig;
 import cn.kim.common.eu.UseType;
 import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.ResultState;
@@ -59,7 +60,7 @@ public class MIndexController extends BaseController {
 
         idEncrypt(searchList);
 
-        ResultState resultState =new ResultState();
+        ResultState resultState = new ResultState();
         resultState.setCode(STATUS_SUCCESS);
         resultState.setData(searchList);
         return resultState;
@@ -128,6 +129,7 @@ public class MIndexController extends BaseController {
         model.addAttribute("achievementList", list);
         model.addAttribute("mainImage", mainImage);
         model.addAttribute("areaList", areaList);
+        model.addAttribute("wechatUser", getWechatUser());
         setWechatUserToModel(model);
         return "mobile/clockin";
     }

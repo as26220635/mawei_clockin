@@ -81,6 +81,13 @@ public class LoginController extends BaseController {
 
     /**********************     防止csrf攻击    ********************/
 
+    @GetMapping("/admin")
+    public ModelAndView admin(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:" + ManagerController.MANAGER_URL);
+        return modelAndView;
+    }
+
     @GetMapping("/login")
     @CsrfToken(create = true)
     public ModelAndView login(HttpServletRequest request) {
@@ -94,13 +101,11 @@ public class LoginController extends BaseController {
         }
 
         if (AuthcUtil.getCurrent().isAuthenticated()) {
-            if (request.getRequestURI().contains(MyHomeController.HOME_URL)) {
-                modelAndView.setViewName("redirect:" + MyHomeController.HOME_URL);
-            } else if (request.getRequestURI().contains(ManagerController.MANAGER_URL)) {
-                modelAndView.setViewName("redirect:" + ManagerController.MANAGER_URL);
-            } else {
-                modelAndView.setViewName("redirect:/index");
-            }
+//            if (request.getRequestURI().contains(ManagerController.MANAGER_URL)) {
+            modelAndView.setViewName("redirect:" + ManagerController.MANAGER_URL);
+//            } else {
+//                modelAndView.setViewName("redirect:/index");
+//            }
         }
 
         return modelAndView;

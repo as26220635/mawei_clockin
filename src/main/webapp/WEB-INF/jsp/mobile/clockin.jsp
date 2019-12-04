@@ -60,6 +60,7 @@
 
     #clockinAddressArea {
         margin-top: 50px;
+        pointer-events: none;
     }
 
     #clockinAddress {
@@ -314,6 +315,8 @@
 </script>
 <script>
     <%--地图定位--%>
+    var map;
+    var geolocation;
     //打卡点坐标
     var geolocaltionPoint = {
         <c:forEach items="${achievementList}" var="achievement">
@@ -323,12 +326,14 @@
     //打卡点圆
     var circleArray = {};
     var isLoading = false;
+    //位置
+    var marker;
 
     //异步加载地图
     function loadJScript() {
         var script = document.createElement("script");
         script.type = "text/javascript";
-        script.src = "https://api.map.baidu.com/api?v=3.0&ak=o9eGesSQqcQGkKaiqu1ZHAg9gkF0ShnC&coord=bd09ll&callback=initMap";
+        script.src = "https://api.map.baidu.com/api?v=3.0&ak=${WEBCONFIG_BAIDU_MAP_AK}&callback=initMap";
         document.body.appendChild(script);
     }
 
@@ -345,39 +350,51 @@
         function BDmap(callback) {
             // 百度地图API功能
             // new一个百度地图
-            var map = new BMap.Map('map', {enableMapClick: false});
+            map = new BMap.Map('map', {enableMapClick: false});
+            map.setMapStyle({style:'googlelite'});
             map.enableInertialDragging();
             map.enableContinuousZoom();
             //禁止拖拽
-            map.disableDragging();
+            // map.disableDragging();
             //禁止缩放
-            map.disableScrollWheelZoom();
+            // map.disableScrollWheelZoom();
+            //禁止双击放大
+            // map.disableDoubleClickZoom();
             var point = new BMap.Point(116.331398, 39.897445);
-            map.centerAndZoom(point, 15);
+            map.centerAndZoom(point, 17);
+
+            //去掉图片点击事件
+            map.addEventListener("tilesloaded", function () {
+                $('.anchorBL a').attr("disabled",true).css("pointer-events","none");
+            });
 
             //画圆
             for (let i in geolocaltionPoint) {
                 var mPoint = new BMap.Point(geolocaltionPoint[i][0], geolocaltionPoint[i][1]);
                 var circle = new BMap.Circle(mPoint, geolocaltionPoint[i][2], {
-                    fillColor: "blue",
+                    fillColor: "#99e4ff",
+                    strokeColor: '#2C9FEB',
+                    strokeOpacity: 1,
                     strokeWeight: 1,
                     fillOpacity: 0.3,
-                    strokeOpacity: 0.3,
-                    // enableEditing: true
                 });
                 circleArray[i] = circle;
                 map.addOverlay(circle);
             }
 
-            var geolocation = new BMap.Geolocation();
+            geolocation = new BMap.Geolocation();
             geolocation.getCurrentPosition(function (r) {
                 if (this.getStatus() == BMAP_STATUS_SUCCESS) {
                     //var mk = new BMap.Marker(r.point);
                     //map.addOverlay(mk);
-                    map.panTo(r.point);  // panTo()方法将让地图平滑移动至新中心点
-                    map.centerAndZoom(r.point, 15);                                // 定位中心点，放大倍数
+                    // panTo()方法将让地图平滑移动至新中心点
+                    map.panTo(r.point);
+                    // 定位中心点，放大倍数
+                    map.centerAndZoom(r.point, map.getZoom());
+                    checkPoint(r.point);
                 } else {
-                    console.log('failed' + this.getStatus());
+                    switchClockinBtn(3);
+                    $.toast("获取定位失败", "forbidden");
                 }
             }, {enableHighAccuracy: true});
 
@@ -405,18 +422,9 @@
             map.addControl(geolocationControl);
 
             // 添加地图移动事件
-            map.addEventListener('moving', function () {
-                checkPoint(map.getCenter());
-            });
-
-            /*  用户坐标转换为具体位置 --start */
-            function checkPoint(pt) {
-                var geoc = new BMap.Geocoder();
-                var point = new BMap.Point(pt.lng, pt.lat);
-                geoc.getLocation(pt, function (rs) {
-                    setAddress(rs.addressComponents, pt.lng, pt.lat)
-                })
-            }
+            // map.addEventListener('moving', function () {
+            //     checkPoint(map.getCenter());
+            // });
 
             /* GPS坐标转化为百度坐标 --start */
             function transformPoint(Point, callback) {
@@ -432,11 +440,18 @@
                     }
                 });
             }
-
             /* 坐标转化 --end */
-
         }
+    }
 
+    /*  用户坐标转换为具体位置*/
+    function checkPoint(pt) {
+        var geoc = new BMap.Geocoder();
+        var point = new BMap.Point(pt.lng, pt.lat);
+        geoc.getLocation(pt, function (rs) {
+            setAddress(rs.addressComponents, pt.lng, pt.lat)
+        })
+        addMarker(pt.lng, pt.lat);
     }
 
     function setAddress(addComp, lng, lat) {
@@ -454,6 +469,14 @@
         } else {
             switchClockinBtn(2);
         }
+    }
+
+    function addMarker(lng, lat) {
+        map.removeOverlay(marker);
+        var mPoint = new BMap.Point(lng, lat);
+        marker = new BMap.Marker(mPoint);
+        map.addOverlay(marker);
+        marker.setAnimation(BMAP_ANIMATION_BOUNCE);
     }
 
     function isCheckCircleInside(lng, lat) {
@@ -503,6 +526,9 @@
         if (val == 1) {
             $('#clockin').removeClass('weui-btn_loading');
             $('#clockin').text('打卡');
+        } else if (val == 3) {
+            $('#clockin').removeClass('weui-btn_loading');
+            $('#clockin').text('定位失败');
         } else {
             $('#clockin').addClass('weui-btn_loading');
             $('#clockin').text('不在打卡范围内');
@@ -530,10 +556,13 @@
      */
     function getPosition() {
         setTimeout(function () {
-            if (isLoading) {
-                $('.BMap_geolocationIcon').click();
-                isLoading = false;
-            }
+            geolocation.getCurrentPosition(function (r) {
+                if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                    checkPoint(r.point);
+                } else {
+                    switchClockinBtn(3);
+                }
+            }, {enableHighAccuracy: true})
             getPosition();
         }, 5000);
     }

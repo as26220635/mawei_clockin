@@ -10,6 +10,7 @@ import cn.kim.remote.LogRemoteInterfaceAsync;
 import cn.kim.service.WechatService;
 import cn.kim.service.WechatService;
 import cn.kim.util.DateUtil;
+import cn.kim.util.FileUtil;
 import cn.kim.util.LogUtil;
 import cn.kim.util.TextUtil;
 import com.alibaba.fastjson.JSON;
@@ -152,5 +153,13 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
         resultMap.put(MagicValue.STATUS, status);
         resultMap.put(MagicValue.DESC, desc);
         return resultMap;
+    }
+
+    @Override
+    public String selectContactServiceFile() {
+        Map<String, Object> file = baseDao.selectOne(NameSpace.WechatMapper, "selectContactServiceFile");
+        //文件路径加密
+        FileUtil.filePathTobase64(file, "IMG_PATH");
+        return isEmpty(file) ? "" : toString(file.get("IMG_PATH"));
     }
 }

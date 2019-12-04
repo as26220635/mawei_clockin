@@ -49,6 +49,14 @@ public interface MenuService extends BaseService {
     Map<String, Object> queryMenuById(String id);
 
     /**
+     * 查询父菜单
+     *
+     * @param id
+     * @return
+     */
+    Map<String, Object> queryParentMenuById(String id);
+
+    /**
      * 插入或菜单
      *
      * @param mapParam

@@ -1,5 +1,6 @@
 package cn.kim.util;
 
+import cn.kim.common.annotation.Validate;
 import cn.kim.common.attr.Attribute;
 import cn.kim.common.attr.AttributePath;
 import cn.kim.common.attr.MagicValue;
@@ -50,7 +51,7 @@ public class CommonUtil {
     /**
      * 不加密字段
      */
-    public static Set<String> NO_ENCRYPT_FIELDS = Sets.newHashSet("SCC_WIDTH", "SB_BUTTONID", "BS_ID_CARD", "BAF_AID_TYPE");
+    public static Set<String> NO_ENCRYPT_FIELDS = Sets.newHashSet("SCC_WIDTH", "SB_BUTTONID", "WEBCONFIG_BAIDU_MAP_AK");
 
     @Autowired
     private MenuService menuService;
@@ -584,7 +585,7 @@ public class CommonUtil {
                         }
                     }
                 }
-            }  else if (obj instanceof DataTablesView) {
+            } else if (obj instanceof DataTablesView) {
                 DataTablesView<?> datatablesView = (DataTablesView<?>) obj;
                 if (datatablesView.isEncrypt()) {
                     for (Object object : datatablesView.getData()) {
@@ -980,6 +981,11 @@ public class CommonUtil {
                 id = TextUtil.toString(idEncrypt(id));
                 smUrl = smUrl.endsWith("/") ? smUrl + id : smUrl + "/" + id;
             } catch (InvalidKeyException e) {
+            }
+        } else {
+            //连接IS_SWITCH
+            if (!ValidateUtil.isEmpty(smUrl)) {
+                smUrl = getUrlParamsJoin(smUrl, "&IS_SWITCH=0&");
             }
         }
         //额外参数

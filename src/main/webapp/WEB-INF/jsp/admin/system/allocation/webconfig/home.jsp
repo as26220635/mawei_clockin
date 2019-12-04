@@ -53,6 +53,12 @@
                                                class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WEBCONFIG_FILE_SERVER_URL")}
                                                value="${WEBCONFIG_FILE_SERVER_URL}">
                                     </div>
+                                    <div class="form-group has-feedback">
+                                        <label>百度地图（AK）:</label>
+                                        <input type="text"
+                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WEBCONFIG_BAIDU_MAP_AK")}
+                                               value="${WEBCONFIG_BAIDU_MAP_AK}">
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -62,7 +68,6 @@
         </div>
     </div>
 </section>
-
 
 <script>
     editMenuTitle('网站配置');

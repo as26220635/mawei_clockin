@@ -34,7 +34,7 @@ public class AllocationController extends BaseController {
 
     @GetMapping("/email")
     @RequiresPermissions("SYSTEM:ALLOCATION_EMAIL")
-    @SystemControllerLog(useType = UseType.USE, event = "查看邮箱配置")
+    @SystemControllerLog(useType = UseType.USE, event = "查看邮箱配置", isSuccess = true)
     @Token(save = true)
     public String emailHome(Model model) throws Exception {
         //邮箱登录名
@@ -102,7 +102,7 @@ public class AllocationController extends BaseController {
 
     @GetMapping("/webConfig")
     @RequiresPermissions("SYSTEM:ALLOCATION_WEBCONFIG")
-    @SystemControllerLog(useType = UseType.USE, event = "查看网站配置")
+    @SystemControllerLog(useType = UseType.USE, event = "查看网站配置", isSuccess = true)
     @Token(save = true)
     public String webConfig(Model model) throws Exception {
         //网站头标题
@@ -115,6 +115,8 @@ public class AllocationController extends BaseController {
         model.addAttribute("WEBCONFIG_MENU_SMALL_TITLE", AllocationUtil.get("WEBCONFIG_MENU_SMALL_TITLE"));
         //文件服务器地址
         model.addAttribute("WEBCONFIG_FILE_SERVER_URL", AllocationUtil.get("WEBCONFIG_FILE_SERVER_URL"));
+        //百度地图（AK）
+        model.addAttribute("WEBCONFIG_BAIDU_MAP_AK", AllocationUtil.get("WEBCONFIG_BAIDU_MAP_AK"));
 
         return "admin/system/allocation/webconfig/home";
     }
@@ -132,6 +134,7 @@ public class AllocationController extends BaseController {
             AllocationUtil.put("WEBCONFIG_MENU_TITLE", mapParam.get("WEBCONFIG_MENU_TITLE"));
             AllocationUtil.put("WEBCONFIG_MENU_SMALL_TITLE", mapParam.get("WEBCONFIG_MENU_SMALL_TITLE"));
             AllocationUtil.put("WEBCONFIG_FILE_SERVER_URL", unescapeHtml4(mapParam.get("WEBCONFIG_FILE_SERVER_URL")));
+            AllocationUtil.put("WEBCONFIG_BAIDU_MAP_AK", mapParam.get("WEBCONFIG_BAIDU_MAP_AK"));
             //刷新参数
             WebConfig.init();
         } catch (Exception e) {
@@ -144,7 +147,7 @@ public class AllocationController extends BaseController {
 
     @GetMapping("/mobileBottomMenu")
     @RequiresPermissions("SYSTEM:ALLOCATION_MOBILE_BOTTOM_MENU")
-    @SystemControllerLog(useType = UseType.USE, event = "查看前端底部菜单")
+    @SystemControllerLog(useType = UseType.USE, event = "查看前端底部菜单", isSuccess = true)
     @Token(save = true)
     public String mobileBottomMenu(Model model) throws Exception {
         //青春打卡

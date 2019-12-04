@@ -48,13 +48,26 @@
             <div class="weui-cell__ft">
             </div>
         </a>
-        <a class="weui-cell weui-cell_access" href="javascript:;">
-            <div class="weui-cell__bd">
-                <p>联系客服</p>
-            </div>
-            <div class="weui-cell__ft">
-            </div>
-        </a>
+        <c:choose>
+            <c:when test="${not empty CONTACT_SERVICE_IMG_PATH}">
+                <a class="weui-cell weui-cell_access" href="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${CONTACT_SERVICE_IMG_PATH}">
+                    <div class="weui-cell__bd">
+                        <p>联系客服</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+            </c:when>
+            <c:otherwise>
+                <a class="weui-cell weui-cell_access" href="javascript:;">
+                    <div class="weui-cell__bd">
+                        <p>联系客服</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                    </div>
+                </a>
+            </c:otherwise>
+        </c:choose>
     </div>
 </div>
 <script>

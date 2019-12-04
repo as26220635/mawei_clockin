@@ -29,6 +29,7 @@ public interface WechatService extends BaseService {
 
     /**
      * 查询排名
+     *
      * @param BW_ID
      * @return
      */
@@ -41,4 +42,11 @@ public interface WechatService extends BaseService {
      * @return
      */
     Map<String, Object> changeWechatStatus(Map<String, Object> mapParam);
+
+    /**
+     * 查询联系客服图片
+     *
+     * @return
+     */
+    String selectContactServiceFile();
 }

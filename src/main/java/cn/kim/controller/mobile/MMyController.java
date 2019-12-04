@@ -6,6 +6,7 @@ import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.DataTablesView;
 import cn.kim.entity.WechatUser;
 import cn.kim.service.AchievementService;
+import cn.kim.service.WechatService;
 import cn.kim.util.CommonUtil;
 import cn.kim.util.FileUtil;
 import com.google.common.collect.Lists;
@@ -29,10 +30,14 @@ public class MMyController extends BaseController {
     @Autowired
     private AchievementService achievementService;
 
+    @Autowired
+    private WechatService wechatService;
+
     @GetMapping("/my")
     @WechaNotEmptyLogin
     public String my(Model model) throws Exception{
         model.addAttribute(MagicValue.SESSION_WECHAT_USER, getWechatUser());
+        model.addAttribute("CONTACT_SERVICE_IMG_PATH",wechatService.selectContactServiceFile());
         return "mobile/my";
     }
 

@@ -20,4 +20,7 @@
 <c:set var="CONTAINER" value="container"/>
 <%--URL地址--%>
 <c:set var="BASE_URL" value="${pageContext.request.contextPath}/"/>
+<%--文件服务器地址--%>
 <c:set var="WEBCONFIG_FILE_SERVER_URL" value="${WebConfig.WEBCONFIG_FILE_SERVER_URL}"/>
+<%--百度地图（AK）--%>
+<c:set var="WEBCONFIG_BAIDU_MAP_AK" value="${WebConfig.WEBCONFIG_BAIDU_MAP_AK}"/>

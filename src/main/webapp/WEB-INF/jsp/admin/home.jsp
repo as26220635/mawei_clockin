@@ -13,7 +13,7 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/jsp/common/common_meta.jsp" %>
-    <title>WEBCONFIG_HEAD_TITLE管理系统</title>
+    <title>${WEBCONFIG_HEAD_TITLE}管理系统</title>
     <%@ include file="/WEB-INF/jsp/common/common_css.jsp" %>
     <%@ include file="/WEB-INF/jsp/common/common_js.jsp" %>
     <%--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--%>
@@ -308,10 +308,21 @@
         }
     }
 
+    // 切换菜单
+    $(document).on('pjax:click', function (options) {
+        try {
+            setMenuSetting($(options.target).attr('id').replace(/\//g, '-').replace(/\?/g,"-").replace(/\=/g,"-").replace(/\&/g,"-"));
+        }catch (e) {
+        }
+    })
+
     <%-- 菜单点击 --%>
     $(document).on('ready pjax:end', function (event) {
         try {
-            setMenuSetting(getUrlAnalysis());
+            var IS_SWITCH = getUrlParams('IS_SWITCH');
+            if (IS_SWITCH != 0) {
+                setMenuSetting(getUrlAnalysis());
+            }
         } catch (e) {
         }
         //pjax
@@ -381,8 +392,8 @@
     //解析URL
     function getUrlAnalysis() {
         var wUrl = window.location.pathname;
-        wUrl =  wUrl.substring(BASE_URL.length, wUrl.length).replace(/\//g, '-');
-        if (!wUrl.startsWith('admin-dataGrid-')){
+        wUrl = wUrl.substring(BASE_URL.length, wUrl.length).replace(/\//g, '-').replace(/\?/g,"-").replace(/\=/g,"-");
+        if (!wUrl.startsWith('admin-dataGrid-')) {
             wUrl = 'admin-dataGrid-' + getUrlParams('SM_PARENTID');
         }
         return wUrl;

@@ -2346,6 +2346,8 @@ file = {
                 } else {
                     isSuccess = true;
                     demo.showNotify(ALERT_SUCCESS, '删除文件' + originName + '成功!');
+
+                    $(settings.numberId).text(Number($(settings.numberId).text()) - 1);
                 }
             });
             return isSuccess;

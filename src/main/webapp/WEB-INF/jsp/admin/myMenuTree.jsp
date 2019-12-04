@@ -23,7 +23,7 @@
             </c:if>
                 <%--菜单href不为空--%>
             <c:if test="${menu.SM_URL != null && !menu.SM_URL.equals('')}">
-                <a href="${BASE_URL}${menu.SM_URL}" id="${menu.SM_URL.replace("/","-")}" data-pjax="#${CONTAINER}">
+                <a href="${BASE_URL}${menu.SM_URL}" id="${menu.SM_URL.replaceAll("\\/","-").replaceAll("\\?","-").replaceAll("\\=","-").replaceAll("\\&","-")}" data-pjax="#${CONTAINER}">
                     <i class="${menu.SM_CLASSICON}"></i>
                     <span>${menu.SM_NAME }</span>
                 </a>

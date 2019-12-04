@@ -112,4 +112,8 @@
         )TEMP
         WHERE ID = #{ID}
     </select>
+
+    <select id="selectContactServiceFile" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT  CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATH FROM SYS_FILE SF WHERE SF.SF_TABLE_NAME = 'CONTACT_SERVICE' AND SF.SF_TABLE_ID = 'CONTACT_SERVICE'
+    </select>
 </mapper>

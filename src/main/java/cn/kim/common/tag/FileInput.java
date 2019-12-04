@@ -64,7 +64,7 @@ public class FileInput extends BaseTagSupport {
     /**
      * 标题
      */
-    private String title = "";
+    private String title = "附件";
     /**
      * 字典代码
      */
@@ -146,7 +146,7 @@ public class FileInput extends BaseTagSupport {
 
         builder.append("<div class='box box-solid'>" +
                 "   <div class='box-header with-border'>" +
-                "       <h3 class='box-title'><i class='mdi mdi-file-multiple'></i>附件</h3>" +
+                "       <h3 class='box-title'><i class='mdi mdi-file-multiple'></i>"+title+"</h3>" +
                 "   </div>" +
                 "   <div class='box-body'>");
         builder.append("<div class='box-group' id='" + groupId + "'>");
@@ -279,7 +279,7 @@ public class FileInput extends BaseTagSupport {
      */
     @Override
     public int doEndTag() throws JspException {
-        title = "";
+        title = "附件";
         sdtCode = "";
         tableId = "";
         tableName = "";

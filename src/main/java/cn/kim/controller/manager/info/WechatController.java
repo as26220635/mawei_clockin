@@ -37,4 +37,19 @@ public class WechatController extends BaseController {
         return resultState(resultMap);
     }
 
+    /**
+     * 联系客服
+     *
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/contactService")
+    @RequiresPermissions("MOBILE:WECHAT_CONTACT_SERIVCE")
+    public String addHtml(Model model) throws Exception {
+        model.addAttribute("contactServiceFileId","CONTACT_SERVICE");
+        return "admin/info/wechat/contactService";
+    }
+
+
 }
