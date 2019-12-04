@@ -184,4 +184,14 @@
         ORDER BY
         T1.LVL DESC
     </select>
+
+    <!--前端搜索缓存-->
+    <select id="selectMobileSearchData" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT BMI.ID,BA.BA_NAME
+        FROM BUS_MAIN_IMAGE BMI
+        INNER JOIN BUS_MAIN_IMAGE_ACHIEVEMENT BMIA ON BMIA.BMI_ID = BMI.ID
+        INNER JOIN BUS_ACHIEVEMENT BA ON BMIA.BA_ID = BA.ID
+        WHERE BMI.IS_STATUS = 1 AND BA.IS_STATUS = 1
+        ORDER BY BA_ENTRYTIME ASC
+    </select>
 </mapper>

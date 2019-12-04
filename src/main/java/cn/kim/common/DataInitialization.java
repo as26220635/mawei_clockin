@@ -47,6 +47,9 @@ public class DataInitialization extends BaseData implements ApplicationListener<
     @Autowired
     private RedissonClient redisson;
 
+    @Autowired
+    private AchievementSearchService achievementSearchService;
+
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -64,6 +67,12 @@ public class DataInitialization extends BaseData implements ApplicationListener<
 
             //前端底部菜单配置
             MobileBottomMenu.init();
+
+            //初始化搜索数据
+            try {
+                achievementSearchService.init();
+            } catch (Exception e) {
+            }
         }
     }
 }

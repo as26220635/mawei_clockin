@@ -7,6 +7,7 @@ import cn.kim.util.AESUtil;
 import cn.kim.util.CommonUtil;
 import cn.kim.util.TextUtil;
 import cn.kim.util.ValidateUtil;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import java.util.Map;
 /**
  * Created by 余庚鑫 on 2017/6/3.
  */
+@Log4j2
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
     public XssHttpServletRequestWrapper(HttpServletRequest servletRequest) {
         super(servletRequest);
@@ -32,7 +34,7 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 //        if (servletRequest.getQueryString() != null) {
 //            url += "?" + servletRequest.getQueryString();
 //        }
-        System.out.println(url);
+        log.info(url);
     }
 
     @Override

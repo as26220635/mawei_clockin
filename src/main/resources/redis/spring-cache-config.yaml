@@ -14,6 +14,10 @@ shiro-activeSessionCache:
 password-retry-cache:
   ttl: 600000
   maxIdleTime: 600000
+#前端搜索缓存
+achievement-cache:
+  ttl: 0
+  maxIdleTime: 0
 #字典缓存
 dict-cache:
   ttl: 0

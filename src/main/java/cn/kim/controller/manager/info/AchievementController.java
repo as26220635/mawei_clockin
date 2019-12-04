@@ -9,6 +9,8 @@ import cn.kim.entity.ResultState;
 import cn.kim.service.AchievementService;
 import com.google.common.collect.Maps;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.redisson.api.RKeys;
+import org.redisson.api.RMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

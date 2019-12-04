@@ -1,22 +1,15 @@
 package cn.kim.util;
 
 import cn.kim.common.attr.CacheName;
+import cn.kim.common.shiro.cache.Cache;
 import cn.kim.common.shiro.cache.SpringCacheManagerWrapper;
-import cn.kim.common.attr.CacheName;
-import cn.kim.common.attr.TableName;
-import cn.kim.common.shiro.cache.SpringCacheManagerWrapper;
-import cn.kim.entity.DictType;
 import lombok.extern.log4j.Log4j2;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.shiro.cache.Cache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
+import java.util.Collection;
 
 /**
  * Created by 余庚鑫 on 2017/5/7.
@@ -66,6 +59,31 @@ public class CacheUtil {
     public static void clear(String cacheName) {
         log.info("移除缓存:" + cacheName + ",的全部缓存数据");
         cacheUtil.shiroCacheManager.getCache(cacheName).clear();
+    }
+
+    /**
+     * 模糊搜索
+     *
+     * @param cacheName
+     * @param keyPattern
+     * @return
+     */
+    public static Collection values(String cacheName, String keyPattern) {
+        Cache cache = cacheUtil.shiroCacheManager.getCache(cacheName);
+        return cache.values(keyPattern);
+    }
+
+    /**
+     * 模糊搜索
+     *
+     * @param cacheName
+     * @param keyPattern
+     * @param count
+     * @return
+     */
+    public static Collection values(String cacheName, String keyPattern, int count) {
+        Cache cache = cacheUtil.shiroCacheManager.getCache(cacheName);
+        return cache.values(keyPattern, count);
     }
 
     /***

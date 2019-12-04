@@ -258,7 +258,7 @@ public class DataGridServiceImpl extends BaseServiceImpl implements DataGridServ
         }
         querySet.setOrderByClause(toString(configure.get("SC_ORDER_BY")));
 
-        System.out.println(querySet.getWhereMap());
+//        System.out.println(querySet.getWhereMap());
         long count = baseDao.selectOne(NameSpace.DataGridMapper, "countByMap", querySet.getWhereMap());
         dataTablesView.setRecordsTotal(count);
         if (limit != -1) {

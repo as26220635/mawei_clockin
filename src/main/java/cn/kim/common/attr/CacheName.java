@@ -22,4 +22,10 @@ public class CacheName {
      * 各种值的集合
      */
     public static final String VALUE_COLLECTION = "value-collection";
+
+    /**
+     * 前端搜索缓存
+     */
+    public static final String ACHIEVEMENT_CACHE = "achievement-cache";
+
 }

@@ -1,9 +1,6 @@
 package cn.kim.service.impl;
 
-import cn.kim.common.attr.MagicValue;
-import cn.kim.common.attr.ParamTypeResolve;
-import cn.kim.common.attr.TableName;
-import cn.kim.common.attr.Tips;
+import cn.kim.common.attr.*;
 import cn.kim.common.eu.NameSpace;
 import cn.kim.common.eu.SystemEnum;
 import cn.kim.entity.DataTablesView;
@@ -11,27 +8,30 @@ import cn.kim.entity.QuerySet;
 import cn.kim.entity.Tree;
 import cn.kim.entity.TreeState;
 import cn.kim.exception.CustomException;
+import cn.kim.service.AchievementSearchService;
 import cn.kim.service.AchievementService;
 import cn.kim.service.AchievementService;
 import cn.kim.util.*;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.awt.*;
-import java.util.Arrays;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * Created by 余庚鑫 on 2018/8/6
+ * Created by 余庚鑫 on 2019/12/1
  * 成就墙管理
  */
 @Service
 public class AchievementServiceImpl extends BaseServiceImpl implements AchievementService {
+
+    @Autowired
+    private AchievementSearchService achievementSearchService;
 
     @Override
     public Map<String, Object> selectAchievement(Map<String, Object> mapParam) {
@@ -96,6 +96,10 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             status = STATUS_SUCCESS;
             desc = SAVE_SUCCESS;
 
+
+            //刷新前端搜索缓存
+            achievementSearchService.init();
+
             resultMap.put("ID", id);
         } catch (Exception e) {
             desc = catchException(e, baseDao, resultMap);
@@ -129,6 +133,10 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             status = STATUS_SUCCESS;
             desc = SAVE_SUCCESS;
 
+
+            //刷新前端搜索缓存
+            achievementSearchService.init();
+
             resultMap.put("ID", id);
         } catch (Exception e) {
             desc = catchException(e, baseDao, resultMap);
@@ -158,6 +166,10 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             //记录日志
             paramMap.put(MagicValue.SVR_TABLE_NAME, TableName.BUS_ACHIEVEMENT);
             baseDao.delete(NameSpace.AchievementMapper, "deleteAchievement", paramMap);
+
+
+            //刷新前端搜索缓存
+            achievementSearchService.init();
 
             resultMap.put(MagicValue.LOG, "删除成就墙,信息:" + formatColumnName(TableName.BUS_ACHIEVEMENT, oldMap));
             status = STATUS_SUCCESS;
@@ -445,6 +457,9 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             }
             //清除缓存
             CacheUtil.clear(NameSpace.MainImageMapper.getValue());
+
+            //刷新前端搜索缓存
+            achievementSearchService.init();
 
             status = STATUS_SUCCESS;
             desc = UPDATE_SUCCESS;

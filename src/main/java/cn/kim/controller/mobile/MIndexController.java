@@ -10,6 +10,7 @@ import cn.kim.common.attr.TableName;
 import cn.kim.common.eu.UseType;
 import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.ResultState;
+import cn.kim.service.AchievementSearchService;
 import cn.kim.service.AchievementService;
 import cn.kim.service.MainImageService;
 import cn.kim.util.FileUtil;
@@ -38,8 +39,39 @@ public class MIndexController extends BaseController {
     private AchievementService achievementService;
 
     @Autowired
+    private AchievementSearchService achievementSearchService;
+
+    @Autowired
     private MainImageService mainImageService;
 
+    /**
+     * 搜索
+     *
+     * @param queryWord
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/clockin/search")
+    @WechaNotEmptyLogin
+    @ResponseBody
+    public ResultState search(@RequestParam("queryWord") String queryWord) throws Exception {
+        JSONArray searchList = achievementSearchService.search(queryWord);
+
+        idEncrypt(searchList);
+
+        ResultState resultState =new ResultState();
+        resultState.setCode(STATUS_SUCCESS);
+        resultState.setData(searchList);
+        return resultState;
+    }
+
+    /**
+     * 切换主页图片
+     *
+     * @param BMI_RELATIONID
+     * @return
+     * @throws Exception
+     */
     @GetMapping("/clockin/mainImage/{BMI_RELATIONID}")
     @WechaNotEmptyLogin
     @ResponseBody
@@ -70,6 +102,14 @@ public class MIndexController extends BaseController {
         return resultState(resultMap);
     }
 
+    /**
+     * 打卡页面
+     *
+     * @param request
+     * @param model
+     * @return
+     * @throws Exception
+     */
     @GetMapping("/clockin")
     @WechaNotEmptyLogin
     public String clockin(HttpServletRequest request, Model model) throws Exception {

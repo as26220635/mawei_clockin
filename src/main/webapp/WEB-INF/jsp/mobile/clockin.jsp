@@ -17,43 +17,18 @@
         width: 100%;
     }
 
-    #clockinAreaCheck1 {
-        z-index: 100;
-        top: 80px;
-        left: 2%;
-        position: absolute;
-        background: #00000000;
-        /*background: rgba(40, 199, 253, 0.31);*/
-        width: 50%;
-        height: 130px;
+    .BMap_stdMpZoom {
+        display: none;
     }
 
-    #clockinAreaCheck2 {
-        z-index: 100;
-        top: 210px;
-        left: 2%;
-        position: absolute;
-        background: #00000000;
-        /*background: rgba(45, 47, 51, 0.31);*/
-        width: 50%;
-        height: 130px;
-    }
-
-    #clockinAreaCheck3 {
-        z-index: 100;
-        top: 80px;
-        left: 52%;
-        position: absolute;
-        background: #00000000;
-        /*background: rgba(5, 0, 255, 0.31);*/
-        width: 48%;
-        height: 130px;
+    .BMap_geolocationAddress {
+        display: none !important;
     }
 
     #clockinAreaCheckDiv {
         margin: auto 0;
         text-align: center;
-        z-index: 99998;
+        z-index: 997;
         width: 100%;
         top: 55%;
         position: absolute;
@@ -91,6 +66,20 @@
         font-size: 13px !important;
         color: #000000;
     }
+
+    #searchBar {
+        z-index: 999;
+    }
+
+    #searchContent {
+        display: none;
+        position: fixed;
+        top: 8%;
+        height: 92%;
+        width: 100%;
+        background-color: #ffffff;
+        z-index: 998;
+    }
 </style>
 <div class="container container-page">
     <div class="weui-search-bar" id="searchBar">
@@ -109,6 +98,13 @@
         <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
     </div>
 
+    <div class="page list js_show" id="searchContent">
+        <div class="page__bd">
+            <div class="weui-cells" id="searchList">
+            </div>
+        </div>
+    </div>
+
     <div id="clockinArea">
         <img id="clockinAreaImg" border="0" usemap="#clockinAreaMap"
              src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${mainImage.IMG_PATH}"
@@ -118,17 +114,6 @@
                 <area shape="rect" coords="${area.BIMA_MAPINFO}" data-main-id="${area.BMI_RELATIONID}"/>
             </c:forEach>
         </map>
-        <%--        <img id="clockinAreaImg" src="${BASE_URL}resources/assets/images/main/map-min.jpg">--%>
-
-        <%--        <div id="clockinAreaCheck1" data-type="1">--%>
-
-        <%--        </div>--%>
-        <%--        <div id="clockinAreaCheck2" data-type="2">--%>
-
-        <%--        </div>--%>
-        <%--        <div id="clockinAreaCheck3" data-type="3">--%>
-
-        <%--        </div>--%>
         <div id="clockinAreaCheckDiv">
             <a id="clockinAreaCheckBtn" href="javascript:;" class="weui-btn weui-btn_mini weui-btn_default">返回</a>
         </div>
@@ -152,6 +137,7 @@
     mainInit.initPjax();
 </script>
 <script>
+    <%--主页图片--%>
     //调整area
     adjust('${mainImage.BMI_AREAWIDTH}', '${mainImage.BMI_AREAHEIGHT}');
 
@@ -201,7 +187,7 @@
 
     function switchMainImage(mainId) {
         $.showLoading();
-        ajax.get('${BASE_URL}clockin/mainImage/' + mainId, {}, function (res) { 
+        ajax.get('${BASE_URL}clockin/mainImage/' + mainId, {}, function (res) {
             if (res.code == 1) {
                 var data = res.data;
                 var mainImage = data.mainImage;
@@ -227,7 +213,7 @@
                 //调整区域
                 adjust(mainImage.BMI_AREAWIDTH, mainImage.BMI_AREAHEIGHT);
                 //显示返回按钮
-                if (mainImage.IS_TOP == 0){
+                if (mainImage.IS_TOP == 0) {
                     $('#clockinAreaCheckBtn').attr('data-parent-id', mainImage.BMI_PARENTID);
                     $('#clockinAreaCheckDiv').fadeIn();
                 }
@@ -245,16 +231,89 @@
         switchMainImage(mainId);
     });
 
-    $('#clockinAreaImg').on('load',function () {
+    $('#clockinAreaImg').on('load', function () {
         // 加载完成
         $.hideLoading();
     });
-    $('#clockinAreaImg').on('error',function () {
+    $('#clockinAreaImg').on('error', function () {
         // 加载完成
         $.hideLoading();
     });
 </script>
 <script>
+    <%--搜索--%>
+    var $ajax;
+    var $searchContent = $('#searchContent');
+    var $searchList = $('#searchList');
+    var $searchClear = $('#searchClear');
+    var $searchCancel = $('#searchCancel');
+    var $searchInput = $('#searchInput');
+
+    $searchClear.on('click', function () {
+        search('');
+    });
+    $searchCancel.on('click', function () {
+        $searchList.empty();
+        $searchContent.fadeOut();
+        showBottpmMenu();
+    });
+    $searchInput.on('keydown', function (e) {
+        if (e.keyCode == 13) {
+            var $items = $searchList.find('.weui-cell[data-search-id]');
+            if ($items.length == 1) {
+                clickSearchItem($($items[0]).attr('data-search-id'));
+                $('#clockinAreaImg').focus();
+            }
+            e.preventDefault()
+        }
+    })
+    $searchInput.on('click', function () {
+        search($(this).val());
+        $searchContent.fadeIn();
+        hideBottpmMenu();
+    });
+    $searchInput.bind('input propertychange', function () {
+        search($(this).val());
+    });
+
+    function search(queryWord) {
+        if ($ajax != undefined) {
+            $ajax.abort();
+        }
+        $ajax = ajax.get('${BASE_URL}clockin/search', {queryWord: queryWord}, function (data) {
+            $searchList.empty();
+            if (data.code == 1) {
+                var dataList = data.data;
+                var html = '';
+                if (dataList.length != 0) {
+                    for (let i in dataList) {
+                        html += getSearchDataItem(dataList[i]);
+                    }
+                }
+
+                $searchList.html(html);
+
+                //点击事件
+                $('.weui-cell[data-search-id]').unbind('click').on('click', function () {
+                    clickSearchItem($(this).attr('data-search-id'));
+                })
+            }
+        });
+    }
+
+    function clickSearchItem(searchId) {
+        $searchList.empty();
+        $searchContent.fadeOut();
+        showBottpmMenu();
+        switchMainImage(searchId);
+    }
+
+    function getSearchDataItem(data) {
+        return '  <a class="weui-cell weui-cell_access" href="javascript:;" data-search-id="' + data.id + '"><div class="weui-cell__bd"><p>' + data.name + '</p></div><div class="weui-cell__ft"></div></a>';
+    }
+</script>
+<script>
+    <%--地图定位--%>
     //打卡点坐标
     var geolocaltionPoint = {
         <c:forEach items="${achievementList}" var="achievement">
@@ -323,15 +382,15 @@
             }, {enableHighAccuracy: true});
 
             // 添加带有定位的导航控件
-            var navigationControl = new BMap.NavigationControl({
-                // 靠左上角位置
-                anchor: BMAP_ANCHOR_TOP_LEFT,
-                // LARGE类型
-                type: BMAP_NAVIGATION_CONTROL_LARGE,
-                // 启用显示定位
-                enableGeolocation: true
-            });
-            map.addControl(navigationControl);
+            // var navigationControl = new BMap.NavigationControl({
+            //     // 靠左上角位置
+            //     anchor: BMAP_ANCHOR_TOP_LEFT,
+            //     // LARGE类型
+            //     type: BMAP_NAVIGATION_CONTROL_LARGE,
+            //     // 启用显示定位
+            //     enableGeolocation: true
+            // });
+            // map.addControl(navigationControl);
 
             // 添加定位控件
             var geolocationControl = new BMap.GeolocationControl();
@@ -381,7 +440,6 @@
     }
 
     function setAddress(addComp, lng, lat) {
-        $('.BMap_geolocationContainer,.BMap_stdMpZoom').hide();
         var address = addComp.province;
         address += addComp.city;
         address += addComp.district;
@@ -454,6 +512,7 @@
     loadJScript();
 </script>
 <script>
+    <%--打卡--%>
     $('#clockin').click(function () {
         var clockinGeolocaltionPoint = $('#clockinGeolocaltionPoint').val();
         if (clockinGeolocaltionPoint != undefined && clockinGeolocaltionPoint != '') {
@@ -463,6 +522,7 @@
     });
 </script>
 <script>
+    <%--每5秒定位一次--%>
     getPosition();
 
     /**

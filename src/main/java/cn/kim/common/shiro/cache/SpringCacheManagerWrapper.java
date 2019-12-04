@@ -1,6 +1,5 @@
 package cn.kim.common.shiro.cache;
 
-import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheException;
 import org.apache.shiro.cache.CacheManager;
 import org.redisson.RedissonMap;
@@ -105,6 +104,24 @@ public class SpringCacheManagerWrapper implements CacheManager {
                 } else {
                     return Collections.emptyList();
                 }
+            }
+            throw new UnsupportedOperationException("invoke spring cache abstract values method not supported");
+        }
+
+        @Override
+        public Collection values(String keyPattern) {
+            if (springCache.getNativeCache() instanceof RedissonMap) {
+                RedissonMap map = (RedissonMap) springCache.getNativeCache();
+                return map.values(keyPattern);
+            }
+            throw new UnsupportedOperationException("invoke spring cache abstract values method not supported");
+        }
+
+        @Override
+        public Collection values(String keyPattern, int count) {
+            if (springCache.getNativeCache() instanceof RedissonMap) {
+                RedissonMap map = (RedissonMap) springCache.getNativeCache();
+                return map.values(keyPattern, count);
             }
             throw new UnsupportedOperationException("invoke spring cache abstract values method not supported");
         }
