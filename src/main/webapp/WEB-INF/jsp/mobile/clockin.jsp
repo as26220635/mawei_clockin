@@ -415,7 +415,6 @@
             // 百度地图API功能
             // new一个百度地图
             map = new BMap.Map('map', {enableMapClick: false});
-            map.setMapStyle({style: 'googlelite'});
             map.enableInertialDragging();
             map.enableContinuousZoom();
             map.enableDoubleClickZoom();
@@ -428,6 +427,12 @@
             // map.disableDoubleClickZoom();
             var point = new BMap.Point(119.45759193517489, 25.989725336215738);
             map.centerAndZoom(point, 17);
+
+            //设置样式
+            map.setMapStyle({style: 'googlelite'});
+            // map.setMapStyleV2({
+            //     styleId: 'b64f732968aa5d4d6c415f1c2de1f86d'
+            // });
 
             //去掉图片点击事件
             map.addEventListener("tilesloaded", function () {

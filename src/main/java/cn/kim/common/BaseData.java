@@ -3,11 +3,7 @@ package cn.kim.common;
 import cn.kim.common.attr.*;
 import cn.kim.common.eu.NameSpace;
 import cn.kim.common.sequence.Sequence;
-import cn.kim.dao.BaseDao;
-import cn.kim.dao.impl.BaseDaoImpl;
 import cn.kim.entity.ActiveUser;
-import cn.kim.entity.ResultState;
-import cn.kim.common.sequence.Sequence;
 import cn.kim.entity.ResultState;
 import cn.kim.entity.StudentYearSemester;
 import cn.kim.exception.CustomException;
@@ -18,11 +14,12 @@ import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
-import java.net.URLDecoder;
 import java.security.InvalidKeyException;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.*;
 
 /**
@@ -174,6 +171,31 @@ public abstract class BaseData {
         try {
             String[] containsRoles = containsRole.split(SERVICE_SPLIT);
             String[] nowRoles = getActiveUser().getRoleIds().split(SERVICE_SPLIT);
+            for (String role : containsRoles) {
+                for (String nowRole : nowRoles) {
+                    if (nowRole.equals(role)) {
+                        return true;
+                    }
+                }
+            }
+        } catch (Exception e) {
+        }
+
+        return false;
+    }
+
+    /**
+     *
+     * @param containsRole
+     * @return
+     */
+    protected boolean containsRoleStr(String containsRole) {
+        if (isEmpty(containsRole)) {
+            return false;
+        }
+        try {
+            String[] containsRoles = containsRole.split(SERVICE_SPLIT);
+            String[] nowRoles = getActiveUser().getRole().split(SERVICE_SPLIT);
             for (String role : containsRoles) {
                 for (String nowRole : nowRoles) {
                     if (nowRole.equals(role)) {

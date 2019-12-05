@@ -29,10 +29,10 @@ public class AllocationServiceImpl extends BaseServiceImpl implements Allocation
 
     @Override
     public String selectAllocation(@NotNull String key) {
-        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
         if (isEmpty(key)) {
             return "";
         }
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
 
         paramMap.put("SA_KEY", key);
         Map<String, Object> allocation = this.selectAllocation(paramMap);

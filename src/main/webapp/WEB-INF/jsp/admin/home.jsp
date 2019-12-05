@@ -43,36 +43,36 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <%--消息以后可以添加--%>
-                    <li class="dropdown notifications-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bell-o"></i>
-                            <span class="label label-warning" id="notifyNumSpan"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header" id="notifyNumLi"></li>
-                            <li>
-                                <ul class="menu">
-                                    <li>
-                                        <a href="${BASE_URL}admin/msg/home" data-pjax="#${CONTAINER}"
-                                           onclick="notifyMsg.obtainCount();">
-                                            <i class="fa fa-bell-o text-aqua"></i>通知
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+<%--                    <li class="dropdown notifications-menu">--%>
+<%--                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">--%>
+<%--                            <i class="fa fa-bell-o"></i>--%>
+<%--                            <span class="label label-warning" id="notifyNumSpan"></span>--%>
+<%--                        </a>--%>
+<%--                        <ul class="dropdown-menu">--%>
+<%--                            <li class="header" id="notifyNumLi"></li>--%>
+<%--                            <li>--%>
+<%--                                <ul class="menu">--%>
+<%--                                    <li>--%>
+<%--                                        <a href="${BASE_URL}admin/msg/home" data-pjax="#${CONTAINER}"--%>
+<%--                                           onclick="notifyMsg.obtainCount();">--%>
+<%--                                            <i class="fa fa-bell-o text-aqua"></i>通知--%>
+<%--                                        </a>--%>
+<%--                                    </li>--%>
+<%--                                </ul>--%>
+<%--                            </li>--%>
+<%--                        </ul>--%>
+<%--                    </li>--%>
                     <%--<!-- User Account: style can be found in dropdown.less -->--%>
                     <li class="dropdown user user-menu">
                         <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="${BASE_URL}resources/static/dist/img/user2-160x160.jpg" class="user-image"
+                            <img src="${BASE_URL}resources/static/dist/img/gqt.jpg" class="user-image"
                                  alt="User Image">
                             <span class="hidden-xs">${activeUser.usercode}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <%--<!-- User image -->--%>
                             <li class="user-header">
-                                <img src="${BASE_URL}resources/static/dist/img/user2-160x160.jpg" class="img-circle"
+                                <img src="${BASE_URL}resources/static/dist/img/gqt.jpg" class="img-circle"
                                      alt="User Image">
                                 <p>
                                     ${activeUser.usercode}

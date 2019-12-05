@@ -150,6 +150,8 @@ public class AllocationController extends BaseController {
     @SystemControllerLog(useType = UseType.USE, event = "查看前端管理", isSuccess = true)
     @Token(save = true)
     public String mobileBottomMenu(Model model) throws Exception {
+        model.addAttribute("WECHAT_BASE_URL", AllocationUtil.get("WECHAT_BASE_URL"));
+        model.addAttribute("WECHAT_SCOPE", AllocationUtil.get("WECHAT_SCOPE"));
         model.addAttribute("WECHAT_CLIENT_ID", AllocationUtil.get("WECHAT_CLIENT_ID"));
         model.addAttribute("WECHAT_CLIENT_SECRET", AllocationUtil.get("WECHAT_CLIENT_SECRET"));
         model.addAttribute("WECHAT_REDIRECT_URI", AllocationUtil.get("WECHAT_REDIRECT_URI"));
@@ -182,6 +184,8 @@ public class AllocationController extends BaseController {
     @ResponseBody
     public ResultState mobileBottomMenuUpdate(@RequestParam Map<String, Object> mapParam) throws Exception {
         try {
+            AllocationUtil.put("WECHAT_BASE_URL", mapParam.get("WECHAT_BASE_URL"));
+            AllocationUtil.put("WECHAT_SCOPE", mapParam.get("WECHAT_SCOPE"));
             AllocationUtil.put("WECHAT_CLIENT_ID", mapParam.get("WECHAT_CLIENT_ID"));
             AllocationUtil.put("WECHAT_CLIENT_SECRET", mapParam.get("WECHAT_CLIENT_SECRET"));
             AllocationUtil.put("WECHAT_REDIRECT_URI", mapParam.get("WECHAT_REDIRECT_URI"));

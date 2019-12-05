@@ -24,6 +24,18 @@
                                 <form id="addAndEditForm">
                                     <input type="hidden" name="${SUBMIT_TOKEN_NAME}" value="${token}">
                                     <div class="form-group has-feedback">
+                                        <label>微信baseUrl:</label>
+                                        <input type="text"
+                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WECHAT_BASE_URL")}
+                                               value="${WECHAT_BASE_URL}">
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>微信scope:</label>
+                                        <input type="text"
+                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WECHAT_SCOPE")}
+                                               value="${WECHAT_SCOPE}">
+                                    </div>
+                                    <div class="form-group has-feedback">
                                         <label>微信clientId:</label>
                                         <input type="text"
                                                class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WECHAT_CLIENT_ID")}

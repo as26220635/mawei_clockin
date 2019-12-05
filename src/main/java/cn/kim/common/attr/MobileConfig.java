@@ -14,6 +14,14 @@ public class MobileConfig {
     /**
      * 微信
      */
+    public static String WECHAT_BASE_URL;
+    /**
+     * 微信
+     */
+    public static String WECHAT_SCOPE;
+    /**
+     * 微信
+     */
     public static String WECHAT_CLIENT_ID;
     /**
      * 微信
@@ -65,6 +73,8 @@ public class MobileConfig {
      * 初始化
      */
     public static void init() {
+        WECHAT_BASE_URL = TextUtil.toString(AllocationUtil.get("WECHAT_BASE_URL"));
+        WECHAT_SCOPE = TextUtil.toString(AllocationUtil.get("WECHAT_SCOPE"));
         WECHAT_CLIENT_ID = TextUtil.toString(AllocationUtil.get("WECHAT_CLIENT_ID"));
         WECHAT_CLIENT_SECRET = TextUtil.toString(AllocationUtil.get("WECHAT_CLIENT_SECRET"));
         WECHAT_REDIRECT_URI = TextUtil.toString(AllocationUtil.get("WECHAT_REDIRECT_URI"));

@@ -1,7 +1,6 @@
 package cn.kim.service.util;
 
 import cn.kim.common.attr.TableViewName;
-import cn.kim.common.eu.SystemEnum;
 import cn.kim.entity.ActiveUser;
 import cn.kim.service.impl.BaseServiceImpl;
 import com.google.common.collect.Maps;
@@ -37,14 +36,19 @@ public class GridDataFilter extends BaseServiceImpl {
         if (TableViewName.V_TEST_PROCESS.equals(configureView)) {
             //测试流程
             resultBuilder.append(" AND SO_ID = " + operatorId);
-        }else if (TableViewName.V_LOG_SYSTEM.equalsIgnoreCase(configureView) ||
+        } else if (TableViewName.V_LOG_SYSTEM.equalsIgnoreCase(configureView) ||
                 TableViewName.V_LOG_USE.equalsIgnoreCase(configureView) ||
                 TableViewName.V_LOG_PERSONAL.equalsIgnoreCase(configureView) ||
-                TableViewName.V_LOG_SEE.equalsIgnoreCase(configureView)) {
+                TableViewName.V_LOG_SEE.equalsIgnoreCase(configureView) ||
+                TableViewName.V_LOG_VALUE_RECORD_DETAIL.equalsIgnoreCase(configureView)) {
             //日志管理 管理员可以看到全部
-            if (!SystemEnum.MANAGER.toString().equals(operatorType)) {
+            if (!containsRole("1")) {
                 resultBuilder.append(" AND SO_ID =" + operatorId);
+                resultBuilder.append(" AND SO_ID !='1'");
             }
+//            if (!SystemEnum.MANAGER.toString().equals(operatorType)) {
+//                resultBuilder.append(" AND SO_ID =" + operatorId);
+//            }
         }
 
 
