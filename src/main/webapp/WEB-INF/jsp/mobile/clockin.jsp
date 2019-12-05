@@ -418,6 +418,8 @@
             map.setMapStyle({style: 'googlelite'});
             map.enableInertialDragging();
             map.enableContinuousZoom();
+            map.enableDoubleClickZoom();
+            map.enableScrollWheelZoom();
             //禁止拖拽
             // map.disableDragging();
             //禁止缩放
