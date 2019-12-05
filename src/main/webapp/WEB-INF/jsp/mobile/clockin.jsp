@@ -424,7 +424,7 @@
             // map.disableScrollWheelZoom();
             //禁止双击放大
             // map.disableDoubleClickZoom();
-            var point = new BMap.Point(116.331398, 39.897445);
+            var point = new BMap.Point(119.45759193517489, 25.989725336215738);
             map.centerAndZoom(point, 17);
 
             //去掉图片点击事件
