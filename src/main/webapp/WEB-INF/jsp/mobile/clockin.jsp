@@ -82,7 +82,7 @@
         z-index: 998;
     }
 </style>
-<div class="container container-page">
+<div class="container container-page" id="clockinContainer">
     <div class="weui-search-bar" id="searchBar">
         <form class="weui-search-bar__form">
             <div class="weui-search-bar__box">
@@ -331,6 +331,9 @@
 
     //异步加载地图
     function loadJScript() {
+        $("script[src^='https://api.map.baidu.com/getscript?v=3.0']").remove();
+        $("script[src^='https://api.map.baidu.com/api?v=3.0']").remove();
+        $("iframe[src^='https://api.map.baidu.com/res/staticPages/location.html']").remove();
         var script = document.createElement("script");
         script.type = "text/javascript";
         script.src = "https://api.map.baidu.com/api?v=3.0&ak=${WEBCONFIG_BAIDU_MAP_AK}&callback=initMap";
@@ -548,6 +551,7 @@
     });
 </script>
 <script>
+    var timeOut;
     <%--每5秒定位一次--%>
     getPosition();
 
@@ -555,7 +559,8 @@
      * 5秒刷新定位
      */
     function getPosition() {
-        setTimeout(function () {
+        clearTimeout(timeOut);
+        timeOut = setTimeout(function () {
             geolocation.getCurrentPosition(function (r) {
                 if (this.getStatus() == BMAP_STATUS_SUCCESS) {
                     checkPoint(r.point);
