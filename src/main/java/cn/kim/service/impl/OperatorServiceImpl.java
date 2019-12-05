@@ -3,7 +3,10 @@ package cn.kim.service.impl;
 import cn.kim.common.attr.*;
 import cn.kim.common.eu.NameSpace;
 import cn.kim.common.eu.SystemEnum;
-import cn.kim.entity.*;
+import cn.kim.entity.ActiveUser;
+import cn.kim.entity.DataTablesView;
+import cn.kim.entity.QuerySet;
+import cn.kim.entity.Tree;
 import cn.kim.exception.CustomException;
 import cn.kim.service.OperatorService;
 import cn.kim.util.*;
@@ -42,7 +45,6 @@ public class OperatorServiceImpl extends BaseServiceImpl implements OperatorServ
         dataTablesView.setRecordsTotal(count);
         dataTablesView.setTotalPages(CommonUtil.getPage(count, limit));
 
-        System.out.println(toString(querySet.getWhereMap()));
         List<Map<String, Object>> dataList = baseDao.selectList(NameSpace.OperatorMapper, "selectOperatorList", querySet.getWhereMap());
         dataTablesView.setData(dataList);
 

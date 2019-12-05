@@ -49,7 +49,7 @@ public class CommonUtil {
     /**
      * 不加密字段
      */
-    public static Set<String> NO_ENCRYPT_FIELDS = Sets.newHashSet("SCC_WIDTH", "SB_BUTTONID", "WEBCONFIG_BAIDU_MAP_AK", "MOBILE_CLOCKIN_UPLOAD_VIDEO");
+    public static Set<String> NO_ENCRYPT_FIELDS = Sets.newHashSet("SCC_WIDTH", "SB_BUTTONID", "WEBCONFIG_BAIDU_MAP_AK", "MOBILE_CLOCKIN_UPLOAD_VIDEO", "WECHAT_CLIENT_ID");
 
     @Autowired
     private MenuService menuService;
@@ -407,7 +407,7 @@ public class CommonUtil {
                 img.attr("src", url + key);
             }
         }
-        System.out.println(document.body().toString());
+//        System.out.println(document.body().toString());
         return document.body().toString();
     }
 
@@ -646,7 +646,7 @@ public class CommonUtil {
             }
         } catch (Exception e) {
 //            e.printStackTrace();
-            throw new InvalidKeyException("无效的key");
+//            throw new InvalidKeyException("无效的key");
         }
 
         return obj;
@@ -744,7 +744,7 @@ public class CommonUtil {
                 BeanUtil.idDecryptReflect(obj);
             }
         } catch (Exception e) {
-            throw new InvalidKeyException("无效的KEY!");
+//            throw new InvalidKeyException("无效的KEY!");
         }
         return obj;
     }

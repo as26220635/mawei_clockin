@@ -1,16 +1,12 @@
 package cn.kim.util;
 
-import cn.kim.common.ConfigLoad;
-import cn.kim.common.springmvc.BASE64DecodedMultipartFile;
-import cn.kim.common.tag.FileInput;
-import cn.kim.entity.ActiveUser;
-import cn.kim.service.FileService;
-import cn.kim.service.FileWS;
-import cn.kim.service.impl.FileWSImplService;
 import cn.kim.common.attr.Attribute;
 import cn.kim.common.attr.AttributePath;
 import cn.kim.common.attr.ConfigProperties;
 import cn.kim.common.sequence.Sequence;
+import cn.kim.common.springmvc.BASE64DecodedMultipartFile;
+import cn.kim.common.tag.FileInput;
+import cn.kim.entity.ActiveUser;
 import cn.kim.entity.CxfFileWrapper;
 import cn.kim.entity.CxfState;
 import cn.kim.service.FileService;
@@ -20,11 +16,7 @@ import com.google.common.collect.Maps;
 import com.sun.istack.internal.ByteArrayDataSource;
 import lombok.extern.log4j.Log4j2;
 import net.coobird.thumbnailator.Thumbnails;
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.FileItemFactory;
 import org.apache.commons.fileupload.FileUploadException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,7 +25,6 @@ import sun.misc.BASE64Decoder;
 import javax.activation.DataHandler;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.ConnectException;
@@ -41,7 +32,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -432,7 +426,7 @@ public class FileUtil {
             int length;
             while ((byteread = inStream.read(buffer)) != -1) {
                 bytesum += byteread;
-                System.out.println(bytesum);
+//                System.out.println(bytesum);
                 fs.write(buffer, 0, byteread);
             }
             inStream.close();
@@ -449,7 +443,7 @@ public class FileUtil {
             byte[] buffer = new byte[1444];
             while ((byteread = inStream.read(buffer)) != -1) {
                 bytesum += byteread;
-                System.out.println(bytesum);
+//                System.out.println(bytesum);
                 fs.write(buffer, 0, byteread);
             }
             inStream.close();
@@ -982,7 +976,7 @@ public class FileUtil {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
-            System.out.println("浏览器下载异常...");
+//            System.out.println("浏览器下载异常...");
         } finally {
             try {
                 b = null;
@@ -994,7 +988,7 @@ public class FileUtil {
                 }
             } catch (IOException e) {
                 // e.printStackTrace();
-                System.out.println("浏览器下载IO异常...");
+//                System.out.println("浏览器下载IO异常...");
             }
         }
 

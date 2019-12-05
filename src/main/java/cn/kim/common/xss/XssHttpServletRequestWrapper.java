@@ -1,14 +1,9 @@
 package cn.kim.common.xss;
 
-import cn.kim.common.attr.Attribute;
-import cn.kim.common.attr.Attribute;
 import cn.kim.common.attr.Tips;
-import cn.kim.util.AESUtil;
 import cn.kim.util.CommonUtil;
 import cn.kim.util.TextUtil;
-import cn.kim.util.ValidateUtil;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.util.HtmlUtils;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
@@ -30,11 +25,11 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 //        url = servletRequest.getScheme() +"://" + servletRequest.getServerName()
 //                + ":" +servletRequest.getServerPort()
 //                +
-        url = "访问地址:" + servletRequest.getServletPath();
+//        url = "访问地址:" + servletRequest.getServletPath();
 //        if (servletRequest.getQueryString() != null) {
 //            url += "?" + servletRequest.getQueryString();
 //        }
-        log.info(url);
+//        log.info(url);
     }
 
     @Override

@@ -9,7 +9,7 @@
 <%@ include file="/WEB-INF/jsp/common/tag.jsp" %>
 <style>
     #clockinArea {
-        height: 55%;
+        height: calc(55% - 30px);
         background-color: #ffffff;
     }
 
@@ -75,11 +75,63 @@
     #searchContent {
         display: none;
         position: fixed;
-        top: 8%;
-        height: 92%;
+        top: 6%;
+        height: 94%;
         width: 100%;
         background-color: #ffffff;
         z-index: 998;
+    }
+
+    .remind-block {
+        height: 30px;
+        line-height: 30px;
+        background-color: #fce9aa;
+        color: #947334;
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        width: 100%;
+        padding-right: 20px;
+        z-index: 100;
+    }
+
+    .marquee-block {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+        overflow: hidden;
+        box-sizing: border-box;
+        padding-left: 15px;
+        position: relative;
+    }
+
+    .marquee {
+        animation: marquee 25s linear infinite;
+        white-space: nowrap;
+        position: absolute;
+    }
+
+    @keyframes marquee {
+        0% {
+            transform: translateX(400px);
+            -webkit-transform: translateX(400px);
+        }
+        100% {
+            transform: translateX(-100%);
+            -webkit-transform: translateX(-100%);
+        }
+    }
+
+    @-webkit-keyframes marquee {
+        0% {
+            transform: translateX(400px);
+            -webkit-transform: translateX(400px);
+        }
+        100% {
+            transform: translateX(-100%);
+            -webkit-transform: translateX(-100%);
+        }
     }
 </style>
 <div class="container container-page" id="clockinContainer">
@@ -102,6 +154,15 @@
     <div class="page list js_show" id="searchContent">
         <div class="page__bd">
             <div class="weui-cells" id="searchList">
+            </div>
+        </div>
+    </div>
+
+
+    <div id="bannerArea" class="remind-block">
+        <div class="marquee-block">
+            <div class="marquee">
+                ${mobileConfig.MOBILE_CLOCKIN_BANNER_CONTENT}
             </div>
         </div>
     </div>
@@ -354,7 +415,7 @@
             // 百度地图API功能
             // new一个百度地图
             map = new BMap.Map('map', {enableMapClick: false});
-            map.setMapStyle({style:'googlelite'});
+            map.setMapStyle({style: 'googlelite'});
             map.enableInertialDragging();
             map.enableContinuousZoom();
             //禁止拖拽
@@ -368,7 +429,7 @@
 
             //去掉图片点击事件
             map.addEventListener("tilesloaded", function () {
-                $('.anchorBL a').attr("disabled",true).css("pointer-events","none");
+                $('.anchorBL a').attr("disabled", true).css("pointer-events", "none");
             });
 
             //画圆
@@ -397,7 +458,7 @@
                     checkPoint(r.point);
                 } else {
                     switchClockinBtn(3);
-                    $.toast("获取定位失败", "forbidden");
+                    // $.toast("获取定位失败", "forbidden");
                 }
             }, {enableHighAccuracy: true});
 
@@ -443,6 +504,7 @@
                     }
                 });
             }
+
             /* 坐标转化 --end */
         }
     }

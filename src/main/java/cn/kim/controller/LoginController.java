@@ -1,26 +1,27 @@
 package cn.kim.controller;
 
-import cn.kim.common.attr.MagicValue;
-import cn.kim.common.eu.SystemEnum;
-import cn.kim.controller.manager.BaseController;
-import cn.kim.controller.mobile.home.MyHomeController;
 import cn.kim.common.attr.Constants;
+import cn.kim.common.attr.MagicValue;
+import cn.kim.common.attr.MobileConfig;
 import cn.kim.common.csrf.CsrfToken;
+import cn.kim.common.eu.SystemEnum;
+import cn.kim.common.justAuth.MyAuthWeChatRequest;
+import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.ActiveUser;
 import cn.kim.entity.WechatUser;
 import cn.kim.exception.*;
-import cn.kim.remote.LogRemoteInterfaceAsync;
 import cn.kim.service.WechatService;
-import cn.kim.util.*;
+import cn.kim.util.AuthcUtil;
+import cn.kim.util.CreateImageCode;
+import cn.kim.util.HttpUtil;
+import cn.kim.util.SessionUtil;
 import com.alibaba.fastjson.JSONObject;
 import me.zhyd.oauth.config.AuthConfig;
 import me.zhyd.oauth.exception.AuthException;
 import me.zhyd.oauth.model.AuthCallback;
 import me.zhyd.oauth.model.AuthResponse;
 import me.zhyd.oauth.request.AuthRequest;
-import me.zhyd.oauth.request.AuthWeChatRequest;
 import me.zhyd.oauth.utils.AuthStateUtils;
-import me.zhyd.oauth.utils.UrlBuilder;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -39,7 +40,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.Map;
 
 /**
@@ -82,9 +82,13 @@ public class LoginController extends BaseController {
     /**********************     防止csrf攻击    ********************/
 
     @GetMapping("/admin")
-    public ModelAndView admin(HttpServletRequest request) {
+    public ModelAndView admin(HttpServletRequest request,HttpServletResponse response) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:" + ManagerController.MANAGER_URL);
+        try {
+            WebUtils.issueRedirect(request, response,  "/admin/home", null, true);
+            return null;
+        } catch (IOException e) {
+        }
         return modelAndView;
     }
 
@@ -170,9 +174,7 @@ public class LoginController extends BaseController {
     public void renderAuth(@PathVariable("source") String source, HttpServletResponse response) throws IOException {
         AuthRequest authRequest = getAuthRequest(source);
         String authorizeUrl = authRequest.authorize(AuthStateUtils.createState());
-        //替换参数
-        authorizeUrl = authorizeUrl.replace("https://open.weixin.qq.com/connect/qrconnect?", "https://open.weixin.qq.com/connect/oauth2/authorize?");
-        authorizeUrl = authorizeUrl.replace("scope=snsapi_login", "scope=snsapi_userinfo");
+
 //        System.out.println(authorizeUrl);
         response.sendRedirect(authorizeUrl);
     }
@@ -236,10 +238,10 @@ public class LoginController extends BaseController {
         AuthRequest authRequest = null;
         switch (source) {
             case "wechat":
-                authRequest = new AuthWeChatRequest(AuthConfig.builder()
-                        .clientId("wx7edf17f7ff512e13")
-                        .clientSecret("a5c5b2d4ec1462b453da891d5527fb69")
-                        .redirectUri("https://ygx.mynatapp.cc/mawei_clockin/oauth/callback/wechat")
+                authRequest = new MyAuthWeChatRequest(AuthConfig.builder()
+                        .clientId(MobileConfig.WECHAT_CLIENT_ID)
+                        .clientSecret(MobileConfig.WECHAT_CLIENT_SECRET)
+                        .redirectUri(MobileConfig.WECHAT_REDIRECT_URI)
                         .build());
                 break;
         }

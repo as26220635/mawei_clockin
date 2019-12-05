@@ -150,6 +150,10 @@ public class AllocationController extends BaseController {
     @SystemControllerLog(useType = UseType.USE, event = "查看前端管理", isSuccess = true)
     @Token(save = true)
     public String mobileBottomMenu(Model model) throws Exception {
+        model.addAttribute("WECHAT_CLIENT_ID", AllocationUtil.get("WECHAT_CLIENT_ID"));
+        model.addAttribute("WECHAT_CLIENT_SECRET", AllocationUtil.get("WECHAT_CLIENT_SECRET"));
+        model.addAttribute("WECHAT_REDIRECT_URI", AllocationUtil.get("WECHAT_REDIRECT_URI"));
+
         //青春打卡
         model.addAttribute("MOBILE_BOTTOM_MENU_CLOCKIN", AllocationUtil.get("MOBILE_BOTTOM_MENU_CLOCKIN"));
         //活动
@@ -164,6 +168,8 @@ public class AllocationController extends BaseController {
         model.addAttribute("MOBILE_CLOCKIN_UPLOAD_IMG", AllocationUtil.get("MOBILE_CLOCKIN_UPLOAD_IMG"));
         //打卡是否可以上传视频
         model.addAttribute("MOBILE_CLOCKIN_UPLOAD_VIDEO", AllocationUtil.get("MOBILE_CLOCKIN_UPLOAD_VIDEO"));
+        //青春打卡横幅内容
+        model.addAttribute("MOBILE_CLOCKIN_BANNER_CONTENT", AllocationUtil.get("MOBILE_CLOCKIN_BANNER_CONTENT"));
 
         return "admin/system/allocation/mobile/bottomMenu";
     }
@@ -176,6 +182,10 @@ public class AllocationController extends BaseController {
     @ResponseBody
     public ResultState mobileBottomMenuUpdate(@RequestParam Map<String, Object> mapParam) throws Exception {
         try {
+            AllocationUtil.put("WECHAT_CLIENT_ID", mapParam.get("WECHAT_CLIENT_ID"));
+            AllocationUtil.put("WECHAT_CLIENT_SECRET", mapParam.get("WECHAT_CLIENT_SECRET"));
+            AllocationUtil.put("WECHAT_REDIRECT_URI", mapParam.get("WECHAT_REDIRECT_URI"));
+
             AllocationUtil.put("MOBILE_BOTTOM_MENU_CLOCKIN", mapParam.get("MOBILE_BOTTOM_MENU_CLOCKIN"));
             AllocationUtil.put("MOBILE_BOTTOM_MENU_ACTIVITY", mapParam.get("MOBILE_BOTTOM_MENU_ACTIVITY"));
             AllocationUtil.put("MOBILE_BOTTOM_MENU_RANK", mapParam.get("MOBILE_BOTTOM_MENU_RANK"));
@@ -183,6 +193,7 @@ public class AllocationController extends BaseController {
             AllocationUtil.put("MOBILE_BOTTOM_MENU_MY", unescapeHtml4(mapParam.get("MOBILE_BOTTOM_MENU_MY")));
             AllocationUtil.put("MOBILE_CLOCKIN_UPLOAD_IMG", unescapeHtml4(mapParam.get("MOBILE_CLOCKIN_UPLOAD_IMG")));
             AllocationUtil.put("MOBILE_CLOCKIN_UPLOAD_VIDEO", unescapeHtml4(mapParam.get("MOBILE_CLOCKIN_UPLOAD_VIDEO")));
+            AllocationUtil.put("MOBILE_CLOCKIN_BANNER_CONTENT", unescapeHtml4(mapParam.get("MOBILE_CLOCKIN_BANNER_CONTENT")));
             //刷新参数
             MobileConfig.init();
         } catch (Exception e) {

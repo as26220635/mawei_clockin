@@ -18,8 +18,6 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -96,7 +94,7 @@ public class HttpClient {
             resultMap.put(MagicValue.DESC, e.getMessage());
         }
 
-        log.info("GET请求，URL:" + url + str);
+//        log.info("GET请求，URL:" + url + str);
         return resultMap;
     }
 
@@ -157,7 +155,7 @@ public class HttpClient {
         } catch (IOException e) {
             resultMap.put(MagicValue.DESC, e.getMessage());
         }
-        log.info("POST请求，URL:" + url + "，参数:" + nvps.toString());
+//        log.info("POST请求，URL:" + url + "，参数:" + nvps.toString());
         return resultMap;
     }
 }

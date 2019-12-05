@@ -77,6 +77,7 @@
     .weui-dialog {
         -webkit-transform: translate(0%, -50%);
         transform: translate(0%, -50%);
+        margin: auto !important;
     }
 </style>
 <div class="container container-page">

@@ -223,7 +223,7 @@ public class Base64 {
                     baos.close();
                 }
             } catch (Exception e) {
-                System.out.println(e);
+//                System.out.println(e);
             }
         }
 
@@ -257,7 +257,7 @@ public class Base64 {
                     fr.close();
                 }
             } catch (Exception e) {
-                System.out.println(e);
+//                System.out.println(e);
             }
         }
 
@@ -281,7 +281,7 @@ public class Base64 {
                     fos.close();
                 }
             } catch (Exception e) {
-                System.out.println(e);
+//                System.out.println(e);
             }
         }
     }

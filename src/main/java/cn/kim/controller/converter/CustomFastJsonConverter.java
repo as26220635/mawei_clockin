@@ -9,8 +9,6 @@ import com.alibaba.fastjson.parser.Feature;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import lombok.extern.log4j.Log4j2;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.converter.HttpMessageNotWritableException;
 
@@ -73,10 +71,8 @@ public class CustomFastJsonConverter extends FastJsonHttpMessageConverter {
             if (json.startsWith("{")) {
                 // 将参数转换成JSONObject
                 JSONObject jsonObj = JSONObject.parseObject(json, Feature.IgnoreNotMatch);
-                System.out.println(jsonObj.toString());
                 // 处理参数
                 JSONObject myobj = jsonObj(jsonObj);
-                System.out.println(myobj.toString());
                 return myobj.toString();
             }
             // 判断是否是JSON数组

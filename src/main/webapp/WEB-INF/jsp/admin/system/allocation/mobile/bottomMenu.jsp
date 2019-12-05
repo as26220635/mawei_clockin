@@ -24,6 +24,24 @@
                                 <form id="addAndEditForm">
                                     <input type="hidden" name="${SUBMIT_TOKEN_NAME}" value="${token}">
                                     <div class="form-group has-feedback">
+                                        <label>微信clientId:</label>
+                                        <input type="text"
+                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WECHAT_CLIENT_ID")}
+                                               value="${WECHAT_CLIENT_ID}">
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>微信clientSecret:</label>
+                                        <input type="text"
+                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WECHAT_CLIENT_SECRET")}
+                                               value="${WECHAT_CLIENT_SECRET}">
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>微信回调URI:</label>
+                                        <input type="text"
+                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WECHAT_REDIRECT_URI")}
+                                               value="${WECHAT_REDIRECT_URI}">
+                                    </div>
+                                    <div class="form-group has-feedback">
                                         <label>青春打卡:</label>
                                         <s:combobox sdtCode="SYS_YES_NO"
                                                     custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_BOTTOM_MENU_CLOCKIN")}'
@@ -65,7 +83,14 @@
                                         <label>打卡是否可以上传视频:</label>
                                         <s:combobox sdtCode="SYS_YES_NO"
                                                     custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_CLOCKIN_UPLOAD_VIDEO")}'
-                                                    value="${MOBILE_CLOCKIN_UPLOAD_VIDEO}" defaultValue="1"></s:combobox>
+                                                    value="${MOBILE_CLOCKIN_UPLOAD_VIDEO}"
+                                                    defaultValue="1"></s:combobox>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>青春打卡横幅内容:</label>
+                                        <input type="text"
+                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "MOBILE_CLOCKIN_BANNER_CONTENT")}
+                                               value="${MOBILE_CLOCKIN_BANNER_CONTENT}">
                                     </div>
                                 </form>
                             </div>

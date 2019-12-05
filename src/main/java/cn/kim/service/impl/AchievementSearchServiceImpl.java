@@ -96,7 +96,7 @@ public class AchievementSearchServiceImpl extends BaseServiceImpl implements Ach
 
     @Override
     public void init() throws Exception {
-        log.info(" init search method index() ");
+//        log.info(" init search method index() ");
         List<Map<String, Object>> list = baseDao.selectList(NameSpace.MainImageMapper, "selectMobileSearchData");
 
         if (list == null || list.isEmpty()) return;
@@ -174,7 +174,7 @@ public class AchievementSearchServiceImpl extends BaseServiceImpl implements Ach
             parser.setDefaultOperator(QueryParser.Operator.AND);
             query = parser.parse(QueryParser.escape(queryWord));
         }
-        log.info("query param is : " + query.toString());
+//        log.info("query param is : " + query.toString());
         // start time
         TopScoreDocCollector collector = TopScoreDocCollector.create(RESULT_COUNT, false);
         long start = new Date().getTime();
@@ -191,11 +191,11 @@ public class AchievementSearchServiceImpl extends BaseServiceImpl implements Ach
             searchDataList.add(searchData);
         }
         // end time
-        long end = new Date().getTime();
-        log.info("Found " + collector.getTotalHits() + " document(s) (in "
-                + (end - start) + " millindexSearchereconds) that matched query '"
-                + queryWord + "':"
-        );
+//        long end = new Date().getTime();
+//        log.info("Found " + collector.getTotalHits() + " document(s) (in "
+//                + (end - start) + " millindexSearchereconds) that matched query '"
+//                + queryWord + "':"
+//        );
         return searchDataList;
     }
 

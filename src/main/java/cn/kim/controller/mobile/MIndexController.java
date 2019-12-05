@@ -129,6 +129,7 @@ public class MIndexController extends BaseController {
         model.addAttribute("mainImage", mainImage);
         model.addAttribute("areaList", areaList);
         model.addAttribute("wechatUser", getWechatUser());
+        model.addAttribute("mobileConfig", MobileConfig.getConfig());
         setWechatUserToModel(model);
         return "mobile/clockin";
     }
