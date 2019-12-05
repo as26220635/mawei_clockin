@@ -8,9 +8,9 @@ import java.util.Map;
 
 /**
  * Created by 余庚鑫 on 2019/12/3
- * 前端底部菜单配置
+ * 前端管理配置
  */
-public class MobileBottomMenu {
+public class MobileConfig {
     /**
      * 青春打卡
      */
@@ -31,6 +31,14 @@ public class MobileBottomMenu {
      * 个人中心
      */
     public static Integer MOBILE_BOTTOM_MENU_MY;
+    /**
+     * 打卡是否可以上传图片
+     */
+    public static Integer MOBILE_CLOCKIN_UPLOAD_IMG;
+    /**
+     * 打卡是否可以上传视频
+     */
+    public static Integer MOBILE_CLOCKIN_UPLOAD_VIDEO;
 
     /**
      * 初始化
@@ -41,6 +49,8 @@ public class MobileBottomMenu {
         MOBILE_BOTTOM_MENU_RANK = TextUtil.toInt(AllocationUtil.get("MOBILE_BOTTOM_MENU_RANK"));
         MOBILE_BOTTOM_MENU_ACHIEVEMENT = TextUtil.toInt(AllocationUtil.get("MOBILE_BOTTOM_MENU_ACHIEVEMENT"));
         MOBILE_BOTTOM_MENU_MY = TextUtil.toInt(AllocationUtil.get("MOBILE_BOTTOM_MENU_MY"));
+        MOBILE_CLOCKIN_UPLOAD_IMG = TextUtil.toInt(AllocationUtil.get("MOBILE_CLOCKIN_UPLOAD_IMG"));
+        MOBILE_CLOCKIN_UPLOAD_VIDEO = TextUtil.toInt(AllocationUtil.get("MOBILE_CLOCKIN_UPLOAD_VIDEO"));
     }
 
     /**
@@ -55,6 +65,8 @@ public class MobileBottomMenu {
         config.put("MOBILE_BOTTOM_MENU_RANK", MOBILE_BOTTOM_MENU_RANK);
         config.put("MOBILE_BOTTOM_MENU_ACHIEVEMENT", MOBILE_BOTTOM_MENU_ACHIEVEMENT);
         config.put("MOBILE_BOTTOM_MENU_MY", MOBILE_BOTTOM_MENU_MY);
+        config.put("MOBILE_CLOCKIN_UPLOAD_IMG", MOBILE_CLOCKIN_UPLOAD_IMG);
+        config.put("MOBILE_CLOCKIN_UPLOAD_VIDEO", MOBILE_CLOCKIN_UPLOAD_VIDEO);
         return config;
     }
 }

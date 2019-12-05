@@ -109,13 +109,17 @@
 
                 <div class="weui-tab" id="switchTab" style="height:44px;">
                     <div class="weui-navbar">
-                        <div class="weui-navbar__item tab-green">
-                            上传图片 <span class="weui-uploader__info" id="uploader_count" data-total="9"
-                                       data-val="0">0/9</span>
-                        </div>
-                        <div class="weui-navbar__item">
-                            上传视频
-                        </div>
+                        <c:if test="${mobileConfig.MOBILE_CLOCKIN_UPLOAD_IMG ne 0}">
+                            <div class="weui-navbar__item tab-green">
+                                上传图片 <span class="weui-uploader__info" id="uploader_count" data-total="9"
+                                           data-val="0">0/9</span>
+                            </div>
+                        </c:if>
+                        <c:if test="${mobileConfig.MOBILE_CLOCKIN_UPLOAD_VIDEO ne 0}">
+                            <div class="weui-navbar__item">
+                                上传视频
+                            </div>
+                        </c:if>
                     </div>
                 </div>
             </form>

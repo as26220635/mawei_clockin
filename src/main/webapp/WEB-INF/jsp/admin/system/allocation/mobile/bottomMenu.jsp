@@ -55,6 +55,18 @@
                                                     custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_BOTTOM_MENU_MY")}'
                                                     value="${MOBILE_BOTTOM_MENU_MY}" defaultValue="1"></s:combobox>
                                     </div>
+                                    <div class="form-group has-feedback">
+                                        <label>打卡是否可以上传图片:</label>
+                                        <s:combobox sdtCode="SYS_YES_NO"
+                                                    custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_CLOCKIN_UPLOAD_IMG")}'
+                                                    value="${MOBILE_CLOCKIN_UPLOAD_IMG}" defaultValue="1"></s:combobox>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>打卡是否可以上传视频:</label>
+                                        <s:combobox sdtCode="SYS_YES_NO"
+                                                    custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_CLOCKIN_UPLOAD_VIDEO")}'
+                                                    value="${MOBILE_CLOCKIN_UPLOAD_VIDEO}" defaultValue="1"></s:combobox>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -66,7 +78,7 @@
 </section>
 
 <script>
-    editMenuTitle('前端底部菜单管理');
+    editMenuTitle('前端管理管理');
     //保存
     $('#save').click(function () {
         var $form = $('#addAndEditForm');

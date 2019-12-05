@@ -1,13 +1,12 @@
 package cn.kim.controller.mobile;
 
-import cn.kim.common.annotation.NotEmptyLogin;
 import cn.kim.common.annotation.SystemControllerLog;
 import cn.kim.common.annotation.Token;
 import cn.kim.common.annotation.WechaNotEmptyLogin;
 import cn.kim.common.attr.Attribute;
 import cn.kim.common.attr.MagicValue;
+import cn.kim.common.attr.MobileConfig;
 import cn.kim.common.attr.TableName;
-import cn.kim.common.attr.WebConfig;
 import cn.kim.common.eu.UseType;
 import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.ResultState;
@@ -160,6 +159,7 @@ public class MIndexController extends BaseController {
         model.addAttribute("BW_ID", BW_ID);
         model.addAttribute("BA_ID", BA_ID);
         model.addAttribute("achievement", achievement);
+        model.addAttribute("mobileConfig", MobileConfig.getConfig());
         setHeaderTitle(model, "青春打卡");
         return "mobile/clockin/in";
     }

@@ -1,6 +1,5 @@
 package cn.kim.util;
 
-import cn.kim.common.annotation.Validate;
 import cn.kim.common.attr.Attribute;
 import cn.kim.common.attr.AttributePath;
 import cn.kim.common.attr.MagicValue;
@@ -13,7 +12,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
-import com.sun.org.apache.xml.internal.security.keys.content.MgmtData;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -51,7 +49,7 @@ public class CommonUtil {
     /**
      * 不加密字段
      */
-    public static Set<String> NO_ENCRYPT_FIELDS = Sets.newHashSet("SCC_WIDTH", "SB_BUTTONID", "WEBCONFIG_BAIDU_MAP_AK");
+    public static Set<String> NO_ENCRYPT_FIELDS = Sets.newHashSet("SCC_WIDTH", "SB_BUTTONID", "WEBCONFIG_BAIDU_MAP_AK", "MOBILE_CLOCKIN_UPLOAD_VIDEO");
 
     @Autowired
     private MenuService menuService;

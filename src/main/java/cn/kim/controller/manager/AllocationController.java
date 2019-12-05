@@ -3,7 +3,7 @@ package cn.kim.controller.manager;
 import cn.kim.common.annotation.SystemControllerLog;
 import cn.kim.common.annotation.Token;
 import cn.kim.common.annotation.Validate;
-import cn.kim.common.attr.MobileBottomMenu;
+import cn.kim.common.attr.MobileConfig;
 import cn.kim.common.attr.WebConfig;
 import cn.kim.common.eu.UseType;
 import cn.kim.entity.ResultState;
@@ -143,11 +143,11 @@ public class AllocationController extends BaseController {
         return resultSuccess("网站配置修改成功!", "修改网站配置为:" + toString(mapParam));
     }
 
-    /****************************   前端底部菜单配置    *****************************/
+    /****************************   前端管理配置    *****************************/
 
     @GetMapping("/mobileBottomMenu")
     @RequiresPermissions("SYSTEM:ALLOCATION_MOBILE_BOTTOM_MENU")
-    @SystemControllerLog(useType = UseType.USE, event = "查看前端底部菜单", isSuccess = true)
+    @SystemControllerLog(useType = UseType.USE, event = "查看前端管理", isSuccess = true)
     @Token(save = true)
     public String mobileBottomMenu(Model model) throws Exception {
         //青春打卡
@@ -160,13 +160,17 @@ public class AllocationController extends BaseController {
         model.addAttribute("MOBILE_BOTTOM_MENU_ACHIEVEMENT", AllocationUtil.get("MOBILE_BOTTOM_MENU_ACHIEVEMENT"));
         //个人中心
         model.addAttribute("MOBILE_BOTTOM_MENU_MY", AllocationUtil.get("MOBILE_BOTTOM_MENU_MY"));
+        //打卡是否可以上传图片
+        model.addAttribute("MOBILE_CLOCKIN_UPLOAD_IMG", AllocationUtil.get("MOBILE_CLOCKIN_UPLOAD_IMG"));
+        //打卡是否可以上传视频
+        model.addAttribute("MOBILE_CLOCKIN_UPLOAD_VIDEO", AllocationUtil.get("MOBILE_CLOCKIN_UPLOAD_VIDEO"));
 
         return "admin/system/allocation/mobile/bottomMenu";
     }
 
     @PutMapping("/mobileBottomMenu")
     @RequiresPermissions("SYSTEM:ALLOCATION_MOBILE_BOTTOM_MENU_SAVE")
-    @SystemControllerLog(useType = UseType.USE, event = "修改前端底部菜单")
+    @SystemControllerLog(useType = UseType.USE, event = "修改前端管理")
     @Token(remove = true)
     @Validate("SYS_ALLOCATION")
     @ResponseBody
@@ -177,11 +181,13 @@ public class AllocationController extends BaseController {
             AllocationUtil.put("MOBILE_BOTTOM_MENU_RANK", mapParam.get("MOBILE_BOTTOM_MENU_RANK"));
             AllocationUtil.put("MOBILE_BOTTOM_MENU_ACHIEVEMENT", mapParam.get("MOBILE_BOTTOM_MENU_ACHIEVEMENT"));
             AllocationUtil.put("MOBILE_BOTTOM_MENU_MY", unescapeHtml4(mapParam.get("MOBILE_BOTTOM_MENU_MY")));
+            AllocationUtil.put("MOBILE_CLOCKIN_UPLOAD_IMG", unescapeHtml4(mapParam.get("MOBILE_CLOCKIN_UPLOAD_IMG")));
+            AllocationUtil.put("MOBILE_CLOCKIN_UPLOAD_VIDEO", unescapeHtml4(mapParam.get("MOBILE_CLOCKIN_UPLOAD_VIDEO")));
             //刷新参数
-            MobileBottomMenu.init();
+            MobileConfig.init();
         } catch (Exception e) {
             return resultError(e);
         }
-        return resultSuccess("前端底部菜单成功!", "修改前端底部菜单为:" + toString(mapParam));
+        return resultSuccess("前端管理成功!", "修改前端管理为:" + toString(mapParam));
     }
 }

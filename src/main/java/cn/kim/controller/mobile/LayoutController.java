@@ -2,13 +2,10 @@ package cn.kim.controller.mobile;
 
 import cn.kim.common.annotation.WechaNotEmptyLogin;
 import cn.kim.common.attr.MagicValue;
-import cn.kim.common.attr.MobileBottomMenu;
+import cn.kim.common.attr.MobileConfig;
 import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.ResultState;
-import cn.kim.util.HttpUtil;
-import cn.kim.util.SessionUtil;
 import com.google.common.collect.Maps;
-import org.apache.shiro.web.util.WebUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +30,7 @@ public class LayoutController extends BaseController {
     @WechaNotEmptyLogin
     public String layout(HttpServletRequest request, HttpServletResponse response, Model model) throws Exception {
         //底部菜单配置
-        model.addAttribute("bottomMenuConfig", MobileBottomMenu.getConfig());
+        model.addAttribute("bottomMenuConfig", MobileConfig.getConfig());
         return "mobile/common/main";
     }
 

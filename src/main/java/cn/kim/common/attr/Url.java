@@ -52,7 +52,7 @@ public class Url {
      */
     public static final String WEBCONFIG_BASE_URL = ALLOCATION_BASE_URL + "webConfig";
     /**
-     * 前端底部菜单管理
+     * 前端管理管理
      */
     public static final String MOBILE_BOTTOM_MENU_BASE_URL = ALLOCATION_BASE_URL + "mobileBottomMenu";
     /**
