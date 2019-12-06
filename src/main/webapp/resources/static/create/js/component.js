@@ -2293,13 +2293,16 @@ file = {
             if (multiple == undefined) {
                 //只允许上传一个文件 判断预览区的文件是否删除
                 if (previewCount >= 1 || fileCount > 1) {
-                    $fileInput.fileinput('clear');
+                    // $fileInput.fileinput('clear');
+                    $('.kv-preview-thumb .file-footer-caption[title="'+label+'"]:last').siblings('.file-actions').find('button.kv-file-remove').click();
                     //提示
                     demo.showNotify(ALERT_WARNING, '不允许多文件上传,要上传请删除原本的文件!');
                 }
             } else {
-                if (previewCount + fileCount > settings.maxFilesNum) {
-                    $fileInput.fileinput('clear');
+                var uploadCount = Number($(settings.numberId).text());
+                if (previewCount + fileCount > settings.maxFilesNum || uploadCount >= settings.maxFilesNum) {
+                    // $fileInput.fileinput('clear');
+                    $('.kv-preview-thumb .file-footer-caption[title="'+label+'"]:last').siblings('.file-actions').find('button.kv-file-remove').click();
                     //提示
                     demo.showNotify(ALERT_WARNING, '超过最大允许上传数' + settings.maxFilesNum + '!');
                 }

@@ -692,3 +692,7 @@ form.row, form .row {
     margin-left: 0px;
     margin-right: 0px;
 }
+
+.box-header[data-toggle]:active{
+    background-color: #e6e6e6;
+ }

@@ -22,7 +22,7 @@
                         <div class="box box-default">
                             <div class="box-body">
                                 <button id="validate" class="btn btn-warning">验证</button>
-                                <s:fileInput title="上传文件测试" sdtCode="FILE_TEST" tableId="${tableId}" tableName="SYS_FILE" typeCode="file" allowFile="true"></s:fileInput>
+                                <s:fileInput title="上传文件测试" sdtCode="FILE_TEST" tableId="${tableId}" tableName="SYS_FILE" typeCode="file" allowFile="${FileInput.FILE}" maxFileCount="2" maxFilesNum="2"></s:fileInput>
                             </div>
                         </div>
                     </div>
@@ -40,4 +40,5 @@
            demo.showNotify(ALERT_WARNING, result.message);
        }
     });
+
 </script>

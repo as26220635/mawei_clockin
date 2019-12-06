@@ -3,25 +3,15 @@ package cn.kim.common.tag;
 import cn.kim.common.attr.*;
 import cn.kim.entity.DictType;
 import cn.kim.service.FileService;
-import cn.kim.common.annotation.Validate;
-import cn.kim.common.attr.Attribute;
-import cn.kim.common.attr.AttributePath;
-import cn.kim.common.attr.ConfigProperties;
-import cn.kim.entity.DictType;
-import cn.kim.service.FileService;
 import cn.kim.util.*;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
 import javax.servlet.jsp.JspException;
-import java.security.InvalidKeyException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * Created by 余庚鑫 on 2018/3/29
@@ -177,7 +167,7 @@ public class FileInput extends BaseTagSupport {
             String inputId = uuid();
             String numberId = uuid();
             //标签DIV
-            builder.append("<div class='box-header with-border'><h4 class='box-title' style='width: 100%;'>");
+            builder.append("<div class='box-header with-border' data-toggle='#"+collapseId+"'><h4 class='box-title' style='width: 100%;'>");
             builder.append("<a data-toggle='collapse' data-parent='#" + groupId + "' href='#" + collapseId + "' aria-expanded='true' class='" + aClass + "'>");
             builder.append(info.getSdiName() + (required == Attribute.STATUS_SUCCESS ? "（必填）" : "") + "<span class='pull-right'>数量:<span id='" + numberId + "' class='" + (required == Attribute.STATUS_SUCCESS ? "file-validate" : "") + "' data-validate-message='" + info.getSdiName() + "'>" + files.size() + "</span></span>");
             builder.append("</a>");
@@ -263,6 +253,13 @@ public class FileInput extends BaseTagSupport {
                 "        if ($('.model-custom').length > 0) {" +
                 "            $(document.body).addClass('modal-open');" +
                 "        }" +
+                "    });");
+        builder.append("</script>");
+        //点击头切换事件
+        builder.append("<script>");
+        builder.append("$('.box-header[data-toggle]').unbind('click').on('click', function () {" +
+                "          $('#"+groupId+" div.collapse').collapse('hide');" +
+                "          $($(this).attr('data-toggle')).collapse('toggle');"+
                 "    });");
         builder.append("</script>");
 
