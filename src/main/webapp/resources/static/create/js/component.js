@@ -139,6 +139,10 @@ mainInit = {
         $(document).on('pjax:end', function () {
             NProgress.done();
         });
+        $(document).on('pjax:error', function (event) {
+            NProgress.done();
+            event.preventDefault();
+        });
         $(document).on('pjax:timeout', function (event) {
             event.preventDefault();
         })
