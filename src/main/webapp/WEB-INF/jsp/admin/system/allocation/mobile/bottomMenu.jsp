@@ -7,7 +7,12 @@
 --%>
 <%@ include file="/WEB-INF/jsp/common/tag.jsp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<style>
+    .bottom-icon {
+        width: 50px;
+        height: 50px;
+    }
+</style>
 <section class="content">
     <div class="row">
         <div class="col-xs-12">
@@ -54,33 +59,53 @@
                                                value="${WECHAT_REDIRECT_URI}">
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <label>青春打卡:</label>
+                                        <label>青春打卡:
+                                            <a href="javascript:;" data-id="${fns:AESEncode(1)}"
+                                               data-typeCode="MOBILE_BOTTOM_MENU"
+                                               data-sdtCode="MOBILE_BOTTOM_MENU">上传图片</a>
+                                        </label>
                                         <s:combobox sdtCode="SYS_YES_NO"
                                                     custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_BOTTOM_MENU_CLOCKIN")}'
                                                     value="${MOBILE_BOTTOM_MENU_CLOCKIN}" defaultValue="1"></s:combobox>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <label>活动:</label>
+                                        <label>活动:
+                                            <a href="javascript:;" data-id="${fns:AESEncode(2)}"
+                                               data-typeCode="MOBILE_BOTTOM_MENU"
+                                               data-sdtCode="MOBILE_BOTTOM_MENU">上传图片</a>
+                                        </label>
                                         <s:combobox sdtCode="SYS_YES_NO"
                                                     custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_BOTTOM_MENU_ACTIVITY")}'
                                                     value="${MOBILE_BOTTOM_MENU_ACTIVITY}"
                                                     defaultValue="1"></s:combobox>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <label>排行榜:</label>
+                                        <label>排行榜:
+                                            <a href="javascript:;" data-id="${fns:AESEncode(3)}"
+                                               data-typeCode="MOBILE_BOTTOM_MENU"
+                                               data-sdtCode="MOBILE_BOTTOM_MENU">上传图片</a>
+                                        </label>
                                         <s:combobox sdtCode="SYS_YES_NO"
                                                     custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_BOTTOM_MENU_RANK")}'
                                                     value="${MOBILE_BOTTOM_MENU_RANK}" defaultValue="1"></s:combobox>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <label>成就墙:</label>
+                                        <label>成就墙:
+                                            <a href="javascript:;" data-id="${fns:AESEncode(4)}"
+                                               data-typeCode="MOBILE_BOTTOM_MENU"
+                                               data-sdtCode="MOBILE_BOTTOM_MENU">上传图片</a>
+                                        </label>
                                         <s:combobox sdtCode="SYS_YES_NO"
                                                     custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_BOTTOM_MENU_ACHIEVEMENT")}'
                                                     value="${MOBILE_BOTTOM_MENU_ACHIEVEMENT}"
                                                     defaultValue="1"></s:combobox>
                                     </div>
                                     <div class="form-group has-feedback">
-                                        <label>个人中心:</label>
+                                        <label>个人中心:
+                                            <a href="javascript:;" data-id="${fns:AESEncode(5)}"
+                                               data-typeCode="MOBILE_BOTTOM_MENU"
+                                               data-sdtCode="MOBILE_BOTTOM_MENU">上传图片</a>
+                                        </label>
                                         <s:combobox sdtCode="SYS_YES_NO"
                                                     custom='${fns:validField(TableName.SYS_ALLOCATION,"MOBILE_BOTTOM_MENU_MY")}'
                                                     value="${MOBILE_BOTTOM_MENU_MY}" defaultValue="1"></s:combobox>
@@ -129,6 +154,29 @@
         ajax.put('${BASE_URL}${Url.MOBILE_BOTTOM_MENU_BASE_URL}', params, function (data) {
             ajaxReturn.data(data, null, null, null);
         })
+    });
+
+    $('a[data-typeCode]').on('click', function () {
+        var $this = $(this);
+        var id = $this.attr('data-id');
+        var typeCode = $this.attr('data-typeCode');
+        var sdtCode = $this.attr('data-sdtCode');
+        var textName = $this.parent().text().replace($this.text(), '');
+
+        ajax.getHtml('${BASE_URL}${Url.FILE_SERVER_UPDATE_URL}/' + id, {
+                typeCode: typeCode,
+                sdtCode: sdtCode
+            }, function (html) {
+                model.show({
+                    title: '修改图片:' + textName,
+                    content: html,
+                    footerModel: model.footerModel.ADMIN,
+                    cancel: function () {
+
+                    }
+                });
+            }
+        );
     });
 
     validator.init({

@@ -1,9 +1,7 @@
 package cn.kim.controller;
 
 import cn.kim.common.annotation.SystemControllerLog;
-import cn.kim.common.attr.Attribute;
 import cn.kim.common.attr.AttributePath;
-import cn.kim.common.attr.ConfigProperties;
 import cn.kim.common.attr.MagicValue;
 import cn.kim.common.eu.UseType;
 import cn.kim.controller.manager.BaseController;
@@ -33,7 +31,10 @@ import org.springframework.web.servlet.mvc.LastModified;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -477,6 +478,22 @@ public class FileController extends BaseController implements LastModified {
             IOUtils.closeQuietly(inputStream);
         }
         return "admin/component/officePreview";
+    }
+
+    /**
+     * 上传文件
+     *
+     * @param model
+     * @param ID
+     * @param reqParam
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/update/{ID}")
+    public String updateHtml(Model model, @PathVariable("ID") String ID, @RequestParam Map<String, Object> reqParam) throws Exception {
+        model.addAttribute("tableId", ID);
+        model.addAttribute("reqParam", reqParam);
+        return "admin/component/uploadFile";
     }
 
     @Override

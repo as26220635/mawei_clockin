@@ -1,6 +1,10 @@
 package cn.kim.common.attr;
 
+import cn.kim.common.DaoSession;
+import cn.kim.common.eu.NameSpace;
+import cn.kim.dao.BaseDao;
 import cn.kim.util.AllocationUtil;
+import cn.kim.util.FileUtil;
 import cn.kim.util.TextUtil;
 import com.google.common.collect.Maps;
 
@@ -73,6 +77,9 @@ public class MobileConfig {
      * 初始化
      */
     public static void init() {
+        BaseDao baseDao = DaoSession.daoSession.baseDao;
+        Map<String,Object> paramMap =Maps.newHashMapWithExpectedSize(1);
+
         WECHAT_BASE_URL = TextUtil.toString(AllocationUtil.get("WECHAT_BASE_URL"));
         WECHAT_SCOPE = TextUtil.toString(AllocationUtil.get("WECHAT_SCOPE"));
         WECHAT_CLIENT_ID = TextUtil.toString(AllocationUtil.get("WECHAT_CLIENT_ID"));
@@ -95,6 +102,34 @@ public class MobileConfig {
         config.put("MOBILE_BOTTOM_MENU_RANK", MOBILE_BOTTOM_MENU_RANK);
         config.put("MOBILE_BOTTOM_MENU_ACHIEVEMENT", MOBILE_BOTTOM_MENU_ACHIEVEMENT);
         config.put("MOBILE_BOTTOM_MENU_MY", MOBILE_BOTTOM_MENU_MY);
+        //图标地址
+        paramMap.put("SF_SDT_CODE", "MOBILE_BOTTOM_MENU");
+
+        paramMap.put("SF_TABLE_ID","1");
+        Map<String,Object> icon = baseDao.selectOne(NameSpace.FileMapper,"selectFile",paramMap);
+        FileUtil.filePathTobase64(icon, "FILE_PATH");
+        config.put("MOBILE_BOTTOM_MENU_CLOCKIN_ICON", icon.get("FILE_PATH"));
+
+        paramMap.put("SF_TABLE_ID","2");
+        icon = baseDao.selectOne(NameSpace.FileMapper,"selectFile",paramMap);
+        FileUtil.filePathTobase64(icon, "FILE_PATH");
+        config.put("MOBILE_BOTTOM_MENU_ACTIVITY_ICON", icon.get("FILE_PATH"));
+
+        paramMap.put("SF_TABLE_ID","3");
+        icon = baseDao.selectOne(NameSpace.FileMapper,"selectFile",paramMap);
+        FileUtil.filePathTobase64(icon, "FILE_PATH");
+        config.put("MOBILE_BOTTOM_MENU_RANK_ICON", icon.get("FILE_PATH"));
+
+        paramMap.put("SF_TABLE_ID","4");
+        icon = baseDao.selectOne(NameSpace.FileMapper,"selectFile",paramMap);
+        FileUtil.filePathTobase64(icon, "FILE_PATH");
+        config.put("MOBILE_BOTTOM_MENU_ACHIEVEMENT_ICON", icon.get("FILE_PATH"));
+
+        paramMap.put("SF_TABLE_ID","5");
+        icon = baseDao.selectOne(NameSpace.FileMapper,"selectFile",paramMap);
+        FileUtil.filePathTobase64(icon, "FILE_PATH");
+        config.put("MOBILE_BOTTOM_MENU_MY_ICON", icon.get("FILE_PATH"));
+
         config.put("MOBILE_CLOCKIN_UPLOAD_IMG", MOBILE_CLOCKIN_UPLOAD_IMG);
         config.put("MOBILE_CLOCKIN_UPLOAD_VIDEO", MOBILE_CLOCKIN_UPLOAD_VIDEO);
         config.put("MOBILE_CLOCKIN_BANNER_CONTENT", MOBILE_CLOCKIN_BANNER_CONTENT);

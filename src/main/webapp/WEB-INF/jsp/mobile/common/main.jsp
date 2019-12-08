@@ -45,33 +45,34 @@
                 <c:if test="${bottomMenuConfig.MOBILE_BOTTOM_MENU_CLOCKIN ne Attribute.STATUS_ERROR}">
                     <a id="clockinTabbar" href="${BASE_URL}clockin" class="weui-tabbar__item weui-bar__item_on"
                        data-pjax="#${CONTAINER}">
-                        <img src="${BASE_URL}resources/assets/images/main/clockin-min.png" alt=""
+                        <img src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${bottomMenuConfig.MOBILE_BOTTOM_MENU_CLOCKIN_ICON}"
                              class="weui-tabbar__icon">
                     </a>
                 </c:if>
                 <c:if test="${bottomMenuConfig.MOBILE_BOTTOM_MENU_ACTIVITY ne Attribute.STATUS_ERROR}">
                     <a id="activityTabbar" href="${BASE_URL}activity" class="weui-tabbar__item"
                        data-pjax="#${CONTAINER}">
-                        <img src="${BASE_URL}resources/assets/images/main/activity-min.png" alt=""
+                        <img src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${bottomMenuConfig.MOBILE_BOTTOM_MENU_ACTIVITY_ICON}"
                              class="weui-tabbar__icon">
                     </a>
                 </c:if>
                 <c:if test="${bottomMenuConfig.MOBILE_BOTTOM_MENU_RANK ne Attribute.STATUS_ERROR}">
                     <a id="rankTabbar" href="${BASE_URL}rank" class="weui-tabbar__item" data-pjax="#${CONTAINER}">
-                        <img src="${BASE_URL}resources/assets/images/main/rank-min.png" alt=""
+                        <img src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${bottomMenuConfig.MOBILE_BOTTOM_MENU_RANK_ICON}"
                              class="weui-tabbar__icon">
                     </a>
                 </c:if>
                 <c:if test="${bottomMenuConfig.MOBILE_BOTTOM_MENU_ACHIEVEMENT ne Attribute.STATUS_ERROR}">
                     <a id="achievementTabbar" href="${BASE_URL}achievement" class="weui-tabbar__item"
                        data-pjax="#${CONTAINER}">
-                        <img src="${BASE_URL}resources/assets/images/main/achievement-min.png" alt=""
+                        <img src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${bottomMenuConfig.MOBILE_BOTTOM_MENU_ACHIEVEMENT_ICON}"
                              class="weui-tabbar__icon">
                     </a>
                 </c:if>
                 <c:if test="${bottomMenuConfig.MOBILE_BOTTOM_MENU_MY ne Attribute.STATUS_ERROR}">
                     <a id="myTabbar" href="${BASE_URL}my" class="weui-tabbar__item" data-pjax="#${CONTAINER}">
-                        <img src="${BASE_URL}resources/assets/images/main/my-min.png" alt="" class="weui-tabbar__icon">
+                        <img src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${bottomMenuConfig.MOBILE_BOTTOM_MENU_MY_ICON}"
+                             class="weui-tabbar__icon">
                     </a>
                 </c:if>
             </div>

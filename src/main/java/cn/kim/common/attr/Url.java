@@ -28,6 +28,7 @@ public class Url {
     public static final String FILE_SERVER_PLAYER_URL = "player/";
     public static final String FILE_SERVER_DOWNLOAD_URL = "download/";
     public static final String FILE_SERVER_UPLOAD_URL = "upload/";
+    public static final String FILE_SERVER_UPDATE_URL = "file/update";
     /**
      * excel导出地址
      */

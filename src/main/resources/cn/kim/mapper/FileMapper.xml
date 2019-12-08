@@ -4,7 +4,10 @@
 
     <!--查询文件-->
     <select id="selectFile" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT SF.*,SDT.SDT_ROLE_DOWN,SDT.SDT_ROLE_DEL
+        SELECT
+            SF.*,
+            CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) FILE_PATH,
+            SDT.SDT_ROLE_DOWN,SDT.SDT_ROLE_DEL
         FROM (
             SELECT * FROM SYS_FILE
             <where>

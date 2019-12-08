@@ -7,8 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="weui-footer weui-footer_fixed-bottom">
-    <p class="weui-footer__links">
-        <a href="javascript:;" class="weui-footer__link">WeUI首页</a>
-    </p>
-    <p class="weui-footer__text">Copyright &copy; y</p>
+<%--    <p class="weui-footer__links">--%>
+<%--        <a href="javascript:;" class="weui-footer__link">WeUI首页</a>--%>
+<%--    </p>--%>
+<%--    <p class="weui-footer__text">Copyright &copy; y</p>--%>
 </div>
