@@ -119,6 +119,7 @@
             <if test="ID != null">ID,</if>
             <if test="BA_ID != null">BA_ID,</if>
             <if test="BW_ID != null">BW_ID,</if>
+            <if test="BAD_ADDRESS != null">BAD_ADDRESS,</if>
             <if test="BAD_REMARKS != null">BAD_REMARKS,</if>
             <if test="BAD_FILETYPE != null">BAD_FILETYPE,</if>
             <if test="BAD_ENTERTIME != null">BAD_ENTERTIME,</if>
@@ -127,6 +128,7 @@
             <if test="ID != null">#{ID},</if>
             <if test="BA_ID != null">#{BA_ID},</if>
             <if test="BW_ID != null">#{BW_ID},</if>
+            <if test="BAD_ADDRESS != null">#{BAD_ADDRESS},</if>
             <if test="BAD_REMARKS != null">#{BAD_REMARKS},</if>
             <if test="BAD_FILETYPE != null">#{BAD_FILETYPE},</if>
             <if test="BAD_ENTERTIME != null">#{BAD_ENTERTIME},</if>
@@ -140,6 +142,7 @@
             <if test="ID != null">ID=#{ID},</if>
             <if test="BA_ID != null">BA_ID=#{BA_ID},</if>
             <if test="BW_ID != null">BW_ID=#{BW_ID},</if>
+            <if test="BAD_ADDRESS != null">BAD_REMARKS=#{BAD_ADDRESS},</if>
             <if test="BAD_REMARKS != null">BAD_REMARKS=#{BAD_REMARKS},</if>
             <if test="BAD_ENTERTIME != null">BAD_ENTERTIME=#{BAD_ENTERTIME},</if>
         </set>

@@ -2421,6 +2421,8 @@ editText = {
 
         tinymce.remove();
         tinymce.init({
+            language_url: '/tinymce/langs/zh_CN.js',
+            language: 'zh_CN',
             selector: 'textarea',
             height: settings.height,
             theme: 'modern',

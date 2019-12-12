@@ -4,18 +4,20 @@ import cn.kim.common.annotation.WechaNotEmptyLogin;
 import cn.kim.common.attr.MagicValue;
 import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.DataTablesView;
+import cn.kim.entity.ResultState;
 import cn.kim.entity.WechatUser;
 import cn.kim.service.AchievementService;
 import cn.kim.service.WechatService;
 import cn.kim.util.CommonUtil;
-import cn.kim.util.FileUtil;
 import com.google.common.collect.Lists;
-import org.checkerframework.checker.units.qual.A;
+import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
@@ -91,5 +93,14 @@ public class MMyController extends BaseController {
         model.addAttribute("fileIds", fileIds);
         setHeaderTitle(model, "打卡明细");
         return "mobile/my/clockin_item";
+    }
+
+    @DeleteMapping("/my/clockin/delete/{ID}")
+    @ResponseBody
+    public ResultState delete(@PathVariable("ID") String ID) throws Exception {
+        Map<String, Object> mapParam = Maps.newHashMapWithExpectedSize(1);
+        mapParam.put("ID", ID);
+        Map<String, Object> resultMap = achievementService.deleteAchievementDetail(mapParam);
+        return resultState(resultMap);
     }
 }

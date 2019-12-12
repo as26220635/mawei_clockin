@@ -17,6 +17,10 @@
         ${detail.BW_USERNAME}
     </div>
     <div class="form-group has-feedback">
+        <label>打卡地点:</label>
+        ${detail.BAD_ADDRESS}
+    </div>
+    <div class="form-group has-feedback">
         <label>打卡时间:</label>
         ${detail.BAD_ENTERTIME}
     </div>

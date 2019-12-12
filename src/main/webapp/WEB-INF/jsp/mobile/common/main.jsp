@@ -47,6 +47,12 @@
                 height: 88%;
             }
         }
+
+        .weui-dialog {
+            -webkit-transform: translate(0%, -50%);
+            transform: translate(0%, -50%);
+            margin: auto !important;
+        }
     </style>
 </head>
 <body>

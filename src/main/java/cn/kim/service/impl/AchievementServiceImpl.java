@@ -12,6 +12,7 @@ import cn.kim.entity.TreeState;
 import cn.kim.exception.CustomException;
 import cn.kim.service.AchievementSearchService;
 import cn.kim.service.AchievementService;
+import cn.kim.service.FileService;
 import cn.kim.util.CacheUtil;
 import cn.kim.util.FileUtil;
 import cn.kim.util.TextUtil;
@@ -36,6 +37,9 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
 
     @Autowired
     private AchievementSearchService achievementSearchService;
+
+    @Autowired
+    private FileService fileService;
 
     @Override
     public Map<String, Object> selectAchievement(Map<String, Object> mapParam) {
@@ -261,6 +265,7 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             paramMap.put("ID", id);
             paramMap.put("BA_ID", mapParam.get("BA_ID"));
             paramMap.put("BW_ID", mapParam.get("BW_ID"));
+            paramMap.put("BAD_ADDRESS", mapParam.get("BAD_ADDRESS"));
             paramMap.put("BAD_REMARKS", mapParam.get("BAD_REMARKS"));
             paramMap.put("BAD_FILETYPE", mapParam.get("BAD_FILETYPE"));
 
@@ -301,7 +306,7 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             if (isEmpty(mapParam.get("ID"))) {
                 throw new CustomException(Tips.ID_NULL_ERROR);
             }
-            Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
+            Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(2);
             String id = toString(mapParam.get("ID"));
 
             //删除打卡信息表
@@ -309,10 +314,20 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             paramMap.put("ID", id);
             Map<String, Object> oldMap = selectAchievementDetail(paramMap);
             //记录日志
-            paramMap.put(MagicValue.SVR_TABLE_NAME, TableName.BUS_ACHIEVEMENT);
+            paramMap.put(MagicValue.SVR_TABLE_NAME, TableName.BUS_ACHIEVEMENT_DETAIL);
             baseDao.delete(NameSpace.AchievementMapper, "deleteAchievementDetail", paramMap);
 
-            resultMap.put(MagicValue.LOG, "删除打卡信息,信息:" + formatColumnName(TableName.BUS_ACHIEVEMENT, oldMap));
+            //删除附件
+            paramMap.clear();
+            paramMap.put("SF_TABLE_ID", id);
+            paramMap.put("SF_TABLE_NAME", "BUS_ACHIEVEMENT_DETAIL");
+            List<Map<String, Object>> fileList = baseDao.selectList(NameSpace.FileMapper, "selectFile", paramMap);
+            for (Map<String, Object> file : fileList) {
+                fileService.deleteFile(toString(file.get("ID")));
+            }
+            deleteFile(id, TableName.BUS_ACHIEVEMENT_DETAIL);
+
+            resultMap.put(MagicValue.LOG, "删除打卡信息,信息:" + formatColumnName(TableName.BUS_ACHIEVEMENT_DETAIL, oldMap));
             status = STATUS_SUCCESS;
             desc = DELETE_SUCCESS;
         } catch (Exception e) {

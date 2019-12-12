@@ -31,13 +31,24 @@
         width: 100%;
         height: 100%;
     }
+
+    .weui-form__opr-area {
+        margin-top: 30px;
+    }
+
+    .weui-form__date{
+        font-size: 14px;
+        color: rgba(0,0,0,.5);
+    }
 </style>
 <div id="weuiCellsItems" class="container container-page">
     <%@ include file="/WEB-INF/jsp/mobile/common/common_top.jspf" %>
     <div class="weui-form">
         <div class="weui-form__text-area">
-            <h2 class="weui-form__title">打卡地点:${detail.BA_NAME}</h2>
-            <div class="weui-form__desc">${detail.BAD_ENTERTIME}</div>
+            <h2 class="weui-form__title">打卡地点:</h2>
+            <div class="weui-form__desc">${detail.BAD_ADDRESS}
+                <div class="weui-form__date">${detail.BAD_ENTERTIME}</div>
+            </div>
         </div>
         <div class="weui-form__control-area">
             <div class="weui-cells__group weui-cells__group_form">
@@ -99,6 +110,10 @@
 
                 </c:when>
             </c:choose>
+
+            <div class="weui-form__opr-area">
+                <button class="weui-btn weui-btn_warn" href="javascript:" id="deleteBtn">删除</button>
+            </div>
         </div>
     </div>
 </div>
@@ -107,6 +122,22 @@
     hideBottpmMenu();
     switchTabbar('myTabbar');
     mainInit.initPjax();
+    $('#deleteBtn').unbind('click').on('click', function () {
+        $.confirm("您确定要删除吗?", "确认删除?", function () {
+            $.showLoading('删除中');
+            ajax.del('${BASE_URL}my/clockin/delete/${detail.ID}', {}, function (data) {
+                $.hideLoading();
+                if (data.code == 1) {
+                    $.toast('删除成功', 2000, function () {
+                        backHtml();
+                    });
+                } else {
+                    $.toast("删除失败", "forbidden");
+                }
+            });
+        }, function () {
+        });
+    })
 </script>
 <c:choose>
     <c:when test="${detail.BAD_FILETYPE eq 1}">

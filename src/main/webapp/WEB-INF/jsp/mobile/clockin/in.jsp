@@ -74,12 +74,6 @@
         margin-bottom: 10px;
     }
 
-    .weui-dialog {
-        -webkit-transform: translate(0%, -50%);
-        transform: translate(0%, -50%);
-        margin: auto !important;
-    }
-
     .weui-form__opr-area{
         text-align: center;
     }
@@ -96,7 +90,6 @@
         <div class="weui-form__text-area">
             <h2 class="weui-form__title">打卡地点:</h2>
             <h2 class="weui-form__desc">${clockinAddress}</h2>
-
         </div>
         <div class="weui-form__control-area">
             <form id="addAndEditForm">
@@ -105,6 +98,7 @@
                 <input type="hidden" name="BW_ID" value="${BW_ID}">
                 <input type="hidden" id="BAD_FILETYPE" name="BAD_FILETYPE">
                 <input type="hidden" id="  " name="BAD_FILEPARAMS">
+                <input type="hidden" name="BAD_ADDRESS" value="${clockinAddress}">
 
                 <div class="weui-cells__group weui-cells__group_form">
                     <div class="weui-cells__title">概述</div>

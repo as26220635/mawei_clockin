@@ -483,7 +483,7 @@ public abstract class BaseServiceImpl extends BaseData implements BaseService {
     protected boolean deleteFile(String tableId, String tableName) throws Exception {
         Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(2);
         paramMap.put("SF_TABLE_ID", tableId);
-        paramMap.put("SF_TABLE_NAME", TableName.SYS_CONFIGURE_FILE);
+        paramMap.put("SF_TABLE_NAME", tableName);
         List<Map<String, Object>> oldFileList = baseDao.selectList(NameSpace.FileMapper, "selectFile", paramMap);
         for (Map<String, Object> oldFile : oldFileList) {
             FileUtil.delServiceFile(toString(oldFile.get("ID")));
