@@ -172,6 +172,9 @@ public class AllocationController extends BaseController {
         model.addAttribute("MOBILE_CLOCKIN_UPLOAD_VIDEO", AllocationUtil.get("MOBILE_CLOCKIN_UPLOAD_VIDEO"));
         //青春打卡横幅内容
         model.addAttribute("MOBILE_CLOCKIN_BANNER_CONTENT", AllocationUtil.get("MOBILE_CLOCKIN_BANNER_CONTENT"));
+        //点赞时间
+        model.addAttribute("PRAISE_POINT_START_TIME", AllocationUtil.get("PRAISE_POINT_START_TIME"));
+        model.addAttribute("PRAISE_POINT_END_TIME", AllocationUtil.get("PRAISE_POINT_END_TIME"));
 
         return "admin/system/allocation/mobile/bottomMenu";
     }
@@ -198,6 +201,9 @@ public class AllocationController extends BaseController {
             AllocationUtil.put("MOBILE_CLOCKIN_UPLOAD_IMG", unescapeHtml4(mapParam.get("MOBILE_CLOCKIN_UPLOAD_IMG")));
             AllocationUtil.put("MOBILE_CLOCKIN_UPLOAD_VIDEO", unescapeHtml4(mapParam.get("MOBILE_CLOCKIN_UPLOAD_VIDEO")));
             AllocationUtil.put("MOBILE_CLOCKIN_BANNER_CONTENT", unescapeHtml4(mapParam.get("MOBILE_CLOCKIN_BANNER_CONTENT")));
+
+            AllocationUtil.put("PRAISE_POINT_START_TIME", mapParam.get("PRAISE_POINT_START_TIME"));
+            AllocationUtil.put("PRAISE_POINT_END_TIME", mapParam.get("PRAISE_POINT_END_TIME"));
             //刷新参数
             MobileConfig.init();
         } catch (Exception e) {

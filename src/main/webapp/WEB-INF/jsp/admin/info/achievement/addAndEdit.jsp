@@ -56,7 +56,9 @@
     <s:fileInput title="附件" sdtCode="BUS_FILE_DEFAULT"
                  tableId="${not empty achievement ? achievement.ID: insertId}"
                  tableName="${TableName.BUS_ACHIEVEMENT}" typeCode="${TableName.BUS_ACHIEVEMENT}"
-                 multiple="false"
+                 multiple="true"
+                 maxFileCount="2"
+                 maxFilesNum="2"
     ></s:fileInput>
 </form>
 

@@ -1,8 +1,5 @@
 package cn.kim.common.annotation;
 
-import cn.kim.common.attr.Attribute;
-import org.springframework.core.annotation.AliasFor;
-
 import java.lang.annotation.*;
 
 /**
@@ -18,7 +15,6 @@ public @interface Validate {
      *
      * @return String[] SV_TABLE
      */
-    @AliasFor("SV_TABLE")
     String[] value() default "";
 
     /**
@@ -27,7 +23,6 @@ public @interface Validate {
      *
      * @return String[] SVG_GROUP
      */
-    @AliasFor("SVG_GROUP")
     String[] group() default "";
 
     /**

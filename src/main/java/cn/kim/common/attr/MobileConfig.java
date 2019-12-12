@@ -3,9 +3,7 @@ package cn.kim.common.attr;
 import cn.kim.common.DaoSession;
 import cn.kim.common.eu.NameSpace;
 import cn.kim.dao.BaseDao;
-import cn.kim.util.AllocationUtil;
-import cn.kim.util.FileUtil;
-import cn.kim.util.TextUtil;
+import cn.kim.util.*;
 import com.google.common.collect.Maps;
 
 import java.util.Map;
@@ -67,7 +65,16 @@ public class MobileConfig {
      * 青春打卡横幅内容
      */
     public static String MOBILE_CLOCKIN_BANNER_CONTENT;
-
+    /**
+     * 点赞开始时间
+     */
+    public static Long PRAISE_POINT_START_TIME;
+    public static String PRAISE_POINT_START_TIME_STR;
+    /**
+     * 点赞结束时间
+     */
+    public static Long PRAISE_POINT_END_TIME;
+    public static String PRAISE_POINT_END_TIME_STR;
     /**
      * 配置MAP
      */
@@ -78,7 +85,7 @@ public class MobileConfig {
      */
     public static void init() {
         BaseDao baseDao = DaoSession.daoSession.baseDao;
-        Map<String,Object> paramMap =Maps.newHashMapWithExpectedSize(1);
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
 
         WECHAT_BASE_URL = TextUtil.toString(AllocationUtil.get("WECHAT_BASE_URL"));
         WECHAT_SCOPE = TextUtil.toString(AllocationUtil.get("WECHAT_SCOPE"));
@@ -95,6 +102,16 @@ public class MobileConfig {
         MOBILE_CLOCKIN_UPLOAD_VIDEO = TextUtil.toInt(AllocationUtil.get("MOBILE_CLOCKIN_UPLOAD_VIDEO"));
         MOBILE_CLOCKIN_BANNER_CONTENT = TextUtil.toString(AllocationUtil.get("MOBILE_CLOCKIN_BANNER_CONTENT"));
 
+        //点赞时间范围
+        PRAISE_POINT_START_TIME_STR = TextUtil.toString(AllocationUtil.get("PRAISE_POINT_START_TIME"));
+        if (!ValidateUtil.isEmpty(PRAISE_POINT_START_TIME_STR)){
+            PRAISE_POINT_START_TIME = DateUtil.getDateTime(DateUtil.FORMAT, PRAISE_POINT_START_TIME_STR).getTime();
+        }
+        PRAISE_POINT_END_TIME_STR = TextUtil.toString(AllocationUtil.get("PRAISE_POINT_END_TIME"));
+        if (!ValidateUtil.isEmpty(PRAISE_POINT_END_TIME_STR)){
+            PRAISE_POINT_END_TIME = DateUtil.getDateTime(DateUtil.FORMAT, PRAISE_POINT_END_TIME_STR).getTime();
+        }
+
         //刷新参数
         config.clear();
         config.put("MOBILE_BOTTOM_MENU_CLOCKIN", MOBILE_BOTTOM_MENU_CLOCKIN);
@@ -105,28 +122,28 @@ public class MobileConfig {
         //图标地址
         paramMap.put("SF_SDT_CODE", "MOBILE_BOTTOM_MENU");
 
-        paramMap.put("SF_TABLE_ID","1");
-        Map<String,Object> icon = baseDao.selectOne(NameSpace.FileMapper,"selectFile",paramMap);
+        paramMap.put("SF_TABLE_ID", "1");
+        Map<String, Object> icon = baseDao.selectOne(NameSpace.FileMapper, "selectFile", paramMap);
         FileUtil.filePathTobase64(icon, "FILE_PATH");
         config.put("MOBILE_BOTTOM_MENU_CLOCKIN_ICON", icon.get("FILE_PATH"));
 
-        paramMap.put("SF_TABLE_ID","2");
-        icon = baseDao.selectOne(NameSpace.FileMapper,"selectFile",paramMap);
+        paramMap.put("SF_TABLE_ID", "2");
+        icon = baseDao.selectOne(NameSpace.FileMapper, "selectFile", paramMap);
         FileUtil.filePathTobase64(icon, "FILE_PATH");
         config.put("MOBILE_BOTTOM_MENU_ACTIVITY_ICON", icon.get("FILE_PATH"));
 
-        paramMap.put("SF_TABLE_ID","3");
-        icon = baseDao.selectOne(NameSpace.FileMapper,"selectFile",paramMap);
+        paramMap.put("SF_TABLE_ID", "3");
+        icon = baseDao.selectOne(NameSpace.FileMapper, "selectFile", paramMap);
         FileUtil.filePathTobase64(icon, "FILE_PATH");
         config.put("MOBILE_BOTTOM_MENU_RANK_ICON", icon.get("FILE_PATH"));
 
-        paramMap.put("SF_TABLE_ID","4");
-        icon = baseDao.selectOne(NameSpace.FileMapper,"selectFile",paramMap);
+        paramMap.put("SF_TABLE_ID", "4");
+        icon = baseDao.selectOne(NameSpace.FileMapper, "selectFile", paramMap);
         FileUtil.filePathTobase64(icon, "FILE_PATH");
         config.put("MOBILE_BOTTOM_MENU_ACHIEVEMENT_ICON", icon.get("FILE_PATH"));
 
-        paramMap.put("SF_TABLE_ID","5");
-        icon = baseDao.selectOne(NameSpace.FileMapper,"selectFile",paramMap);
+        paramMap.put("SF_TABLE_ID", "5");
+        icon = baseDao.selectOne(NameSpace.FileMapper, "selectFile", paramMap);
         FileUtil.filePathTobase64(icon, "FILE_PATH");
         config.put("MOBILE_BOTTOM_MENU_MY_ICON", icon.get("FILE_PATH"));
 

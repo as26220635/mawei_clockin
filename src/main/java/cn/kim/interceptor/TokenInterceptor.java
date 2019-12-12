@@ -3,17 +3,13 @@ package cn.kim.interceptor;
 import cn.kim.common.annotation.Token;
 import cn.kim.common.attr.Attribute;
 import cn.kim.util.CommonUtil;
-import cn.kim.util.TextUtil;
-import cn.kim.common.annotation.Token;
-import cn.kim.common.attr.Attribute;
-import cn.kim.util.CommonUtil;
+import cn.kim.util.SessionUtil;
 import cn.kim.util.TextUtil;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.soap.Text;
 import java.lang.reflect.Method;
 import java.security.InvalidKeyException;
 import java.util.UUID;
@@ -34,14 +30,16 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
             if (annotation != null) {
                 boolean needSaveSession = annotation.save();
                 if (needSaveSession) {
-                    request.getSession(false).setAttribute(Attribute.SUBMIT_TOKEN_NAME, CommonUtil.idEncrypt(UUID.randomUUID().toString()));
+                    String token = TextUtil.toString(CommonUtil.idEncrypt(UUID.randomUUID().toString()));
+                    SessionUtil.set(Attribute.SUBMIT_TOKEN_NAME, token);
+                    request.setAttribute(Attribute.SUBMIT_TOKEN_NAME, token);
                 }
                 boolean needRemoveSession = annotation.remove();
                 if (needRemoveSession) {
                     if (isRepeatSubmit(request)) {
                         return false;
                     }
-                    request.getSession(false).removeAttribute(Attribute.SUBMIT_TOKEN_NAME);
+                    SessionUtil.remove(Attribute.SUBMIT_TOKEN_NAME);
                 }
             }
             return true;
@@ -52,7 +50,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter {
 
 
     private boolean isRepeatSubmit(HttpServletRequest request) throws InvalidKeyException {
-        String serverToken = TextUtil.toString(request.getSession(false).getAttribute("token"));
+        String serverToken = TextUtil.toString(SessionUtil.get(Attribute.SUBMIT_TOKEN_NAME));
 
         if (serverToken == null) {
             return true;

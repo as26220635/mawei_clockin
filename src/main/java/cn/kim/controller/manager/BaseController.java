@@ -6,13 +6,17 @@ import cn.kim.common.attr.Constants;
 import cn.kim.common.attr.MagicValue;
 import cn.kim.common.attr.Tips;
 import cn.kim.controller.ManagerController;
-import cn.kim.entity.*;
+import cn.kim.entity.ActiveUser;
+import cn.kim.entity.ResultState;
+import cn.kim.entity.Tree;
+import cn.kim.entity.TreeState;
 import cn.kim.exception.NotFoundException;
 import cn.kim.interceptor.PjaxInterceptor;
-import cn.kim.interceptor.TokenInterceptor;
 import cn.kim.listener.LockListener;
 import cn.kim.service.ManagerService;
-import cn.kim.util.*;
+import cn.kim.util.AuthcUtil;
+import cn.kim.util.HttpUtil;
+import cn.kim.util.ValidateUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.redisson.api.RLock;
@@ -26,7 +30,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.security.InvalidKeyException;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -270,14 +275,6 @@ public abstract class BaseController extends BaseData {
         model.addAttribute("headerTitle", title);
     }
 
-    /**
-     * 获取微信登录用户
-     *
-     * @return
-     */
-    protected WechatUser getWechatUser() {
-        return (WechatUser) SessionUtil.get(MagicValue.SESSION_WECHAT_USER);
-    }
 
     /**
      * 设置登录用户到model

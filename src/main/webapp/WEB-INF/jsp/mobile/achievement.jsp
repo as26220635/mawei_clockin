@@ -16,6 +16,7 @@
     .weui-grid__icon img {
         width: auto;
         height: 88px;
+        margin: auto;
     }
 
     .weui-grid__gray {

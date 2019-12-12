@@ -1,8 +1,10 @@
 package cn.kim.service.impl;
 
-import cn.kim.common.attr.*;
+import cn.kim.common.attr.MagicValue;
+import cn.kim.common.attr.ParamTypeResolve;
+import cn.kim.common.attr.TableName;
+import cn.kim.common.attr.Tips;
 import cn.kim.common.eu.NameSpace;
-import cn.kim.common.eu.SystemEnum;
 import cn.kim.entity.DataTablesView;
 import cn.kim.entity.QuerySet;
 import cn.kim.entity.Tree;
@@ -10,17 +12,19 @@ import cn.kim.entity.TreeState;
 import cn.kim.exception.CustomException;
 import cn.kim.service.AchievementSearchService;
 import cn.kim.service.AchievementService;
-import cn.kim.service.AchievementService;
-import cn.kim.util.*;
+import cn.kim.util.CacheUtil;
+import cn.kim.util.FileUtil;
+import cn.kim.util.TextUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.*;
-import java.util.*;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -51,8 +55,24 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
         paramMap.put("ID", ID);
         List<Map<String, Object>> list = baseDao.selectList(NameSpace.AchievementMapper, "selectMAchievementListByWechat", paramMap);
 
+        //查询最终成就
+        Map<String, Object> achievementEnd = baseDao.selectOne(NameSpace.AchievementMapper, "selectMAchievementEnd");
+        if (!isEmpty(achievementEnd)) {
+            int isComplete = 1;
+            for (Map<String, Object> achievment : list) {
+                if (toInt(achievment.get("BAD_COUNT")) == 0) {
+                    isComplete = 0;
+                    break;
+                }
+            }
+
+            achievementEnd.put("BA_NAME", "最终成就");
+            achievementEnd.put("BAD_COUNT", isComplete);
+            list.add(achievementEnd);
+        }
         //文件路径加密
         FileUtil.filePathTobase64(list, "IMG_PATH");
+        FileUtil.filePathTobase64(list, "IMG_PATH_IN");
         return list;
     }
 

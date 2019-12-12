@@ -85,35 +85,192 @@
 		DELETE FROM BUS_WECHAT WHERE ID = #{ID}
 	</delete>
 
-    <!--查询排名10条 -->
+    <!--查询排名 -->
     <select id="selectWechatRank" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT CAST(@RANK := @RANK +1 AS SIGNED) AS WECHAT_RANK,BW.*
-        FROM
-        (SELECT @RANK := 0) r,
-        (SELECT BW.BW_USERNAME,BW.BW_AVATAR,IFNULL(BWD.CLOCKIN_COUNT,0) CLOCKIN_COUNT FROM BUS_WECHAT BW
-        LEFT JOIN (SELECT BAD.BW_ID,COUNT(1) CLOCKIN_COUNT FROM BUS_ACHIEVEMENT_DETAIL BAD  INNER JOIN BUS_ACHIEVEMENT BA ON BA.ID = BAD.BA_ID AND BA.IS_STATUS = 1 WHERE BAD.ID =(SELECT MAX(EAD.ID) FROM BUS_ACHIEVEMENT_DETAIL EAD WHERE EAD.BA_ID = BAD.BA_ID AND EAD.BW_ID = BAD.BW_ID GROUP BY EAD.BA_ID,EAD.BW_ID) GROUP BY BAD.BW_ID
-        )BWD ON BWD.BW_ID = BW.ID
-        LEFT JOIN BUS_ACHIEVEMENT_DETAIL EAD ON EAD.BW_ID = BW.ID AND EAD.ID = (SELECT MIN(EAD.ID) FROM BUS_ACHIEVEMENT_DETAIL EAD WHERE EAD.BW_ID = BW.ID GROUP BY EAD.BW_ID)
-        ORDER BY BWD.CLOCKIN_COUNT DESC,EAD.BAD_ENTERTIME ASC,BW.BW_ENTRYTIME ASC)BW
-        LIMIT 10
+        SELECT *
+        FROM(
+            SELECT CAST(@RANK := @RANK +1 AS SIGNED) AS WECHAT_RANK,BW.*,IMG.IMG_PATHS
+            FROM
+            (SELECT @RANK := 0) r,
+            (SELECT
+                BW.ID,
+                BW.BW_USERNAME,BW.BW_AVATAR,
+                EAD.BAD_ENTERTIME,
+                IFNULL(BWD.CLOCKIN_COUNT,0) CLOCKIN_COUNT,
+                IFNULL(BWP.BWP_NUMBER,0) BWP_NUMBER
+                FROM BUS_WECHAT BW
+                LEFT JOIN (SELECT BAD.BW_ID,COUNT(1) CLOCKIN_COUNT FROM BUS_ACHIEVEMENT_DETAIL BAD INNER JOIN BUS_ACHIEVEMENT BA
+                ON BA.ID = BAD.BA_ID AND BA.IS_STATUS = 1 WHERE BAD.ID =(SELECT MAX(EAD.ID) FROM BUS_ACHIEVEMENT_DETAIL EAD
+                WHERE EAD.BA_ID = BAD.BA_ID AND EAD.BW_ID = BAD.BW_ID GROUP BY EAD.BA_ID,EAD.BW_ID) GROUP BY BAD.BW_ID
+                )BWD ON BWD.BW_ID = BW.ID
+                LEFT JOIN BUS_ACHIEVEMENT_DETAIL EAD ON EAD.BW_ID = BW.ID AND EAD.ID = (SELECT MIN(EAD.ID) FROM
+                BUS_ACHIEVEMENT_DETAIL EAD WHERE EAD.BW_ID = BW.ID GROUP BY EAD.BW_ID) AND EAD.BA_ID IN(SELECT BA.ID FROM
+                BUS_ACHIEVEMENT BA WHERE BA.IS_STATUS = 1 )
+                LEFT JOIN BUS_WECHAT_PRAISE BWP ON BWP.BW_ID = BW.ID
+                ORDER BY BWD.CLOCKIN_COUNT DESC,IFNULL(BWP.BWP_NUMBER,0) DESC,EAD.BAD_ENTERTIME ASC
+            )BW
+            LEFT JOIN(
+                SELECT ID,GROUP_CONCAT(IMG_PATHS ORDER BY IS_CLOCKIN DESC) IMG_PATHS
+                FROM(
+                    SELECT BW.ID,(CASE WHEN BAD.BA_ID IS NOT NULL THEN 1 ELSE 0 END) IS_CLOCKIN,CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATHS
+                    FROM bus_wechat BW
+                    INNER JOIN bus_achievement BA ON BA.IS_STATUS = 1
+                    LEFT JOIN (SELECT BW.ID,BAD.BA_ID FROM bus_wechat BW
+                    INNER JOIN bus_achievement_detail BAD ON BAD.BW_ID = BW.ID
+                    GROUP BY BW.ID,BAD.BA_ID)BAD ON BA.ID = BAD.BA_ID AND BW.ID = BAD.ID
+                    LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID AND SF.ID = (SELECT (CASE WHEN BAD.BA_ID IS NOT NULL THEN MIN(SF.ID) ELSE MAX(SF.ID) END) FROM SYS_FILE SF WHERE SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND  SF.SF_TABLE_ID = BA.ID GROUP BY SF.SF_TABLE_ID)
+                    ORDER BY (CASE WHEN BAD.BA_ID IS NOT NULL THEN 1 ELSE 0 END) DESC
+                )IMG
+                    GROUP BY ID
+            )IMG ON IMG.ID = BW.ID
+        )TEMP
+        <where>
+            <if test="whereClause != null and whereClause != ''">
+                ${whereClause}
+            </if>
+        </where>
+        <if test="limit != null">
+            <if test="offset != null">
+                limit ${offset}, ${limit}
+            </if>
+            <if test="offset == null">
+                limit ${limit}
+            </if>
+        </if>
+    </select>
+
+    <select id="selectWechatRankCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM BUS_WECHAT
     </select>
 
     <!--查询自己的排名 -->
     <select id="selectWechatRankByWechatId" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT * FROM(
+        SELECT BW.*,IMG.IMG_PATHS
+        FROM(
             SELECT CAST(@RANK := @RANK +1 AS SIGNED) AS WECHAT_RANK,BW.*
             FROM
             (SELECT @RANK := 0) r,
-            (SELECT BW.ID,BW.BW_USERNAME,BW.BW_AVATAR,IFNULL(BWD.CLOCKIN_COUNT,0) CLOCKIN_COUNT FROM BUS_WECHAT BW
+            (SELECT
+                BW.ID,BW.BW_USERNAME,BW.BW_AVATAR,
+                IFNULL(BWD.CLOCKIN_COUNT,0) CLOCKIN_COUNT,
+                IFNULL(BWP.BWP_NUMBER,0) BWP_NUMBER
+            FROM BUS_WECHAT BW
             LEFT JOIN (SELECT BAD.BW_ID,COUNT(1) CLOCKIN_COUNT FROM BUS_ACHIEVEMENT_DETAIL BAD  INNER JOIN BUS_ACHIEVEMENT BA ON BA.ID = BAD.BA_ID AND BA.IS_STATUS = 1 WHERE BAD.ID =(SELECT MAX(EAD.ID) FROM BUS_ACHIEVEMENT_DETAIL EAD WHERE EAD.BA_ID = BAD.BA_ID AND EAD.BW_ID = BAD.BW_ID GROUP BY EAD.BA_ID,EAD.BW_ID) GROUP BY BAD.BW_ID
             )BWD ON BWD.BW_ID = BW.ID
             LEFT JOIN BUS_ACHIEVEMENT_DETAIL EAD ON EAD.BW_ID = BW.ID AND EAD.ID = (SELECT MIN(EAD.ID) FROM BUS_ACHIEVEMENT_DETAIL EAD WHERE EAD.BW_ID = BW.ID GROUP BY EAD.BW_ID)
-            ORDER BY BWD.CLOCKIN_COUNT DESC,EAD.BAD_ENTERTIME ASC,BW.BW_ENTRYTIME ASC)BW
-        )TEMP
-        WHERE ID = #{ID}
+            LEFT JOIN BUS_WECHAT_PRAISE BWP ON BWP.BW_ID = BW.ID
+            ORDER BY BWD.CLOCKIN_COUNT DESC,IFNULL(BWP.BWP_NUMBER,0) DESC,EAD.BAD_ENTERTIME ASC,BW.BW_ENTRYTIME ASC)BW
+        )BW
+         LEFT JOIN(
+                SELECT ID,GROUP_CONCAT(IMG_PATHS ORDER BY IS_CLOCKIN DESC) IMG_PATHS
+                FROM(
+                    SELECT BW.ID,(CASE WHEN BAD.BA_ID IS NOT NULL THEN 1 ELSE 0 END) IS_CLOCKIN,CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATHS
+                    FROM bus_wechat BW
+                    INNER JOIN bus_achievement BA ON BA.IS_STATUS = 1
+                    LEFT JOIN (SELECT BW.ID,BAD.BA_ID FROM bus_wechat BW
+                    INNER JOIN bus_achievement_detail BAD ON BAD.BW_ID = BW.ID
+                    GROUP BY BW.ID,BAD.BA_ID)BAD ON BA.ID = BAD.BA_ID AND BW.ID = BAD.ID
+                    LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID AND SF.ID = (SELECT (CASE WHEN BAD.BA_ID IS NOT NULL THEN MIN(SF.ID) ELSE MAX(SF.ID) END) FROM SYS_FILE SF WHERE SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID GROUP BY SF.SF_TABLE_ID)
+                    ORDER BY (CASE WHEN BAD.BA_ID IS NOT NULL THEN 1 ELSE 0 END) DESC
+                )IMG
+                GROUP BY ID
+        )IMG ON IMG.ID = BW.ID
+        WHERE BW.ID = #{ID}
     </select>
 
     <select id="selectContactServiceFile" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT  CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATH FROM SYS_FILE SF WHERE SF.SF_TABLE_NAME = 'CONTACT_SERVICE' AND SF.SF_TABLE_ID = 'CONTACT_SERVICE'
     </select>
+
+    <!--查询-->
+    <select id="selectWechatPraise" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM BUS_WECHAT_PRAISE
+        <where>
+            <if test="ID != NULL and ID != ''">
+                AND ID = #{ID}
+            </if>
+            <if test="BW_ID != NULL and BW_ID != ''">
+                AND BW_ID = #{BW_ID}
+            </if>
+        </where>
+    </select>
+
+    <!--插入-->
+    <insert id="insertWechatPraise" parameterType="java.util.Map">
+        INSERT INTO BUS_WECHAT_PRAISE
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ID != null">ID,</if>
+            <if test="BW_ID != null">BW_ID,</if>
+            <if test="BWP_NUMBER != null">BWP_NUMBER,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ID != null">#{ID},</if>
+            <if test="BW_ID != null">#{BW_ID},</if>
+            <if test="BWP_NUMBER != null">#{BWP_NUMBER},</if>
+        </trim>
+    </insert>
+
+    <!--编辑-->
+    <update id="updateWechatPraise" parameterType="java.util.Map">
+        UPDATE BUS_WECHAT_PRAISE
+        <set>
+            <if test="ID != null">ID=#{ID},</if>
+            <if test="BW_ID != null">BW_ID=#{BW_ID},</if>
+            <if test="BWP_NUMBER != null">BWP_NUMBER=#{BWP_NUMBER},</if>
+        </set>
+        <where>
+            ID=#{ID}
+        </where>
+    </update>
+
+    <!--删除-->
+    <delete id="deleteWechatPraise" parameterType="java.util.Map">
+		DELETE FROM BUS_WECHAT_PRAISE WHERE ID = #{ID}
+	</delete>
+
+    <!--查询-->
+    <select id="selectWechatPraisePoint" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM BUS_WECHAT_PRAISE_POINT
+        <where>
+            <if test="ID != NULL and ID != ''">
+                AND ID = #{ID}
+            </if>
+        </where>
+    </select>
+
+    <!--插入-->
+    <insert id="insertWechatPraisePoint" parameterType="java.util.Map">
+        INSERT INTO BUS_WECHAT_PRAISE_POINT
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ID != null">ID,</if>
+            <if test="BWPP_FROM_ID != null">BWPP_FROM_ID,</if>
+            <if test="BWPP_TO_ID != null">BWPP_TO_ID,</if>
+            <if test="BWPP_ENTRY_TIME != null">BWPP_ENTRY_TIME,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ID != null">#{ID},</if>
+            <if test="BWPP_FROM_ID != null">#{BWPP_FROM_ID},</if>
+            <if test="BWPP_TO_ID != null">#{BWPP_TO_ID},</if>
+            <if test="BWPP_ENTRY_TIME != null">#{BWPP_ENTRY_TIME},</if>
+        </trim>
+    </insert>
+
+    <!--编辑-->
+    <update id="updateWechatPraisePoint" parameterType="java.util.Map">
+        UPDATE BUS_WECHAT_PRAISE_POINT
+        <set>
+            <if test="ID != null">ID=#{ID},</if>
+            <if test="BWPP_FROM_ID != null">BWPP_FROM_ID=#{BWPP_FROM_ID},</if>
+            <if test="BWPP_TO_ID != null">BWPP_TO_ID=#{BWPP_TO_ID},</if>
+            <if test="BWPP_ENTRY_TIME != null">BWPP_ENTRY_TIME=#{BWPP_ENTRY_TIME},</if>
+        </set>
+        <where>
+            ID=#{ID}
+        </where>
+    </update>
+
+    <!--删除-->
+    <delete id="deleteWechatPraisePoint" parameterType="java.util.Map">
+		DELETE FROM BUS_WECHAT_PRAISE_POINT WHERE BWPP_FROM_ID = #{BWPP_FROM_ID} AND BWPP_TO_ID = #{BWPP_TO_ID}
+	</delete>
 </mapper>

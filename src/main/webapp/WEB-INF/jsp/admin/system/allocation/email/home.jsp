@@ -84,7 +84,7 @@
 
 <script>
     //保存邮件配置
-    $('#save').click(function () {
+    $('#save').unbind('click').click(function () {
         var $form = $('#addAndEditForm');
         //验证
         if (!validator.formValidate($form)) {

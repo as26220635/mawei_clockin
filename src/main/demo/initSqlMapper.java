@@ -1,5 +1,4 @@
 import cn.kim.util.FuncUtil;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -9,9 +8,9 @@ public class initSqlMapper {
 
     public static void main(String[] args) throws IOException {
         //字段
-        String str = "ID\tBA_ID\tBMI_ID";
+        String str = "ID\tBWPP_FROM_ID\tBWPP_TO_ID\tBWPP_ENTRY_TIME";
         //表名
-        String tablename = "bus_main_image_achievement";
+        String tablename = "bus_wechat_praise_point";
         creatsql(str, tablename);
     }
 

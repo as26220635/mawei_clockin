@@ -6,6 +6,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp" value="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile" />
       </map>
     </option>
   </component>

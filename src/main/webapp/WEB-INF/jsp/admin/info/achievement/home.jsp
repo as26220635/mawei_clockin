@@ -41,6 +41,32 @@
         );
     });
 
+    /**
+     * 最终成就
+     */
+    function endAchievement() {
+        var $this = $(this);
+        var id = '${fns:AESEncode(1)}';
+        var typeCode = 'BUS_ACHIEVEMENT_END';
+        var sdtCode = 'BUS_ACHIEVEMENT_END';
+        var textName = '最终成就';
+
+        ajax.getHtml('${BASE_URL}${Url.FILE_SERVER_UPDATE_URL}/' + id, {
+                typeCode: typeCode,
+                sdtCode: sdtCode,
+                maxFilesNum: 2,
+                maxFileCount: 2,
+                multiple: true,
+            }, function (html) {
+                model.show({
+                    title: textName,
+                    content: html,
+                    footerModel: model.footerModel.ADMIN,
+                });
+            }
+        );
+    }
+
     //打卡记录
     $dataGridTable.find('tbody').on('click', '#clockin', function () {
         var data = getRowData(this);

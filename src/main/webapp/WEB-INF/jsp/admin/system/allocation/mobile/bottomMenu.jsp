@@ -129,6 +129,18 @@
                                                class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "MOBILE_CLOCKIN_BANNER_CONTENT")}
                                                value="${MOBILE_CLOCKIN_BANNER_CONTENT}">
                                     </div>
+                                    <div class="row">
+                                        <div class="form-group has-feedback form-group-md-6">
+                                            <label>点赞开始时间:</label>
+                                            <s:datebox type="6" custom='${fns:validField(TableName.SYS_ALLOCATION, "PRAISE_POINT_START_TIME")}'
+                                                       value="${PRAISE_POINT_START_TIME}"></s:datebox>
+                                        </div>
+                                        <div class="form-group has-feedback form-group-md-6">
+                                            <label>点赞结束时间:</label>
+                                            <s:datebox type="6" custom='${fns:validField(TableName.SYS_ALLOCATION, "PRAISE_POINT_END_TIME")}'
+                                                       value="${PRAISE_POINT_END_TIME}"></s:datebox>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -142,7 +154,7 @@
 <script>
     editMenuTitle('前端管理管理');
     //保存
-    $('#save').click(function () {
+    $('#save').unbind('click').click(function () {
         var $form = $('#addAndEditForm');
         //验证
         if (!validator.formValidate($form)) {

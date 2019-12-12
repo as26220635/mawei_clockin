@@ -5,8 +5,6 @@ import cn.kim.common.attr.ParamTypeResolve;
 import cn.kim.common.attr.TableName;
 import cn.kim.common.attr.Tips;
 import cn.kim.common.eu.NameSpace;
-import cn.kim.entity.DataTablesView;
-import cn.kim.entity.QuerySet;
 import cn.kim.exception.CustomException;
 import cn.kim.service.MainImageService;
 import cn.kim.util.FileUtil;
@@ -15,7 +13,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.sun.org.apache.bcel.internal.generic.NEW;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -364,7 +361,7 @@ public class MainImageServiceImpl extends BaseServiceImpl implements MainImageSe
             for (Map<String, Object> insertMap : insertList) {
                 Map<String, Object> mainMap = Maps.newHashMapWithExpectedSize(7);
 
-                mainMap.put("insertId", insertMap.get("ID"));
+                mainMap.put("insertId", insertMap.get("BMI_RELATIONID"));
                 mainMap.put("BMI_PARENTID", BMI_ID);
                 mainMap.put("BMI_NAME", PARENT_NAME + "_" + insertMap.get("BIMA_TITLE"));
                 mainMap.put("BMI_HEIGHT", mainImage.get("BMI_HEIGHT"));
@@ -378,7 +375,7 @@ public class MainImageServiceImpl extends BaseServiceImpl implements MainImageSe
                 }
                 String ID = toString(insertResultMap.get("ID"));
 
-                insertMap.remove("ID");
+                insertMap.remove("BMI_RELATIONID");
                 insertMap.put("BMI_ID", BMI_ID);
                 insertMap.put("BMI_RELATIONID", ID);
                 insertResultMap = insertAndUpdateMainImageArea(insertMap);

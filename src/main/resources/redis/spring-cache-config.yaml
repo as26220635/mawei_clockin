@@ -26,3 +26,11 @@ dict-cache:
 value-collection:
   ttl: 0
   maxIdleTime: 0
+#微信点赞
+wechat-praise:
+  ttl: 0
+  maxIdleTime: 0
+#微信点赞
+wechat-praise-points:
+  ttl: 0
+  maxIdleTime: 0

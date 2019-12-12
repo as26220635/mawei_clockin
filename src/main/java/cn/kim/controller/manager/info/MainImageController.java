@@ -11,7 +11,6 @@ import cn.kim.service.AchievementService;
 import cn.kim.service.MainImageService;
 import cn.kim.service.MenuService;
 import cn.kim.util.TextUtil;
-import com.fasterxml.jackson.annotation.JsonAlias;
 import com.google.common.collect.Maps;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,7 +121,6 @@ public class MainImageController extends BaseController {
      */
     @GetMapping("/area")
     @RequiresPermissions("MOBILE:MAINIMAGE_AREA")
-    @Token(save = true)
     public String updateAreaHtml(Model model, @RequestParam Map<String, Object> mapParam) throws Exception {
         Map<String, Object> map = Maps.newHashMapWithExpectedSize(1);
         String SM_ID = toString(mapParam.get("SM_ID"));
@@ -160,7 +158,6 @@ public class MainImageController extends BaseController {
     @PutMapping("/area/update")
     @RequiresPermissions("MOBILE:MAINIMAGE_AREA_SAVE")
     @SystemControllerLog(useType = UseType.USE, event = "主页图片区域管理")
-    @Token(remove = true)
     @Validate(value = "BUS_MAINIMAGE")
     @ResponseBody
     public ResultState updateArea(@RequestParam Map<String, Object> mapParam) throws Exception {

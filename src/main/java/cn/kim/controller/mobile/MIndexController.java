@@ -145,7 +145,7 @@ public class MIndexController extends BaseController {
     @GetMapping("/clockin/in/{BW_ID}/{BA_ID}")
     @Token(save = true)
     @WechaNotEmptyLogin
-    public String in(@PathVariable("BW_ID") String BW_ID, @PathVariable("BA_ID") String BA_ID, Model model) throws Exception {
+    public String in(@PathVariable("BW_ID") String BW_ID, @PathVariable("BA_ID") String BA_ID, @RequestParam Map<String, Object> extraMap, Model model) throws Exception {
         Map<String, Object> mapParam = Maps.newHashMapWithExpectedSize(1);
         mapParam.put("ID", BA_ID);
         Map<String, Object> achievement = achievementService.selectAchievement(mapParam);
@@ -161,6 +161,7 @@ public class MIndexController extends BaseController {
         model.addAttribute("BA_ID", BA_ID);
         model.addAttribute("achievement", achievement);
         model.addAttribute("mobileConfig", MobileConfig.getConfig());
+        model.addAttribute("clockinAddress", extraMap.get("clockinAddress"));
         setHeaderTitle(model, "青春打卡");
         return "mobile/clockin/in";
     }

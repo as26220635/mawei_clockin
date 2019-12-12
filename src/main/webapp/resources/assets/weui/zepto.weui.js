@@ -1,7 +1,7 @@
-;(function($) {
+;(function ($) {
     "use strict";
 
-    $.fn.transitionEnd = function(callback) {
+    $.fn.transitionEnd = function (callback) {
         var events = ['webkitTransitionEnd', 'transitionend', 'oTransitionEnd', 'MSTransitionEnd', 'msTransitionEnd'],
             i, dom = this;
 
@@ -13,6 +13,7 @@
                 dom.off(events[i], fireCallBack);
             }
         }
+
         if (callback) {
             for (i = 0; i < events.length; i++) {
                 dom.on(events[i], fireCallBack);
@@ -21,7 +22,7 @@
         return this;
     };
 
-    $.support = (function() {
+    $.support = (function () {
         var support = {
             touch: !!(('ontouchstart' in window) || window.DocumentTouch && document instanceof window.DocumentTouch)
         };
@@ -34,9 +35,9 @@
         end: $.support.touch ? 'touchend' : 'mouseup'
     };
 
-    $.getTouchPosition = function(e) {
+    $.getTouchPosition = function (e) {
         e = e.originalEvent || e; //jquery wrap the originevent
-        if(e.type === 'touchstart' || e.type === 'touchmove' || e.type === 'touchend') {
+        if (e.type === 'touchstart' || e.type === 'touchmove' || e.type === 'touchend') {
             return {
                 x: e.targetTouches[0].pageX,
                 y: e.targetTouches[0].pageY
@@ -49,18 +50,18 @@
         }
     };
 
-    $.fn.scrollHeight = function() {
+    $.fn.scrollHeight = function () {
         return this[0].scrollHeight;
     };
 
-    $.fn.transform = function(transform) {
+    $.fn.transform = function (transform) {
         for (var i = 0; i < this.length; i++) {
             var elStyle = this[i].style;
             elStyle.webkitTransform = elStyle.MsTransform = elStyle.msTransform = elStyle.MozTransform = elStyle.OTransform = elStyle.transform = transform;
         }
         return this;
     };
-    $.fn.transition = function(duration) {
+    $.fn.transition = function (duration) {
         if (typeof duration !== 'string') {
             duration = duration + 'ms';
         }
@@ -84,9 +85,8 @@
             // Some old versions of Webkit choke when 'none' is passed; pass
             // empty string instead in this case
             transformMatrix = new WebKitCSSMatrix(curStyle.webkitTransform === 'none' ? '' : curStyle.webkitTransform);
-        }
-        else {
-            transformMatrix = curStyle.MozTransform || curStyle.OTransform || curStyle.MsTransform || curStyle.msTransform  || curStyle.transform || curStyle.getPropertyValue('transform').replace('translate(', 'matrix(1, 0, 0, 1,');
+        } else {
+            transformMatrix = curStyle.MozTransform || curStyle.OTransform || curStyle.MsTransform || curStyle.msTransform || curStyle.transform || curStyle.getPropertyValue('transform').replace('translate(', 'matrix(1, 0, 0, 1,');
             matrix = transformMatrix.toString().split(',');
         }
 
@@ -133,7 +133,7 @@
         }
     };
 
-    $.fn.join = function(arg) {
+    $.fn.join = function (arg) {
         return this.toArray().join(arg);
     }
 })($);
@@ -150,13 +150,17 @@
         function isArray(arr) {
             return Object.prototype.toString.apply(arr) === '[object Array]';
         }
+
         function isObject(obj) {
             return obj instanceof Object;
         }
+
         function isFunction(func) {
             return typeof func === 'function';
         }
+
         var cache = {};
+
         function helperToSlices(string) {
             var helperParts = string.replace(/[{}#}]/g, '').split(' ');
             var slices = [];
@@ -170,8 +174,7 @@
                         if (part.match(/"/g).length === 2) {
                             // One word string
                             slices.push(part);
-                        }
-                        else {
+                        } else {
                             // Find closed Index
                             shiftIndex = 0;
                             for (j = i + 1; j < helperParts.length; j++) {
@@ -184,8 +187,7 @@
                             }
                             if (shiftIndex) i = shiftIndex;
                         }
-                    }
-                    else {
+                    } else {
                         if (part.indexOf('=') > 0) {
                             // Hash
                             var hashParts = part.split('=');
@@ -202,10 +204,9 @@
                                 }
                                 if (shiftIndex) i = shiftIndex;
                             }
-                            var hash = [hashName, hashContent.replace(/"/g,'')];
+                            var hash = [hashName, hashContent.replace(/"/g, '')];
                             slices.push(hash);
-                        }
-                        else {
+                        } else {
                             // Plain variable
                             slices.push(part);
                         }
@@ -214,6 +215,7 @@
             }
             return slices;
         }
+
         function stringToBlocks(string) {
             var blocks = [], i, j, k;
             if (!string) return [];
@@ -226,8 +228,7 @@
                         type: 'plain',
                         content: block
                     });
-                }
-                else {
+                } else {
                     if (block.indexOf('{/') >= 0) {
                         continue;
                     }
@@ -249,8 +250,7 @@
                         if (isArray(slice)) {
                             // Hash
                             helperHash[slice[0]] = slice[1] === 'false' ? false : slice[1];
-                        }
-                        else {
+                        } else {
                             helperContext.push(slice);
                         }
                     }
@@ -265,32 +265,28 @@
                         var foundClosed = false, foundElse = false, foundClosedElse = false, depth = 0;
                         for (j = i + 1; j < _blocks.length; j++) {
                             if (_blocks[j].indexOf('{{#') >= 0) {
-                                depth ++;
+                                depth++;
                             }
                             if (_blocks[j].indexOf('{{/') >= 0) {
-                                depth --;
+                                depth--;
                             }
                             if (_blocks[j].indexOf('{{#' + helperName) >= 0) {
                                 helperContent += _blocks[j];
                                 if (foundElse) elseContent += _blocks[j];
-                                toSkip ++;
-                            }
-                            else if (_blocks[j].indexOf('{{/' + helperName) >= 0) {
+                                toSkip++;
+                            } else if (_blocks[j].indexOf('{{/' + helperName) >= 0) {
                                 if (toSkip > 0) {
                                     toSkip--;
                                     helperContent += _blocks[j];
                                     if (foundElse) elseContent += _blocks[j];
-                                }
-                                else {
+                                } else {
                                     shiftIndex = j;
                                     foundClosed = true;
                                     break;
                                 }
-                            }
-                            else if (_blocks[j].indexOf('else') >= 0 && depth === 0) {
+                            } else if (_blocks[j].indexOf('else') >= 0 && depth === 0) {
                                 foundElse = true;
-                            }
-                            else {
+                            } else {
                                 if (!foundElse) helperContent += _blocks[j];
                                 if (foundElse) elseContent += _blocks[j];
                             }
@@ -307,8 +303,7 @@
                                 hash: helperHash
                             });
                         }
-                    }
-                    else if (block.indexOf(' ') > 0) {
+                    } else if (block.indexOf(' ') > 0) {
                         blocks.push({
                             type: 'helper',
                             helperName: helperName,
@@ -320,18 +315,25 @@
             }
             return blocks;
         }
+
         var Template7 = function (template) {
             var t = this;
             t.template = template;
 
             function getCompileFn(block, depth) {
                 if (block.content) return compile(block.content, depth);
-                else return function () {return ''; };
+                else return function () {
+                    return '';
+                };
             }
+
             function getCompileInverse(block, depth) {
                 if (block.inverseContent) return compile(block.inverseContent, depth);
-                else return function () {return ''; };
+                else return function () {
+                    return '';
+                };
             }
+
             function getCompileVar(name, ctx) {
                 var variable, parts, levelsUp = 0, initialCtx = ctx;
                 if (name.indexOf('../') === 0) {
@@ -339,16 +341,13 @@
                     var newDepth = ctx.split('_')[1] - levelsUp;
                     ctx = 'ctx_' + (newDepth >= 1 ? newDepth : 1);
                     parts = name.split('../')[levelsUp].split('.');
-                }
-                else if (name.indexOf('@global') === 0) {
+                } else if (name.indexOf('@global') === 0) {
                     ctx = '$.Template7.global';
                     parts = name.split('@global.')[1].split('.');
-                }
-                else if (name.indexOf('@root') === 0) {
+                } else if (name.indexOf('@root') === 0) {
                     ctx = 'ctx_1';
                     parts = name.split('@root.')[1].split('.');
-                }
-                else {
+                } else {
                     parts = name.split('.');
                 }
                 variable = ctx;
@@ -357,20 +356,16 @@
                     if (part.indexOf('@') === 0) {
                         if (i > 0) {
                             variable += '[(data && data.' + part.replace('@', '') + ')]';
-                        }
-                        else {
+                        } else {
                             variable = '(data && data.' + name.replace('@', '') + ')';
                         }
-                    }
-                    else {
+                    } else {
                         if (isFinite(part)) {
                             variable += '[' + part + ']';
-                        }
-                        else {
+                        } else {
                             if (part.indexOf('this') === 0) {
                                 variable = part.replace('this', ctx);
-                            }
-                            else {
+                            } else {
                                 variable += '.' + part;
                             }
                         }
@@ -379,6 +374,7 @@
 
                 return variable;
             }
+
             function getCompiledArguments(contextArray, ctx) {
                 var arr = [];
                 for (var i = 0; i < contextArray.length; i++) {
@@ -389,6 +385,7 @@
                 }
                 return arr.join(', ');
             }
+
             function compile(template, depth) {
                 depth = depth || 1;
                 template = template || t.template;
@@ -397,7 +394,9 @@
                 }
                 var blocks = stringToBlocks(template);
                 if (blocks.length === 0) {
-                    return function () { return ''; };
+                    return function () {
+                        return '';
+                    };
                 }
                 var ctx = 'ctx_' + depth;
                 var resultString = '(function (' + ctx + ', data) {\n';
@@ -425,19 +424,17 @@
                     if (block.type === 'helper') {
                         if (block.helperName in t.helpers) {
                             compiledArguments = getCompiledArguments(block.contextName, ctx);
-                            resultString += 'r += ($.Template7.helpers.' + block.helperName + ').call(' + ctx + ', ' + (compiledArguments && (compiledArguments + ', ')) +'{hash:' + JSON.stringify(block.hash) + ', data: data || {}, fn: ' + getCompileFn(block, depth+1) + ', inverse: ' + getCompileInverse(block, depth+1) + ', root: ctx_1});';
-                        }
-                        else {
+                            resultString += 'r += ($.Template7.helpers.' + block.helperName + ').call(' + ctx + ', ' + (compiledArguments && (compiledArguments + ', ')) + '{hash:' + JSON.stringify(block.hash) + ', data: data || {}, fn: ' + getCompileFn(block, depth + 1) + ', inverse: ' + getCompileInverse(block, depth + 1) + ', root: ctx_1});';
+                        } else {
                             if (block.contextName.length > 0) {
                                 throw new Error('Template7: Missing helper: "' + block.helperName + '"');
-                            }
-                            else {
+                            } else {
                                 variable = getCompileVar(block.helperName, ctx);
                                 resultString += 'if (' + variable + ') {';
                                 resultString += 'if (isArray(' + variable + ')) {';
-                                resultString += 'r += ($.Template7.helpers.each).call(' + ctx + ', ' + variable + ', {hash:' + JSON.stringify(block.hash) + ', data: data || {}, fn: ' + getCompileFn(block, depth+1) + ', inverse: ' + getCompileInverse(block, depth+1) + ', root: ctx_1});';
+                                resultString += 'r += ($.Template7.helpers.each).call(' + ctx + ', ' + variable + ', {hash:' + JSON.stringify(block.hash) + ', data: data || {}, fn: ' + getCompileFn(block, depth + 1) + ', inverse: ' + getCompileInverse(block, depth + 1) + ', root: ctx_1});';
                                 resultString += '}else {';
-                                resultString += 'r += ($.Template7.helpers.with).call(' + ctx + ', ' + variable + ', {hash:' + JSON.stringify(block.hash) + ', data: data || {}, fn: ' + getCompileFn(block, depth+1) + ', inverse: ' + getCompileInverse(block, depth+1) + ', root: ctx_1});';
+                                resultString += 'r += ($.Template7.helpers.with).call(' + ctx + ', ' + variable + ', {hash:' + JSON.stringify(block.hash) + ', data: data || {}, fn: ' + getCompileFn(block, depth + 1) + ', inverse: ' + getCompileInverse(block, depth + 1) + ', root: ctx_1});';
                                 resultString += '}}';
                             }
                         }
@@ -446,6 +443,7 @@
                 resultString += '\nreturn r;})';
                 return eval.call(window, resultString);
             }
+
             t.compile = function (template) {
                 if (!t.compiled) {
                     t.compiled = compile(template);
@@ -457,26 +455,30 @@
             options: {},
             helpers: {
                 'if': function (context, options) {
-                    if (isFunction(context)) { context = context.call(this); }
+                    if (isFunction(context)) {
+                        context = context.call(this);
+                    }
                     if (context) {
                         return options.fn(this, options.data);
-                    }
-                    else {
+                    } else {
                         return options.inverse(this, options.data);
                     }
                 },
                 'unless': function (context, options) {
-                    if (isFunction(context)) { context = context.call(this); }
+                    if (isFunction(context)) {
+                        context = context.call(this);
+                    }
                     if (!context) {
                         return options.fn(this, options.data);
-                    }
-                    else {
+                    } else {
                         return options.inverse(this, options.data);
                     }
                 },
                 'each': function (context, options) {
                     var ret = '', i = 0;
-                    if (isFunction(context)) { context = context.call(this); }
+                    if (isFunction(context)) {
+                        context = context.call(this);
+                    }
                     if (isArray(context)) {
                         if (options.hash.reverse) {
                             context = context.reverse();
@@ -487,8 +489,7 @@
                         if (options.hash.reverse) {
                             context = context.reverse();
                         }
-                    }
-                    else {
+                    } else {
                         for (var key in context) {
                             i++;
                             ret += options.fn(context[key], {key: key});
@@ -498,36 +499,37 @@
                     else return options.inverse(this);
                 },
                 'with': function (context, options) {
-                    if (isFunction(context)) { context = context.call(this); }
+                    if (isFunction(context)) {
+                        context = context.call(this);
+                    }
                     return options.fn(context);
                 },
                 'join': function (context, options) {
-                    if (isFunction(context)) { context = context.call(this); }
+                    if (isFunction(context)) {
+                        context = context.call(this);
+                    }
                     return context.join(options.hash.delimiter || options.hash.delimeter);
                 },
                 'js': function (expression, options) {
                     var func;
-                    if (expression.indexOf('return')>=0) {
-                        func = '(function(){'+expression+'})';
-                    }
-                    else {
-                        func = '(function(){return ('+expression+')})';
+                    if (expression.indexOf('return') >= 0) {
+                        func = '(function(){' + expression + '})';
+                    } else {
+                        func = '(function(){return (' + expression + ')})';
                     }
                     return eval.call(this, func).call(this);
                 },
                 'js_compare': function (expression, options) {
                     var func;
-                    if (expression.indexOf('return')>=0) {
-                        func = '(function(){'+expression+'})';
-                    }
-                    else {
-                        func = '(function(){return ('+expression+')})';
+                    if (expression.indexOf('return') >= 0) {
+                        func = '(function(){' + expression + '})';
+                    } else {
+                        func = '(function(){return (' + expression + ')})';
                     }
                     var condition = eval.call(this, func).call(this);
                     if (condition) {
                         return options.fn(this, options.data);
-                    }
-                    else {
+                    } else {
                         return options.inverse(this, options.data);
                     }
                 }
@@ -539,8 +541,7 @@
                 var rendered = instance.compile()(data);
                 instance = null;
                 return (rendered);
-            }
-            else return new Template7(template);
+            } else return new Template7(template);
         };
         t7.registerHelper = function (name, fn) {
             Template7.prototype.helpers[name] = fn;
@@ -561,36 +562,36 @@
     })();
 }($);
 
-+ function($) {
++function ($) {
     "use strict";
 
     var defaults;
 
-    $.modal = function(params, onOpen) {
+    $.modal = function (params, onOpen) {
         params = $.extend({}, defaults, params);
 
 
         var buttons = params.buttons;
 
-        var buttonsHtml = buttons.map(function(d, i) {
+        var buttonsHtml = buttons.map(function (d, i) {
             return '<a href="javascript:;" class="weui-dialog__btn ' + (d.className || "") + '">' + d.text + '</a>';
         }).join("");
 
         var tpl = '<div class="weui-dialog">' +
             '<div class="weui-dialog__hd"><strong class="weui-dialog__title">' + params.title + '</strong></div>' +
-            ( params.text ? '<div class="weui-dialog__bd">'+params.text+'</div>' : '')+
+            (params.text ? '<div class="weui-dialog__bd">' + params.text + '</div>' : '') +
             '<div class="weui-dialog__ft">' + buttonsHtml + '</div>' +
             '</div>';
 
         var dialog = $.openModal(tpl, onOpen);
 
-        dialog.find(".weui-dialog__btn").each(function(i, e) {
+        dialog.find(".weui-dialog__btn").each(function (i, e) {
             var el = $(e);
-            el.click(function() {
+            el.click(function () {
                 //先关闭对话框，再调用回调函数
-                if(params.autoClose) $.closeModal();
+                if (params.autoClose) $.closeModal();
 
-                if(buttons[i].onClick) {
+                if (buttons[i].onClick) {
                     buttons[i].onClick.call(dialog);
                 }
             });
@@ -599,7 +600,7 @@
         return dialog;
     };
 
-    $.openModal = function(tpl, onOpen) {
+    $.openModal = function (tpl, onOpen) {
         var mask = $("<div class='weui-mask'></div>").appendTo(document.body);
         mask.show();
 
@@ -619,16 +620,16 @@
         return dialog;
     }
 
-    $.closeModal = function() {
-        $(".weui-mask--visible").removeClass("weui-mask--visible").transitionEnd(function() {
+    $.closeModal = function () {
+        $(".weui-mask--visible").removeClass("weui-mask--visible").transitionEnd(function () {
             $(this).remove();
         });
-        $(".weui-dialog--visible").removeClass("weui-dialog--visible").transitionEnd(function() {
+        $(".weui-dialog--visible").removeClass("weui-dialog--visible").transitionEnd(function () {
             $(this).remove();
         });
     };
 
-    $.alert = function(text, title, onOK) {
+    $.alert = function (text, title, onOK) {
         var config;
         if (typeof text === 'object') {
             config = text;
@@ -655,7 +656,7 @@
         });
     }
 
-    $.confirm = function(text, title, onOK, onCancel) {
+    $.confirm = function (text, title, onOK, onCancel) {
         var config;
         if (typeof text === 'object') {
             config = text
@@ -691,7 +692,7 @@
     };
 
     //如果参数过多，建议通过 config 对象进行配置，而不是传入多个参数。
-    $.prompt = function(text, title, onOK, onCancel, input) {
+    $.prompt = function (text, title, onOK, onCancel, input) {
         var config;
         if (typeof text === 'object') {
             config = text;
@@ -713,7 +714,7 @@
         }
 
         var modal = $.modal({
-            text: '<p class="weui-prompt-text">'+(config.text || '')+'</p><input type="text" class="weui-input weui-prompt-input" id="weui-prompt-input" value="' + (config.input || '') + '" />',
+            text: '<p class="weui-prompt-text">' + (config.text || '') + '</p><input type="text" class="weui-input weui-prompt-input" id="weui-prompt-input" value="' + (config.input || '') + '" />',
             title: config.title,
             autoClose: false,
             buttons: [
@@ -728,7 +729,7 @@
                 {
                     text: defaults.buttonOK,
                     className: "primary",
-                    onClick: function() {
+                    onClick: function () {
                         var input = $("#weui-prompt-input").val();
                         if (!config.empty && (input === "" || input === null)) {
                             modal.find('.weui-prompt-input').focus()[0].select();
@@ -746,7 +747,7 @@
     };
 
     //如果参数过多，建议通过 config 对象进行配置，而不是传入多个参数。
-    $.login = function(text, title, onOK, onCancel, username, password) {
+    $.login = function (text, title, onOK, onCancel, username, password) {
         var config;
         if (typeof text === 'object') {
             config = text;
@@ -769,9 +770,9 @@
         }
 
         var modal = $.modal({
-            text: '<p class="weui-prompt-text">'+(config.text || '')+'</p>' +
-            '<input type="text" class="weui-input weui-prompt-input" id="weui-prompt-username" value="' + (config.username || '') + '" placeholder="输入用户名" />' +
-            '<input type="password" class="weui-input weui-prompt-input" id="weui-prompt-password" value="' + (config.password || '') + '" placeholder="输入密码" />',
+            text: '<p class="weui-prompt-text">' + (config.text || '') + '</p>' +
+                '<input type="text" class="weui-input weui-prompt-input" id="weui-prompt-username" value="' + (config.username || '') + '" placeholder="输入用户名" />' +
+                '<input type="password" class="weui-input weui-prompt-input" id="weui-prompt-password" value="' + (config.password || '') + '" placeholder="输入密码" />',
             title: config.title,
             autoClose: false,
             buttons: [
@@ -785,7 +786,7 @@
                 }, {
                     text: defaults.buttonOK,
                     className: "primary",
-                    onClick: function() {
+                    onClick: function () {
                         var username = $("#weui-prompt-username").val();
                         var password = $("#weui-prompt-password").val();
                         if (!config.empty && (username === "" || username === null)) {
@@ -821,12 +822,12 @@
 
 }($);
 
-+ function($) {
++function ($) {
     "use strict";
 
     var defaults;
 
-    var show = function(html, className) {
+    var show = function (html, className) {
         className = className || "";
         var mask = $("<div class='weui-mask_transparent'></div>").appendTo(document.body);
 
@@ -837,40 +838,40 @@
         dialog.show();
     };
 
-    var hide = function(callback) {
+    var hide = function (callback) {
         $(".weui-mask_transparent").remove();
-        $(".weui-toast--visible").removeClass("weui-toast--visible").transitionEnd(function() {
+        $(".weui-toast--visible").removeClass("weui-toast--visible").transitionEnd(function () {
             var $this = $(this);
             $this.remove();
             callback && callback($this);
         });
     }
 
-    $.toast = function(text, style, callback) {
-        if(typeof style === "function") {
+    $.toast = function (text, style, callback, time) {
+        if (typeof style === "function") {
             callback = style;
         }
         var className, iconClassName = 'weui-icon-success-no-circle';
         var duration = toastDefaults.duration;
-        if(style == "cancel") {
+        if (style == "cancel") {
             className = "weui-toast_cancel";
             iconClassName = 'weui-icon-cancel'
-        } else if(style == "forbidden") {
+        } else if (style == "forbidden") {
             className = "weui-toast--forbidden";
             iconClassName = 'weui-icon-warn'
-        } else if(style == "text") {
+        } else if (style == "text") {
             className = "weui-toast--text";
-        } else if(typeof style === typeof 1) {
+        } else if (typeof style === typeof 1) {
             duration = style
         }
         show('<i class="' + iconClassName + ' weui-icon_toast"></i><p class="weui-toast_content">' + (text || "已经完成") + '</p>', className);
 
-        setTimeout(function() {
+        setTimeout(function () {
             hide(callback);
-        }, duration);
+        }, time != undefined ? time : duration);
     }
 
-    $.showLoading = function(text) {
+    $.showLoading = function (text) {
         var html = '<div class="weui_loading">';
         html += '<i class="weui-loading weui-icon_toast"></i>';
         html += '</div>';
@@ -878,7 +879,7 @@
         show(html, 'weui_loading_toast');
     }
 
-    $.hideLoading = function() {
+    $.hideLoading = function () {
         hide();
     }
 
@@ -888,18 +889,18 @@
 
 }($);
 
-+ function($) {
++function ($) {
     "use strict";
 
     var defaults;
 
-    var show = function(params) {
+    var show = function (params) {
 
         var mask = $("<div class='weui-mask weui-actions_mask'></div>").appendTo(document.body);
 
         var actions = params.actions || [];
 
-        var actionsHtml = actions.map(function(d, i) {
+        var actionsHtml = actions.map(function (d, i) {
             return '<div class="weui-actionsheet__cell ' + (d.className || "") + '">' + d.text + '</div>';
         }).join("");
 
@@ -909,22 +910,22 @@
             titleHtml = '<div class="weui-actionsheet__title"><p class="weui-actionsheet__title-text">' + params.title + '</p></div>';
         }
 
-        var tpl = '<div class="weui-actionsheet " id="weui-actionsheet">'+
+        var tpl = '<div class="weui-actionsheet " id="weui-actionsheet">' +
             titleHtml +
-            '<div class="weui-actionsheet__menu">'+
+            '<div class="weui-actionsheet__menu">' +
             actionsHtml +
-            '</div>'+
-            '<div class="weui-actionsheet__action">'+
-            '<div class="weui-actionsheet__cell weui-actionsheet_cancel">取消</div>'+
-            '</div>'+
+            '</div>' +
+            '<div class="weui-actionsheet__action">' +
+            '<div class="weui-actionsheet__cell weui-actionsheet_cancel">取消</div>' +
+            '</div>' +
             '</div>';
         var dialog = $(tpl).appendTo(document.body);
 
-        dialog.find(".weui-actionsheet__menu .weui-actionsheet__cell, .weui-actionsheet__action .weui-actionsheet__cell").each(function(i, e) {
-            $(e).click(function() {
+        dialog.find(".weui-actionsheet__menu .weui-actionsheet__cell, .weui-actionsheet__action .weui-actionsheet__cell").each(function (i, e) {
+            $(e).click(function () {
                 $.closeActions();
                 params.onClose && params.onClose();
-                if(actions[i] && actions[i].onClick) {
+                if (actions[i] && actions[i].onClick) {
                     actions[i].onClick();
                 }
             })
@@ -936,25 +937,25 @@
         dialog.addClass("weui-actionsheet_toggle");
     };
 
-    var hide = function() {
-        $(".weui-mask").removeClass("weui-mask--visible").transitionEnd(function() {
+    var hide = function () {
+        $(".weui-mask").removeClass("weui-mask--visible").transitionEnd(function () {
             $(this).remove();
         });
-        $(".weui-actionsheet").removeClass("weui-actionsheet_toggle").transitionEnd(function() {
+        $(".weui-actionsheet").removeClass("weui-actionsheet_toggle").transitionEnd(function () {
             $(this).remove();
         });
     }
 
-    $.actions = function(params) {
+    $.actions = function (params) {
         params = $.extend({}, defaults, params);
         show(params);
     }
 
-    $.closeActions = function() {
+    $.closeActions = function () {
         hide();
     }
 
-    $(document).on("click", ".weui-actions_mask", function() {
+    $(document).on("click", ".weui-actions_mask", function () {
         $.closeActions();
     });
 
@@ -986,8 +987,9 @@
 +function ($) {
     "use strict";
 
-    var PTR = function(el, opt) {
-        if (typeof opt === typeof function () {}) {
+    var PTR = function (el, opt) {
+        if (typeof opt === typeof function () {
+        }) {
             opt = {
                 onRefresh: opt
             }
@@ -1006,42 +1008,42 @@
         onPull: undefined
     }
 
-    PTR.prototype.touchStart = function(e) {
-        if(this.container.hasClass("refreshing")) return;
+    PTR.prototype.touchStart = function (e) {
+        if (this.container.hasClass("refreshing")) return;
         var p = $.getTouchPosition(e);
         this.start = p;
         this.diffX = this.diffY = 0;
     };
 
-    PTR.prototype.touchMove= function(e) {
-        if(this.container.hasClass("refreshing")) return;
-        if(!this.start) return false;
-        if(this.container.scrollTop() > 0) return;
+    PTR.prototype.touchMove = function (e) {
+        if (this.container.hasClass("refreshing")) return;
+        if (!this.start) return false;
+        if (this.container.scrollTop() > 0) return;
         var p = $.getTouchPosition(e);
         this.diffX = p.x - this.start.x;
         this.diffY = p.y - this.start.y;
         if (Math.abs(this.diffX) > Math.abs(this.diffY)) return true; // 说明是左右方向的拖动
-        if(this.diffY < 0) return;
+        if (this.diffY < 0) return;
         this.container.addClass("touching");
         e.preventDefault();
         e.stopPropagation();
         this.diffY = Math.pow(this.diffY, 0.75);
-        this.container.css("transform", "translate3d(0, "+this.diffY+"px, 0)");
+        this.container.css("transform", "translate3d(0, " + this.diffY + "px, 0)");
         this.triggerPull(this.diffY)
     };
-    PTR.prototype.touchEnd = function() {
+    PTR.prototype.touchEnd = function () {
         this.start = false;
-        if(this.diffY <= 0 || this.container.hasClass("refreshing")) return;
+        if (this.diffY <= 0 || this.container.hasClass("refreshing")) return;
         this.container.removeClass("touching");
         this.container.removeClass("pull-down pull-up");
         this.container.css("transform", "");
-        if(Math.abs(this.diffY) <= this.opt.distance) {
+        if (Math.abs(this.diffY) <= this.opt.distance) {
         } else {
             this.triggerPullToRefresh();
         }
     };
 
-    PTR.prototype.triggerPullToRefresh = function() {
+    PTR.prototype.triggerPullToRefresh = function () {
         this.triggerPull(this.opt.distance)
         this.container.removeClass('pull-up').addClass("refreshing");
         if (this.opt.onRefresh) {
@@ -1050,9 +1052,9 @@
         this.container.trigger("pull-to-refresh");
     }
 
-    PTR.prototype.triggerPull = function(diffY) {
+    PTR.prototype.triggerPull = function (diffY) {
 
-        if(diffY < this.opt.distance) {
+        if (diffY < this.opt.distance) {
             this.container.removeClass("pull-up").addClass("pull-down");
         } else {
             this.container.removeClass("pull-down").addClass("pull-up");
@@ -1064,11 +1066,11 @@
         this.container.trigger("pull");
     }
 
-    PTR.prototype.pullToRefreshDone = function() {
+    PTR.prototype.pullToRefreshDone = function () {
         this.container.removeClass("refreshing");
     }
 
-    PTR.prototype.attachEvents = function() {
+    PTR.prototype.attachEvents = function () {
         var el = this.container;
         el.addClass("weui-pull-to-refresh");
         el.on($.touchEvents.start, $.proxy(this.touchStart, this));
@@ -1076,12 +1078,12 @@
         el.on($.touchEvents.end, $.proxy(this.touchEnd, this));
     };
 
-    var pullToRefreshDone = function(el) {
+    var pullToRefreshDone = function (el) {
         $(el).removeClass("refreshing");
     }
 
-    $.fn.pullToRefresh = function(opt) {
-        return this.each(function() {
+    $.fn.pullToRefresh = function (opt) {
+        return this.each(function () {
             var $this = $(this)
             var ptr = $this.data('ptr')
             if (!ptr) $this.data('ptr', ptr = new PTR(this, opt))
@@ -1091,8 +1093,8 @@
         });
     }
 
-    $.fn.pullToRefreshDone = function() {
-        return this.each(function() {
+    $.fn.pullToRefreshDone = function () {
+        return this.each(function () {
             pullToRefreshDone(this);
         });
     }
@@ -1122,46 +1124,46 @@
         return offset
     }
 
-    var Infinite = function(el, distance) {
+    var Infinite = function (el, distance) {
         this.container = $(el);
         this.container.data("infinite", this);
         this.distance = distance || 50;
         this.attachEvents();
     }
 
-    Infinite.prototype.scroll = function() {
+    Infinite.prototype.scroll = function () {
         var container = this.container;
         this._check();
     }
 
-    Infinite.prototype.attachEvents = function(off) {
+    Infinite.prototype.attachEvents = function (off) {
         var el = this.container;
         var scrollContainer = (el[0].tagName.toUpperCase() === "BODY" ? $(document) : el);
         scrollContainer[off ? "off" : "on"]("scroll", $.proxy(this.scroll, this));
     };
-    Infinite.prototype.detachEvents = function(off) {
+    Infinite.prototype.detachEvents = function (off) {
         this.attachEvents(true);
     }
-    Infinite.prototype._check = function() {
+    Infinite.prototype._check = function () {
         var offset = getOffset(this.container);
-        if(Math.abs(offset) <= this.distance) {
+        if (Math.abs(offset) <= this.distance) {
             this.container.trigger("infinite");
         }
     }
 
-    var infinite = function(el) {
+    var infinite = function (el) {
         attachEvents(el);
     }
 
-    $.fn.infinite = function(distance) {
-        return this.each(function() {
+    $.fn.infinite = function (distance) {
+        return this.each(function () {
             new Infinite(this, distance);
         });
     }
-    $.fn.destroyInfinite = function() {
-        return this.each(function() {
+    $.fn.destroyInfinite = function () {
+        return this.each(function () {
             var infinite = $(this).data("infinite");
-            if(infinite && infinite.detachEvents) infinite.detachEvents();
+            if (infinite && infinite.detachEvents) infinite.detachEvents();
         });
     }
 
@@ -1173,14 +1175,14 @@
 
     var ITEM_ON = "weui-bar__item--on";
 
-    var showTab = function(a) {
+    var showTab = function (a) {
         var $a = $(a);
-        if($a.hasClass(ITEM_ON)) return;
+        if ($a.hasClass(ITEM_ON)) return;
         var href = $a.attr("href");
 
-        if(!/^#/.test(href)) return ;
+        if (!/^#/.test(href)) return;
 
-        $a.parent().find("."+ITEM_ON).removeClass(ITEM_ON);
+        $a.parent().find("." + ITEM_ON).removeClass(ITEM_ON);
         $a.addClass(ITEM_ON);
 
         var bd = $a.parents(".weui-tab").find(".weui-tab__bd");
@@ -1192,11 +1194,11 @@
 
     $.showTab = showTab;
 
-    $(document).on("click", ".weui-navbar__item, .weui-tabbar__item", function(e) {
+    $(document).on("click", ".weui-navbar__item, .weui-tabbar__item", function (e) {
         var $a = $(e.currentTarget);
         var href = $a.attr("href");
-        if($a.hasClass(ITEM_ON)) return;
-        if(!/^#/.test(href)) return;
+        if ($a.hasClass(ITEM_ON)) return;
+        if (!/^#/.test(href)) return;
 
         e.preventDefault();
 
@@ -1206,17 +1208,17 @@
 }($);
 
 /* global $:true */
-+ function($) {
++function ($) {
     "use strict";
 
-    $(document).on("click touchstart", ".weui-search-bar__label", function(e) {
+    $(document).on("click touchstart", ".weui-search-bar__label", function (e) {
         $(e.target).parents(".weui-search-bar").addClass("weui-search-bar_focusing").find('input').focus();
     })
 
-        .on("click", ".weui-search-bar__cancel-btn", function(e) {
+        .on("click", ".weui-search-bar__cancel-btn", function (e) {
             var $input = $(e.target).parents(".weui-search-bar").removeClass("weui-search-bar_focusing").find(".weui-search-bar__input").val("").blur();
         })
-        .on("click", ".weui-icon-clear", function(e) {
+        .on("click", ".weui-icon-clear", function (e) {
             var $input = $(e.target).parents(".weui-search-bar").find(".weui-search-bar__input").val("").focus();
         });
 
@@ -1287,8 +1289,7 @@ Device/OS Detection
     device.statusBar = false;
     if (device.webView && (windowWidth * windowHeight === screen.width * screen.height)) {
         device.statusBar = true;
-    }
-    else {
+    } else {
         device.statusBar = false;
     }
 
@@ -1316,8 +1317,7 @@ Device/OS Detection
     // Status bar classes
     if (device.statusBar) {
         classNames.push('with-statusbar-overlay');
-    }
-    else {
+    } else {
         $('html').removeClass('with-statusbar-overlay');
     }
 
@@ -1333,7 +1333,7 @@ Device/OS Detection
 /* global $:true */
 /* jshint unused:false */
 /* jshint multistr:true */
-+ function($) {
++function ($) {
     "use strict";
     var Picker = function (params) {
         var p = this;
@@ -1381,14 +1381,14 @@ Device/OS Detection
                 else {
                     if ($.device.ios) {
                         toPopover = $.device.ipad ? true : false;
-                    }
-                    else {
+                    } else {
                         if ($(window).width() >= 768) toPopover = true;
                     }
                 }
             }
             return toPopover;
         }
+
         function inPopover() {
             if (p.opened && p.container && p.container.length > 0 && p.container.parents('.popover').length > 0) return true;
             else return false;
@@ -1454,7 +1454,7 @@ Device/OS Detection
                 if (!col.values.length) return;
                 if (p.params.rotateEffect) {
                     col.container.removeClass('picker-items-col-absolute');
-                    if (!col.width) col.container.css({width:''});
+                    if (!col.width) col.container.css({width: ''});
                 }
                 var colWidth, colHeight;
                 colWidth = 0;
@@ -1473,9 +1473,9 @@ Device/OS Detection
                     if (!col.width) {
                         col.items.each(function () {
                             var item = $(this);
-                            item.css({width:'auto'});
+                            item.css({width: 'auto'});
                             colWidth = Math.max(colWidth, item[0].offsetWidth);
-                            item.css({width:''});
+                            item.css({width: ''});
                         });
                         col.container.css({width: (colWidth + 2) + 'px'});
                     }
@@ -1494,7 +1494,7 @@ Device/OS Detection
             col.setValue = function (newValue, transition, valueCallbacks) {
                 if (typeof transition === 'undefined') transition = '';
                 var newActiveIndex = col.wrapper.find('.picker-item[data-picker-value="' + newValue + '"]').index();
-                if(typeof newActiveIndex === 'undefined' || newActiveIndex === -1) {
+                if (typeof newActiveIndex === 'undefined' || newActiveIndex === -1) {
                     col.value = col.displayValue = newValue;
                     return;
                 }
@@ -1504,9 +1504,9 @@ Device/OS Detection
                 col.wrapper.transform('translate3d(0,' + (newTranslate) + 'px,0)');
 
                 // Watch items
-                if (p.params.updateValuesOnMomentum && col.activeIndex && col.activeIndex !== newActiveIndex ) {
+                if (p.params.updateValuesOnMomentum && col.activeIndex && col.activeIndex !== newActiveIndex) {
                     $.cancelAnimationFrame(animationFrameId);
-                    col.wrapper.transitionEnd(function(){
+                    col.wrapper.transitionEnd(function () {
                         $.cancelAnimationFrame(animationFrameId);
                     });
                     updateDuringScroll();
@@ -1520,7 +1520,7 @@ Device/OS Detection
                 if (typeof translate === 'undefined') {
                     translate = $.getTranslate(col.wrapper[0], 'y');
                 }
-                if(typeof activeIndex === 'undefined') activeIndex = -Math.round((translate - maxTranslate)/itemHeight);
+                if (typeof activeIndex === 'undefined') activeIndex = -Math.round((translate - maxTranslate) / itemHeight);
                 if (activeIndex < 0) activeIndex = 0;
                 if (activeIndex >= col.items.length) activeIndex = col.items.length - 1;
                 var previousActiveIndex = col.activeIndex;
@@ -1550,7 +1550,7 @@ Device/OS Detection
                 if (!p.params.rotateEffect) {
                     return;
                 }
-                var percentage = (translate - (Math.floor((translate - maxTranslate)/itemHeight) * itemHeight + maxTranslate)) / itemHeight;
+                var percentage = (translate - (Math.floor((translate - maxTranslate) / itemHeight) * itemHeight + maxTranslate)) / itemHeight;
 
                 col.items.each(function () {
                     var item = $(this);
@@ -1561,7 +1561,7 @@ Device/OS Detection
 
                     var itemsFit = Math.ceil(col.height / itemHeight / 2) + 1;
 
-                    var angle = (-18*percentage);
+                    var angle = (-18 * percentage);
                     if (angle > 180) angle = 180;
                     if (angle < -180) angle = -180;
                     // Far class
@@ -1583,8 +1583,10 @@ Device/OS Detection
             if (updateItems) col.updateItems(0, maxTranslate, 0);
 
             var allowItemClick = true;
-            var isTouched, isMoved, touchStartY, touchCurrentY, touchStartTime, touchEndTime, startTranslate, returnTo, currentTranslate, prevTranslate, velocityTranslate, velocityTime;
-            function handleTouchStart (e) {
+            var isTouched, isMoved, touchStartY, touchCurrentY, touchStartTime, touchEndTime, startTranslate, returnTo,
+                currentTranslate, prevTranslate, velocityTranslate, velocityTime;
+
+            function handleTouchStart(e) {
                 if (isMoved || isTouched) return;
                 e.preventDefault();
                 isTouched = true;
@@ -1595,7 +1597,8 @@ Device/OS Detection
                 allowItemClick = true;
                 startTranslate = currentTranslate = $.getTranslate(col.wrapper[0], 'y');
             }
-            function handleTouchMove (e) {
+
+            function handleTouchMove(e) {
                 if (!isTouched) return;
                 e.preventDefault();
                 allowItemClick = false;
@@ -1634,7 +1637,8 @@ Device/OS Detection
                 velocityTime = (new Date()).getTime();
                 prevTranslate = currentTranslate;
             }
-            function handleTouchEnd (e) {
+
+            function handleTouchEnd(e) {
                 if (!isTouched || !isMoved) {
                     isTouched = isMoved = false;
                     return;
@@ -1644,15 +1648,13 @@ Device/OS Detection
                 if (returnTo) {
                     if (returnTo === 'min') {
                         col.wrapper.transform('translate3d(0,' + minTranslate + 'px,0)');
-                    }
-                    else col.wrapper.transform('translate3d(0,' + maxTranslate + 'px,0)');
+                    } else col.wrapper.transform('translate3d(0,' + maxTranslate + 'px,0)');
                 }
                 touchEndTime = new Date().getTime();
                 var velocity, newTranslate;
                 if (touchEndTime - touchStartTime > 300) {
                     newTranslate = currentTranslate;
-                }
-                else {
+                } else {
                     velocity = Math.abs(velocityTranslate / (touchEndTime - velocityTime));
                     newTranslate = currentTranslate + velocityTranslate * p.params.momentumRatio;
                 }
@@ -1660,13 +1662,13 @@ Device/OS Detection
                 newTranslate = Math.max(Math.min(newTranslate, maxTranslate), minTranslate);
 
                 // Active Index
-                var activeIndex = -Math.floor((newTranslate - maxTranslate)/itemHeight);
+                var activeIndex = -Math.floor((newTranslate - maxTranslate) / itemHeight);
 
                 // Normalize translate
                 if (!p.params.freeMode) newTranslate = -activeIndex * itemHeight + maxTranslate;
 
                 // Transform wrapper
-                col.wrapper.transform('translate3d(0,' + (parseInt(newTranslate,10)) + 'px,0)');
+                col.wrapper.transform('translate3d(0,' + (parseInt(newTranslate, 10)) + 'px,0)');
 
                 // Update items
                 col.updateItems(activeIndex, newTranslate, '', true);
@@ -1674,7 +1676,7 @@ Device/OS Detection
                 // Watch items
                 if (p.params.updateValuesOnMomentum) {
                     updateDuringScroll();
-                    col.wrapper.transitionEnd(function(){
+                    col.wrapper.transitionEnd(function () {
                         $.cancelAnimationFrame(animationFrameId);
                     });
                 }
@@ -1715,6 +1717,7 @@ Device/OS Detection
             colContainer = $(colContainer);
             if ('f7DestroyPickerCol' in colContainer[0]) colContainer[0].f7DestroyPickerCol();
         };
+
         // Resize cols
         function resizeCols() {
             if (!p.opened) return;
@@ -1725,6 +1728,7 @@ Device/OS Detection
                 }
             }
         }
+
         $(window).on('resize', resizeCols);
 
         // HTML Layout
@@ -1733,8 +1737,7 @@ Device/OS Detection
             var columnHTML = '';
             if (col.divider) {
                 columnHTML += '<div class="picker-items-col picker-items-col-divider ' + (col.textAlign ? 'picker-items-col-' + col.textAlign : '') + ' ' + (col.cssClass || '') + '">' + col.content + '</div>';
-            }
-            else {
+            } else {
                 for (var j = 0; j < col.values.length; j++) {
                     columnItemsHTML += '<div class="picker-item" data-picker-value="' + col.values[j] + '">' + (col.displayValues ? col.displayValues[j] : col.values[j]) + '</div>';
                 }
@@ -1794,12 +1797,12 @@ Device/OS Detection
                 }
             }
         }
+
         function closeOnHTMLClick(e) {
             if (inPopover()) return;
             if (p.input && p.input.length > 0) {
                 if (e.target !== p.input[0] && $(e.target).parents('.weui-picker-modal').length === 0) p.close();
-            }
-            else {
+            } else {
                 if ($(e.target).parents('.weui-picker-modal').length === 0) p.close();
             }
         }
@@ -1851,13 +1854,11 @@ Device/OS Detection
                     $(p.popover).on('close', function () {
                         onPickerClose();
                     });
-                }
-                else if (p.inline) {
+                } else if (p.inline) {
                     p.container = $(p.pickerHTML);
                     p.container.addClass('picker-modal-inline');
                     $(p.params.container).append(p.container);
-                }
-                else {
+                } else {
                     p.container = $($.openPicker(p.pickerHTML));
                     $(p.container)
                         .on('close', function () {
@@ -1880,8 +1881,7 @@ Device/OS Detection
                     if (p.params.value) {
                         p.setValue(p.params.value, 0);
                     }
-                }
-                else {
+                } else {
                     if (p.value) p.setValue(p.value, 0);
                 }
             }
@@ -1899,8 +1899,7 @@ Device/OS Detection
             if (inPopover()) {
                 $.closePicker(p.popover);
                 return;
-            }
-            else {
+            } else {
                 $.closePicker(p.container);
                 return;
             }
@@ -1924,7 +1923,7 @@ Device/OS Detection
         return p;
     };
 
-    $(document).on("click", ".close-picker", function() {
+    $(document).on("click", ".close-picker", function () {
         var pickerToClose = $('.weui-picker-modal.weui-picker-modal-visible');
         if (pickerToClose.length > 0) {
             $.closePicker(pickerToClose);
@@ -1932,21 +1931,21 @@ Device/OS Detection
     });
 
     //修复picker会滚动页面的bug
-    $(document).on($.touchEvents.move, ".picker-modal-inner", function(e) {
+    $(document).on($.touchEvents.move, ".picker-modal-inner", function (e) {
         e.preventDefault();
     });
 
 
-    $.openPicker = function(tpl, className, callback) {
+    $.openPicker = function (tpl, className, callback) {
 
-        if(typeof className === "function") {
+        if (typeof className === "function") {
             callback = className;
             className = undefined;
         }
 
         $.closePicker();
 
-        var container = $("<div class='weui-picker-container "+ (className || "") + "'></div>").appendTo(document.body);
+        var container = $("<div class='weui-picker-container " + (className || "") + "'></div>").appendTo(document.body);
         container.show();
 
         container.addClass("weui-picker-container-visible");
@@ -1963,9 +1962,9 @@ Device/OS Detection
         return dialog;
     }
 
-    $.updatePicker = function(tpl) {
+    $.updatePicker = function (tpl) {
         var container = $(".weui-picker-container-visible");
-        if(!container[0]) return false;
+        if (!container[0]) return false;
 
         container.html("");
 
@@ -1976,32 +1975,32 @@ Device/OS Detection
         return dialog;
     }
 
-    $.closePicker = function(container, callback) {
-        if(typeof container === "function") callback = container;
-        $(".weui-picker-modal-visible").removeClass("weui-picker-modal-visible").transitionEnd(function() {
+    $.closePicker = function (container, callback) {
+        if (typeof container === "function") callback = container;
+        $(".weui-picker-modal-visible").removeClass("weui-picker-modal-visible").transitionEnd(function () {
             $(this).parent().remove();
             callback && callback();
         }).trigger("close");
     };
 
-    $.fn.picker = function(params) {
+    $.fn.picker = function (params) {
         var args = arguments;
-        return this.each(function() {
-            if(!this) return;
+        return this.each(function () {
+            if (!this) return;
             var $this = $(this);
 
             var picker = $this.data("picker");
-            if(!picker) {
-                params = $.extend({ input: this }, params || {}) // https://github.com/lihongxun945/jquery-weui/issues/432
+            if (!picker) {
+                params = $.extend({input: this}, params || {}) // https://github.com/lihongxun945/jquery-weui/issues/432
                 var inputValue = $this.val();
-                if(params.value === undefined && inputValue !== "") {
+                if (params.value === undefined && inputValue !== "") {
                     params.value = (params.cols && params.cols.length > 1) ? inputValue.split(" ") : [inputValue];
                 }
                 var p = $.extend({input: this}, params);
                 picker = new Picker(p);
                 $this.data("picker", picker);
             }
-            if(typeof params === typeof "a") {
+            if (typeof params === typeof "a") {
                 picker[params].apply(picker, Array.prototype.slice.call(args, 1));
             }
         });
@@ -2009,14 +2008,14 @@ Device/OS Detection
 }($);
 
 /* global $:true */
-+ function($) {
++function ($) {
     "use strict";
 
     var defaults;
 
     var selects = [];
 
-    var Select = function(input, config) {
+    var Select = function (input, config) {
 
         var self = this;
         this.config = config;
@@ -2040,15 +2039,15 @@ Device/OS Detection
         selects.push(this)
     }
 
-    Select.prototype.initConfig = function() {
+    Select.prototype.initConfig = function () {
         this.config = $.extend({}, defaults, this.config);
 
         var config = this.config;
 
-        if(!config.items || !config.items.length) return;
+        if (!config.items || !config.items.length) return;
 
-        config.items = config.items.map(function(d, i) {
-            if(typeof d == typeof "a") {
+        config.items = config.items.map(function (d, i) {
+            if (typeof d == typeof "a") {
                 return {
                     title: d,
                     value: d
@@ -2061,16 +2060,16 @@ Device/OS Detection
 
         this.tpl = $.t7.compile("<div class='weui-picker-modal weui-select-modal'>" + config.toolbarTemplate + (config.multi ? config.checkboxTemplate : config.radioTemplate) + "</div>");
 
-        if(config.input !== undefined) this.$input.val(config.input);
+        if (config.input !== undefined) this.$input.val(config.input);
 
         this.parseInitValue();
 
         this._init = true;
     }
 
-    Select.prototype.updateInputValue = function(values, titles) {
+    Select.prototype.updateInputValue = function (values, titles) {
         var v, t;
-        if(this.config.multi) {
+        if (this.config.multi) {
             v = values.join(this.config.split);
             t = titles.join(this.config.split);
         } else {
@@ -2081,9 +2080,9 @@ Device/OS Detection
         //caculate origin data
         var origins = [];
 
-        this.config.items.forEach(function(d) {
-            values.each(function(i, dd) {
-                if(d.value == dd) origins.push(d);
+        this.config.items.forEach(function (d) {
+            values.each(function (i, dd) {
+                if (d.value == dd) origins.push(d);
             });
         });
 
@@ -2103,63 +2102,63 @@ Device/OS Detection
         this.config.onChange && this.config.onChange.call(this, data);
     }
 
-    Select.prototype.parseInitValue = function() {
+    Select.prototype.parseInitValue = function () {
         var value = this.$input.val();
         var items = this.config.items;
 
         //如果input为空，只有在第一次初始化的时候才保留默认选择。因为后来就是用户自己取消了全部选择，不能再为他选中默认值。
-        if( !this._init && (value === undefined || value == null || value === "")) return;
+        if (!this._init && (value === undefined || value == null || value === "")) return;
 
         var titles = this.config.multi ? value.split(this.config.split) : [value];
-        for(var i=0;i<items.length;i++) {
+        for (var i = 0; i < items.length; i++) {
             items[i].checked = false;
-            for(var j=0;j<titles.length;j++) {
-                if(items[i].title === titles[j]) {
+            for (var j = 0; j < titles.length; j++) {
+                if (items[i].title === titles[j]) {
                     items[i].checked = true;
                 }
             }
         }
     }
 
-    Select.prototype._bind = function(dialog) {
+    Select.prototype._bind = function (dialog) {
         var self = this,
             config = this.config;
-        dialog.on("change", function(e) {
+        dialog.on("change", function (e) {
             var checked = dialog.find("input:checked");
-            var values = checked.map(function() {
+            var values = checked.map(function () {
                 return $(this).val();
             });
-            var titles = checked.map(function() {
+            var titles = checked.map(function () {
                 return $(this).data("title");
             });
             self.updateInputValue(values, titles);
 
-            if(config.autoClose && !config.multi) self.close();
+            if (config.autoClose && !config.multi) self.close();
         })
-            .on("click", ".close-select", function() {
+            .on("click", ".close-select", function () {
                 self.close();
             });
     }
 
     //更新数据
-    Select.prototype.update = function(config) {
+    Select.prototype.update = function (config) {
         this.config = $.extend({}, this.config, config);
         this.initConfig();
-        if(this._open) {
+        if (this._open) {
             this._bind($.updatePicker(this.getHTML()));
         }
     }
 
-    Select.prototype.open = function(values, titles) {
+    Select.prototype.open = function (values, titles) {
 
-        if(this._open) return;
+        if (this._open) return;
 
         // open picker 会默认关掉其他的，但是 onClose 不会被调用，所以这里先关掉其他select
-        for (var i = 0; i < selects.length; i++ ) {
+        for (var i = 0; i < selects.length; i++) {
             var s = selects[i];
             if (s === this) continue;
             if (s._open) {
-                if(!s.close()) return false; // 其他的select由于某些条件限制关闭失败。
+                if (!s.close()) return false; // 其他的select由于某些条件限制关闭失败。
             }
         }
 
@@ -2172,33 +2171,33 @@ Device/OS Detection
         this._bind(dialog);
 
         this._open = true;
-        if(config.onOpen) config.onOpen(this);
+        if (config.onOpen) config.onOpen(this);
     }
 
-    Select.prototype.close = function(callback, force) {
+    Select.prototype.close = function (callback, force) {
         if (!this._open) return false;
         var self = this,
             beforeClose = this.config.beforeClose;
 
-        if(typeof callback === typeof true) {
+        if (typeof callback === typeof true) {
             force === callback;
         }
-        if(!force) {
-            if(beforeClose && typeof beforeClose === 'function' && beforeClose.call(this, this.data.values, this.data.titles) === false) {
+        if (!force) {
+            if (beforeClose && typeof beforeClose === 'function' && beforeClose.call(this, this.data.values, this.data.titles) === false) {
                 return false
             }
-            if(this.config.multi) {
-                if(this.config.min !== undefined && this.data.length < this.config.min) {
-                    $.toast("请至少选择"+this.config.min+"个", "text");
+            if (this.config.multi) {
+                if (this.config.min !== undefined && this.data.length < this.config.min) {
+                    $.toast("请至少选择" + this.config.min + "个", "text");
                     return false
                 }
-                if(this.config.max !== undefined && this.data.length > this.config.max) {
-                    $.toast("最多只能选择"+this.config.max+"个", "text");
+                if (this.config.max !== undefined && this.data.length > this.config.max) {
+                    $.toast("最多只能选择" + this.config.max + "个", "text");
                     return false
                 }
             }
         }
-        $.closePicker(function() {
+        $.closePicker(function () {
             self.onClose();
             callback && callback();
         });
@@ -2206,12 +2205,12 @@ Device/OS Detection
         return true
     }
 
-    Select.prototype.onClose = function() {
+    Select.prototype.onClose = function () {
         this._open = false;
-        if(this.config.onClose) this.config.onClose(this);
+        if (this.config.onClose) this.config.onClose(this);
     }
 
-    Select.prototype.getHTML = function(callback) {
+    Select.prototype.getHTML = function (callback) {
         var config = this.config;
         return this.tpl({
             items: config.items,
@@ -2221,15 +2220,15 @@ Device/OS Detection
     }
 
 
-    $.fn.select = function(params, args) {
+    $.fn.select = function (params, args) {
 
-        return this.each(function() {
+        return this.each(function () {
             var $this = $(this);
-            if(!$this.data("weui-select")) $this.data("weui-select", new Select(this, params));
+            if (!$this.data("weui-select")) $this.data("weui-select", new Select(this, params));
 
             var select = $this.data("weui-select");
 
-            if(typeof params === typeof "a") select[params].call(select, args);
+            if (typeof params === typeof "a") select[params].call(select, args);
 
             return select;
         });
@@ -2333,14 +2332,14 @@ Device/OS Detection
                 else {
                     if ($.device.ios) {
                         toPopover = $.device.ipad ? true : false;
-                    }
-                    else {
+                    } else {
                         if ($(window).width() >= 768) toPopover = true;
                     }
                 }
             }
             return toPopover;
         }
+
         function inPopover() {
             if (p.opened && p.container && p.container.length > 0 && p.container.parents('.popover').length > 0) return true;
             else return false;
@@ -2380,13 +2379,11 @@ Device/OS Detection
                 }
                 if (typeof inValuesIndex === 'undefined') {
                     p.value.push(value);
-                }
-                else {
+                } else {
                     p.value.splice(inValuesIndex, 1);
                 }
                 p.updateValue();
-            }
-            else {
+            } else {
                 p.value = [value];
                 p.updateValue();
             }
@@ -2394,7 +2391,7 @@ Device/OS Detection
         p.setValue = function (arrValues) {
             var date = new Date(arrValues[0]);
             p.setYearMonth(date.getFullYear(), date.getMonth());
-            p.addValue(+ date);
+            p.addValue(+date);
         };
         p.updateValue = function () {
             p.wrapper.find('.picker-calendar-day-selected').removeClass('picker-calendar-day-selected');
@@ -2405,7 +2402,9 @@ Device/OS Detection
             }
             if (p.params.onChange) {
                 p.params.onChange(p, p.value.map(formatDate), p.value.map(function (d) {
-                    return + new Date(typeof d === typeof 'a' ? d.split(/\D/).filter(function (a) { return !!a; }).join("-") : d);
+                    return +new Date(typeof d === typeof 'a' ? d.split(/\D/).filter(function (a) {
+                        return !!a;
+                    }).join("-") : d);
                 }));
             }
             if (p.input && p.input.length > 0) {
@@ -2426,8 +2425,11 @@ Device/OS Detection
         p.initCalendarEvents = function () {
             var col;
             var allowItemClick = true;
-            var isTouched, isMoved, touchStartX, touchStartY, touchCurrentX, touchCurrentY, touchStartTime, touchEndTime, startTranslate, currentTranslate, wrapperWidth, wrapperHeight, percentage, touchesDiff, isScrolling;
-            function handleTouchStart (e) {
+            var isTouched, isMoved, touchStartX, touchStartY, touchCurrentX, touchCurrentY, touchStartTime,
+                touchEndTime, startTranslate, currentTranslate, wrapperWidth, wrapperHeight, percentage, touchesDiff,
+                isScrolling;
+
+            function handleTouchStart(e) {
                 if (isMoved || isTouched) return;
                 // e.preventDefault();
                 isTouched = true;
@@ -2440,7 +2442,8 @@ Device/OS Detection
                 isScrolling = undefined;
                 startTranslate = currentTranslate = p.monthsTranslate;
             }
-            function handleTouchMove (e) {
+
+            function handleTouchMove(e) {
                 if (!isTouched) return;
                 var position = $.getTouchPosition(e);
                 touchCurrentX = position.x;
@@ -2468,14 +2471,15 @@ Device/OS Detection
                 e.preventDefault();
 
                 touchesDiff = p.isH ? touchCurrentX - touchStartX : touchCurrentY - touchStartY;
-                percentage = touchesDiff/(p.isH ? wrapperWidth : wrapperHeight);
+                percentage = touchesDiff / (p.isH ? wrapperWidth : wrapperHeight);
                 currentTranslate = (p.monthsTranslate * inverter + percentage) * 100;
 
                 // Transform wrapper
                 p.wrapper.transform('translate3d(' + (p.isH ? currentTranslate : 0) + '%, ' + (p.isH ? 0 : currentTranslate) + '%, 0)');
 
             }
-            function handleTouchEnd (e) {
+
+            function handleTouchEnd(e) {
                 if (!isTouched || !isMoved) {
                     isTouched = isMoved = false;
                     return;
@@ -2486,26 +2490,21 @@ Device/OS Detection
                 if (touchEndTime - touchStartTime < 300) {
                     if (Math.abs(touchesDiff) < 10) {
                         p.resetMonth();
-                    }
-                    else if (touchesDiff >= 10) {
+                    } else if (touchesDiff >= 10) {
                         if (rtl) p.nextMonth();
                         else p.prevMonth();
-                    }
-                    else {
+                    } else {
                         if (rtl) p.prevMonth();
                         else p.nextMonth();
                     }
-                }
-                else {
+                } else {
                     if (percentage <= -0.5) {
                         if (rtl) p.prevMonth();
                         else p.nextMonth();
-                    }
-                    else if (percentage >= 0.5) {
+                    } else if (percentage >= 0.5) {
                         if (rtl) p.nextMonth();
                         else p.prevMonth();
-                    }
-                    else {
+                    } else {
                         p.resetMonth();
                     }
                 }
@@ -2598,13 +2597,13 @@ Device/OS Detection
                 rows = 6, cols = 7,
                 monthHTML = '',
                 dayIndex = 0 + (p.params.firstDay - 1),
-                today = new Date().setHours(0,0,0,0),
+                today = new Date().setHours(0, 0, 0, 0),
                 minDate = p.params.minDate ? new Date(p.params.minDate).getTime() : null,
                 maxDate = p.params.maxDate ? new Date(p.params.maxDate).getTime() : null;
 
             if (p.value && p.value.length) {
                 for (i = 0; i < p.value.length; i++) {
-                    currentValues.push(new Date(p.value[i]).setHours(0,0,0,0));
+                    currentValues.push(new Date(p.value[i]).setHours(0, 0, 0, 0));
                 }
             }
 
@@ -2613,22 +2612,20 @@ Device/OS Detection
                 var row = i;
                 for (j = 1; j <= cols; j++) {
                     var col = j;
-                    dayIndex ++;
+                    dayIndex++;
                     var dayNumber = dayIndex - firstDayOfMonthIndex;
                     var addClass = '';
                     if (dayNumber < 0) {
                         dayNumber = daysInPrevMonth + dayNumber + 1;
                         addClass += ' picker-calendar-day-prev';
                         dayDate = new Date(month - 1 < 0 ? year - 1 : year, month - 1 < 0 ? 11 : month - 1, dayNumber).getTime();
-                    }
-                    else {
+                    } else {
                         dayNumber = dayNumber + 1;
                         if (dayNumber > daysInMonth) {
                             dayNumber = dayNumber - daysInMonth;
                             addClass += ' picker-calendar-day-next';
                             dayDate = new Date(month + 1 > 11 ? year + 1 : year, month + 1 > 11 ? 0 : month + 1, dayNumber).getTime();
-                        }
-                        else {
+                        } else {
                             dayDate = new Date(year, month, dayNumber).getTime();
                         }
                     }
@@ -2648,7 +2645,7 @@ Device/OS Detection
                     dayDate = new Date(dayDate);
                     var dayYear = dayDate.getFullYear();
                     var dayMonth = dayDate.getMonth();
-                    rowHTML += '<div data-year="' + dayYear + '" data-month="' + dayMonth + '" data-day="' + dayNumber + '" class="picker-calendar-day' + (addClass) + '" data-date="' + (dayYear + '-' + dayMonth + '-' + dayNumber) + '"><span>'+dayNumber+'</span></div>';
+                    rowHTML += '<div data-year="' + dayYear + '" data-month="' + dayMonth + '" data-day="' + dayNumber + '" class="picker-calendar-day' + (addClass) + '" data-date="' + (dayYear + '-' + dayMonth + '-' + dayNumber) + '"><span>' + dayNumber + '</span></div>';
                 }
                 monthHTML += '<div class="picker-calendar-row">' + rowHTML + '</div>';
             }
@@ -2660,8 +2657,7 @@ Device/OS Detection
             if (typeof dir === 'undefined') {
                 p.currentMonth = parseInt(p.months.eq(1).attr('data-month'), 10);
                 p.currentYear = parseInt(p.months.eq(1).attr('data-year'), 10);
-            }
-            else {
+            } else {
                 p.currentMonth = parseInt(p.months.eq(dir === 'next' ? (p.months.length - 1) : 0).attr('data-month'), 10);
                 p.currentYear = parseInt(p.months.eq(dir === 'next' ? (p.months.length - 1) : 0).attr('data-year'), 10);
             }
@@ -2692,8 +2688,7 @@ Device/OS Detection
             }
             if (!rebuildBoth) {
                 newMonthHTML = p.monthHTML(new Date(p.currentYear, p.currentMonth), dir);
-            }
-            else {
+            } else {
                 p.wrapper.find('.picker-calendar-month-next, .picker-calendar-month-prev').remove();
                 prevMonthHTML = p.monthHTML(new Date(p.currentYear, p.currentMonth), 'prev');
                 nextMonthHTML = p.monthHTML(new Date(p.currentYear, p.currentMonth), 'next');
@@ -2739,7 +2734,7 @@ Device/OS Detection
                     return p.resetMonth();
                 }
             }
-            p.monthsTranslate --;
+            p.monthsTranslate--;
             if (nextMonth === p.currentMonth) {
                 var nextMonthTranslate = -(p.monthsTranslate) * 100 * inverter;
                 var nextMonthHTML = $(p.monthHTML(nextDateTime, 'next')).transform('translate3d(' + (p.isH ? nextMonthTranslate : 0) + '%, ' + (p.isH ? 0 : nextMonthTranslate) + '%, 0)').addClass('picker-calendar-month-next');
@@ -2778,7 +2773,7 @@ Device/OS Detection
                     return p.resetMonth();
                 }
             }
-            p.monthsTranslate ++;
+            p.monthsTranslate++;
             if (prevMonth === p.currentMonth) {
                 var prevMonthTranslate = -(p.monthsTranslate) * 100 * inverter;
                 var prevMonthHTML = $(p.monthHTML(prevDateTime, 'prev')).transform('translate3d(' + (p.isH ? prevMonthTranslate : 0) + '%, ' + (p.isH ? 0 : prevMonthTranslate) + '%, 0)').addClass('picker-calendar-month-prev');
@@ -2816,8 +2811,7 @@ Device/OS Detection
             var targetDate;
             if (year < p.currentYear) {
                 targetDate = new Date(year, month + 1, -1).getTime();
-            }
-            else {
+            } else {
                 targetDate = new Date(year, month).getTime();
             }
             if (p.params.maxDate && targetDate > new Date(p.params.maxDate).getTime()) {
@@ -2835,16 +2829,15 @@ Device/OS Detection
             var transitionEndCallback = p.animating ? false : true;
             if (targetDate > currentDate) {
                 // To next
-                p.monthsTranslate --;
+                p.monthsTranslate--;
                 if (!p.animating) p.months.eq(p.months.length - 1).remove();
                 p.wrapper.append(newMonthHTML);
                 p.months = p.wrapper.find('.picker-calendar-month');
                 monthTranslate = -(prevTranslate - 1) * 100 * inverter;
                 p.months.eq(p.months.length - 1).transform('translate3d(' + (p.isH ? monthTranslate : 0) + '%, ' + (p.isH ? 0 : monthTranslate) + '%, 0)').addClass('picker-calendar-month-next');
-            }
-            else {
+            } else {
                 // To prev
-                p.monthsTranslate ++;
+                p.monthsTranslate++;
                 if (!p.animating) p.months.eq(0).remove();
                 p.wrapper.prepend(newMonthHTML);
                 p.months = p.wrapper.find('.picker-calendar-month');
@@ -2881,7 +2874,7 @@ Device/OS Detection
             var pickerClass = '';
             var i;
 
-            var layoutDate = p.value && p.value.length ? p.value[0] : new Date().setHours(0,0,0,0);
+            var layoutDate = p.value && p.value.length ? p.value[0] : new Date().setHours(0, 0, 0, 0);
             var prevMonthHTML = p.monthHTML(layoutDate, 'prev');
             var currentMonthHTML = p.monthHTML(layoutDate);
             var nextMonthHTML = p.monthHTML(layoutDate, 'next');
@@ -2898,7 +2891,7 @@ Device/OS Detection
                 weekHeaderHTML = '<div class="picker-calendar-week-days">' + weekHeaderHTML + '</div>';
             }
             pickerClass = 'weui-picker-calendar ' + (p.params.cssClass || '');
-            if(!p.inline) pickerClass = 'weui-picker-modal ' + pickerClass;
+            if (!p.inline) pickerClass = 'weui-picker-modal ' + pickerClass;
             var toolbarHTML = p.params.toolbar ? p.params.toolbarTemplate.replace(/{{closeText}}/g, p.params.toolbarCloseText) : '';
             if (p.params.toolbar) {
                 toolbarHTML = p.params.toolbarTemplate
@@ -2949,12 +2942,12 @@ Device/OS Detection
                 }
             }
         }
+
         function closeOnHTMLClick(e) {
             if (inPopover()) return;
             if (p.input && p.input.length > 0) {
                 if (e.target !== p.input[0] && $(e.target).parents('.weui-picker-modal').length === 0) p.close();
-            }
-            else {
+            } else {
                 if ($(e.target).parents('.weui-picker-modal').length === 0) p.close();
             }
         }
@@ -3012,13 +3005,11 @@ Device/OS Detection
                     $(p.popover).on('close', function () {
                         onPickerClose();
                     });
-                }
-                else if (p.inline) {
+                } else if (p.inline) {
                     p.container = $(p.pickerHTML);
                     p.container.addClass('picker-modal-inline');
                     $(p.params.container).append(p.container);
-                }
-                else {
+                } else {
                     p.container = $($.openPicker(p.pickerHTML));
                     $(p.container)
                         .on('close', function () {
@@ -3066,8 +3057,7 @@ Device/OS Detection
             if (inPopover()) {
                 $.closePicker(p.popover);
                 return;
-            }
-            else {
+            } else {
                 $.closePicker(p.container);
                 return;
             }
@@ -3090,18 +3080,18 @@ Device/OS Detection
         return p;
     };
 
-    var format = function(d) {
-        return d < 10 ? "0"+d : d;
+    var format = function (d) {
+        return d < 10 ? "0" + d : d;
     }
 
 
     $.fn.calendar = function (params, args) {
         params = params || {};
-        return this.each(function() {
+        return this.each(function () {
             var $this = $(this);
-            if(!$this[0]) return;
+            if (!$this[0]) return;
             var p = {};
-            if($this[0].tagName.toUpperCase() === "INPUT") {
+            if ($this[0].tagName.toUpperCase() === "INPUT") {
                 p.input = $this;
             } else {
                 p.container = $this;
@@ -3109,12 +3099,12 @@ Device/OS Detection
 
             var calendar = $this.data("calendar");
 
-            if(!calendar) {
-                if(typeof params === typeof "a") {
+            if (!calendar) {
+                if (typeof params === typeof "a") {
                 } else {
-                    if(!params.value && $this.val()) params.value = [$this.val()];
+                    if (!params.value && $this.val()) params.value = [$this.val()];
                     //默认显示今天
-                    if(!params.value) {
+                    if (!params.value) {
                         var today = new Date();
                         params.value = [today.getFullYear() + "/" + format(today.getMonth() + 1) + "/" + format(today.getDate())];
                     }
@@ -3122,7 +3112,7 @@ Device/OS Detection
                 }
             }
 
-            if(typeof params === typeof "a") {
+            if (typeof params === typeof "a") {
                 calendar[params].call(calendar, args);
             }
         });
@@ -3146,18 +3136,18 @@ Device/OS Detection
         closeOnSelect: true,
         monthPicker: true,
         monthPickerTemplate:
-        '<div class="picker-calendar-month-picker">' +
-        '<a href="javascript:;" class="link icon-only picker-calendar-prev-month"><i class="icon icon-prev"></i></a>' +
-        '<div class="current-month-value"></div>' +
-        '<a href="javascript:;" class="link icon-only picker-calendar-next-month"><i class="icon icon-next"></i></a>' +
-        '</div>',
+            '<div class="picker-calendar-month-picker">' +
+            '<a href="javascript:;" class="link icon-only picker-calendar-prev-month"><i class="icon icon-prev"></i></a>' +
+            '<div class="current-month-value"></div>' +
+            '<a href="javascript:;" class="link icon-only picker-calendar-next-month"><i class="icon icon-next"></i></a>' +
+            '</div>',
         yearPicker: true,
         yearPickerTemplate:
-        '<div class="picker-calendar-year-picker">' +
-        '<a href="javascript:;" class="link icon-only picker-calendar-prev-year"><i class="icon icon-prev"></i></a>' +
-        '<span class="current-year-value"></span>' +
-        '<a href="javascript:;" class="link icon-only picker-calendar-next-year"><i class="icon icon-next"></i></a>' +
-        '</div>',
+            '<div class="picker-calendar-year-picker">' +
+            '<a href="javascript:;" class="link icon-only picker-calendar-prev-year"><i class="icon icon-prev"></i></a>' +
+            '<span class="current-year-value"></span>' +
+            '<a href="javascript:;" class="link icon-only picker-calendar-next-year"><i class="icon icon-next"></i></a>' +
+            '</div>',
         weekHeader: true,
         // Common settings
         scrollToInput: true,
@@ -3167,13 +3157,13 @@ Device/OS Detection
         toolbar: true,
         toolbarCloseText: 'Done',
         toolbarTemplate:
-        '<div class="toolbar">' +
-        '<div class="toolbar-inner">' +
-        '{{yearPicker}}' +
-        '{{monthPicker}}' +
-        // '<a href="#" class="link close-picker">{{closeText}}</a>' +
-        '</div>' +
-        '</div>',
+            '<div class="toolbar">' +
+            '<div class="toolbar-inner">' +
+            '{{yearPicker}}' +
+            '{{monthPicker}}' +
+            // '<a href="#" class="link close-picker">{{closeText}}</a>' +
+            '</div>' +
+            '</div>',
         /* Callbacks
     onMonthAdd
     onChange
@@ -3190,7 +3180,7 @@ Device/OS Detection
 /* global $:true */
 /* jshint unused:false*/
 
-+ function($) {
++function ($) {
     "use strict";
 
 
@@ -3200,7 +3190,7 @@ Device/OS Detection
         return n < 10 ? "0" + n : n;
     }
 
-    var Datetime = function(input, params) {
+    var Datetime = function (input, params) {
         this.input = $(input);
         this.params = params || {};
 
@@ -3213,20 +3203,20 @@ Device/OS Detection
     }
 
     Datetime.prototype = {
-        getDays : function(max) {
+        getDays: function (max) {
             var days = [];
-            for(var i=1; i<= (max||31);i++) {
-                days.push(i < 10 ? "0"+i : i);
+            for (var i = 1; i <= (max || 31); i++) {
+                days.push(i < 10 ? "0" + i : i);
             }
             return days;
         },
 
-        getDaysByMonthAndYear : function(month, year) {
-            var int_d = new Date(year, parseInt(month)+1-1, 1);
+        getDaysByMonthAndYear: function (month, year) {
+            var int_d = new Date(year, parseInt(month) + 1 - 1, 1);
             var d = new Date(int_d - 1);
             return this.getDays(d.getDate());
         },
-        getConfig: function() {
+        getConfig: function () {
             var today = new Date(),
                 params = this.params,
                 self = this,
@@ -3236,29 +3226,29 @@ Device/OS Detection
                 rotateEffect: false,  //为了性能
                 cssClass: 'datetime-picker',
 
-                value: [today.getFullYear(), formatNumber(today.getMonth()+1), formatNumber(today.getDate()), formatNumber(today.getHours()), (formatNumber(today.getMinutes()))],
+                value: [today.getFullYear(), formatNumber(today.getMonth() + 1), formatNumber(today.getDate()), formatNumber(today.getHours()), (formatNumber(today.getMinutes()))],
 
                 onChange: function (picker, values, displayValues) {
                     var cols = picker.cols;
                     var days = self.getDaysByMonthAndYear(values[1], values[0]);
                     var currentValue = values[2];
-                    if(currentValue > days.length) currentValue = days.length;
+                    if (currentValue > days.length) currentValue = days.length;
                     picker.cols[4].setValue(currentValue);
 
                     //check min and max
-                    var current = new Date(values[0]+'-'+values[1]+'-'+values[2]);
+                    var current = new Date(values[0] + '-' + values[1] + '-' + values[2]);
                     var valid = true;
-                    if(params.min) {
+                    if (params.min) {
                         var min = new Date(typeof params.min === "function" ? params.min() : params.min);
 
-                        if(current < +min) {
+                        if (current < +min) {
                             picker.setValue(lastValidValues);
                             valid = false;
                         }
                     }
-                    if(params.max) {
+                    if (params.max) {
                         var max = new Date(typeof params.max === "function" ? params.max() : params.max);
-                        if(current > +max) {
+                        if (current > +max) {
                             picker.setValue(lastValidValues);
                             valid = false;
                         }
@@ -3290,10 +3280,10 @@ Device/OS Detection
                         divider: true,  // 这是一个分隔符
                         content: params.monthSplit
                     },
-                   {
+                    {
                         values: (function () {
                             var dates = [];
-                            for (var i=1; i<=31; i++) dates.push(formatNumber(i));
+                            for (var i = 1; i <= 31; i++) dates.push(formatNumber(i));
                             return dates;
                         })()
                     },
@@ -3319,8 +3309,8 @@ Device/OS Detection
             }
 
             var inputValue = this.input.val();
-            if(inputValue) config.value = params.parse(inputValue);
-            if(this.params.value) {
+            if (inputValue) config.value = params.parse(inputValue);
+            if (this.params.value) {
                 this.input.val(this.params.value);
                 config.value = params.parse(this.params.value);
             }
@@ -3329,13 +3319,13 @@ Device/OS Detection
         }
     }
 
-    $.fn.datetimePicker = function(params) {
+    $.fn.datetimePicker = function (params) {
         params = $.extend({}, defaults, params);
-        return this.each(function() {
-            if(!this) return;
+        return this.each(function () {
+            if (!this) return;
             var $this = $(this);
             var datetime = $this.data("datetime");
-            if(!datetime) $this.data("datetime", new Datetime(this, params));
+            if (!datetime) $this.data("datetime", new Datetime(this, params));
             return datetime;
         });
     };
@@ -3351,7 +3341,9 @@ Device/OS Detection
         monthes: ('01 02 03 04 05 06 07 08 09 10 11 12').split(' '),
         years: (function () {
             var arr = [];
-            for (var i = 1930; i <= 2080; i++) { arr.push(i); }
+            for (var i = 1930; i <= 2080; i++) {
+                arr.push(i);
+            }
             return arr;
         })(),
         times: function () {
@@ -3359,7 +3351,7 @@ Device/OS Detection
                 {
                     values: (function () {
                         var hours = [];
-                        for (var i=0; i<24; i++) hours.push(formatNumber(i));
+                        for (var i = 0; i < 24; i++) hours.push(formatNumber(i));
                         return hours;
                     })()
                 },
@@ -3370,7 +3362,7 @@ Device/OS Detection
                 {
                     values: (function () {
                         var minutes = [];
-                        for (var i=0; i<60; i++) minutes.push(formatNumber(i));
+                        for (var i = 0; i < 60; i++) minutes.push(formatNumber(i));
                         return minutes;
                     })()
                 }
@@ -3400,13 +3392,13 @@ Device/OS Detection
 ======================================================*/
 /* global $:true */
 
-+ function($) {
++function ($) {
     "use strict";
 
 
     //Popup 和 picker 之类的不要共用一个弹出方法，因为这样会导致 在 popup 中再弹出 picker 的时候会有问题。
 
-    $.openPopup = function(popup, className) {
+    $.openPopup = function (popup, className) {
 
         $.closePopup();
 
@@ -3416,15 +3408,15 @@ Device/OS Detection
         popup.addClass("weui-popup__container--visible");
         var modal = popup.find(".weui-popup__modal");
         modal.width();
-        modal.transitionEnd(function() {
+        modal.transitionEnd(function () {
             modal.trigger("open");
         });
     }
 
 
-    $.closePopup = function(container, remove) {
+    $.closePopup = function (container, remove) {
         container = $(container || ".weui-popup__container--visible");
-        container.find('.weui-popup__modal').transitionEnd(function() {
+        container.find('.weui-popup__modal').transitionEnd(function () {
             var $this = $(this);
             $this.trigger("close");
             container.hide();
@@ -3434,18 +3426,18 @@ Device/OS Detection
     };
 
 
-    $(document).on("click", ".close-popup, .weui-popup__overlay", function() {
+    $(document).on("click", ".close-popup, .weui-popup__overlay", function () {
         $.closePopup();
     })
-        .on("click", ".open-popup", function() {
+        .on("click", ".open-popup", function () {
             $($(this).data("target")).popup();
         })
-        .on("click", ".weui-popup__container", function(e) {
-            if($(e.target).hasClass("weui-popup__container")) $.closePopup();
+        .on("click", ".weui-popup__container", function (e) {
+            if ($(e.target).hasClass("weui-popup__container")) $.closePopup();
         })
 
-    $.fn.popup = function() {
-        return this.each(function() {
+    $.fn.popup = function () {
+        return this.each(function () {
             $.openPopup(this);
         });
     };
@@ -3461,55 +3453,55 @@ Device/OS Detection
 
     var noti, defaults, timeout, start, diffX, diffY;
 
-    var touchStart = function(e) {
+    var touchStart = function (e) {
         var p = $.getTouchPosition(e);
         start = p;
         diffX = diffY = 0;
         noti.addClass("touching");
     };
-    var touchMove = function(e) {
-        if(!start) return false;
+    var touchMove = function (e) {
+        if (!start) return false;
         e.preventDefault();
         e.stopPropagation();
         var p = $.getTouchPosition(e);
         diffX = p.x - start.x;
         diffY = p.y - start.y;
-        if(diffY > 0) {
+        if (diffY > 0) {
             diffY = Math.sqrt(diffY);
         }
 
-        noti.css("transform", "translate3d(0, "+diffY+"px, 0)");
+        noti.css("transform", "translate3d(0, " + diffY + "px, 0)");
     };
-    var touchEnd = function() {
+    var touchEnd = function () {
         noti.removeClass("touching");
         noti.attr("style", "");
-        if(diffY < 0 && (Math.abs(diffY) > noti.height()*0.38)) {
+        if (diffY < 0 && (Math.abs(diffY) > noti.height() * 0.38)) {
             $.closeNotification();
         }
 
-        if(Math.abs(diffX) <= 1 && Math.abs(diffY) <= 1) {
+        if (Math.abs(diffX) <= 1 && Math.abs(diffY) <= 1) {
             noti.trigger("noti-click");
         }
 
         start = false;
     };
 
-    var attachEvents = function(el) {
+    var attachEvents = function (el) {
         el.on($.touchEvents.start, touchStart);
         el.on($.touchEvents.move, touchMove);
         el.on($.touchEvents.end, touchEnd);
     };
 
-    $.notification = $.noti = function(params) {
+    $.notification = $.noti = function (params) {
         params = $.extend({}, defaults, params);
         noti = $(".weui-notification");
-        if(!noti[0]) { // create a new notification
+        if (!noti[0]) { // create a new notification
             noti = $('<div class="weui-notification"></div>').appendTo(document.body);
             attachEvents(noti);
         }
 
         noti.off("noti-click"); //the click event is not correct sometime: it will trigger when user is draging.
-        if(params.onClick) noti.on("noti-click", function() {
+        if (params.onClick) noti.on("noti-click", function () {
             params.onClick(params.data);
         });
 
@@ -3520,14 +3512,14 @@ Device/OS Detection
         noti.addClass("weui-notification--in");
         noti.data("params", params);
 
-        var startTimeout = function() {
-            if(timeout) {
+        var startTimeout = function () {
+            if (timeout) {
                 clearTimeout(timeout);
                 timeout = null;
             }
 
-            timeout = setTimeout(function() {
-                if(noti.hasClass("weui-notification--touching")) {
+            timeout = setTimeout(function () {
+                if (noti.hasClass("weui-notification--touching")) {
                     startTimeout();
                 } else {
                     $.closeNotification();
@@ -3539,16 +3531,16 @@ Device/OS Detection
 
     };
 
-    $.closeNotification = function() {
+    $.closeNotification = function () {
         timeout && clearTimeout(timeout);
         timeout = null;
-        var noti = $(".weui-notification").removeClass("weui-notification--in").transitionEnd(function() {
+        var noti = $(".weui-notification").removeClass("weui-notification--in").transitionEnd(function () {
             $(this).remove();
         });
 
-        if(noti[0]) {
+        if (noti[0]) {
             var params = $(".weui-notification").data("params");
-            if(params && params.onClose) {
+            if (params && params.onClose) {
                 params.onClose(params.data);
             }
         }
@@ -3562,26 +3554,26 @@ Device/OS Detection
         onClick: undefined,
         onClose: undefined,
         data: undefined,
-        tpl:  '<div class="weui-notification__inner">' +
-        '{{#if media}}<div class="weui-notification__media">{{media}}</div>{{/if}}' +
-        '<div class="weui-notification__content">' +
-        '{{#if title}}<div class="weui-notification__title">{{title}}</div>{{/if}}' +
-        '{{#if text}}<div class="weui-notification__text">{{text}}</div>{{/if}}' +
-        '</div>' +
-        '<div class="weui-notification__handle-bar"></div>' +
-        '</div>'
+        tpl: '<div class="weui-notification__inner">' +
+            '{{#if media}}<div class="weui-notification__media">{{media}}</div>{{/if}}' +
+            '<div class="weui-notification__content">' +
+            '{{#if title}}<div class="weui-notification__title">{{title}}</div>{{/if}}' +
+            '{{#if text}}<div class="weui-notification__text">{{text}}</div>{{/if}}' +
+            '</div>' +
+            '<div class="weui-notification__handle-bar"></div>' +
+            '</div>'
     };
 
 }($);
 
-+ function($) {
++function ($) {
     "use strict";
 
     var timeout;
 
-    $.toptip = function(text, duration, type) {
-        if(!text) return;
-        if(typeof duration === typeof "a") {
+    $.toptip = function (text, duration, type) {
+        if (!text) return;
+        if (typeof duration === typeof "a") {
             type = duration;
             duration = undefined;
         }
@@ -3594,14 +3586,14 @@ Device/OS Detection
 
         clearTimeout(timeout);
 
-        if(!$t.hasClass('weui-toptips_visible')) {
+        if (!$t.hasClass('weui-toptips_visible')) {
             $t.show().width();
             $t.addClass('weui-toptips_visible');
         }
 
-        timeout = setTimeout(function() {
+        timeout = setTimeout(function () {
 
-                $(".weui-toptips_visible").remove();
+            $(".weui-toptips_visible").remove();
 
         }, duration);
     }
@@ -3618,28 +3610,28 @@ Device/OS Detection
     var cache = [];
     var TOUCHING = 'swipeout-touching'
 
-    var Swipeout = function(el) {
+    var Swipeout = function (el) {
         this.container = $(el);
         this.mover = this.container.find('>.weui-cell__bd')
         this.attachEvents();
         cache.push(this)
     }
 
-    Swipeout.prototype.touchStart = function(e) {
+    Swipeout.prototype.touchStart = function (e) {
         var p = $.getTouchPosition(e);
         this.container.addClass(TOUCHING);
         this.start = p;
         this.startX = 0;
-        this.startTime = + new Date;
-        var transform =  this.mover.css('transform').match(/-?[\d\.]+/g)
+        this.startTime = +new Date;
+        var transform = this.mover.css('transform').match(/-?[\d\.]+/g)
         if (transform && transform.length) this.startX = parseInt(transform[4])
         this.diffX = this.diffY = 0;
         this._closeOthers()
         this.limit = this.container.find('>.weui-cell__ft').width() || 68; // 因为有的时候初始化的时候元素是隐藏的（比如在对话框内），所以在touchstart的时候计算宽度而不是初始化的时候
     };
 
-    Swipeout.prototype.touchMove= function(e) {
-        if(!this.start) return true;
+    Swipeout.prototype.touchMove = function (e) {
+        if (!this.start) return true;
         var p = $.getTouchPosition(e);
         this.diffX = p.x - this.start.x;
         this.diffY = p.y - this.start.y;
@@ -3652,10 +3644,10 @@ Device/OS Detection
         e.stopPropagation();
         var x = this.diffX + this.startX
         if (x > 0) x = 0;
-        if (Math.abs(x) > this.limit) x = - (Math.pow(-(x+this.limit), .7) + this.limit)
-        this.mover.css("transform", "translate3d("+x+"px, 0, 0)");
+        if (Math.abs(x) > this.limit) x = -(Math.pow(-(x + this.limit), .7) + this.limit)
+        this.mover.css("transform", "translate3d(" + x + "px, 0, 0)");
     };
-    Swipeout.prototype.touchEnd = function() {
+    Swipeout.prototype.touchEnd = function () {
         if (!this.start) return true;
         this.start = false;
         var x = this.diffX + this.startX
@@ -3672,26 +3664,26 @@ Device/OS Detection
     };
 
 
-    Swipeout.prototype.close = function() {
+    Swipeout.prototype.close = function () {
         this.container.removeClass(TOUCHING);
         this.mover.css("transform", "translate3d(0, 0, 0)");
         this.container.trigger('swipeout-close');
     }
 
-    Swipeout.prototype.open = function() {
+    Swipeout.prototype.open = function () {
         this.container.removeClass(TOUCHING);
         this._closeOthers()
         this.mover.css("transform", "translate3d(" + (-this.limit) + "px, 0, 0)");
         this.container.trigger('swipeout-open');
     }
 
-    Swipeout.prototype.attachEvents = function() {
+    Swipeout.prototype.attachEvents = function () {
         var el = this.mover;
         el.on($.touchEvents.start, $.proxy(this.touchStart, this));
         el.on($.touchEvents.move, $.proxy(this.touchMove, this));
         el.on($.touchEvents.end, $.proxy(this.touchEnd, this));
     }
-    Swipeout.prototype._closeOthers = function() {
+    Swipeout.prototype._closeOthers = function () {
         //close others
         var self = this
         cache.forEach(function (s) {
@@ -3699,12 +3691,12 @@ Device/OS Detection
         })
     }
 
-    var swipeout = function(el) {
+    var swipeout = function (el) {
         return new Swipeout(el);
     };
 
     $.fn.swipeout = function (arg) {
-        return this.each(function() {
+        return this.each(function () {
             var $this = $(this)
             var s = $this.data('swipeout') || swipeout(this);
             $this.data('swipeout', s);
@@ -3743,8 +3735,9 @@ Device/OS Detection
         return oldFnTab;
     };
 })($);
-function share(){
-    var sharetpl='<div class="weui-share" onclick="$(this).remove();">\n' +
+
+function share() {
+    var sharetpl = '<div class="weui-share" onclick="$(this).remove();">\n' +
         '<div class="weui-share-box">\n' +
         '点击右上角发送给指定朋友或分享到朋友圈 <i></i>\n' +
         '</div>\n' +
@@ -3753,7 +3746,23 @@ function share(){
     $("body").append(sharetpl());
 
 }
-$(function(){
-    var weixinimg=[];var weixinsrc=[];weixinimg=$('.weixin');for(var i=0;i<weixinimg.length;i++){weixinsrc[i]=weixinimg[i].src;};$('.weixin').click(function(){var index=$('.weixin').index(this);wx.previewImage({current:weixinsrc[index],urls:weixinsrc});});
+
+$(function () {
+    var weixinimg = [];
+    var weixinsrc = [];
+    weixinimg = $('.weixin');
+    for (var i = 0; i < weixinimg.length; i++) {
+        weixinsrc[i] = weixinimg[i].src;
+    }
+    ;$('.weixin').click(function () {
+        var index = $('.weixin').index(this);
+        wx.previewImage({current: weixinsrc[index], urls: weixinsrc});
+    });
 });
-function noshare(){var e=function(){WeixinJSBridge.call("hideOptionMenu")};"undefined"==typeof WeixinJSBridge&&(document.addEventListener?document.addEventListener("WeixinJSBridgeReady",e,!1):document.attachEvent&&(document.attachEvent("WeixinJSBridgeReady",e),document.attachEvent("onWeixinJSBridgeReady",e)))}
+
+function noshare() {
+    var e = function () {
+        WeixinJSBridge.call("hideOptionMenu")
+    };
+    "undefined" == typeof WeixinJSBridge && (document.addEventListener ? document.addEventListener("WeixinJSBridgeReady", e, !1) : document.attachEvent && (document.attachEvent("WeixinJSBridgeReady", e), document.attachEvent("onWeixinJSBridgeReady", e)))
+}

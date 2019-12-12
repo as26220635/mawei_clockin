@@ -9,12 +9,23 @@
 <%@ include file="/WEB-INF/jsp/common/tag.jsp" %>
 <style>
     #clockinArea {
+        z-index: 1000;
+        position: relative;
         height: calc(55% - 30px);
         background-color: #ffffff;
+        text-align: center;
+        box-shadow: 0px 1px 30px rgba(136, 136, 136, 0.7);
     }
 
     #clockinAreaImg {
-        width: 100%;
+        width: auto;
+        max-width: 100%;
+        height: calc(100% - 30px) !important;
+        object-fit: contain;
+    }
+
+    .anchorBL a {
+        display: none;
     }
 
     .BMap_stdMpZoom {
@@ -30,13 +41,13 @@
         text-align: center;
         z-index: 997;
         width: 100%;
-        top: 55%;
+        top: 84%;
         position: absolute;
         display: none;
     }
 
     #map {
-        height: 37%;
+        height: 45%;
         -webkit-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
         z-index: 101 !important;
@@ -92,7 +103,7 @@
         text-align: center;
         width: 100%;
         padding-right: 20px;
-        z-index: 100;
+        z-index: 1001;
     }
 
     .marquee-block {
@@ -133,23 +144,92 @@
             -webkit-transform: translateX(-100%);
         }
     }
+
+
+    @media screen and (min-width: 600px) and (max-width: 960px) {
+
+        #clockinArea {
+            text-align: center;
+        }
+
+        #clockinAreaCheckDiv {
+            top: 90%;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(600px);
+                -webkit-transform: translateX(600px);
+            }
+            100% {
+                transform: translateX(-100%);
+                -webkit-transform: translateX(-100%);
+            }
+        }
+
+        @-webkit-keyframes marquee {
+            0% {
+                transform: translateX(600px);
+                -webkit-transform: translateX(600px);
+            }
+            100% {
+                transform: translateX(-100%);
+                -webkit-transform: translateX(-100%);
+            }
+        }
+    }
+
+    @media screen and (min-width: 960px) {
+
+        #clockinArea {
+            text-align: center;
+        }
+
+        #clockinAreaCheckDiv {
+            top: 86%;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(960px);
+                -webkit-transform: translateX(960px);
+            }
+            100% {
+                transform: translateX(-100%);
+                -webkit-transform: translateX(-100%);
+            }
+        }
+
+        @-webkit-keyframes marquee {
+            0% {
+                transform: translateX(960px);
+                -webkit-transform: translateX(960px);
+            }
+            100% {
+                transform: translateX(-100%);
+                -webkit-transform: translateX(-100%);
+            }
+        }
+    }
+
+
 </style>
 <div class="container container-page" id="clockinContainer">
-    <div class="weui-search-bar" id="searchBar">
-        <form class="weui-search-bar__form">
-            <div class="weui-search-bar__box">
-                <i class="weui-icon-search"></i>
-                <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
-                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
-            </div>
-            <label class="weui-search-bar__label" id="searchText"
-                   style="transform-origin: 0px 0px; opacity: 1; transform: scale(1, 1);">
-                <i class="weui-icon-search"></i>
-                <span>搜索</span>
-            </label>
-        </form>
-        <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
-    </div>
+    <%--    <div class="weui-search-bar" id="searchBar">--%>
+    <%--        <form class="weui-search-bar__form">--%>
+    <%--            <div class="weui-search-bar__box">--%>
+    <%--                <i class="weui-icon-search"></i>--%>
+    <%--                <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">--%>
+    <%--                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>--%>
+    <%--            </div>--%>
+    <%--            <label class="weui-search-bar__label" id="searchText"--%>
+    <%--                   style="transform-origin: 0px 0px; opacity: 1; transform: scale(1, 1);">--%>
+    <%--                <i class="weui-icon-search"></i>--%>
+    <%--                <span>搜索</span>--%>
+    <%--            </label>--%>
+    <%--        </form>--%>
+    <%--        <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>--%>
+    <%--    </div>--%>
 
     <div class="page list js_show" id="searchContent">
         <div class="page__bd">
@@ -201,7 +281,10 @@
 <script>
     <%--主页图片--%>
     //调整area
-    adjust('${mainImage.BMI_AREAWIDTH}', '${mainImage.BMI_AREAHEIGHT}');
+    $('#clockinAreaImg').one('load', function () {
+        adjust('${mainImage.BMI_AREAWIDTH}', '${mainImage.BMI_AREAHEIGHT}');
+    });
+
 
     function adjust(imageWidth, imageHeigth) {
         var map = document.getElementById("clockinAreaMap");
@@ -258,6 +341,11 @@
                 var $clockinAreaImg = $('#clockinAreaImg');
                 var $clockinAreaMap = $('#clockinAreaMap');
 
+                $clockinAreaImg.one('load', function () {
+                    //调整区域
+                    adjust(mainImage.BMI_AREAWIDTH, mainImage.BMI_AREAHEIGHT);
+                });
+
                 //切换主区域
                 $clockinAreaImg.attr('src', '${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}' + mainImage.IMG_PATH);
                 $clockinAreaImg.css('height', mainImage.BMI_HEIGHT + 'px');
@@ -272,8 +360,7 @@
                     }
                     $clockinAreaMap.html(html);
                 }
-                //调整区域
-                adjust(mainImage.BMI_AREAWIDTH, mainImage.BMI_AREAHEIGHT);
+
                 //显示返回按钮
                 if (mainImage.IS_TOP == 0) {
                     $('#clockinAreaCheckBtn').attr('data-parent-id', mainImage.BMI_PARENTID);
@@ -392,9 +479,7 @@
 
     //异步加载地图
     function loadJScript() {
-        $("script[src^='https://api.map.baidu.com/getscript?v=3.0']").remove();
-        $("script[src^='https://api.map.baidu.com/api?v=3.0']").remove();
-        $("iframe[src^='https://api.map.baidu.com/res/staticPages/location.html']").remove();
+        removeMap();
         var script = document.createElement("script");
         script.type = "text/javascript";
         script.src = "https://api.map.baidu.com/api?v=3.0&ak=${WEBCONFIG_BAIDU_MAP_AK}&callback=initMap";
@@ -615,12 +700,12 @@
         var clockinGeolocaltionPoint = $('#clockinGeolocaltionPoint').val();
         if (clockinGeolocaltionPoint != undefined && clockinGeolocaltionPoint != '') {
             //调用打卡功能
-            loadUrl('${BASE_URL}clockin/in/${wechatUser.id}/' + clockinGeolocaltionPoint);
+            loadUrl('${BASE_URL}clockin/in/${wechatUser.id}/' + clockinGeolocaltionPoint + '?clockinAddress=' + encodeURIComponent($('#clockinAddress').text().replace('地点:','')));
         }
     });
 </script>
 <script>
-    var timeOut;
+    var locateTimeOut;
     <%--每5秒定位一次--%>
     getPosition();
 
@@ -628,8 +713,8 @@
      * 5秒刷新定位
      */
     function getPosition() {
-        clearTimeout(timeOut);
-        timeOut = setTimeout(function () {
+        clearTimeout(locateTimeOut);
+        locateTimeOut = setTimeout(function () {
             geolocation.getCurrentPosition(function (r) {
                 if (this.getStatus() == BMAP_STATUS_SUCCESS) {
                     checkPoint(r.point);
@@ -638,6 +723,6 @@
                 }
             }, {enableHighAccuracy: true})
             getPosition();
-        }, 5000);
+        }, 10000);
     }
 </script>

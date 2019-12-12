@@ -28,4 +28,10 @@ public class CacheName {
      */
     public static final String ACHIEVEMENT_CACHE = "achievement-cache";
 
+    /**
+     * 微信点赞
+     */
+    public static final String WECHAT_PRAISE = "wechat-praise";
+    public static final String WECHAT_PRAISE_POINTS = "wechat-praise-points";
+
 }

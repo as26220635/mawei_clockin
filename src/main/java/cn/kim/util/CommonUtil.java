@@ -42,6 +42,10 @@ public class CommonUtil {
      */
     public static String[] CONTAINS_ENCRYPT_FIELDS = {"id", "key", "sps_step_transactor"};
     /**
+     * 不加密字段
+     */
+    public static String[] NOT_CONTAINS_ENCRYPT_FIELDS = {"width", "token"};
+    /**
      * URL转义字段
      */
     public static String[] CONTAINS_URL_PARAMS_FIELDS = {"name", "title", "table"};
@@ -646,7 +650,7 @@ public class CommonUtil {
             }
         } catch (Exception e) {
 //            e.printStackTrace();
-//            throw new InvalidKeyException("无效的key");
+            throw new InvalidKeyException("无效的key");
         }
 
         return obj;
@@ -744,7 +748,7 @@ public class CommonUtil {
                 BeanUtil.idDecryptReflect(obj);
             }
         } catch (Exception e) {
-//            throw new InvalidKeyException("无效的KEY!");
+            throw new InvalidKeyException("无效的KEY!");
         }
         return obj;
     }
@@ -809,14 +813,14 @@ public class CommonUtil {
         if (ValidateUtil.isEmpty(val)) {
             return false;
         }
-        return !TextUtil.toString(key).toLowerCase().contains("width") && isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString()) && MagicValue.JAVA_LANG_STRING.equals(val.getClass().getName());
+        return !isContains(NOT_CONTAINS_ENCRYPT_FIELDS, key.toString()) && isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString()) && MagicValue.JAVA_LANG_STRING.equals(val.getClass().getName());
     }
 
     public static boolean isEncrypt(Object key, Class<?> type) {
         if (ValidateUtil.isEmpty(type)) {
             return false;
         }
-        return !TextUtil.toString(key).toLowerCase().contains("width") && isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString()) && type == String.class;
+        return !isContains(NOT_CONTAINS_ENCRYPT_FIELDS, key.toString()) && isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString()) && type == String.class;
     }
 
     /**
@@ -830,14 +834,14 @@ public class CommonUtil {
         if (ValidateUtil.isEmpty(type)) {
             return false;
         }
-        return !TextUtil.toString(key).toLowerCase().contains("width") && isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString()) && MagicValue.CLASS_JAVA_LANG_STRING.equals(type);
+        return !isContains(NOT_CONTAINS_ENCRYPT_FIELDS, key.toString()) && isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString()) && MagicValue.CLASS_JAVA_LANG_STRING.equals(type);
     }
 
     public static boolean isEncrypt(Object key, boolean isString) {
         if (!isString) {
             return false;
         }
-        return !TextUtil.toString(key).toLowerCase().contains("width") && isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString());
+        return !isContains(NOT_CONTAINS_ENCRYPT_FIELDS, key.toString()) && isContains(CONTAINS_ENCRYPT_FIELDS, key.toString()) && !NO_ENCRYPT_FIELDS.contains(key.toString());
     }
 
     /**

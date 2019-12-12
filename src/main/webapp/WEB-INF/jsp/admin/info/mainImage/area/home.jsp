@@ -186,7 +186,7 @@
                     if (data.code == STATUS_SUCCESS) {
                         //创建行
                         var $row = $dataGrid.row.add({
-                            'ID': data.id,
+                            'BMI_RELATIONID': data.id,
                             'BIMA_INDEX': index,
                             'BIMA_TITLE': areaTitle,
                             'BIMA_MAPINFO': areaMapInfo,

@@ -6,6 +6,7 @@ import cn.kim.common.sequence.Sequence;
 import cn.kim.entity.ActiveUser;
 import cn.kim.entity.ResultState;
 import cn.kim.entity.StudentYearSemester;
+import cn.kim.entity.WechatUser;
 import cn.kim.exception.CustomException;
 import cn.kim.util.*;
 import com.google.common.collect.Lists;
@@ -62,6 +63,15 @@ public abstract class BaseData {
      */
     protected ActiveUser getActiveUser() {
         return AuthcUtil.getCurrentUser();
+    }
+
+    /**
+     * 获取微信登录用户
+     *
+     * @return
+     */
+    protected WechatUser getWechatUser() {
+        return (WechatUser) SessionUtil.get(MagicValue.SESSION_WECHAT_USER);
     }
 
     /**
@@ -650,39 +660,6 @@ public abstract class BaseData {
         } else {
             studentYearSemester.setYear(getStudentYear());
         }
-        return studentYearSemester;
-    }
-
-    /**
-     * 根据标题解析出学年和学期
-     * 空就返回当前的学年和学期
-     *
-     * @param title
-     * @return
-     */
-    protected StudentYearSemester parseStudentYearSemester(String title) {
-        StudentYearSemester studentYearSemester = new StudentYearSemester();
-        if (checkStudentYearSemester(title)) {
-            //去除空格
-            title = TextUtil.replaceBlank(title);
-            //2017-2018 中间符号的位置
-            int startYearindex = title.indexOf("-");
-            //2017-2018学年第一学期
-            studentYearSemester.setYear(title.substring(startYearindex - 4, startYearindex) + "-" + title.substring(startYearindex + 1, startYearindex + 5));
-            if (title.contains("第一学期") || title.contains("第1学期")) {
-                studentYearSemester.setSemester(1);
-                studentYearSemester.setSemesterStr("第一学期");
-            } else if (title.contains("第二学期") || title.contains("第2学期")) {
-                studentYearSemester.setSemester(2);
-                studentYearSemester.setSemesterStr("第二学期");
-            } else {
-                studentYearSemester.setSemester(getStudentSemester());
-            }
-        } else {
-            studentYearSemester.setYear(getStudentYear());
-            studentYearSemester.setSemester(getStudentSemester());
-        }
-
         return studentYearSemester;
     }
 

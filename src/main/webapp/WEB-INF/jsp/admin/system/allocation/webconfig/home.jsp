@@ -72,7 +72,7 @@
 <script>
     editMenuTitle('网站配置');
     //保存
-    $('#save').click(function () {
+    $('#save').unbind('click').click(function () {
         var $form = $('#addAndEditForm');
         //验证
         if (!validator.formValidate($form)) {

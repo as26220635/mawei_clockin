@@ -12,8 +12,8 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <%--    <meta http-equiv="Access-Control-Allow-Origin" content="*" />--%>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%--    <meta http-equiv="Access-Control-Allow-Origin" content="*" />--%>
     <%--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--%>
     <title>${WEBCONFIG_HEAD_TITLE}</title>
     <%@ include file="/WEB-INF/jsp/mobile/common/common_css.jsp" %>
@@ -32,13 +32,28 @@
             -webkit-filter: drop-shadow(0px 2px 1px #09C161);
             filter: drop-shadow(0px 2px 1px #09C161);
         }
+
+        .weui-tab__container{
+            height: 92%;
+        }
+        @media screen and (min-width: 600px) and (max-width: 960px) {
+            .weui-tab__container{
+                height: 94%;
+            }
+        }
+
+        @media screen and (max-width: 330px) {
+            .weui-tab__container{
+                height: 88%;
+            }
+        }
     </style>
 </head>
 <body>
 <div class="page tabbar js_show">
     <div class="page__bd" style="height: 100%;">
         <div class="weui-tab">
-            <div class="weui-tab__panel" id="${CONTAINER}" style="height: 92%;">
+            <div class="weui-tab__panel weui-tab__container" id="${CONTAINER}" style="height: 92%;">
 
             </div>
             <div class="weui-tabbar">
@@ -91,6 +106,7 @@
 
     //pjax完成回调后的操作
     $(document).on('ready pjax:end', function (event) {
+        removeMap();
         //pjax
         mainInit.initPjax();
     });
@@ -101,14 +117,14 @@
 
     function showBottpmMenu() {
         $('.weui-tabbar').fadeIn();
-        $('#${CONTAINER}').css('height', '92%');
-        $('.container-page').css('height', '92%');
+        $('#${CONTAINER}').css('height', '').addClass('weui-tab__container')
+        $('.container-page').css('height', '').addClass('weui-tab__container')
     }
 
     function hideBottpmMenu() {
         $('.weui-tabbar').fadeOut();
-        $('#${CONTAINER}').css('height', '100%');
-        $('.container-page').css('height', '100%');
+        $('#${CONTAINER}').css('height', '100%').removeClass('weui-tab__container');
+        $('.container-page').css('height', '100%').removeClass('weui-tab__container');
     }
 
     function switchTabbar(id) {
@@ -124,6 +140,36 @@
     function loadUrl(url) {
         $.pjax({url: url, container: '#${CONTAINER}'});
     }
+
+    function removeMap() {
+        $("script[src^='https://api.map.baidu.com/getscript?v=3.0']").remove();
+        $("script[src^='https://api.map.baidu.com/api?v=3.0']").remove();
+        $("iframe[src^='https://api.map.baidu.com/res/staticPages/location.html']").remove();
+    }
+</script>
+<script>
+    let confettiAmount = 60,
+        confettiColors = [
+            '#7d32f5',
+            '#f6e434',
+            '#63fdf1',
+            '#e672da',
+            '#295dfe',
+            '#6e57ff'
+        ],
+        random = (min, max) => {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        },
+        createConfetti = to => {
+            let elem = document.createElement('i'),
+                set = Math.random() < 0.5 ? -1 : 1;
+            elem.style.setProperty('--x', random(-260, 260) + 'px');
+            elem.style.setProperty('--y', random(-160, 160) + 'px');
+            elem.style.setProperty('--r', random(0, 360) + 'deg');
+            elem.style.setProperty('--s', random(.6, 1));
+            elem.style.setProperty('--b', confettiColors[random(0, 5)]);
+            to.appendChild(elem);
+        };
 </script>
 </body>
 </html>

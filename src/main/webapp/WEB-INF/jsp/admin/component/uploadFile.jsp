@@ -12,10 +12,12 @@
     <input type="hidden" name="${SUBMIT_TOKEN_NAME}" value="${token}">
     <s:fileInput title="附件"
                  tableId="${tableId}"
-                 sdtCode="${fns:trueOrFalse(empty reqParam.tableName,Attribute.BUS_FILE_DEFAULT, reqParam.sdtCode)}"
+                 sdtCode="${fns:trueOrFalse(empty reqParam.sdtCode,Attribute.BUS_FILE_DEFAULT, reqParam.sdtCode)}"
                  tableName="${fns:trueOrFalse(empty reqParam.tableName,TableName.SYS_FILE, reqParam.tableName)}"
                  typeCode="${fns:trueOrFalse(empty reqParam.typeCode,TableName.SYS_FILE, reqParam.typeCode)}"
-                 multiple="false"
+                 maxFilesNum="${fns:trueOrFalse(empty reqParam.maxFilesNum,99, reqParam.maxFilesNum)}"
+                 maxFileCount="${fns:trueOrFalse(empty reqParam.maxFileCount,99, reqParam.maxFileCount)}"
+                 multiple="${fns:trueOrFalse(empty reqParam.multiple,false, reqParam.multiple)}"
     ></s:fileInput>
 </form>
 

@@ -25,11 +25,11 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
 //        url = servletRequest.getScheme() +"://" + servletRequest.getServerName()
 //                + ":" +servletRequest.getServerPort()
 //                +
-//        url = "访问地址:" + servletRequest.getServletPath();
+        url = "访问地址:" + servletRequest.getServletPath();
 //        if (servletRequest.getQueryString() != null) {
 //            url += "?" + servletRequest.getQueryString();
 //        }
-//        log.info(url);
+        log.info(url);
     }
 
     @Override

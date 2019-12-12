@@ -58,13 +58,15 @@
 </script>
 <script>
     $(function () {
+        console.log()
+        var loading = false;
         var isLast = false;
         //每页数据条数
-        var pagesize = 10;
+        var extraCount = parseInt(document.documentElement.clientHeight / 70);
+        extraCount = extraCount <= 10 ? 0 : extraCount - 10;
+        var pagesize = 10 + extraCount;
         var page = 0;
         var maxpage = Math.ceil('${clockinCount}' / pagesize);
-        //itemdiv的高度
-        var nDivHight = $("#weuiCellsItems").height();
         $('#more').hide();
 
         function ajaxpage(page) {
@@ -73,30 +75,22 @@
             }, function (html) {
                 $("#clockinList").append(html);
                 $("#more").hide();
-                nDivHight = $("#weuiCellsItems").height();
                 if (isLast){
                     $('.weui-loadmore_dot').show();
                 }
+                loading = false;
             });
         }
 
-        //滚动距离总长(注意不是滚动条的长度)
-        var nScrollHight = 0;
-        //滚动到的当前位置
-        var nScrollTop = 0;
-        $("#weuiCellsItems ").scroll(function () {
-            nScrollHight = $(this)[0].scrollHeight;
-            nScrollTop = $(this)[0].scrollTop;
-            var paddingBottom = parseInt($(this).css('padding-bottom')),
-                paddingTop = parseInt($(this).css('padding-top'));
-            if (nScrollTop + paddingBottom + paddingTop + nDivHight >= nScrollHight) {
-                if (page < (maxpage - 1)) {
-                    page++;
-                    ajaxpage(page);
-                } else {
-                    isLast = true;
-                    return false;
-                }
+        $("#weuiCellsItems").infinite(100).on("infinite", function() {
+            if(loading) return;
+            loading = true;
+            if (page < (maxpage - 1)) {
+                page++;
+                ajaxpage(page);
+            } else {
+                isLast = true;
+                return false;
             }
         });
         ajaxpage(0);

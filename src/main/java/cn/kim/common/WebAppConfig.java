@@ -2,7 +2,10 @@ package cn.kim.common;
 
 import cn.kim.remote.LogRemoteInterface;
 import cn.kim.remote.LogRemoteInterfaceAsync;
+import cn.kim.remote.PraiseRemoteInterface;
+import cn.kim.remote.PraiseRemoteInterfaceAsync;
 import cn.kim.remote.impl.LogRemoteServiceImpl;
+import cn.kim.remote.impl.PraiseRemoteServiceImpl;
 import org.redisson.Redisson;
 import org.redisson.api.RRemoteService;
 import org.redisson.api.RedissonClient;
@@ -42,14 +45,19 @@ public class WebAppConfig {
     @Bean("remoteService")
     public RRemoteService rRemoteService(RedissonClient redissonClient) {
         RRemoteService remoteService = redissonClient.getRemoteService();
+        //日志
         LogRemoteInterface serviceImpl = new LogRemoteServiceImpl();
         remoteService.register(LogRemoteInterface.class, serviceImpl);
+        //点赞
+        PraiseRemoteInterface praiseRemoteInterface = new PraiseRemoteServiceImpl();
+        remoteService.register(PraiseRemoteInterface.class, praiseRemoteInterface);
 
         return remoteService;
     }
 
     /**
      * 异步
+     *
      * @param remoteService
      * @return
      */
@@ -58,5 +66,18 @@ public class WebAppConfig {
         // 发送即不管（Fire-and-Forget）模式，无需应答回执，不等待结果
         RemoteInvocationOptions options = RemoteInvocationOptions.defaults().noAck().noResult();
         return remoteService.get(LogRemoteInterfaceAsync.class, options);
+    }
+
+    /**
+     * 异步
+     *
+     * @param remoteService
+     * @return
+     */
+    @Bean("praiseRemoteInterfaceAsync")
+    public PraiseRemoteInterfaceAsync praiseRemoteInterfaceAsync(RRemoteService remoteService) {
+        // 发送即不管（Fire-and-Forget）模式，无需应答回执，不等待结果
+        RemoteInvocationOptions options = RemoteInvocationOptions.defaults().noAck().noResult();
+        return remoteService.get(PraiseRemoteInterfaceAsync.class, options);
     }
 }

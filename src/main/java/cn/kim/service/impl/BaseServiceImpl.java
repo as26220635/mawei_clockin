@@ -1,35 +1,34 @@
 package cn.kim.service.impl;
 
 import cn.kim.common.BaseData;
-import cn.kim.common.DaoSession;
-import cn.kim.common.attr.*;
-import cn.kim.common.eu.*;
+import cn.kim.common.attr.Constants;
+import cn.kim.common.attr.MagicValue;
+import cn.kim.common.attr.TableName;
+import cn.kim.common.attr.Tips;
+import cn.kim.common.eu.NameSpace;
+import cn.kim.common.eu.ProcessStatus;
+import cn.kim.common.eu.ProcessType;
 import cn.kim.common.shiro.CustomRealm;
 import cn.kim.dao.BaseDao;
-import cn.kim.entity.ActiveUser;
 import cn.kim.entity.Tree;
 import cn.kim.entity.TreeState;
 import cn.kim.exception.CustomException;
 import cn.kim.exception.CustomExceptionResolver;
 import cn.kim.service.BaseService;
-import cn.kim.service.ProcessService;
 import cn.kim.tools.ProcessTool;
 import cn.kim.util.*;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import lombok.extern.java.Log;
 import lombok.extern.log4j.Log4j2;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.apache.shiro.authz.UnauthorizedException;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -52,6 +51,9 @@ public abstract class BaseServiceImpl extends BaseData implements BaseService {
      */
     @Autowired
     protected CustomRealm customRealm;
+
+    @Autowired
+    protected RedissonClient redissonClient;
 
 
     /******************     公用方法    *********************/

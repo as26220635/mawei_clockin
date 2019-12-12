@@ -4,15 +4,15 @@ import cn.kim.common.attr.*;
 import cn.kim.common.eu.NameSpace;
 import cn.kim.common.eu.SystemEnum;
 import cn.kim.common.eu.UseType;
+import cn.kim.entity.DataTablesView;
+import cn.kim.entity.QuerySet;
 import cn.kim.entity.WechatUser;
 import cn.kim.exception.CustomException;
 import cn.kim.remote.LogRemoteInterfaceAsync;
+import cn.kim.remote.PraiseRemoteInterfaceAsync;
 import cn.kim.service.WechatService;
-import cn.kim.service.WechatService;
-import cn.kim.util.DateUtil;
+import cn.kim.util.CacheUtil;
 import cn.kim.util.FileUtil;
-import cn.kim.util.LogUtil;
-import cn.kim.util.TextUtil;
 import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +31,9 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
 
     @Autowired
     private LogRemoteInterfaceAsync logRemoteInterfaceAsync;
+
+    @Autowired
+    private PraiseRemoteInterfaceAsync praiseRemoteInterfaceAsync;
 
     @Override
     @Transactional
@@ -111,13 +114,13 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
     public Map<String, Object> selectWechatRank(String BW_ID) {
         Map<String, Object> resultMap = Maps.newHashMapWithExpectedSize(2);
 
-        List<Map<String, Object>> rankList = baseDao.selectList(NameSpace.WechatMapper, "selectWechatRank");
-
         resultMap.put("ID", BW_ID);
         Map<String, Object> myRank = baseDao.selectOne(NameSpace.WechatMapper, "selectWechatRankByWechatId", resultMap);
 
+        //文件路径加密
+        FileUtil.filePathTobase64(myRank, "IMG_PATHS");
+
         resultMap.clear();
-        resultMap.put("rankList", rankList);
         resultMap.put("myRank", myRank);
         return resultMap;
     }
@@ -161,5 +164,103 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
         //文件路径加密
         FileUtil.filePathTobase64(file, "IMG_PATH");
         return isEmpty(file) ? "" : toString(file.get("IMG_PATH"));
+    }
+
+    @Override
+    public Integer selectRankCount() {
+        return baseDao.selectOne(NameSpace.WechatMapper, "selectWechatRankCount");
+    }
+
+    @Override
+    public DataTablesView<?> selectRank(int offset, int limit, String BW_USERNAME) {
+        WechatUser wechatUser = getWechatUser();
+
+        DataTablesView<Map<String, Object>> dataTablesView = new DataTablesView<>();
+        QuerySet querySet = new QuerySet();
+
+        //用户名
+        if (!isEmpty(BW_USERNAME)) {
+            querySet.set(QuerySet.LIKE, "BW_USERNAME", BW_USERNAME);
+        }
+
+        querySet.setOffset(offset);
+        querySet.setLimit(limit);
+
+        List<Map<String, Object>> dataList = baseDao.selectList(NameSpace.WechatMapper, "selectWechatRank", querySet.getWhereMap());
+        //获得点赞记录
+        for (Map<String, Object> data : dataList) {
+            Object praise = CacheUtil.get(CacheName.WECHAT_PRAISE_POINTS, wechatUser.getId() + "@@@" + data.get("ID"));
+            //点赞
+            if (!isEmpty(praise)) {
+                data.put("isPraise", true);
+            } else {
+                data.put("isPraise", false);
+            }
+        }
+        //文件路径加密
+        FileUtil.filePathTobase64(dataList, "IMG_PATHS");
+
+        dataTablesView.setData(dataList);
+
+        return dataTablesView;
+    }
+
+    @Override
+    public Map<String, Object> wechatPraisePoint(String fromId, String toId, int action) {
+        Map<String, Object> resultMap = Maps.newHashMapWithExpectedSize(5);
+        int status = STATUS_ERROR;
+        String desc = "点赞失败";
+        try {
+            //判断点赞时间
+            long nowTime = System.currentTimeMillis();
+            if (MobileConfig.PRAISE_POINT_START_TIME != null && MobileConfig.PRAISE_POINT_END_TIME != null) {
+                if (MobileConfig.PRAISE_POINT_START_TIME > nowTime || MobileConfig.PRAISE_POINT_END_TIME < nowTime) {
+                    throw new CustomException("时间范围:" + MobileConfig.PRAISE_POINT_START_TIME_STR + " 至 " + MobileConfig.PRAISE_POINT_END_TIME_STR);
+                }
+            }
+
+            boolean isSave = false;
+
+            if (action == 1) {
+                //点赞
+                Object isPoint = CacheUtil.get(CacheName.WECHAT_PRAISE_POINTS, fromId + "@@@" + toId);
+                if (isEmpty(isPoint)) {
+                    Object val = CacheUtil.get(CacheName.WECHAT_PRAISE, toId);
+                    int praiseNumber = isEmpty(val) ? 0 : toInt(val);
+                    praiseNumber++;
+                    CacheUtil.put(CacheName.WECHAT_PRAISE, toId, praiseNumber);
+                    //点赞记录
+                    CacheUtil.put(CacheName.WECHAT_PRAISE_POINTS, fromId + "@@@" + toId, fromId + "@@@" + toId);
+
+                    isSave = true;
+                }
+            } else {
+                //取消
+                Object isPoint = CacheUtil.get(CacheName.WECHAT_PRAISE_POINTS, fromId + "@@@" + toId);
+                if (!isEmpty(isPoint)) {
+                    Object val = CacheUtil.get(CacheName.WECHAT_PRAISE, toId);
+                    int praiseNumber = isEmpty(val) ? 0 : toInt(val);
+                    praiseNumber--;
+                    CacheUtil.put(CacheName.WECHAT_PRAISE, toId, praiseNumber);
+                    //移除记录
+                    CacheUtil.remove(CacheName.WECHAT_PRAISE_POINTS, fromId + "@@@" + toId);
+
+                    isSave = true;
+                }
+            }
+
+            if (isSave) {
+                //异步调用
+                praiseRemoteInterfaceAsync.praise(fromId, toId, action, getDate());
+            }
+
+            status = STATUS_SUCCESS;
+            desc = SAVE_SUCCESS;
+        } catch (Exception e) {
+            desc = catchException(e, baseDao, resultMap);
+        }
+        resultMap.put(MagicValue.STATUS, status);
+        resultMap.put(MagicValue.DESC, desc);
+        return resultMap;
     }
 }

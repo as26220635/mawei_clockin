@@ -1,8 +1,8 @@
 package cn.kim.service;
 
+import cn.kim.entity.DataTablesView;
 import cn.kim.entity.WechatUser;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -49,4 +49,29 @@ public interface WechatService extends BaseService {
      * @return
      */
     String selectContactServiceFile();
+
+    /**
+     * 查询排名数
+     *
+     * @return
+     */
+    Integer selectRankCount();
+
+    /**
+     * 查询列表
+     *
+     * @param BW_USERNAME
+     * @return
+     */
+    DataTablesView<?> selectRank(int offset, int limit, String BW_USERNAME);
+
+    /**
+     * 微信点赞
+     *
+     * @param fromId
+     * @param toId
+     * @param action
+     * @return
+     */
+    Map<String, Object> wechatPraisePoint(String fromId, String toId, int action);
 }

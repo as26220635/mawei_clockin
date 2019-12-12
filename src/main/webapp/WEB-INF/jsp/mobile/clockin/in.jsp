@@ -79,12 +79,24 @@
         transform: translate(0%, -50%);
         margin: auto !important;
     }
+
+    .weui-form__opr-area{
+        text-align: center;
+    }
+    .weui-btn{
+        display: inline;
+        width: 45%;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
 </style>
 <div class="container container-page">
     <%@ include file="/WEB-INF/jsp/mobile/common/common_top.jspf" %>
     <div class="weui-form">
         <div class="weui-form__text-area">
-            <h2 class="weui-form__title">打卡地点:${achievement.BA_NAME}</h2>
+            <h2 class="weui-form__title">打卡地点:</h2>
+            <h2 class="weui-form__desc">${clockinAddress}</h2>
+
         </div>
         <div class="weui-form__control-area">
             <form id="addAndEditForm">
@@ -180,7 +192,8 @@
             </div>
 
             <div class="weui-form__opr-area">
-                <a class="weui-btn weui-btn_primary" href="javascript:" id="submitBtn">确定</a>
+                <button class="weui-btn weui-btn_primary" href="javascript:" id="submitBtn">确定</button>
+                <button class="weui-btn weui-btn_warn" href="javascript:" id="cancelBtn">取消</button>
             </div>
 
 
@@ -230,11 +243,15 @@
             }
         }
         if (BAD_FILETYPE == 1) {
-            submitFile(BAD_FILETYPE, '${WEBCONFIG_FILE_SERVER_URL}uploadBase64Imgage', $('#imageForm'), '上传图片中');
+            submitFile(BAD_FILETYPE, '${WEBCONFIG_FILE_SERVER_URL}uploadBase64Imgage', $('#imageForm'), '图片');
         } else if (BAD_FILETYPE == 2) {
             //先上传视频
-            submitFile(BAD_FILETYPE, '${WEBCONFIG_FILE_SERVER_URL}upload', $('#videoForm'), '上传视频中');
+            submitFile(BAD_FILETYPE, '${WEBCONFIG_FILE_SERVER_URL}upload', $('#videoForm'), '视频');
         }
+    });
+
+    $('#cancelBtn').on('click',function () {
+        backHtml();
     });
 
     $('#BAD_REMARKS').bind('input propertychange', function () {
@@ -279,7 +296,7 @@
      */
     function submitFile(BAD_FILETYPE, url, $form, progressText) {
         var progressId = uuid();
-        $.showProgress(progressId, progressText, function () {
+        $.showProgress(progressId, progressText + "上传中", function () {
             //取消上传
             var jqxhr = $($form).data('jqxhr');
             jqxhr.abort();
@@ -287,8 +304,13 @@
         ajax.fileProgress(url, $form, function (event, position, total, percentComplete) {
             //进度条
             $('#' + progressId).css('width', percentComplete + '%');
+            if (percentComplete == 100){
+                $.closeModal();
+                $.showLoading(progressText + '保存中');
+            }
         }, function (data) {
             $.closeModal();
+            $.hideLoading();
             if (data.code == 1) {
                 if (BAD_FILETYPE == 1) {
                     submitClockin(JSON.stringify(data.imageArray));
