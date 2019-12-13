@@ -311,6 +311,7 @@
     // 切换菜单
     $(document).on('pjax:click', function (options) {
         try {
+            $(document).off('keyup');
             setMenuSetting($(options.target).attr('id'));
         }catch (e) {
         }
