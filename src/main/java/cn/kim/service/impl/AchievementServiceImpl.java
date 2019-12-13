@@ -320,7 +320,7 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             //删除附件
             paramMap.clear();
             paramMap.put("SF_TABLE_ID", id);
-            paramMap.put("SF_TABLE_NAME", "BUS_ACHIEVEMENT_DETAIL");
+            paramMap.put("SF_TABLE_NAME", TableName.BUS_ACHIEVEMENT_DETAIL);
             List<Map<String, Object>> fileList = baseDao.selectList(NameSpace.FileMapper, "selectFile", paramMap);
             for (Map<String, Object> file : fileList) {
                 fileService.deleteFile(toString(file.get("ID")));
@@ -510,5 +510,9 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
         return resultMap;
     }
 
-
+    @Override
+    public List<Map<String, Object>> selectAchievementClockinStatistic() {
+        List<Map<String, Object>> list = baseDao.selectList(NameSpace.AchievementMapper, "selectAchievementClockinStatistic");
+        return list;
+    }
 }

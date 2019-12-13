@@ -3,22 +3,17 @@ package cn.kim.common.tag;
 import cn.kim.common.attr.Constants;
 import cn.kim.common.eu.ButtonType;
 import cn.kim.service.MenuService;
-import cn.kim.common.attr.Constants;
-import cn.kim.common.sequence.Sequence;
-import cn.kim.service.MenuService;
 import cn.kim.util.*;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.servlet.tags.RequestContextAwareTag;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.tagext.TagSupport;
-import javax.xml.soap.Text;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by 余庚鑫 on 2018/3/29
@@ -63,8 +58,9 @@ public class Button extends BaseTagSupport {
         Map<String, Object> mapParam = Maps.newHashMapWithExpectedSize(3);
         if (!isEmpty(smId)) {
             mapParam.put("ID", CommonUtil.idDecrypt(smId));
+        }else{
+            mapParam.put("SM_URL", this.contextPath);
         }
-        mapParam.put("SM_URL", this.contextPath);
         Map<String, Object> menu = this.menuService.selectMenu(mapParam);
         if (ValidateUtil.isEmpty(menu) || ValidateUtil.isEmpty(menu.get("SM_CODE")) || !AuthcUtil.isPermitted(toString(menu.get("SM_CODE")))) {
             return SKIP_BODY;

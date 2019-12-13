@@ -311,4 +311,13 @@ public class Url {
      */
     public static final String WECHAT_BASE_URL = MANAGER_URL + "wechat/";
     public static final String WECHAT_SWITCHSTATUS_URL = WECHAT_BASE_URL + "switchStatus";
+
+    /**
+     * 活动
+     */
+    public static final String ACTIVITY_BASE_URL = MANAGER_URL + "activity/";
+    public static final String ACTIVITY_ADD_URL = ACTIVITY_BASE_URL + "add";
+    public static final String ACTIVITY_UPDATE_URL = ACTIVITY_BASE_URL + "update";
+    public static final String ACTIVITY_SWITCHSTATUS_URL = ACTIVITY_BASE_URL + "switchStatus";
+    public static final String ACTIVITY_DELETE_URL = ACTIVITY_BASE_URL + "delete";
 }

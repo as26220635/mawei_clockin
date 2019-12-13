@@ -263,4 +263,16 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
         resultMap.put(MagicValue.DESC, desc);
         return resultMap;
     }
+
+    @Override
+    public List<Map<String, Object>> selectWechatRegisterStatistic() {
+        List<Map<String, Object>> list = baseDao.selectList(NameSpace.WechatMapper, "selectWechatRegisterStatistic");
+        return list;
+    }
+
+    @Override
+    public List<Map<String, Object>> selectWechatLoginStatistic() {
+        List<Map<String, Object>> list = baseDao.selectList(NameSpace.WechatMapper, "selectWechatLoginStatistic");
+        return list;
+    }
 }

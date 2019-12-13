@@ -250,6 +250,9 @@ public class FileUtil {
                         resultMap.put("newName", id);
                         //文件保存路径
                         resultMap.put("uploadPath", filepath);
+                        //文件服务器路径
+                        resultMap.put("location", TextUtil.toString(fileMap.get("SF_PATH")) + "@@@" + TextUtil.toString(fileMap.get("SF_NAME")));
+                        FileUtil.filePathTobase64(resultMap, "location");
                     } else {
                         throw new FileUploadException("文件上传附件服务器失败!");
                     }

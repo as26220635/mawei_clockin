@@ -83,6 +83,13 @@
         <function-signature>java.lang.String getUrlByMenuCode(java.lang.String)</function-signature>
         <example>${fns:getUrlByMenuCode(SM_CODE)}</example>
     </function>
+    <function>
+        <description>根据按钮权限ID获取按钮地址</description>
+        <name>getUrlByMenuCodeReplace</name>
+        <function-class>cn.kim.util.CommonUtil</function-class>
+        <function-signature>java.lang.String getUrlByMenuCode(java.lang.String,java.lang.String,java.lang.String)</function-signature>
+        <example>${fns:getUrlByMenuCode(SM_CODE,key,value)}</example>
+    </function>
     <!--根据表名和字段获取验证-->
     <function>
         <description>根据表名和字段获取验证</description>

@@ -1,17 +1,12 @@
 package cn.kim.common.tag;
 
-import cn.kim.common.annotation.Validate;
-import cn.kim.common.sequence.Sequence;
 import cn.kim.util.TextUtil;
 import cn.kim.util.ValidateUtil;
 import lombok.Getter;
 import lombok.Setter;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
-import javax.servlet.jsp.tagext.TagSupport;
 import java.util.Map;
 
 /**
@@ -41,7 +36,7 @@ public class Datebox extends BaseTagSupport {
     /**
      * 是否显示学年
      */
-    private boolean studentYear = true;
+    private boolean studentYear = false;
 
     @Override
     public int doStartTagInternal() throws Exception {

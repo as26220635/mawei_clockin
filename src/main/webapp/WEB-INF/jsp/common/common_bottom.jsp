@@ -58,8 +58,7 @@
 <script src="${BASE_URL}resources/static/plugins/tinymce/jquery.tinymce.min.js?ver=${VERSION}"></script>
 <script src="${BASE_URL}resources/static/plugins/tinymce/langs/zh_CN.js?ver=${VERSION}"></script>
 <%--图表--%>
-<script src="${BASE_URL}resources/static/plugins/raphael/2.2.1/raphael.min.js?ver=${VERSION}"></script>
-<script src="${BASE_URL}resources/static/plugins/morris/morris.min.js?ver=${VERSION}"></script>
+<script src="${BASE_URL}resources/static/plugins/echarts/dist/echarts.min.js?ver=${VERSION}"></script>
 <%--延迟点击--%>
 <script src="${BASE_URL}resources/mobile/plugins/delay-button/delay-button.js?ver=${VERSION}"></script>
 <%--树形菜单--%>

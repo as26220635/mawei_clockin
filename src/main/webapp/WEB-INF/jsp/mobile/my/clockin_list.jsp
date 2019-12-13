@@ -58,7 +58,6 @@
 </script>
 <script>
     $(function () {
-        console.log()
         var loading = false;
         var isLast = false;
         //每页数据条数
@@ -87,10 +86,10 @@
             loading = true;
             if (page < (maxpage - 1)) {
                 page++;
+                if (page == (maxpage - 1)) {
+                    isLast = true;
+                }
                 ajaxpage(page);
-            } else {
-                isLast = true;
-                return false;
             }
         });
         ajaxpage(0);

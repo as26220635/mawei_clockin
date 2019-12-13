@@ -169,7 +169,7 @@
         <div class="pull-right hidden-xs">
             <b>Version</b> 0.0.1
         </div>
-        <strong>CREATE BY YGX DATE:2018/3/22</strong>
+        <strong>CREATE BY YGX DATE:2019/12/1</strong>
     </footer>
 
     <aside class="control-sidebar control-sidebar-dark">
@@ -311,7 +311,7 @@
     // 切换菜单
     $(document).on('pjax:click', function (options) {
         try {
-            setMenuSetting($(options.target).attr('id').replace(/\//g, '-').replace(/\?/g,"-").replace(/\=/g,"-").replace(/\&/g,"-"));
+            setMenuSetting($(options.target).attr('id'));
         }catch (e) {
         }
     })

@@ -148,5 +148,9 @@ public class TableName {
      * 打卡详细
      */
     public static final String BUS_ACHIEVEMENT_DETAIL = "BUS_ACHIEVEMENT_DETAIL";
+    /**
+     * 活动
+     */
+    public static final String BUS_ACTIVITY = "BUS_ACTIVITY";
 
 }

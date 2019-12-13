@@ -2294,7 +2294,7 @@ file = {
                 //只允许上传一个文件 判断预览区的文件是否删除
                 if (previewCount >= 1 || fileCount > 1) {
                     // $fileInput.fileinput('clear');
-                    $('.kv-preview-thumb .file-footer-caption[title="'+label+'"]:last').siblings('.file-actions').find('button.kv-file-remove').click();
+                    $('.kv-preview-thumb .file-footer-caption[title="' + label + '"]:last').siblings('.file-actions').find('button.kv-file-remove').click();
                     //提示
                     demo.showNotify(ALERT_WARNING, '不允许多文件上传,要上传请删除原本的文件!');
                 }
@@ -2302,7 +2302,7 @@ file = {
                 var uploadCount = Number($(settings.numberId).text());
                 if (previewCount + fileCount > settings.maxFilesNum || uploadCount >= settings.maxFilesNum) {
                     // $fileInput.fileinput('clear');
-                    $('.kv-preview-thumb .file-footer-caption[title="'+label+'"]:last').siblings('.file-actions').find('button.kv-file-remove').click();
+                    $('.kv-preview-thumb .file-footer-caption[title="' + label + '"]:last').siblings('.file-actions').find('button.kv-file-remove').click();
                     //提示
                     demo.showNotify(ALERT_WARNING, '超过最大允许上传数' + settings.maxFilesNum + '!');
                 }
@@ -2405,27 +2405,23 @@ editText = {
     initEdit: function (options) {
         var settings = $.extend({
             url: "",
+            selector: "",
             form: "#form",
             imgInput: "#imgInput",
             maxSize: 10 * 1024,
             maxSizeTips: "图片不能大于10M",
-            height: 500
+            height: 600,
+            theme: 'silver'
         }, options);
-
-        var $imgInput = $(settings.imgInput);
-        var $form = $(settings.form)
-
-        $imgInput.on('change', function () {
-            uploadImg(settings.url, $imgInput, $form, settings.maxSize, settings.maxSizeTips);
-        });
 
         tinymce.remove();
         tinymce.init({
+            font_formats: '宋体=宋体;黑体=黑体;仿宋_GB2312=仿宋_GB2312;楷体_GB2312=楷体_GB2312;隶书=隶书;幼圆=幼圆;微软雅黑=microsoft yahei',
             language_url: '/tinymce/langs/zh_CN.js',
             language: 'zh_CN',
-            selector: 'textarea',
+            selector: 'textarea' + settings.selector,
             height: settings.height,
-            theme: 'modern',
+            theme: settings.theme,
             plugins: [
                 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
                 'searchreplace wordcount visualblocks visualchars code fullscreen',
@@ -2434,15 +2430,64 @@ editText = {
             ],
             toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
             toolbar2: 'print preview | forecolor backcolor emoticons | codesample help',
-            // media
-            image_advtab: true,
-            content_css: [],
-            file_browser_callback: function (field_name, url, type, win) {
-                if (type == 'image') {
-                    editText.fieldName = field_name;
-                    $imgInput.click();
-                }
-            }
+            //图片上传
+            images_upload_handler: function (blobInfo, success, failure) {
+                var form = new FormData();
+                form.append('files', blobInfo.blob(), blobInfo.filename());
+                form.append('SF_TABLE_ID', settings.tableId);
+                form.append('SF_TABLE_NAME', settings.tableName);
+                form.append('SF_TYPE_CODE', settings.typeCode);
+                form.append('SF_SEE_TYPE', settings.seeType);
+
+                $.ajax({
+                    url: settings.uploadUrl,
+                    type: 'post',
+                    data: form,
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        if (typeof data === "string") {
+                            data = $.parseJSON(data);
+                        }
+                        success(settings.fileServiceUrl + data.location);
+                    },
+                    error: function (e) {
+                        demo.showNotify(ALERT_WARNING, "图片上传失败");
+                    }
+                });
+            },
+            file_picker_callback: function (callback, value, meta) {
+                var input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.onchange = function () {
+                    var file = this.files[0];
+                    var form = new FormData();
+                    form.append("files", file);
+                    form.append('SF_TABLE_ID', settings.tableId);
+                    form.append('SF_TABLE_NAME', settings.tableName);
+                    form.append('SF_TYPE_CODE', settings.typeCode);
+                    form.append('SF_SEE_TYPE', settings.seeType);
+
+                    $.ajax({
+                        url: settings.uploadUrl,
+                        type: 'post',
+                        data: form,
+                        processData: false,
+                        contentType: false,
+                        success: function (data) {
+                            if (typeof data === "string") {
+                                data = $.parseJSON(data);
+                            }
+                            callback(settings.fileServiceUrl + data.location);
+                        },
+                        error: function (e) {
+                            demo.showNotify(ALERT_WARNING, "图片上传失败");
+                        }
+                    });
+                };
+
+                input.click();
+            },
         });
     },
     getTinyMceContent: function GetTinyMceContent(editorId) {
@@ -2452,27 +2497,6 @@ editText = {
         return tinyMCE.get(editorId).setContent(content);
     }
 }
-
-//上传图片
-function uploadImg(url, input, form, maxSize, maxSizeTips) {
-    var mime = suffix($(input).val()).join("").toLowerCase();
-    if (mime != ".jpg" && mime != ".png" && mime != ".gif" && mime != ".jpeg") {
-        demo.showNotify(ALERT_WARNING, "图片只支持jpg、png、gif、jpeg!");
-        return;
-    }
-    if (findSize(input.prop("id")) > maxSize) {
-        demo.showNotify(ALERT_WARNING, maxSizeTips);
-        return;
-    }
-    ajax.file(url, form, function (data) {
-        ajaxReturn.data(data, null, null, null, {
-            success: function (json) {
-                $("#" + editText.fieldName).val(IMG_URL + json.defaultUrl);
-            }
-        });
-    });
-}
-
 
 /**
  * 添加时间选择清除按钮

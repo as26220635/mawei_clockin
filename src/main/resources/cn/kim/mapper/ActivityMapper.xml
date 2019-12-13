@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kim.mapper.ActivityMapper">
+    <cache type="org.mybatis.caches.redis.RedisCache"/>
+
+    <!--查询-->
+    <select id="selectActivity" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM BUS_ACTIVITY
+        <where>
+            <if test="ID != NULL and ID != ''">
+                AND ID = #{ID}
+            </if>
+        </where>
+    </select>
+
+    <!--插入-->
+    <insert id="insertActivity" parameterType="java.util.Map">
+        INSERT INTO BUS_ACTIVITY
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="ID != null">ID,</if>
+            <if test="BA_TITLE != null">BA_TITLE,</if>
+            <if test="BA_SOURCE != null">BA_SOURCE,</if>
+            <if test="BA_CONTENT != null">BA_CONTENT,</if>
+            <if test="BA_ENTRY_TIME != null">BA_ENTRY_TIME,</if>
+            <if test="BA_UPDATE_TIME != null">BA_UPDATE_TIME,</if>
+            <if test="SO_ID != null">SO_ID,</if>
+            <if test="IS_STATUS != null">IS_STATUS,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="ID != null">#{ID},</if>
+            <if test="BA_TITLE != null">#{BA_TITLE},</if>
+            <if test="BA_SOURCE != null">#{BA_SOURCE},</if>
+            <if test="BA_CONTENT != null">#{BA_CONTENT},</if>
+            <if test="BA_ENTRY_TIME != null">#{BA_ENTRY_TIME},</if>
+            <if test="BA_UPDATE_TIME != null">#{BA_UPDATE_TIME},</if>
+            <if test="SO_ID != null">#{SO_ID},</if>
+            <if test="IS_STATUS != null">#{IS_STATUS},</if>
+        </trim>
+    </insert>
+
+    <!--编辑-->
+    <update id="updateActivity" parameterType="java.util.Map">
+        UPDATE BUS_ACTIVITY
+        <set>
+            <if test="ID != null">ID=#{ID},</if>
+            <if test="BA_TITLE != null">BA_TITLE=#{BA_TITLE},</if>
+            <if test="BA_SOURCE != null">BA_SOURCE=#{BA_SOURCE},</if>
+            <if test="BA_CONTENT != null">BA_CONTENT=#{BA_CONTENT},</if>
+            <if test="BA_ENTRY_TIME != null">BA_ENTRY_TIME=#{BA_ENTRY_TIME},</if>
+            <if test="BA_UPDATE_TIME != null">BA_UPDATE_TIME=#{BA_UPDATE_TIME},</if>
+            <if test="SO_ID != null">SO_ID=#{SO_ID},</if>
+            <if test="IS_STATUS != null">IS_STATUS=#{IS_STATUS},</if>
+        </set>
+        <where>
+            ID=#{ID}
+        </where>
+    </update>
+
+    <!--删除-->
+    <delete id="deleteActivity" parameterType="java.util.Map">
+		DELETE FROM BUS_ACTIVITY WHERE ID = #{ID}
+	</delete>
+
+    <select id="selectMActivityList" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT *
+        FROM V_ACTIVITY
+        <where>
+            <if test="whereClause != null and whereClause != ''">
+                ${whereClause}
+            </if>
+        </where>
+        <if test="orderByClause != null and orderByClause != ''">
+            order by ${orderByClause}
+        </if>
+        <if test="limit != null">
+            <if test="offset != null">
+                limit ${offset}, ${limit}
+            </if>
+            <if test="offset == null">
+                limit ${limit}
+            </if>
+        </if>
+    </select>
+
+    <select id="selectMActivityListCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM V_ACTIVITY WHERE IS_STATUS = 1
+    </select>
+</mapper>

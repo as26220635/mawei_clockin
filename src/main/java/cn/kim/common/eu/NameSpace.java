@@ -1,7 +1,5 @@
 package cn.kim.common.eu;
 
-import org.springframework.core.annotation.AliasFor;
-
 /**
  * Created by 余庚鑫 on 2018/3/21
  * mapper 命名空间
@@ -49,6 +47,8 @@ public enum NameSpace {
     MainImageMapper("cn.kim.mapper.MainImageMapper"),
     //成就墙
     AchievementMapper("cn.kim.mapper.AchievementMapper"),
+    //活动
+    ActivityMapper("cn.kim.mapper.ActivityMapper"),
     ;
 
     private final String value;

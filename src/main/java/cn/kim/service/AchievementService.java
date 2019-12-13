@@ -123,4 +123,10 @@ public interface AchievementService extends BaseService {
      */
     Map<String, Object> updateAchievementMainImage(Map<String, Object> mapParam);
 
+    /**
+     * 成就墙打卡人数
+     * @return
+     */
+    List<Map<String,Object>> selectAchievementClockinStatistic();
+
 }

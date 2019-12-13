@@ -275,4 +275,9 @@
     <select id="selectAchievementSelected" parameterType="java.util.Map" resultType="java.util.Map">
     </select>
 
+    <!--成就墙打卡人数 -->
+    <select id="selectAchievementClockinStatistic" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM(SELECT BA.BA_NAME,COUNT(1) CLOCKIN_COUNT FROM bus_achievement BA INNER JOIN bus_achievement_detail BAD ON BAD.BA_ID = BA.ID AND BAD.ID IN (SELECT MAX(D.ID) FROM bus_achievement_detail D WHERE D.BA_ID = BAD.BA_ID GROUP BY D.BW_ID)
+        WHERE BA.IS_STATUS = 1 GROUP BY BA.BA_NAME)TEMP ORDER BY CLOCKIN_COUNT DESC
+    </select>
 </mapper>

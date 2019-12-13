@@ -3,6 +3,7 @@ package cn.kim.service;
 import cn.kim.entity.DataTablesView;
 import cn.kim.entity.WechatUser;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -74,4 +75,16 @@ public interface WechatService extends BaseService {
      * @return
      */
     Map<String, Object> wechatPraisePoint(String fromId, String toId, int action);
+
+    /**
+     * 获取微信用户注册统计数据
+     * @return
+     */
+    List<Map<String,Object>> selectWechatRegisterStatistic();
+
+    /**
+     * 获取微信用户登录统计数据
+     * @return
+     */
+    List<Map<String,Object>> selectWechatLoginStatistic();
 }

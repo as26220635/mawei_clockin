@@ -502,7 +502,7 @@
     </div>
     <div class="weui-cells">
         <c:choose>
-            <c:when test="${clockinCount eq 0}">
+            <c:when test="${count eq 0}">
                 <div class="page__bd">
                     <div class="weui-loadmore weui-loadmore_line">
                         <span class="weui-loadmore__tips">暂无数据</span>
@@ -642,10 +642,11 @@
             if (toId == '${wechatUser.id}') {
                 $(elem).removeClass('click').addClass('liked confetti');
             } else {
-                elem.addEventListener('click', e => {
+                $(elem).unbind('click').on('click',function (e) {
                     $(elem).css("pointer-events", "none");
 
                     let number = elem.children[1].textContent;
+                    console.log(elem.classList.contains('liked'))
                     if (!elem.classList.contains('liked')) {
                         elem.classList.add('animation');
                         for (let i = 0; i < confettiAmount; i++) {

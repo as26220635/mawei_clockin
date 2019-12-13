@@ -225,10 +225,10 @@ public class FileController extends BaseController implements LastModified {
             MultipartFile imgUpload = CommonUtil.getMultipartFile(request);
 
             Map<String, Object> configure = Maps.newHashMapWithExpectedSize(6);
-            configure.put("SF_TABLE_ID", toString(CommonUtil.idDecrypt(SF_TABLE_ID)));
-            configure.put("SF_TABLE_NAME", toString(CommonUtil.idDecrypt(SF_TABLE_NAME)));
-            configure.put("SF_TYPE_CODE", toString(CommonUtil.idDecrypt(SF_TYPE_CODE)));
-            configure.put("SF_SEE_TYPE", toString(CommonUtil.idDecrypt(SF_SEE_TYPE)));
+            configure.put("SF_TABLE_ID", SF_TABLE_ID);
+            configure.put("SF_TABLE_NAME", SF_TABLE_NAME);
+            configure.put("SF_TYPE_CODE", SF_TYPE_CODE);
+            configure.put("SF_SEE_TYPE", SF_SEE_TYPE);
 
             Map<String, Object> result = FileUtil.saveImgFile(imgUpload, configure);
 
@@ -236,6 +236,7 @@ public class FileController extends BaseController implements LastModified {
                 json.put("code", STATUS_SUCCESS);
                 json.put("defaultUrl", result.get("encryptId"));
                 json.put("originName", result.get("originName"));
+                json.put("location", result.get("location"));
             } else {
                 json.put("code", result.get("code"));
                 json.put("message", result.get("message"));

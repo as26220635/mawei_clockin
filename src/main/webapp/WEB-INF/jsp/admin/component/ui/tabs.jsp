@@ -12,11 +12,13 @@
     <div class="row">
         <div class="col-xs-12">
             <div class="box" id="boxContentDiv">
-                <div class="box-header">
-                    <div class="col-md-12 btn-group-header">
-                        <s:button smId="${MENU.ID}"></s:button>
+                <c:if test="${not empty EXTRA.SM_PARENTID}">
+                    <div class="box-header">
+                        <div class="col-md-12 btn-group-header">
+                            <s:button smId="${MENU.ID}"></s:button>
+                        </div>
                     </div>
-                </div>
+                </c:if>
                 <div class="box-body">
                     <div class="nav-tabs-custom">
                         <ul class="nav nav-tabs">
@@ -44,8 +46,15 @@
 
 <script>
     setTimeout(function () {
+        <c:choose>
+        <c:when test="${empty EXTRA.SM_PARENTID}">
+        editMenuTitle('${EXTRA.TITLE}');
+        </c:when>
+        <c:otherwise>
         setMenuActive('admin-dataGrid-${MENU.SM_PARENTID}');
-        editMenuTitle('${EXTRA.TITLE}-' + getMenuTitle());
+        editMenuTitle('${EXTRA.TITLE}-' +  getMenuTitle());
+        </c:otherwise>
+        </c:choose>
     }, 50);
 
     <%--默认显示第一个--%>

@@ -965,7 +965,7 @@ public class CommonUtil {
      * @return
      */
     public static String getUrlParamsJoin(String smUrl, String smUrlParams) {
-        return javaScriptStringEnc(smUrl.contains("?") ? smUrl + smUrlParams : smUrl + "?" + smUrlParams);
+        return javaScriptStringEnc(smUrl.contains("?") ? smUrl + "&" + smUrlParams : smUrl + "?" + smUrlParams);
     }
 
     /**
@@ -987,7 +987,11 @@ public class CommonUtil {
         } else {
             //连接IS_SWITCH
             if (!ValidateUtil.isEmpty(smUrl)) {
-                smUrl = getUrlParamsJoin(smUrl, "&IS_SWITCH=0&");
+                try {
+                    id = TextUtil.toString(idEncrypt(id));
+                    smUrl = getUrlParamsJoin(smUrl, "&IS_SWITCH=0&SM_ID=" + id + "&");
+                } catch (InvalidKeyException e) {
+                }
             }
         }
         //额外参数
@@ -1025,6 +1029,21 @@ public class CommonUtil {
         String smUrlParams = TextUtil.toString(menu.get("SM_URL_PARAMS")) + "&SM_ID=" + id + "&SM_PARENTID=" + TextUtil.toString(menu.get("SM_PARENTID"));
 
         return getMenuUrlJoin(id, smUrl, smUrlParams);
+    }
+
+    /**
+     * 获取按钮地址
+     *
+     * @param smCode
+     * @param key
+     * @param value
+     * @return
+     * @throws InvalidKeyException
+     */
+    public static String getUrlByMenuCode(String smCode, String key, String value) throws InvalidKeyException {
+        String url = getUrlByMenuCode(smCode);
+        url = url.replace(key, value);
+        return url;
     }
 
     /**
