@@ -160,7 +160,7 @@ public class EchartsController extends BaseController {
             model.addAttribute("dataArray", toPieArray(xAxisList.stream().map(i -> toString(i)).toArray(String[]::new), dataArray));
 
             title = "成就墙打卡人数统计";
-            title = title + "\\n总打卡人数:" + totalCount;
+            title = title + "\\n总打卡次数:" + totalCount;
             model.addAttribute("seriesName", "打卡人数");
         }
 
