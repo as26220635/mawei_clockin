@@ -13,7 +13,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<%--    <meta http-equiv="Access-Control-Allow-Origin" content="*" />--%>
+    <%--    <meta http-equiv="Access-Control-Allow-Origin" content="*" />--%>
     <%--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--%>
     <title>${WEBCONFIG_HEAD_TITLE}</title>
     <%@ include file="/WEB-INF/jsp/mobile/common/common_css.jsp" %>
@@ -33,17 +33,18 @@
             filter: drop-shadow(0px 2px 1px #09C161);
         }
 
-        .weui-tab__container{
+        .weui-tab__container {
             height: 92%;
         }
+
         @media screen and (min-width: 600px) and (max-width: 960px) {
-            .weui-tab__container{
+            .weui-tab__container {
                 height: 94%;
             }
         }
 
         @media screen and (max-width: 330px) {
-            .weui-tab__container{
+            .weui-tab__container {
                 height: 88%;
             }
         }
@@ -137,6 +138,9 @@
         $('#' + id).addClass('weui-bar__item_on').siblings('.weui-bar__item_on').removeClass('weui-bar__item_on');
     }
 
+    function goHome() {
+        loadUrl('${BASE_URL}clockin');
+    }
     //后退
     function backHtml() {
         window.history.back();
@@ -176,6 +180,104 @@
             elem.style.setProperty('--b', confettiColors[random(0, 5)]);
             to.appendChild(elem);
         };
+</script>
+<script>
+    function weixinShare(title, desc, link, imgUrl, success, cancel) {
+        // 登录微信jssdk
+        ajax.get('${BASE_URL}JSSDKConfig', {url: location.href.split('#')[0]}, function (data) {
+            if (data.code == 1) {
+                var message = $.parseJSON(data.message);
+
+                wx.config({
+                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: message.appId, // 必填，公众号的唯一标识
+                    timestamp: message.timestamp, // 必填，生成签名的时间戳
+                    nonceStr: message.nonceStr, // 必填，生成签名的随机串
+                    signature: message.signature,// 必填，签名
+                    jsApiList: [
+                        'updateAppMessageShareData',
+                        'updateTimelineShareData',
+                        'onMenuShareAppMessage',
+                        'onMenuShareTimeline',
+                    ] // 必填，需要使用的JS接口列表
+                });
+
+                wx.ready(function () {
+                    var defaults = {
+                        //标题
+                        title: title,
+                        //描述
+                        desc: desc,
+                        //分享页面地址,不能为空，这里可以传递参数！！！！！！！
+                        link: link,
+                        //分享是封面图片，不能为空
+                        imgUrl: imgUrl,
+                        success: success,
+                        cancel: cancel,
+                    }
+
+                    if (wx.updateAppMessageShareData) {
+                        wx.updateAppMessageShareData({
+                            title: defaults.title,
+                            desc: defaults.desc,
+                            link: defaults.link,
+                            imgUrl: defaults.imgUrl,
+                            success: function () {
+                                defaults.success();
+                            },
+                            cancel: function () {
+                                defaults.cancel();
+                            }
+                        });
+                    } else {
+                        wx.onMenuShareAppMessage({
+                            title: defaults.title,
+                            desc: defaults.desc,
+                            link: defaults.link,
+                            imgUrl: defaults.imgUrl,
+                            type: '', // 分享类型,music、video或link，不填默认为link
+                            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                            success: function () {
+                                defaults.success();
+                            },
+                            cancel: function () {
+                                defaults.cancel();
+                            }
+                        });
+                    }
+                    //分享给朋友圈
+                    if (wx.updateTimelineShareData) {
+                        wx.updateTimelineShareData({
+                            title: defaults.title,
+                            link: defaults.link,
+                            imgUrl: defaults.imgUrl,
+                            success: function () {
+                                defaults.success();
+                            },
+                            cancel: function () {
+                                defaults.cancel();
+                            }
+                        });
+                    } else {
+                        wx.onMenuShareTimeline({
+                            title: defaults.title,
+                            link: defaults.link,
+                            imgUrl: defaults.imgUrl,
+                            success: function () {
+                                defaults.success();
+                            },
+                            cancel: function () {
+                                defaults.cancel();
+                            }
+                        });
+                    }
+
+                });
+            } else {
+                $.toast("JSSDK登录失败", "forbidden");
+            }
+        });
+    }
 </script>
 </body>
 </html>

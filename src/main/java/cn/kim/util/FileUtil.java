@@ -200,7 +200,7 @@ public class FileUtil {
                     //是否压缩图片
                     Boolean isCompress = ValidateUtil.isEmpty(configure.get("isCompress")) ? false : (Boolean) configure.get("isCompress");
                     if (isCompress) {
-                        Thumbnails.of(newFile).size((Integer) configure.get("height"), (Integer) configure.get("width")).toFile(newFile);
+                        Thumbnails.of(newFile).size((Integer) configure.get("width"), (Integer) configure.get("height")).toFile(newFile);
                     }
 
                     //是否压缩截取图片
@@ -602,6 +602,32 @@ public class FileUtil {
         cxfIsOnline.setUrl(url);
 
         return cxfIsOnline;
+    }
+
+    /**
+     * 从文件服务器获取文件
+     *
+     * @param url
+     * @param token
+     * @param name
+     * @param path
+     * @return
+     */
+    public static CxfFileWrapper getCxfFileWrapper(Map<String, Object> fileMap) throws IOException {
+        String ID = TextUtil.toString(fileMap.get("ID"));
+        String SF_TABLE_NAME = TextUtil.toString(fileMap.get("SF_TABLE_NAME"));
+        String SF_NAME = TextUtil.toString(fileMap.get("SF_NAME"));
+        String SF_PATH = TextUtil.toString(fileMap.get("SF_PATH"));
+
+        // 拿到文件
+        CxfState cxfState = isCxfOnline();
+        FileWSImplService ss = new FileWSImplService(cxfState.getUrl());
+        FileWS port = ss.getFileWSImplPort();
+        CxfFileWrapper downloadFilefile = new CxfFileWrapper();
+        downloadFilefile.setFilePath(SF_PATH);
+        downloadFilefile.setFileName(SF_NAME);
+        downloadFilefile.setFileToken(TokenUtil.baseKey(ID, SF_TABLE_NAME));
+        return port.download(downloadFilefile);
     }
 
     /**
@@ -1070,6 +1096,20 @@ public class FileUtil {
             } catch (UnsupportedEncodingException e) {
             }
         }
+    }
+
+    /**
+     * OutputStream 转为 InputStream
+     *
+     * @param out
+     * @return
+     * @throws Exception
+     */
+    public static InputStream parse(OutputStream out) throws Exception {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        baos = (ByteArrayOutputStream) out;
+        ByteArrayInputStream swapStream = new ByteArrayInputStream(baos.toByteArray());
+        return swapStream;
     }
 
     public static void main(String[] args) throws IOException {

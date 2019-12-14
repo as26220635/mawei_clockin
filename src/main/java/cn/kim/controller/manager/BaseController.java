@@ -113,7 +113,7 @@ public abstract class BaseController extends BaseData {
 
     /**
      * redission 公平锁
-     * 最多等待20秒，上锁以后10秒自动解锁
+     * 最多等待40秒，上锁以后20秒自动解锁
      *
      * @param name         锁名
      * @param lockListener 回调操作
@@ -121,7 +121,7 @@ public abstract class BaseController extends BaseData {
      * @throws InvalidKeyException
      */
     public ResultState fairLock(String name, LockListener lockListener) throws InvalidKeyException {
-        return fairLock(name, 20, 10, lockListener);
+        return fairLock(name, 40, 20, lockListener);
     }
 
     /**

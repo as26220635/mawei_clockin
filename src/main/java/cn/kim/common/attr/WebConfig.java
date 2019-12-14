@@ -1,10 +1,7 @@
 package cn.kim.common.attr;
 
 import cn.kim.util.AllocationUtil;
-import cn.kim.util.CacheUtil;
 import cn.kim.util.TextUtil;
-
-import java.awt.*;
 
 /**
  * Created by 余庚鑫 on 2019/12/1
@@ -28,6 +25,10 @@ public class WebConfig {
      */
     public static String WEBCONFIG_MENU_SMALL_TITLE;
     /**
+     * 当前域名
+     */
+    public static String WEBCONFIG_SERVER_URL;
+    /**
      * 文件服务器地址
      */
     public static String WEBCONFIG_FILE_SERVER_URL;
@@ -45,6 +46,7 @@ public class WebConfig {
         WEBCONFIG_LOGIN_TITLE = TextUtil.toString(AllocationUtil.get("WEBCONFIG_LOGIN_TITLE"));
         WEBCONFIG_MENU_TITLE = TextUtil.toString(AllocationUtil.get("WEBCONFIG_MENU_TITLE"));
         WEBCONFIG_MENU_SMALL_TITLE = TextUtil.toString(AllocationUtil.get("WEBCONFIG_MENU_SMALL_TITLE"));
+        WEBCONFIG_SERVER_URL = TextUtil.toString(AllocationUtil.get("WEBCONFIG_SERVER_URL"));
         WEBCONFIG_FILE_SERVER_URL = TextUtil.toString(AllocationUtil.get("WEBCONFIG_FILE_SERVER_URL"));
         WEBCONFIG_BAIDU_MAP_AK = TextUtil.toString(AllocationUtil.get("WEBCONFIG_BAIDU_MAP_AK"));
     }

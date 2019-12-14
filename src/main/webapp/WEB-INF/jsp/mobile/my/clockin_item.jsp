@@ -78,11 +78,6 @@
                                                 <li class="weui-uploader__file">
                                                     <img src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${FILE_ID}">
                                                 </li>
-                                                <%--                                                <li id="" class="weui-uploader__file"--%>
-                                                <%--                                                    style="background-image:url(${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${FILE_ID})">--%>
-                                                <%--                                                    <input type="hidden"--%>
-                                                <%--                                                           value="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${FILE_ID}"/>--%>
-                                                <%--                                                </li>--%>
                                             </c:forEach>
                                         </ul>
                                     </div>

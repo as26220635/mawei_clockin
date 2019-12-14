@@ -19,6 +19,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 import java.io.IOException;
 
@@ -30,6 +32,14 @@ import java.io.IOException;
 @ComponentScan
 @EnableCaching
 public class WebAppConfig {
+
+    @Bean
+    public TaskScheduler scheduledExecutorService() {
+        ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
+        scheduler.setPoolSize(8);
+        scheduler.setThreadNamePrefix("scheduled-thread-");
+        return scheduler;
+    }
 
     @Bean(destroyMethod = "shutdown")
     public RedissonClient redisson(@Value("classpath:redis/spring-redisson.yaml") Resource configFile) throws IOException {

@@ -9,8 +9,6 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
 import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinVCharType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -525,6 +523,22 @@ public class TextUtil {
     }
 
     /**
+     * 连接参数
+     *
+     * @param symbol
+     * @param params
+     * @return
+     */
+    public static String joinValue(String symbol, Object... params) {
+        StringBuilder builder = new StringBuilder();
+        for (Object param : params) {
+            builder.append(toString(param) + symbol);
+        }
+
+        return interceptSymbol(builder.toString(), symbol);
+    }
+
+    /**
      * BASE64加密
      *
      * @param src
@@ -532,7 +546,7 @@ public class TextUtil {
      */
     public static String base64Encrypt(String src) {
         try {
-            return (new BASE64Encoder()).encodeBuffer(src.getBytes("UTF-8"));
+            return new String(Base64.encode(src).getBytes("UTF-8"));
         } catch (UnsupportedEncodingException e) {
             return "";
         }
@@ -546,7 +560,7 @@ public class TextUtil {
      */
     public static String base64Decrypt(String src) {
         try {
-            return new String((new BASE64Decoder()).decodeBuffer(src), "UTF-8");
+            return new String(Base64.decode(src), "UTF-8");
         } catch (IOException e) {
             return "";
         }

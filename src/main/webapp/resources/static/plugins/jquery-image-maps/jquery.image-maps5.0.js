@@ -78,24 +78,14 @@ $.fn.imageMaps = function (setting) {
             positionContainer = areaContainer.find('.position_container');
             index = areaContainer.find('.table tr[ref]').length + 1;
             if ($("#image_map").find('img').attr('src') == '') {
-                /*dialogUtil.showNormalDialog({
-                    "title" : "温馨提示",
-                    "content" : '请先上传图片',
-                    "showCancelBtn" : false
-                });*/
-                alert('请先上传图片');
+                demo.showNotify(ALERT_WARNING, '请先上传图片');
                 return;
             }
-            var rowCount = $(".area_item");
+            var rowCount = $(".map_position");
             if (rowCount != null) {
                 var c = rowCount.length;
                 if (c == setting.maxAmount) {
-                    /*dialogUtil.showNormalDialog({
-                        "title" : "温馨提示",
-                        "content" : '只能添加'+ setting.maxAmount+ '个热区',
-                        "showCancelBtn" : false
-                    });*/
-                    alert('只能添加' + setting.maxAmount + '个热区');
+                    demo.showNotify(ALERT_WARNING, '只能添加' + setting.maxAmount + '个热区');
                     return;
                 }
             }

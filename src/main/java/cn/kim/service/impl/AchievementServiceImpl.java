@@ -16,6 +16,8 @@ import cn.kim.service.FileService;
 import cn.kim.util.CacheUtil;
 import cn.kim.util.FileUtil;
 import cn.kim.util.TextUtil;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,12 +47,12 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
     public Map<String, Object> selectAchievement(Map<String, Object> mapParam) {
         Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
         paramMap.put("ID", mapParam.get("ID"));
-        return baseDao.selectOne(NameSpace.AchievementMapper, "selectAchievement", paramMap);
+        return baseDao.selectOne(NameSpace.AchievementFixedMapper, "selectAchievement", paramMap);
     }
 
     @Override
-    public List<Map<String, Object>> selectMAchievementList() {
-        return baseDao.selectList(NameSpace.AchievementMapper, "selectMAchievement");
+    public List<Map<String, Object>> selectMAchievementList(String BW_ID) {
+        return baseDao.selectList(NameSpace.AchievementMapper, "selectMAchievement", BW_ID);
     }
 
     @Override
@@ -107,14 +109,14 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
                 paramMap.put("SO_ID", getActiveUser().getId());
                 paramMap.put("IS_STATUS", STATUS_SUCCESS);
 
-                baseDao.insert(NameSpace.AchievementMapper, "insertAchievement", paramMap);
+                baseDao.insert(NameSpace.AchievementFixedMapper, "insertAchievement", paramMap);
                 resultMap.put(MagicValue.LOG, "添加成就墙:" + formatColumnName(TableName.BUS_ACHIEVEMENT, paramMap));
             } else {
                 Map<String, Object> oldMap = Maps.newHashMapWithExpectedSize(1);
                 oldMap.put("ID", id);
                 oldMap = selectAchievement(oldMap);
 
-                baseDao.update(NameSpace.AchievementMapper, "updateAchievement", paramMap);
+                baseDao.update(NameSpace.AchievementFixedMapper, "updateAchievement", paramMap);
                 resultMap.put(MagicValue.LOG, "更新成就墙,更新前:" + formatColumnName(TableName.BUS_ACHIEVEMENT, oldMap) + ",更新后:" + formatColumnName(TableName.BUS_ACHIEVEMENT, paramMap));
             }
             status = STATUS_SUCCESS;
@@ -151,7 +153,7 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             oldMap = selectAchievement(oldMap);
             //记录日志
             paramMap.put(MagicValue.SVR_TABLE_NAME, TableName.BUS_ACHIEVEMENT);
-            baseDao.update(NameSpace.AchievementMapper, "updateAchievement", paramMap);
+            baseDao.update(NameSpace.AchievementFixedMapper, "updateAchievement", paramMap);
             resultMap.put(MagicValue.LOG, "更新成就墙状态,名称:" + toString(oldMap.get("BA_NAME")) + ",状态更新为:" + ParamTypeResolve.statusExplain(mapParam.get("IS_STATUS")));
 
             status = STATUS_SUCCESS;
@@ -189,7 +191,7 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             Map<String, Object> oldMap = selectAchievement(paramMap);
             //记录日志
             paramMap.put(MagicValue.SVR_TABLE_NAME, TableName.BUS_ACHIEVEMENT);
-            baseDao.delete(NameSpace.AchievementMapper, "deleteAchievement", paramMap);
+            baseDao.delete(NameSpace.AchievementFixedMapper, "deleteAchievement", paramMap);
 
 
             //刷新前端搜索缓存
@@ -208,8 +210,10 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
 
     @Override
     public Map<String, Object> selectAchievementDetail(Map<String, Object> mapParam) {
-        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(3);
         paramMap.put("ID", mapParam.get("ID"));
+        paramMap.put("BA_ID", mapParam.get("BA_ID"));
+        paramMap.put("BW_ID", mapParam.get("BW_ID"));
         return baseDao.selectOne(NameSpace.AchievementMapper, "selectAchievementDetail", paramMap);
     }
 
@@ -326,6 +330,19 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
                 fileService.deleteFile(toString(file.get("ID")));
             }
             deleteFile(id, TableName.BUS_ACHIEVEMENT_DETAIL);
+
+
+            //删除分享图片
+            paramMap.clear();
+            paramMap.put("SF_TABLE_ID", oldMap.get("BW_ID"));
+            paramMap.put("SF_TABLE_NAME", TableName.BUS_WECHAT);
+            paramMap.put("SF_SDT_CODE", TableName.BUS_ACHIEVEMENT_SHARE);
+            paramMap.put("SF_SDI_CODE", oldMap.get("BA_ID"));
+            fileList = baseDao.selectList(NameSpace.FileMapper, "selectFile", paramMap);
+            for (Map<String, Object> file : fileList) {
+                fileService.deleteFile(toString(file.get("ID")));
+                FileUtil.delServiceFile(toString(file.get("ID")));
+            }
 
             resultMap.put(MagicValue.LOG, "删除打卡信息,信息:" + formatColumnName(TableName.BUS_ACHIEVEMENT_DETAIL, oldMap));
             status = STATUS_SUCCESS;
@@ -514,5 +531,124 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
     public List<Map<String, Object>> selectAchievementClockinStatistic() {
         List<Map<String, Object>> list = baseDao.selectList(NameSpace.AchievementMapper, "selectAchievementClockinStatistic");
         return list;
+    }
+
+    @Override
+    public List<Map<String, Object>> selectAchievementShare(Map<String, Object> mapParam) {
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
+        paramMap.put("BA_ID", mapParam.get("BA_ID"));
+        return baseDao.selectList(NameSpace.AchievementFixedMapper, "selectAchievementShare", paramMap);
+    }
+
+    @Override
+    @Transactional
+    public Map<String, Object> changeAchievementShare(Map<String, Object> mapParam) {
+        Map<String, Object> resultMap = Maps.newHashMapWithExpectedSize(5);
+        int status = STATUS_ERROR;
+        String desc = SAVE_ERROR;
+        try {
+            Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(10);
+            //主图片ID
+            String BA_ID = toString(mapParam.get("BA_ID"));
+            paramMap.put("ID", BA_ID);
+            Map<String, Object> achievement = selectAchievement(paramMap);
+
+            //更新图片计算宽高
+            String BAS_HEIGHT = toString(mapParam.get("BAS_HEIGHT"));
+            String BAS_WIDTH = toString(mapParam.get("BAS_WIDTH"));
+
+            //前台的区域信息
+            JSONArray updateAreaList = JSONArray.parseArray(unescapeHtml4(toString(mapParam.get("updateAreaList"))));
+            if (updateAreaList == null) {
+                updateAreaList = new JSONArray();
+            }
+            idDecrypt(updateAreaList);
+
+            //查询原本区域
+            paramMap.clear();
+            paramMap.put("BA_ID", BA_ID);
+            List<Map<String, Object>> oldSharelist = baseDao.selectList(NameSpace.AchievementFixedMapper, "selectAchievementShare", paramMap);
+
+            //查出那些需要删除更新和添加
+            List<Map<String, Object>> insertList = Lists.newArrayList();
+            List<Map<String, Object>> upadateList = Lists.newArrayList();
+            List<Map<String, Object>> deleteList = Lists.newArrayList();
+            //需要添加的区域
+            for (int i = 0; i < updateAreaList.size(); i++) {
+                JSONObject object = updateAreaList.getJSONObject(i);
+                if ("1".equals(toString(object.get("IS_INSERT")))) {
+                    insertList.add(object);
+                }
+            }
+            //需要更新和删除的区域
+            for (Map<String, Object> m : oldSharelist) {
+                JSONObject object = null;
+                boolean isExist = false;
+                String OLD_ID = toString(m.get("ID"));
+                for (int i = 0; i < updateAreaList.size(); i++) {
+                    object = updateAreaList.getJSONObject(i);
+                    String NEW_ID = toString(object.get("ID"));
+                    if (OLD_ID.equals(NEW_ID)) {
+                        isExist = true;
+                        break;
+                    }
+                }
+                if (!isExist) {
+                    deleteList.add(m);
+                } else {
+                    for (Map.Entry<String, Object> entry : object.entrySet()) {
+                        m.put(entry.getKey(), entry.getValue());
+                    }
+                    upadateList.add(m);
+                }
+            }
+
+            //添加添加主页图标表和区域表
+            for (Map<String, Object> insertMap : insertList) {
+                String[] areaMapInfo = toString(insertMap.get("areaMapInfo")).split(",");
+                paramMap.clear();
+                paramMap.put("ID", getId());
+                paramMap.put("BA_ID", BA_ID);
+                paramMap.put("BAS_INDEX", insertMap.get("BAS_INDEX"));
+                paramMap.put("BAS_HEIGHT", BAS_HEIGHT);
+                paramMap.put("BAS_WIDTH", BAS_WIDTH);
+                paramMap.put("BAS_X1", areaMapInfo[0]);
+                paramMap.put("BAS_Y1", areaMapInfo[1]);
+                paramMap.put("BAS_X2", areaMapInfo[2]);
+                paramMap.put("BAS_Y2", areaMapInfo[3]);
+                baseDao.insert(NameSpace.AchievementFixedMapper, "insertAchievementShare", paramMap);
+            }
+            //更新
+            for (Map<String, Object> updateMap : upadateList) {
+                String[] areaMapInfo = toString(updateMap.get("areaMapInfo")).split(",");
+                paramMap.clear();
+                paramMap.put("ID", updateMap.get("ID"));
+                paramMap.put("BAS_INDEX", updateMap.get("BAS_INDEX"));
+                paramMap.put("BAS_HEIGHT", BAS_HEIGHT);
+                paramMap.put("BAS_WIDTH", BAS_WIDTH);
+                paramMap.put("BAS_X1", areaMapInfo[0]);
+                paramMap.put("BAS_Y1", areaMapInfo[1]);
+                paramMap.put("BAS_X2", areaMapInfo[2]);
+                paramMap.put("BAS_Y2", areaMapInfo[3]);
+                baseDao.update(NameSpace.AchievementFixedMapper, "updateAchievementShare", paramMap);
+            }
+            //删除
+            for (Map<String, Object> deleteMap : deleteList) {
+                //删除
+                paramMap.clear();
+                paramMap.put("ID", deleteMap.get("ID"));
+                baseDao.delete(NameSpace.AchievementFixedMapper, "deleteAchievementShare", paramMap);
+            }
+
+            resultMap.put(MagicValue.LOG, "更新成就墙分享图片管理,更新前:" + TextUtil.toJSONString(oldSharelist) + ",更新后:" + updateAreaList.toJSONString());
+
+            status = STATUS_SUCCESS;
+            desc = SAVE_SUCCESS;
+        } catch (Exception e) {
+            desc = catchException(e, baseDao, resultMap);
+        }
+        resultMap.put(MagicValue.STATUS, status);
+        resultMap.put(MagicValue.DESC, desc);
+        return resultMap;
     }
 }

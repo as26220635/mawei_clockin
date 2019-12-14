@@ -1,7 +1,6 @@
 package cn.kim.service.impl;
 
 import cn.kim.common.attr.*;
-import cn.kim.exception.CustomException;
 import cn.kim.common.eu.NameSpace;
 import cn.kim.dao.BaseDao;
 import cn.kim.entity.DictInfo;
@@ -13,13 +12,9 @@ import cn.kim.service.DictService;
 import cn.kim.util.ValidateUtil;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.sun.xml.internal.ws.wsdl.writer.document.ParamType;
-import org.checkerframework.checker.units.qual.C;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -201,6 +196,7 @@ public class DictServiceImpl extends BaseServiceImpl implements DictService {
             paramMap.put("SDI_IS_LEAF", mapParam.get("SDI_IS_LEAF"));
             paramMap.put("SDI_REMARK", mapParam.get("SDI_REMARK"));
             paramMap.put("SDI_REQUIRED", mapParam.get("SDI_REQUIRED"));
+            paramMap.put("SDI_MAX_COUNT", mapParam.get("SDI_MAX_COUNT"));
             paramMap.put("SDI_ORDER", mapParam.get("SDI_ORDER"));
             paramMap.put("IS_STATUS", mapParam.get("IS_STATUS"));
 
@@ -377,6 +373,7 @@ public class DictServiceImpl extends BaseServiceImpl implements DictService {
                 dictInfo.setIsLeaf(toString(map.get("SDI_IS_LEAF")));
                 dictInfo.setSdiRemark(toString(map.get("SDI_REMARK")));
                 dictInfo.setSdiRequired(toInt(map.get("SDI_REQUIRED")));
+                dictInfo.setMaxCount(toString(map.get("SDI_MAX_COUNT")));
                 dictInfo.setIsStatus(toInt(map.get("IS_STATUS")));
                 if (!isEmpty(dictInfo.getIsLeaf()) && toInt(dictInfo.getIsLeaf()) == STATUS_SUCCESS) {
                     setDictInfoChildren(baseDao, dictInfo, notId);

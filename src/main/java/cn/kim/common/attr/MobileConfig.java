@@ -13,6 +13,13 @@ import java.util.Map;
  * 前端管理配置
  */
 public class MobileConfig {
+
+    /**
+     * 微信access_token
+     */
+    public static String WECHAT_ACCESS_TOKEN;
+    public static Integer WECHAT_ACCESS_TOKEN_EXPIRES_IN;
+    public static String WECHAT_TICKET;
     /**
      * 微信
      */
@@ -33,6 +40,10 @@ public class MobileConfig {
      * 微信回调内容
      */
     public static String WECHAT_REDIRECT_URI;
+    /**
+     * 公众号用户名
+     */
+    public static String MOBILE_OFFICIAL_USERNAME;
     /**
      * 青春打卡
      */
@@ -87,12 +98,17 @@ public class MobileConfig {
         BaseDao baseDao = DaoSession.daoSession.baseDao;
         Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
 
+        WECHAT_ACCESS_TOKEN = TextUtil.toString(AllocationUtil.get("WECHAT_ACCESS_TOKEN"));
+        WECHAT_ACCESS_TOKEN_EXPIRES_IN = TextUtil.toInt(AllocationUtil.get("WECHAT_ACCESS_TOKEN_EXPIRES_IN"));
+        WECHAT_TICKET = TextUtil.toString(AllocationUtil.get("WECHAT_TICKET"));
+
         WECHAT_BASE_URL = TextUtil.toString(AllocationUtil.get("WECHAT_BASE_URL"));
         WECHAT_SCOPE = TextUtil.toString(AllocationUtil.get("WECHAT_SCOPE"));
         WECHAT_CLIENT_ID = TextUtil.toString(AllocationUtil.get("WECHAT_CLIENT_ID"));
         WECHAT_CLIENT_SECRET = TextUtil.toString(AllocationUtil.get("WECHAT_CLIENT_SECRET"));
         WECHAT_REDIRECT_URI = TextUtil.toString(AllocationUtil.get("WECHAT_REDIRECT_URI"));
 
+        MOBILE_OFFICIAL_USERNAME = TextUtil.toString(AllocationUtil.get("MOBILE_OFFICIAL_USERNAME"));
         MOBILE_BOTTOM_MENU_CLOCKIN = TextUtil.toInt(AllocationUtil.get("MOBILE_BOTTOM_MENU_CLOCKIN"));
         MOBILE_BOTTOM_MENU_ACTIVITY = TextUtil.toInt(AllocationUtil.get("MOBILE_BOTTOM_MENU_ACTIVITY"));
         MOBILE_BOTTOM_MENU_RANK = TextUtil.toInt(AllocationUtil.get("MOBILE_BOTTOM_MENU_RANK"));
@@ -104,11 +120,11 @@ public class MobileConfig {
 
         //点赞时间范围
         PRAISE_POINT_START_TIME_STR = TextUtil.toString(AllocationUtil.get("PRAISE_POINT_START_TIME"));
-        if (!ValidateUtil.isEmpty(PRAISE_POINT_START_TIME_STR)){
+        if (!ValidateUtil.isEmpty(PRAISE_POINT_START_TIME_STR)) {
             PRAISE_POINT_START_TIME = DateUtil.getDateTime(DateUtil.FORMAT, PRAISE_POINT_START_TIME_STR).getTime();
         }
         PRAISE_POINT_END_TIME_STR = TextUtil.toString(AllocationUtil.get("PRAISE_POINT_END_TIME"));
-        if (!ValidateUtil.isEmpty(PRAISE_POINT_END_TIME_STR)){
+        if (!ValidateUtil.isEmpty(PRAISE_POINT_END_TIME_STR)) {
             PRAISE_POINT_END_TIME = DateUtil.getDateTime(DateUtil.FORMAT, PRAISE_POINT_END_TIME_STR).getTime();
         }
 

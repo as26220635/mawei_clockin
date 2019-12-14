@@ -25,7 +25,7 @@ public interface AchievementService extends BaseService {
      *
      * @return
      */
-    List<Map<String, Object>> selectMAchievementList();
+    List<Map<String, Object>> selectMAchievementList(String BW_ID);
 
     /**
      * 查询成就墙列表 带用户
@@ -129,4 +129,19 @@ public interface AchievementService extends BaseService {
      */
     List<Map<String,Object>> selectAchievementClockinStatistic();
 
+    /**
+     * 查询成就墙分享
+     *
+     * @param mapParam
+     * @return
+     */
+    List<Map<String, Object>> selectAchievementShare(Map<String, Object> mapParam);
+
+    /**
+     * 变更成就墙分享区域
+     *
+     * @param mapParam
+     * @return
+     */
+    Map<String, Object> changeAchievementShare(Map<String, Object> mapParam);
 }

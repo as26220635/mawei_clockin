@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kim.mapper.AchievementFixedMapper">
+    <cache type="org.mybatis.caches.redis.RedisCache"/>
+
+    <!--查询-->
+    <select id="selectAchievement" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT BA.*,SFS.ID AS SF_ID
+        FROM(
+            SELECT * FROM BUS_ACHIEVEMENT
+            <where>
+                <if test ="ID != NULL and ID != ''">
+                    AND ID = #{ID}
+                </if>
+                <if test ="IS_STATUS != NULL and IS_STATUS != ''">
+                    AND IS_STATUS = #{IS_STATUS}
+                </if>
+            </where>
+        )BA
+        LEFT JOIN SYS_FILE SFS ON SFS.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SFS.SF_TABLE_ID = BA.ID AND SFS.SF_SDI_CODE = 3
+    </select>
+
+    <!--插入-->
+    <insert id="insertAchievement" parameterType="java.util.Map">
+        INSERT INTO BUS_ACHIEVEMENT
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ID != null">ID,</if>
+            <if test="BA_NAME != null">BA_NAME,</if>
+            <if test="BA_LONGITUDE != null">BA_LONGITUDE,</if>
+            <if test="BA_LATITUDE != null">BA_LATITUDE,</if>
+            <if test="BA_ENTRYTIME != null">BA_ENTRYTIME,</if>
+            <if test="BA_RANGE != null">BA_RANGE,</if>
+            <if test="BA_POINT != null">BA_POINT,</if>
+            <if test="SO_ID != null">SO_ID,</if>
+            <if test="IS_STATUS != null">IS_STATUS,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ID != null">#{ID},</if>
+            <if test="BA_NAME != null">#{BA_NAME},</if>
+            <if test="BA_LONGITUDE != null">#{BA_LONGITUDE},</if>
+            <if test="BA_LATITUDE != null">#{BA_LATITUDE},</if>
+            <if test="BA_ENTRYTIME != null">#{BA_ENTRYTIME},</if>
+            <if test="BA_RANGE != null">#{BA_RANGE},</if>
+            <if test="BA_POINT != null">#{BA_POINT},</if>
+            <if test="SO_ID != null">#{SO_ID},</if>
+            <if test="IS_STATUS != null">#{IS_STATUS},</if>
+        </trim>
+    </insert>
+
+    <!--编辑-->
+    <update id="updateAchievement" parameterType="java.util.Map">
+        UPDATE BUS_ACHIEVEMENT
+        <set>
+            <if test="ID != null">ID=#{ID},</if>
+            <if test="BA_NAME != null">BA_NAME=#{BA_NAME},</if>
+            <if test="BA_LONGITUDE != null">BA_LONGITUDE=#{BA_LONGITUDE},</if>
+            <if test="BA_LATITUDE != null">BA_LATITUDE=#{BA_LATITUDE},</if>
+            <if test="BA_ENTRYTIME != null">BA_ENTRYTIME=#{BA_ENTRYTIME},</if>
+            <if test="BA_RANGE != null">BA_RANGE=#{BA_RANGE},</if>
+            <if test="BA_POINT != null">BA_POINT=#{BA_POINT},</if>
+            <if test="SO_ID != null">SO_ID=#{SO_ID},</if>
+            <if test="IS_STATUS != null">IS_STATUS=#{IS_STATUS},</if>
+        </set>
+        <where>
+            ID=#{ID}
+        </where>
+    </update>
+
+    <!--删除-->
+    <delete id="deleteAchievement" parameterType="java.util.Map">
+		DELETE FROM BUS_ACHIEVEMENT WHERE ID = #{ID}
+	</delete>
+
+    <!--查询-->
+    <select id="selectAchievementShare" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM BUS_ACHIEVEMENT_SHARE
+        <where>
+            <if test ="ID != NULL and ID != ''">
+                AND ID = #{ID}
+            </if>
+            <if test ="BA_ID != NULL and BA_ID != ''">
+                AND BA_ID = #{BA_ID}
+            </if>
+        </where>
+    </select>
+
+    <!--插入-->
+    <insert id="insertAchievementShare" parameterType="java.util.Map">
+        INSERT INTO BUS_ACHIEVEMENT_SHARE
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="ID != null">ID,</if>
+            <if test="BA_ID != null">BA_ID,</if>
+            <if test="BAS_INDEX != null">BAS_INDEX,</if>
+            <if test="BAS_HEIGHT != null">BAS_HEIGHT,</if>
+            <if test="BAS_WIDTH != null">BAS_WIDTH,</if>
+            <if test="BAS_X1 != null">BAS_X1,</if>
+            <if test="BAS_Y1 != null">BAS_Y1,</if>
+            <if test="BAS_X2 != null">BAS_X2,</if>
+            <if test="BAS_Y2 != null">BAS_Y2,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="ID != null">#{ID},</if>
+            <if test="BA_ID != null">#{BA_ID},</if>
+            <if test="BAS_INDEX != null">#{BAS_INDEX},</if>
+            <if test="BAS_HEIGHT != null">#{BAS_HEIGHT},</if>
+            <if test="BAS_WIDTH != null">#{BAS_WIDTH},</if>
+            <if test="BAS_X1 != null">#{BAS_X1},</if>
+            <if test="BAS_Y1 != null">#{BAS_Y1},</if>
+            <if test="BAS_X2 != null">#{BAS_X2},</if>
+            <if test="BAS_Y2 != null">#{BAS_Y2},</if>
+        </trim>
+    </insert>
+
+    <!--编辑-->
+    <update id="updateAchievementShare" parameterType="java.util.Map">
+        UPDATE BUS_ACHIEVEMENT_SHARE
+        <set>
+            <if test="ID != null">ID=#{ID},</if>
+            <if test="BA_ID != null">BA_ID=#{BA_ID},</if>
+            <if test="BAS_INDEX != null">BAS_INDEX=#{BAS_INDEX},</if>
+            <if test="BAS_HEIGHT != null">BAS_HEIGHT=#{BAS_HEIGHT},</if>
+            <if test="BAS_WIDTH != null">BAS_WIDTH=#{BAS_WIDTH},</if>
+            <if test="BAS_X1 != null">BAS_X1=#{BAS_X1},</if>
+            <if test="BAS_Y1 != null">BAS_Y1=#{BAS_Y1},</if>
+            <if test="BAS_X2 != null">BAS_X2=#{BAS_X2},</if>
+            <if test="BAS_Y2 != null">BAS_Y2=#{BAS_Y2},</if>
+        </set>
+        <where>
+            ID=#{ID}
+        </where>
+    </update>
+
+    <!--删除-->
+    <delete id="deleteAchievementShare" parameterType="java.util.Map">
+		DELETE FROM BUS_ACHIEVEMENT_SHARE WHERE ID = #{ID}
+	</delete>
+</mapper>

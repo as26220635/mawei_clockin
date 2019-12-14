@@ -149,6 +149,10 @@ public class TableName {
      */
     public static final String BUS_ACHIEVEMENT_DETAIL = "BUS_ACHIEVEMENT_DETAIL";
     /**
+     * 打卡分享
+     */
+    public static final String BUS_ACHIEVEMENT_SHARE = "BUS_ACHIEVEMENT_SHARE";
+    /**
      * 活动
      */
     public static final String BUS_ACTIVITY = "BUS_ACTIVITY";

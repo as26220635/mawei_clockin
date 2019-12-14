@@ -2292,7 +2292,7 @@ file = {
             var fileCount = $fileInput.fileinput('getFilesCount');
             if (multiple == undefined) {
                 //只允许上传一个文件 判断预览区的文件是否删除
-                if (previewCount >= 1 || fileCount > 1) {
+                if (previewCount >= 1 && fileCount > 1) {
                     // $fileInput.fileinput('clear');
                     $('.kv-preview-thumb .file-footer-caption[title="' + label + '"]:last').siblings('.file-actions').find('button.kv-file-remove').click();
                     //提示

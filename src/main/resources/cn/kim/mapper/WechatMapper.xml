@@ -89,7 +89,7 @@
     <select id="selectWechatRank" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT *
         FROM(
-            SELECT CAST(@RANK := @RANK +1 AS SIGNED) AS WECHAT_RANK,BW.*,IMG.IMG_PATHS
+            SELECT CAST(@RANK := @RANK +1 AS SIGNED) AS WECHAT_RANK,BW.*
             FROM
             (SELECT @RANK := 0) r,
             (SELECT
@@ -109,19 +109,6 @@
                 LEFT JOIN BUS_WECHAT_PRAISE BWP ON BWP.BW_ID = BW.ID
                 ORDER BY BWD.CLOCKIN_COUNT DESC,IFNULL(BWP.BWP_NUMBER,0) DESC,EAD.BAD_ENTERTIME ASC
             )BW
-            LEFT JOIN(
-                SELECT ID,GROUP_CONCAT(IMG_PATHS ORDER BY BA_ENTRYTIME ASC) IMG_PATHS
-                FROM(
-                    SELECT BW.ID,BA.BA_ENTRYTIME,CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATHS
-                    FROM BUS_WECHAT BW
-                    INNER JOIN BUS_ACHIEVEMENT BA ON BA.IS_STATUS = 1
-                    LEFT JOIN (SELECT BW.ID,BAD.BA_ID FROM BUS_WECHAT BW
-                    INNER JOIN BUS_ACHIEVEMENT_DETAIL BAD ON BAD.BW_ID = BW.ID
-                    GROUP BY BW.ID,BAD.BA_ID)BAD ON BA.ID = BAD.BA_ID AND BW.ID = BAD.ID
-                    LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID AND SF.ID = (SELECT (CASE WHEN BAD.BA_ID IS NOT NULL THEN MIN(SF.ID) ELSE MAX(SF.ID) END) FROM SYS_FILE SF WHERE SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND  SF.SF_TABLE_ID = BA.ID GROUP BY SF.SF_TABLE_ID)
-                )IMG
-                    GROUP BY ID
-            )IMG ON IMG.ID = BW.ID
         )TEMP
         <where>
             <if test="whereClause != null and whereClause != ''">
@@ -144,7 +131,7 @@
 
     <!--查询自己的排名 -->
     <select id="selectWechatRankByWechatId" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT BW.*,IMG.IMG_PATHS
+        SELECT BW.*
         FROM(
             SELECT CAST(@RANK := @RANK +1 AS SIGNED) AS WECHAT_RANK,BW.*
             FROM
@@ -169,11 +156,29 @@
                     LEFT JOIN (SELECT BW.ID,BAD.BA_ID FROM bus_wechat BW
                     INNER JOIN bus_achievement_detail BAD ON BAD.BW_ID = BW.ID
                     GROUP BY BW.ID,BAD.BA_ID)BAD ON BA.ID = BAD.BA_ID AND BW.ID = BAD.ID
-                    LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID AND SF.ID = (SELECT (CASE WHEN BAD.BA_ID IS NOT NULL THEN MIN(SF.ID) ELSE MAX(SF.ID) END) FROM SYS_FILE SF WHERE SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID GROUP BY SF.SF_TABLE_ID)
+                    LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID AND SF.SF_SDI_CODE = (CASE WHEN BAD.BA_ID IS NOT NULL THEN 2 ELSE 1 END)
+                    ORDER BY BA.BA_ENTRYTIME ASC
                 )IMG
                 GROUP BY ID
         )IMG ON IMG.ID = BW.ID
         WHERE BW.ID = #{ID}
+    </select>
+
+    <!--查询点亮图标 -->
+    <select id="selectWechatRankAchievement" parameterType="java.lang.String" resultType="java.lang.String">
+            SELECT GROUP_CONCAT(IMG.IMG_PATHS ORDER BY IMG.BA_ENTRYTIME ASC) IMG_PATHS
+            FROM(
+                SELECT BW.ID,BA.BA_ENTRYTIME,CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATHS
+                FROM bus_wechat BW
+                INNER JOIN bus_achievement BA ON BA.IS_STATUS = 1
+                LEFT JOIN (SELECT BW.ID,BAD.BA_ID FROM bus_wechat BW
+                INNER JOIN bus_achievement_detail BAD ON BAD.BW_ID = BW.ID
+                GROUP BY BW.ID,BAD.BA_ID)BAD ON BA.ID = BAD.BA_ID AND BW.ID = BAD.ID
+                LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID AND SF.SF_SDI_CODE = (CASE WHEN BAD.BA_ID IS NOT NULL THEN 2 ELSE 1 END)
+                ORDER BY BA.BA_ENTRYTIME ASC
+            )IMG
+            WHERE IMG.ID = #{BW_ID}
+            GROUP BY IMG.ID
     </select>
 
     <select id="selectContactServiceFile" parameterType="java.util.Map" resultType="java.util.Map">

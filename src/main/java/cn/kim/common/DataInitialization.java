@@ -4,6 +4,7 @@ import cn.kim.common.attr.CacheName;
 import cn.kim.common.attr.MobileConfig;
 import cn.kim.common.attr.WebConfig;
 import cn.kim.common.eu.NameSpace;
+import cn.kim.common.quartz.WechatAccessTokenTask;
 import cn.kim.dao.BaseDao;
 import cn.kim.service.AchievementSearchService;
 import cn.kim.util.CacheUtil;
@@ -35,6 +36,8 @@ public class DataInitialization extends BaseData implements ApplicationListener<
     @Autowired
     private AchievementSearchService achievementSearchService;
 
+    @Autowired
+    private WechatAccessTokenTask wechatAccessTokenTask;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
@@ -49,6 +52,9 @@ public class DataInitialization extends BaseData implements ApplicationListener<
 
             //加载网站参数
             WebConfig.init();
+
+            //获取微信access_token
+            wechatAccessTokenTask.getAccessToken();
 
             //前端管理配置
             MobileConfig.init();

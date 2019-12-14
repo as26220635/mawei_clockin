@@ -48,6 +48,12 @@
                                                value="${WEBCONFIG_MENU_SMALL_TITLE}">
                                     </div>
                                     <div class="form-group has-feedback">
+                                        <label>当前域名:</label>
+                                        <input type="text"
+                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WEBCONFIG_SERVER_URL")}
+                                               value="${WEBCONFIG_SERVER_URL}">
+                                    </div>
+                                    <div class="form-group has-feedback">
                                         <label>文件服务器地址:</label>
                                         <input type="text"
                                                class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "WEBCONFIG_FILE_SERVER_URL")}

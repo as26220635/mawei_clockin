@@ -47,6 +47,7 @@ public enum NameSpace {
     MainImageMapper("cn.kim.mapper.MainImageMapper"),
     //成就墙
     AchievementMapper("cn.kim.mapper.AchievementMapper"),
+    AchievementFixedMapper("cn.kim.mapper.AchievementFixedMapper"),
     //活动
     ActivityMapper("cn.kim.mapper.ActivityMapper"),
     ;

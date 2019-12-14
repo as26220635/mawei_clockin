@@ -48,7 +48,7 @@ public class AttributePath {
     /**
      * 文件服务器缓存文件夹
      */
-    public static final String FILE_SERVICE_CACHE_PATH = "cache/";
+    public static final String FILE_SERVICE_CACHE_PATH = "cache" + SERVICE_PATH_SEPARATOR;
     /***************    MYSQL备份文件夹     **************/
     public static final String SERVICE_MYSQL_BACKUP_PATH = SERVICE_PATH_DEFAULT + "mysqlBackup";
 

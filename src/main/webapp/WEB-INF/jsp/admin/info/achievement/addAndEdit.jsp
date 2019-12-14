@@ -53,12 +53,10 @@
         </div>
         <div style="width:100%;height:350px;border:#ccc solid 1px;" id="dituContent"></div>
     </div>
-    <s:fileInput title="附件" sdtCode="BUS_FILE_DEFAULT"
+    <s:fileInput title="附件" sdtCode="BUS_ACHIEVEMENT_FILE"
                  tableId="${not empty achievement ? achievement.ID: insertId}"
                  tableName="${TableName.BUS_ACHIEVEMENT}" typeCode="${TableName.BUS_ACHIEVEMENT}"
-                 multiple="true"
-                 maxFileCount="2"
-                 maxFilesNum="2"
+                 multiple="false"
     ></s:fileInput>
 </form>
 

@@ -57,13 +57,21 @@ To change this template use File | Settings | File Templates.
         margin: auto;
         z-index: 999;
     }
-    .weui-header-block{
+
+    .weui-header-block {
         height: 49px;
         width: 100%;
     }
 </style>
 <div class="weui-header " id="toolbar">
-    <div class="weui-header-left" onclick="backHtml();"><a class="icon icon-109 f-black"></a></div>
+    <c:choose>
+        <c:when test="${action eq 1}">
+            <div class="weui-header-left" onclick="goHome();"><a class="icon icon-109 f-black"></a></div>
+        </c:when>
+        <c:otherwise>
+            <div class="weui-header-left" onclick="backHtml();"><a class="icon icon-109 f-black"></a></div>
+        </c:otherwise>
+    </c:choose>
     <h1 class="weui-header-title f-black">${headerTitle}</h1>
 </div>
 <div class="weui-header-block"></div>

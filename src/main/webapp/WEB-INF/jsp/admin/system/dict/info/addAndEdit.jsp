@@ -14,18 +14,23 @@
     <input type="hidden" name="SDT_ID" value="${fns:trueOrFalse(INFO != null ,INFO.SDT_ID,SDT_ID)}">
     <div class="form-group has-feedback">
         <label>名称:</label>
-        <input type="text" class="form-control" ${fns:validField("SYS_DICT_INFO","SDI_NAME")}
+        <input type="text" class="form-control" ${fns:validField(TableName.SYS_DICT_INFO,"SDI_NAME")}
                value="${INFO.SDI_NAME}">
     </div>
     <div class="form-group has-feedback">
         <label>编码:</label>
-        <input type="text" class="form-control" ${fns:validField("SYS_DICT_INFO","SDI_CODE")}
+        <input type="text" class="form-control" ${fns:validField(TableName.SYS_DICT_INFO,"SDI_CODE")}
                value="${INFO.SDI_CODE}">
     </div>
     <div class="form-group has-feedback">
         <label>连接编码:</label>
-        <input type="text" class="form-control" ${fns:validField("SYS_DICT_INFO","SDI_INNERCODE")}
+        <input type="text" class="form-control" ${fns:validField(TableName.SYS_DICT_INFO,"SDI_INNERCODE")}
                value="${INFO.SDI_INNERCODE}">
+    </div>
+    <div class="form-group has-feedback">
+        <label>最大文件数:</label>
+        <input type="text" class="form-control" ${fns:validField(TableName.SYS_DICT_INFO,"SDI_MAX_COUNT")}
+               value="${INFO.SDI_MAX_COUNT}">
     </div>
     <div class="form-group has-feedback">
         <label>父节点:</label>
@@ -38,24 +43,24 @@
         <div class="form-group has-feedback form-group-md-6">
             <label>是否必填:</label>
             <s:combobox sdtCode="SYS_YES_NO"
-                        custom='${fns:validField("SYS_DICT_INFO","SDI_REQUIRED")}'
+                        custom='${fns:validField(TableName.SYS_DICT_INFO,"SDI_REQUIRED")}'
                         value="${INFO.SDI_REQUIRED}" defaultValue="0"></s:combobox>
         </div>
         <div class="form-group has-feedback form-group-md-6">
             <label>是否是叶节点:</label>
             <s:combobox sdtCode="SYS_YES_NO"
-                        custom='${fns:validField("SYS_DICT_INFO","SDI_IS_LEAF")}'
+                        custom='${fns:validField(TableName.SYS_DICT_INFO,"SDI_IS_LEAF")}'
                         value="${INFO.SDI_IS_LEAF}"></s:combobox>
         </div>
     </div>
     <div class="form-group has-feedback">
         <label>备注:</label>
-        <input type="text" class="form-control" ${fns:validField("SYS_DICT_INFO","SDI_REMARK")}
+        <input type="text" class="form-control" ${fns:validField(TableName.SYS_DICT_INFO,"SDI_REMARK")}
                value="${INFO.SDI_REMARK}">
     </div>
     <div class="form-group has-feedback">
         <label>排序:</label>
-        <input type="text" class="form-control" ${fns:validField("SYS_DICT_INFO","SDI_ORDER")}
+        <input type="text" class="form-control" ${fns:validField(TableName.SYS_DICT_INFO,"SDI_ORDER")}
                value="${INFO.SDI_ORDER}">
     </div>
 </form>

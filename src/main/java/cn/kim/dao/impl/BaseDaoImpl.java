@@ -1,6 +1,5 @@
 package cn.kim.dao.impl;
 
-import cn.kim.common.annotation.Validate;
 import cn.kim.common.attr.MagicValue;
 import cn.kim.common.eu.NameSpace;
 import cn.kim.common.eu.ValueRecordType;
@@ -19,7 +18,6 @@ import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Connection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -231,7 +229,11 @@ public class BaseDaoImpl extends SqlSessionDaoSupport implements BaseDao {
         if (ValidateUtil.isEmpty(tableId) || ValidateUtil.isEmpty(tableName)) {
             return;
         }
-        ActiveUser activeUser = AuthcUtil.getCurrentUser();
+        ActiveUser activeUser = null;
+        try {
+            activeUser = AuthcUtil.getCurrentUser();
+        } catch (Exception e) {
+        }
 
         Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(8);
         paramMap.put("ID", Sequence.getId());

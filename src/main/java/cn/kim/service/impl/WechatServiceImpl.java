@@ -110,6 +110,27 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
         return baseDao.selectOne(NameSpace.WechatMapper, "selectWechat", paramMap);
     }
 
+    /**
+     * 设置排名点亮图标
+     *
+     * @param rankList
+     */
+    public void setWechatRankAchievement(List<Map<String, Object>> rankList) {
+        for (Map<String, Object> rank : rankList) {
+            setWechatRankAchievement(rank);
+        }
+    }
+
+    /**
+     * 设置排名点亮图标
+     *
+     * @param rank
+     */
+    public void setWechatRankAchievement(Map<String, Object> rank) {
+        String IMG_PATHS = baseDao.selectOne(NameSpace.WechatMapper, "selectWechatRankAchievement", toString(rank.get("ID")));
+        rank.put("IMG_PATHS", IMG_PATHS);
+    }
+
     @Override
     public Map<String, Object> selectWechatRank(String BW_ID) {
         Map<String, Object> resultMap = Maps.newHashMapWithExpectedSize(2);
@@ -117,6 +138,8 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
         resultMap.put("ID", BW_ID);
         Map<String, Object> myRank = baseDao.selectOne(NameSpace.WechatMapper, "selectWechatRankByWechatId", resultMap);
 
+        //设置点亮图标
+        setWechatRankAchievement(myRank);
         //文件路径加密
         FileUtil.filePathTobase64(myRank, "IMG_PATHS");
 
@@ -196,6 +219,8 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
             } else {
                 data.put("isPraise", false);
             }
+            //设置点亮图标
+            setWechatRankAchievement(data);
         }
         //文件路径加密
         FileUtil.filePathTobase64(dataList, "IMG_PATHS");

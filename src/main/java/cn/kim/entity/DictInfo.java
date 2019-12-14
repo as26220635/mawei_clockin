@@ -18,6 +18,7 @@ public class DictInfo implements Serializable {
     private String sdiCode;
     private String sdiInnercode;
     private Integer sdiOrder;
+    private String  maxCount;
     private String sdiParentid;
     /**
      * 是否是叶节点

@@ -1,6 +1,7 @@
 package cn.kim.common.tag;
 
 import cn.kim.common.attr.*;
+import cn.kim.entity.DictInfo;
 import cn.kim.entity.DictType;
 import cn.kim.service.FileService;
 import cn.kim.util.*;
@@ -10,6 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.servlet.jsp.JspException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -123,9 +125,23 @@ public class FileInput extends BaseTagSupport {
 
         //查询字典
         DictType dictType = DictUtil.getDictType(sdtCode);
-        if (ValidateUtil.isEmpty(dictType) || ValidateUtil.isEmpty(dictType.getInfos())) {
+        if (ValidateUtil.isEmpty(sdtCode)) {
             return EVAL_BODY_INCLUDE;
         }
+
+        if (isEmpty(dictType)){
+            dictType = new DictType();
+            dictType.setSdtCode(sdtCode);
+
+            List<DictInfo> infoList = new ArrayList<>();
+            DictInfo d = new DictInfo();
+            d.setSdiRequired(0);
+            d.setSdiName("附件");
+            infoList.add(d);
+
+            dictType.setInfos(infoList);
+        }
+
 
         Map<String, Object> mapParam = Maps.newHashMapWithExpectedSize(4);
 
@@ -136,7 +152,7 @@ public class FileInput extends BaseTagSupport {
 
         builder.append("<div class='box box-solid'>" +
                 "   <div class='box-header with-border'>" +
-                "       <h3 class='box-title'><i class='mdi mdi-file-multiple'></i>"+title+"</h3>" +
+                "       <h3 class='box-title'><i class='mdi mdi-file-multiple'></i>" + title + "</h3>" +
                 "   </div>" +
                 "   <div class='box-body'>");
         builder.append("<div class='box-group' id='" + groupId + "'>");
@@ -148,6 +164,8 @@ public class FileInput extends BaseTagSupport {
             String aClass = (index == 0 ? "" : " collapsed ") + (required == Attribute.STATUS_SUCCESS ? " text-red " : " text-black ");
             String collapseStyle = index == 0 ? "" : "height: 0px; ";
             String collapseClass = index == 0 ? " in " : "";
+            //最大上传数
+            String maxCount = info.getMaxCount();
 
             //查询改SDI_CODE下面拥有的文件
             List<Map<String, Object>> files = Lists.newArrayList();
@@ -167,7 +185,7 @@ public class FileInput extends BaseTagSupport {
             String inputId = uuid();
             String numberId = uuid();
             //标签DIV
-            builder.append("<div class='box-header with-border' data-toggle='#"+collapseId+"'><h4 class='box-title' style='width: 100%;'>");
+            builder.append("<div class='box-header with-border' data-toggle='#" + collapseId + "'><h4 class='box-title' style='width: 100%;'>");
             builder.append("<a data-toggle='collapse' data-parent='#" + groupId + "' href='#" + collapseId + "' aria-expanded='true' class='" + aClass + "'>");
             builder.append(info.getSdiName() + (required == Attribute.STATUS_SUCCESS ? "（必填）" : "") + "<span class='pull-right'>数量:<span id='" + numberId + "' class='" + (required == Attribute.STATUS_SUCCESS ? "file-validate" : "") + "' data-validate-message='" + info.getSdiName() + "'>" + files.size() + "</span></span>");
             builder.append("</a>");
@@ -230,8 +248,8 @@ public class FileInput extends BaseTagSupport {
                     (isEmpty(nonModel) ? "" : "nonModel:" + toString(nonModel) + ",") +
                     "allowedFileExtensions:" + getAllowedFileExtensions(allowFile) + "," +
                     "maxFileSize:" + maxFileSize + "," +
-                    "maxFilesNum:" + maxFilesNum + "," +
-                    "maxFileCount:" + maxFileCount + "," +
+                    "maxFilesNum:" + (isEmpty(maxCount) ? maxFilesNum : maxCount) + "," +
+                    "maxFileCount:" + (isEmpty(maxCount) ? maxFileCount : maxCount) + "," +
                     "initialPreview:" + enclosureId + "," +
                     "initialPreviewConfig:" + enclosureNameId + "," +
                     //删除数量-1
@@ -258,8 +276,8 @@ public class FileInput extends BaseTagSupport {
         //点击头切换事件
         builder.append("<script>");
         builder.append("$('.box-header[data-toggle]').unbind('click').on('click', function () {" +
-                "          $('#"+groupId+" div.collapse').collapse('hide');" +
-                "          $($(this).attr('data-toggle')).collapse('toggle');"+
+                "          $('#" + groupId + " div.collapse').collapse('hide');" +
+                "          $($(this).attr('data-toggle')).collapse('toggle');" +
                 "    });");
         builder.append("</script>");
 

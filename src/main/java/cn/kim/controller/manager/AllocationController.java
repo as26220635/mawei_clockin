@@ -113,6 +113,8 @@ public class AllocationController extends BaseController {
         model.addAttribute("WEBCONFIG_MENU_TITLE", AllocationUtil.get("WEBCONFIG_MENU_TITLE"));
         //后台菜单小标题
         model.addAttribute("WEBCONFIG_MENU_SMALL_TITLE", AllocationUtil.get("WEBCONFIG_MENU_SMALL_TITLE"));
+        //当前域名
+        model.addAttribute("WEBCONFIG_SERVER_URL", AllocationUtil.get("WEBCONFIG_SERVER_URL"));
         //文件服务器地址
         model.addAttribute("WEBCONFIG_FILE_SERVER_URL", AllocationUtil.get("WEBCONFIG_FILE_SERVER_URL"));
         //百度地图（AK）
@@ -133,6 +135,7 @@ public class AllocationController extends BaseController {
             AllocationUtil.put("WEBCONFIG_LOGIN_TITLE", mapParam.get("WEBCONFIG_LOGIN_TITLE"));
             AllocationUtil.put("WEBCONFIG_MENU_TITLE", mapParam.get("WEBCONFIG_MENU_TITLE"));
             AllocationUtil.put("WEBCONFIG_MENU_SMALL_TITLE", mapParam.get("WEBCONFIG_MENU_SMALL_TITLE"));
+            AllocationUtil.put("WEBCONFIG_SERVER_URL", unescapeHtml4(mapParam.get("WEBCONFIG_SERVER_URL")));
             AllocationUtil.put("WEBCONFIG_FILE_SERVER_URL", unescapeHtml4(mapParam.get("WEBCONFIG_FILE_SERVER_URL")));
             AllocationUtil.put("WEBCONFIG_BAIDU_MAP_AK", mapParam.get("WEBCONFIG_BAIDU_MAP_AK"));
             //刷新参数
@@ -156,6 +159,8 @@ public class AllocationController extends BaseController {
         model.addAttribute("WECHAT_CLIENT_SECRET", AllocationUtil.get("WECHAT_CLIENT_SECRET"));
         model.addAttribute("WECHAT_REDIRECT_URI", AllocationUtil.get("WECHAT_REDIRECT_URI"));
 
+        //公众号用户名
+        model.addAttribute("MOBILE_OFFICIAL_USERNAME", AllocationUtil.get("MOBILE_OFFICIAL_USERNAME"));
         //青春打卡
         model.addAttribute("MOBILE_BOTTOM_MENU_CLOCKIN", AllocationUtil.get("MOBILE_BOTTOM_MENU_CLOCKIN"));
         //活动
@@ -193,6 +198,7 @@ public class AllocationController extends BaseController {
             AllocationUtil.put("WECHAT_CLIENT_SECRET", mapParam.get("WECHAT_CLIENT_SECRET"));
             AllocationUtil.put("WECHAT_REDIRECT_URI", mapParam.get("WECHAT_REDIRECT_URI"));
 
+            AllocationUtil.put("MOBILE_OFFICIAL_USERNAME", mapParam.get("MOBILE_OFFICIAL_USERNAME"));
             AllocationUtil.put("MOBILE_BOTTOM_MENU_CLOCKIN", mapParam.get("MOBILE_BOTTOM_MENU_CLOCKIN"));
             AllocationUtil.put("MOBILE_BOTTOM_MENU_ACTIVITY", mapParam.get("MOBILE_BOTTOM_MENU_ACTIVITY"));
             AllocationUtil.put("MOBILE_BOTTOM_MENU_RANK", mapParam.get("MOBILE_BOTTOM_MENU_RANK"));

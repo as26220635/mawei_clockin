@@ -134,6 +134,7 @@
             <if test="SDI_IS_LEAF != null">SDI_IS_LEAF,</if>
             <if test="SDI_REMARK != null">SDI_REMARK,</if>
             <if test="SDI_REQUIRED != null">SDI_REQUIRED,</if>
+            <if test="SDI_MAX_COUNT != null">SDI_MAX_COUNT,</if>
             <if test="IS_STATUS != null">IS_STATUS,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -148,6 +149,7 @@
             <if test="SDI_IS_LEAF != null">#{SDI_IS_LEAF},</if>
             <if test="SDI_REMARK != null">#{SDI_REMARK},</if>
             <if test="SDI_REQUIRED != null">#{SDI_REQUIRED},</if>
+            <if test="SDI_MAX_COUNT != null">#{SDI_MAX_COUNT},</if>
             <if test="IS_STATUS != null">#{IS_STATUS},</if>
         </trim>
     </insert>
@@ -167,6 +169,7 @@
             <if test="SDI_IS_LEAF != null">SDI_IS_LEAF=#{SDI_IS_LEAF},</if>
             <if test="SDI_REMARK != null">SDI_REMARK=#{SDI_REMARK},</if>
             <if test="SDI_REQUIRED != null">SDI_REQUIRED=#{SDI_REQUIRED},</if>
+            <if test="SDI_MAX_COUNT != null">SDI_MAX_COUNT=#{SDI_MAX_COUNT},</if>
             <if test="IS_STATUS != null">IS_STATUS=#{IS_STATUS},</if>
         </set>
         <where>

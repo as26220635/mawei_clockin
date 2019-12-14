@@ -3,17 +3,15 @@ package cn.kim.service.impl;
 import cn.kim.common.attr.MagicValue;
 import cn.kim.common.attr.TableName;
 import cn.kim.common.attr.Tips;
-import cn.kim.exception.CustomException;
 import cn.kim.common.eu.NameSpace;
 import cn.kim.exception.CustomException;
 import cn.kim.service.FileService;
+import cn.kim.util.FileUtil;
 import cn.kim.util.TextUtil;
-import cn.kim.util.ValidateUtil;
 import com.google.common.collect.Maps;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,11 +30,16 @@ public class FileServiceImpl extends BaseServiceImpl implements FileService {
 
     @Override
     public Map<String, Object> selectFile(Map<String, Object> mapParam) {
-        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(3);
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(5);
         paramMap.put("ID", mapParam.get("ID"));
         paramMap.put("SF_TABLE_ID", mapParam.get("SF_TABLE_ID"));
         paramMap.put("SF_TABLE_NAME", mapParam.get("SF_TABLE_NAME"));
-        return baseDao.selectOne(NameSpace.FileMapper, "selectFile", paramMap);
+        paramMap.put("SF_SDT_CODE", mapParam.get("SF_SDT_CODE"));
+        paramMap.put("SF_SDI_CODE", mapParam.get("SF_SDI_CODE"));
+        Map<String, Object> file = baseDao.selectOne(NameSpace.FileMapper, "selectFile", paramMap);
+        //文件路径加密
+        FileUtil.filePathTobase64(file, "FILE_PATH");
+        return file;
     }
 
     @Override
@@ -47,7 +50,10 @@ public class FileServiceImpl extends BaseServiceImpl implements FileService {
         paramMap.put("SF_TABLE_NAME", mapParam.get("SF_TABLE_NAME"));
         paramMap.put("SF_SDT_CODE", mapParam.get("SF_SDT_CODE"));
         paramMap.put("SF_SDI_CODE", mapParam.get("SF_SDI_CODE"));
-        return baseDao.selectList(NameSpace.FileMapper, "selectFile", paramMap);
+        List<Map<String, Object>> list = baseDao.selectList(NameSpace.FileMapper, "selectFile", paramMap);
+        //文件路径加密
+        FileUtil.filePathTobase64(list, "FILE_PATH");
+        return list;
     }
 
 

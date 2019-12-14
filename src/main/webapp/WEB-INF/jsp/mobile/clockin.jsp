@@ -79,6 +79,10 @@
         color: #000000;
     }
 
+    .disabled {
+        pointer-events: none;
+    }
+
     #searchBar {
         z-index: 999;
     }
@@ -468,7 +472,7 @@
     //打卡点坐标
     var geolocaltionPoint = {
         <c:forEach items="${achievementList}" var="achievement">
-        '${achievement.ID}': [${achievement.BA_LONGITUDE}, ${achievement.BA_LATITUDE}, ${achievement.BA_RANGE}],
+        '${achievement.ID}': [${achievement.BA_LONGITUDE}, ${achievement.BA_LATITUDE}, ${achievement.BA_RANGE}, ${achievement.BAD_COUNT}],
         </c:forEach>
     };
     //打卡点圆
@@ -622,7 +626,13 @@
 
         //判断是否在打卡范围中
         if (isCheckCircleInside(lng, lat)) {
-            switchClockinBtn(1);
+            var clockinGeolocaltionPoint = $('#clockinGeolocaltionPoint').val();
+            var point = geolocaltionPoint[clockinGeolocaltionPoint];
+            if (point[3] <= 0) {
+                switchClockinBtn(1);
+            } else {
+                switchClockinBtn(4);
+            }
         } else {
             switchClockinBtn(2);
         }
@@ -681,13 +691,16 @@
 
     function switchClockinBtn(val) {
         if (val == 1) {
-            $('#clockin').removeClass('weui-btn_loading');
+            $('#clockin').removeClass('weui-btn_loading').removeClass('disabled');
             $('#clockin').text('打卡');
         } else if (val == 3) {
-            $('#clockin').removeClass('weui-btn_loading');
+            $('#clockin').addClass('weui-btn_loading').addClass('disabled');
             $('#clockin').text('定位失败');
+        } else if (val == 4) {
+            $('#clockin').addClass('weui-btn_loading').addClass('disabled');
+            $('#clockin').text('当前成就打卡完成');
         } else {
-            $('#clockin').addClass('weui-btn_loading');
+            $('#clockin').addClass('weui-btn_loading').addClass('disabled');
             $('#clockin').text('不在打卡范围内');
         }
     }
@@ -698,9 +711,14 @@
     <%--打卡--%>
     $('#clockin').click(function () {
         var clockinGeolocaltionPoint = $('#clockinGeolocaltionPoint').val();
+        var point = geolocaltionPoint[clockinGeolocaltionPoint];
         if (clockinGeolocaltionPoint != undefined && clockinGeolocaltionPoint != '') {
+            if (point[3] > 0) {
+                $.toast("不能重复打卡", "forbidden");
+                return;
+            }
             //调用打卡功能
-            loadUrl('${BASE_URL}clockin/in/${wechatUser.id}/' + clockinGeolocaltionPoint + '?clockinAddress=' + encodeURIComponent($('#clockinAddress').text().replace('地点:','')));
+            loadUrl('${BASE_URL}clockin/in/${wechatUser.id}/' + clockinGeolocaltionPoint + '?clockinAddress=' + encodeURIComponent($('#clockinAddress').text().replace('地点:', '')));
         }
     });
 </script>

@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="cn.kim.mapper.AchievementMapper">
-    <cache type="org.mybatis.caches.redis.RedisCache"/>
-
-    <!--查询-->
-    <select id="selectAchievement" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT * FROM BUS_ACHIEVEMENT
-        <where>
-            <if test ="ID != NULL and ID != ''">
-                AND ID = #{ID}
-            </if>
-            <if test ="IS_STATUS != NULL and IS_STATUS != ''">
-                AND IS_STATUS = #{IS_STATUS}
-            </if>
-        </where>
-    </select>
 
     <!--前端使用-->
-    <select id="selectMAchievement" parameterType="java.util.Map" resultType="java.util.Map">
-       SELECT BA.* FROM BUS_ACHIEVEMENT BA WHERE BA.IS_STATUS = 1
+    <select id="selectMAchievement" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT
+            BA.*,
+            IFNULL(BAD.BAD_COUNT,0) BAD_COUNT
+        FROM BUS_ACHIEVEMENT BA
+        LEFT JOIN (SELECT BA_ID,COUNT(1) BAD_COUNT FROM BUS_ACHIEVEMENT_DETAIL WHERE BW_ID = #{ID} GROUP BY BA_ID)BAD ON BAD.BA_ID = BA.ID
+        WHERE BA.IS_STATUS = 1
     </select>
 
     <!--前端使用-->
@@ -27,11 +18,11 @@
             BA.*,
             IFNULL(BAD.BAD_COUNT,0) BAD_COUNT,
             CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATH,
-            CONCAT(LSF.SF_PATH,'@@@',LSF.SF_NAME) IMG_PATH_IN
+            CONCAT(SFI.SF_PATH,'@@@',SFI.SF_NAME) IMG_PATH_IN
         FROM BUS_ACHIEVEMENT BA
         LEFT JOIN (SELECT BA_ID,COUNT(1) BAD_COUNT FROM BUS_ACHIEVEMENT_DETAIL WHERE BW_ID = #{ID} GROUP BY BA_ID)BAD ON BAD.BA_ID = BA.ID
-        LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID AND SF.ID = (SELECT MIN(SF.ID) FROM SYS_FILE SF WHERE SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID GROUP BY SF.SF_TABLE_ID)
-        LEFT JOIN SYS_FILE LSF ON LSF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND LSF.SF_TABLE_ID = BA.ID AND LSF.ID = (SELECT MAX(SF.ID) FROM SYS_FILE SF WHERE SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND  SF.SF_TABLE_ID = BA.ID GROUP BY SF.SF_TABLE_ID)
+        LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID AND SF.SF_SDI_CODE = 1
+        LEFT JOIN SYS_FILE SFI ON SFI.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SFI.SF_TABLE_ID = BA.ID AND SFI.SF_SDI_CODE = 2
         WHERE BA.IS_STATUS = 1
         ORDER BY BAD.BAD_COUNT DESC,BA.BA_ENTRYTIME ASC
     </select>
@@ -40,63 +31,13 @@
     <select id="selectMAchievementEnd" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
             CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATH,
-            CONCAT(LSF.SF_PATH,'@@@',LSF.SF_NAME) IMG_PATH_IN
+            CONCAT(SFI.SF_PATH,'@@@',SFI.SF_NAME) IMG_PATH_IN
         FROM SYS_DICT_INFO SDI
-        LEFT JOIN SYS_FILE SF ON SF.SF_SDT_CODE = 'BUS_ACHIEVEMENT_END' AND SF.SF_TABLE_ID = '1' AND SF.ID = (SELECT MIN(SF.ID) FROM SYS_FILE SF WHERE SF.SF_TABLE_ID = '1' AND SF_SDT_CODE = 'BUS_ACHIEVEMENT_END' GROUP BY SF.SF_TABLE_ID)
-        LEFT JOIN SYS_FILE LSF ON LSF.SF_SDT_CODE = 'BUS_ACHIEVEMENT_END' AND LSF.SF_TABLE_ID = '1' AND LSF.ID = (SELECT MAX(SF.ID) FROM SYS_FILE SF WHERE SF.SF_TABLE_ID = '1' AND SF_SDT_CODE = 'BUS_ACHIEVEMENT_END' GROUP BY SF.SF_TABLE_ID)
-        WHERE SDI.SDT_CODE = 'BUS_ACHIEVEMENT_END'
+        INNER JOIN SYS_FILE SF ON SF.SF_SDT_CODE = 'BUS_ACHIEVEMENT_END' AND SF.SF_TABLE_ID = '1' AND SF.SF_SDI_CODE = 1
+        INNER JOIN SYS_FILE SFI ON SFI.SF_SDT_CODE = 'BUS_ACHIEVEMENT_END' AND SFI.SF_TABLE_ID = '1' AND SFI.SF_SDI_CODE = 2
+        WHERE SDI.SDT_CODE = 'BUS_ACHIEVEMENT_END' AND SF.SF_TABLE_ID = '1'
+        GROUP BY CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME),CONCAT(SFI.SF_PATH,'@@@',SFI.SF_NAME)
     </select>
-
-    <!--插入-->
-    <insert id="insertAchievement" parameterType="java.util.Map">
-        INSERT INTO BUS_ACHIEVEMENT
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="ID != null">ID,</if>
-            <if test="BA_NAME != null">BA_NAME,</if>
-            <if test="BA_LONGITUDE != null">BA_LONGITUDE,</if>
-            <if test="BA_LATITUDE != null">BA_LATITUDE,</if>
-            <if test="BA_ENTRYTIME != null">BA_ENTRYTIME,</if>
-            <if test="BA_RANGE != null">BA_RANGE,</if>
-            <if test="BA_POINT != null">BA_POINT,</if>
-            <if test="SO_ID != null">SO_ID,</if>
-            <if test="IS_STATUS != null">IS_STATUS,</if>
-        </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="ID != null">#{ID},</if>
-            <if test="BA_NAME != null">#{BA_NAME},</if>
-            <if test="BA_LONGITUDE != null">#{BA_LONGITUDE},</if>
-            <if test="BA_LATITUDE != null">#{BA_LATITUDE},</if>
-            <if test="BA_ENTRYTIME != null">#{BA_ENTRYTIME},</if>
-            <if test="BA_RANGE != null">#{BA_RANGE},</if>
-            <if test="BA_POINT != null">#{BA_POINT},</if>
-            <if test="SO_ID != null">#{SO_ID},</if>
-            <if test="IS_STATUS != null">#{IS_STATUS},</if>
-        </trim>
-    </insert>
-
-    <!--编辑-->
-    <update id="updateAchievement" parameterType="java.util.Map">
-        UPDATE BUS_ACHIEVEMENT
-        <set>
-            <if test="ID != null">ID=#{ID},</if>
-            <if test="BA_NAME != null">BA_NAME=#{BA_NAME},</if>
-            <if test="BA_LONGITUDE != null">BA_LONGITUDE=#{BA_LONGITUDE},</if>
-            <if test="BA_LATITUDE != null">BA_LATITUDE=#{BA_LATITUDE},</if>
-            <if test="BA_ENTRYTIME != null">BA_ENTRYTIME=#{BA_ENTRYTIME},</if>
-            <if test="BA_RANGE != null">BA_RANGE=#{BA_RANGE},</if>
-            <if test="BA_POINT != null">BA_POINT=#{BA_POINT},</if>
-            <if test="SO_ID != null">SO_ID=#{SO_ID},</if>
-            <if test="IS_STATUS != null">IS_STATUS=#{IS_STATUS},</if>
-        </set>
-        <where>
-            ID=#{ID}
-        </where>
-    </update>
-
-    <!--删除-->
-    <delete id="deleteAchievement" parameterType="java.util.Map">
-		DELETE FROM BUS_ACHIEVEMENT WHERE ID = #{ID}
-	</delete>
 
     <!--查询-->
     <select id="selectAchievementDetail" parameterType="java.util.Map" resultType="java.util.Map">
@@ -106,6 +47,12 @@
             <where>
                 <if test ="ID != NULL and ID != ''">
                     AND ID = #{ID}
+                </if>
+                <if test ="BA_ID != NULL and BA_ID != ''">
+                    AND BA_ID = #{BA_ID}
+                </if>
+                <if test ="BW_ID != NULL and BW_ID != ''">
+                    AND BW_ID = #{BW_ID}
                 </if>
             </where>
         )BAD
@@ -208,7 +155,7 @@
     <select id="selectMainImageAchievement" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
         BMIA.*,
-        BA.BA_NAME,SF.ID AS SF_ID,CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATH
+        BA.BA_NAME
         FROM(
         SELECT * FROM BUS_MAIN_IMAGE_ACHIEVEMENT
         <where>
@@ -224,7 +171,6 @@
         </where>
         )BMIA
         INNER JOIN BUS_ACHIEVEMENT BA ON BA.ID = BMIA.BA_ID
-        LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID
     </select>
 
     <!--插入-->
@@ -270,10 +216,6 @@
             </if>
         </where>
 	</delete>
-
-    <!--查询成就墙被谁选了-->
-    <select id="selectAchievementSelected" parameterType="java.util.Map" resultType="java.util.Map">
-    </select>
 
     <!--成就墙打卡人数 -->
     <select id="selectAchievementClockinStatistic" parameterType="java.util.Map" resultType="java.util.Map">

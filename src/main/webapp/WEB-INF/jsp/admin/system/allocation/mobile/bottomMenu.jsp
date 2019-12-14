@@ -59,6 +59,12 @@
                                                value="${WECHAT_REDIRECT_URI}">
                                     </div>
                                     <div class="form-group has-feedback">
+                                        <label>公众号用户名:</label>
+                                        <input type="text"
+                                               class="form-control" ${fns:validField(TableName.SYS_ALLOCATION, "MOBILE_OFFICIAL_USERNAME")}
+                                               value="${MOBILE_OFFICIAL_USERNAME}">
+                                    </div>
+                                    <div class="form-group has-feedback">
                                         <label>青春打卡:
                                             <a href="javascript:;" data-id="${fns:AESEncode(1)}"
                                                data-typeCode="MOBILE_BOTTOM_MENU"

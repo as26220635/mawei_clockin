@@ -300,6 +300,10 @@ public class Url {
     public static final String ACHIEVEMENT_SWITCHSTATUS_URL = ACHIEVEMENT_BASE_URL + "switchStatus";
     public static final String ACHIEVEMENT_DELETE_URL = ACHIEVEMENT_BASE_URL + "delete";
     /**
+     * 成就墙分享管理
+     */
+    public static final String ACHIEVEMENT_SHARE_UPDATE_URL = ACHIEVEMENT_BASE_URL + "share/update";
+    /**
      * 打卡记录
      */
     public static final String CLOCKIN_BASE_URL = MANAGER_URL + "clockin/";

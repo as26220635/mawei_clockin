@@ -27,6 +27,34 @@
         loadUrl('${BASE_URL}${fns:getUrlByMenuCode("MOBILE:CLOCKIN")}' + urlEncode(param));
     });
 
+    //分享图片管理
+    $dataGridTable.find('tbody').on('click', '#share', function () {
+        var data = getRowData(this);
+        var $this = $(this);
+
+        var id = data.ID;
+        var tableName = '${TableName.BUS_WECHAT}';
+        var typeCode = '${TableName.BUS_ACHIEVEMENT_SHARE}';
+        var sdtCode = '${TableName.BUS_ACHIEVEMENT_SHARE}';
+        var textName = '分享图片:' + data.BW_USERNAME;
+
+        ajax.getHtml('${BASE_URL}${Url.FILE_SERVER_UPDATE_URL}/' + id, {
+                tableName: tableName,
+                typeCode: typeCode,
+                sdtCode: sdtCode,
+                multiple: false,
+                showUpload: false,
+                showRemove: false,
+            }, function (html) {
+                model.show({
+                    title: textName,
+                    content: html,
+                    footerModel: model.footerModel.ADMIN,
+                });
+            }
+        );
+    });
+
     //切换状态
     function onSwitchChange($this, field, check, IS_STATUS) {
         showLoadingContentDiv();

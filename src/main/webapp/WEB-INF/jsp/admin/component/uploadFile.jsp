@@ -18,6 +18,8 @@
                  maxFilesNum="${fns:trueOrFalse(empty reqParam.maxFilesNum,99, reqParam.maxFilesNum)}"
                  maxFileCount="${fns:trueOrFalse(empty reqParam.maxFileCount,99, reqParam.maxFileCount)}"
                  multiple="${fns:trueOrFalse(empty reqParam.multiple,false, reqParam.multiple)}"
+                 showUpload="${fns:trueOrFalse(empty reqParam.showUpload,true, reqParam.showUpload)}"
+                 showRemove="${fns:trueOrFalse(empty reqParam.showRemove,true, reqParam.showRemove)}"
     ></s:fileInput>
 </form>
 

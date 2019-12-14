@@ -36,12 +36,24 @@
     </div>
     <div class="weui-grids">
         <c:forEach items="${achievementList}" var="achievement">
-            <a href="javascript:;" class="weui-grid">
-                <div class="weui-grid__icon ${fns:trueOrFalse(achievement.BAD_COUNT > 0,'' , 'weui-grid__gray')}">
-                    <img src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${achievement.IMG_PATH}">
-                </div>
-                <p class="weui-grid__label">${achievement.BA_NAME}</p>
-            </a>
+            <c:choose>
+                <c:when test="${achievement.BAD_COUNT > 0}">
+                    <a class="weui-grid"  href="${BASE_URL}achievement/share/${achievement.ID}/${wechatUser.id}?action=2" data-pjax="#${CONTAINER}">
+                        <div class="weui-grid__icon">
+                            <img src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${achievement.IMG_PATH_IN}">
+                        </div>
+                        <p class="weui-grid__label">${achievement.BA_NAME}</p>
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a href="javascript:;" class="weui-grid">
+                        <div class="weui-grid__icon">
+                            <img src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${achievement.IMG_PATH}">
+                        </div>
+                        <p class="weui-grid__label">${achievement.BA_NAME}</p>
+                    </a>
+                </c:otherwise>
+            </c:choose>
         </c:forEach>
     </div>
 </div>

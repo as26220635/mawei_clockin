@@ -7,6 +7,9 @@
             targets: targets,
             data: field,
             render: function (data, type, full, meta) {
+                if (isEmpty(data)){
+                    return "";
+                }
                 return '<img src="${BASE_URL}${AttributePath.FILE_PREVIEW_URL}' + data + '"  style="width:50px;height:50px" data-action="zoom"/>';
             }
         };
@@ -54,9 +57,7 @@
         ajax.getHtml('${BASE_URL}${Url.FILE_SERVER_UPDATE_URL}/' + id, {
                 typeCode: typeCode,
                 sdtCode: sdtCode,
-                maxFilesNum: 2,
-                maxFileCount: 2,
-                multiple: true,
+                multiple: false,
             }, function (html) {
                 model.show({
                     title: textName,
@@ -76,6 +77,17 @@
         };
         //切换主界面
         loadUrl('${BASE_URL}${fns:getUrlByMenuCode("MOBILE:CLOCKIN")}' + urlEncode(param));
+    });
+
+    //分享图片管理
+    $dataGridTable.find('tbody').on('click', '#share', function () {
+        var data = getRowData(this);
+        var param = {
+            BA_ID: data.ID,
+            TITLE: data.BA_NAME,
+        };
+        //切换主界面
+        loadUrl('${BASE_URL}${fns:getUrlByMenuCode("MOBILE:ACHIEVEMENT_SHARE")}' + urlEncode(param));
     });
 
     //修改

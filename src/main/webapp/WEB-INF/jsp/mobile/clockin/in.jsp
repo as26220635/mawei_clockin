@@ -204,6 +204,10 @@
     </div>
 </div>
 <script>
+    <c:if test="${isClockin eq 1}">
+    //回到主页
+    goHome();
+    </c:if>
     hideBottpmMenu();
     switchTabbar('clockinTabbar');
     mainInit.initPjax();
@@ -327,8 +331,8 @@
         ajax.post('${BASE_URL}clockin/in/upload', params, function (data) {
             $.hideLoading();
             if (data.code == 1) {
-                $.toast('打卡成功', 2000, function () {
-                    backHtml();
+                $.toast('打卡成功', 1000, function () {
+                    loadUrl('${BASE_URL}achievement/share/${BA_ID}/${BW_ID}?action=1');
                 });
             } else {
                 $.toast("打卡失败", "forbidden");
