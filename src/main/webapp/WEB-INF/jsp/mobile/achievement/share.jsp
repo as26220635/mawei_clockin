@@ -18,32 +18,51 @@
         margin: 0 !important;
     }
 
+    .weui-msg{
+        padding: 0;
+    }
+
+    #shareBtn{
+        width: 55px;
+        height: 55px;
+        padding: 18px 12px;
+        margin: 5px;
+        font-size: 15px;
+        -moz-border-radius: 50px;
+        -webkit-border-radius: 50px;
+        border-radius: 50px;
+        position: fixed;
+        bottom: 8%;
+        right: 5%;
+        z-index: 888;
+        box-shadow: 2px 2px 2px #888888;
+    }
+    #shareBtn:active{
+        background-color: #069746;
+    }
 </style>
 
 <div class="container container-page">
     <%@ include file="/WEB-INF/jsp/mobile/common/common_top.jspf" %>
-    <div class="weui-msg">
-        <c:choose>
-            <c:when test="${action eq 1}">
-                <div class="weui-msg__icon-area"><i class="weui-icon-success weui-icon_msg"></i></div>
-                <div class="weui-msg__text-area">
-                    <h2 class="weui-msg__title">打卡成功</h2>
-                    <p class="weui-msg__desc">
-                        <img class="share-img"
-                             src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${IMG_PATH}">
-                    </p>
-                </div>
-            </c:when>
-            <c:otherwise>
-                <img class="share-img" src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${IMG_PATH}">
-            </c:otherwise>
-        </c:choose>
-        <div class="weui-msg__opr-area">
-            <p class="weui-btn-area">
-                <a href="javascript:;" class="weui-btn weui-btn_primary" id="shareBtn">分享</a>
-            </p>
-        </div>
-    </div>
+<%--        <c:choose>--%>
+<%--            <c:when test="${action eq 1}">--%>
+<%--                <div class="weui-msg__icon-area"><i class="weui-icon-success weui-icon_msg"></i></div>--%>
+<%--                <div class="weui-msg__text-area">--%>
+<%--                    <h2 class="weui-msg__title">打卡成功</h2>--%>
+<%--                    <p class="weui-msg__desc">--%>
+<%--                        <img class="share-img"--%>
+<%--                             src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${IMG_PATH}">--%>
+<%--                    </p>--%>
+<%--                </div>--%>
+<%--            </c:when>--%>
+<%--            <c:otherwise>--%>
+<%--                <img class="share-img" src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${IMG_PATH}">--%>
+<%--            </c:otherwise>--%>
+<%--        </c:choose>--%>
+
+        <img class="share-img" src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${IMG_PATH}">
+
+        <a href="javascript:;" class="weui-btn weui-btn_primary" id="shareBtn">分享</a>
 </div>
 <script>
     hideBottpmMenu();

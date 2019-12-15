@@ -3,6 +3,7 @@ package cn.kim.controller;
 import cn.kim.common.annotation.SystemControllerLog;
 import cn.kim.common.attr.AttributePath;
 import cn.kim.common.attr.MagicValue;
+import cn.kim.common.eu.NameSpace;
 import cn.kim.common.eu.UseType;
 import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.ActiveUser;
@@ -187,6 +188,12 @@ public class FileController extends BaseController implements LastModified {
             configure.put("SF_SDI_CODE", toString(CommonUtil.idDecrypt(SF_SDI_CODE)));
 
             Map<String, Object> result = FileUtil.saveFile(imgUpload, configure);
+
+            //清除缓存
+            if ("BUS_ACHIEVEMENT_FILE".equals(toString(configure.get("SF_SDT_CODE")))){
+                CacheUtil.clear(NameSpace.AchievementFixedMapper.getValue());
+            }
+
 
             if (!result.get("code").equals(STATUS_SUCCESS)) {
                 json.put("error", result.get("message"));

@@ -18,15 +18,33 @@
             width: 100%;
             height: auto;
         }
+        #shareBtn{
+            width: 60px;
+            height: 60px;
+            padding: 15px 12px;
+            margin: 5px;
+            font-size: 12px;
+            -moz-border-radius: 50px;
+            -webkit-border-radius: 50px;
+            border-radius: 50px;
+            position: fixed;
+            bottom: 8%;
+            right: 5%;
+            z-index: 888;
+            box-shadow: 2px 2px 2px #888888;
+        }
+        #shareBtn:active{
+            background-color: #069746;
+        }
     </style>
 </head>
 <body class="index-page">
 
-<div class="weui-msg">
+<div>
     <img class="share-img" src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${IMG_PATH}">
     <div class="weui-msg__opr-area">
         <p class="weui-btn-area">
-            <a href="javascript:;" class="weui-btn weui-btn_primary" id="shareBtn" onclick="isfollowqr()">关注公众号</a>
+            <a href="javascript:;" class="weui-btn weui-btn_primary" id="shareBtn" onclick="isfollowqr()">关注<br/>公众号</a>
         </p>
     </div>
 </div>
