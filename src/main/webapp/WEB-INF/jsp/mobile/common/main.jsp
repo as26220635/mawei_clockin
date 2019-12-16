@@ -117,11 +117,11 @@
 
     $(document).on('pjax:click', function (options) {
         isLocate = false;
+        removeMap();
     })
 
     //pjax完成回调后的操作
     $(document).on('ready pjax:end', function (event) {
-        removeMap();
         //pjax
         mainInit.initPjax();
     });
@@ -161,8 +161,7 @@
     }
 
     function removeMap() {
-        $("script[src^='https://api.map.baidu.com/getscript?v=3.0']").remove();
-        $("script[src^='https://api.map.baidu.com/api?v=3.0']").remove();
+        $("script[src^='https://api.map.baidu.com/']").remove();
         $("iframe[src^='https://api.map.baidu.com/res/staticPages/location.html']").remove();
     }
 </script>
