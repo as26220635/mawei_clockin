@@ -7,4 +7,4 @@
 <%--图片展示--%>
 <link rel="stylesheet" href="${BASE_URL}resources/assets/weui/viewerjs/viewer.min.css?ver=${VERSION}"/>
 <%--视频播放--%>
-<link rel="stylesheet" href="${BASE_URL}resources/assets/weui/DPlayer.min.css?ver=${VERSION}"/>
+<%--<link rel="stylesheet" href="${BASE_URL}resources/assets/weui/DPlayer.min.css?ver=${VERSION}"/>--%>

@@ -172,20 +172,17 @@ public class MAchievementController extends BaseController {
                                 clockinOut = new ByteArrayOutputStream();
                                 Thumbnails.of(cachePath).size(maxWidth, maxHeight).toOutputStream(clockinOut);
                                 clockinInputStream = FileUtil.parse(clockinOut);
-
                                 //左侧的偏移量
                                 int x = Math.round(x1 * baseHeight / shareHeight);
                                 //上侧的偏移量
                                 int y = Math.round(y1 * baseWidth / shareWidth);
 
                                 //如果图片高度大于宽度 ，就居中
-                                clockinBufferedImage = ImageIO.read(clockinInputStream);
-                                clockinHeight = clockinBufferedImage.getHeight();
-                                clockinWidth = clockinBufferedImage.getWidth();
-                                if (maxHeight == clockinHeight) {
+                                if (clockinHeight / maxHeight > clockinWidth / maxWidth) {
+                                    float scale = (float) (maxHeight * 1.0 / clockinHeight);
+                                    clockinWidth = (int) (clockinWidth * scale);
                                     x = x + ((maxWidth - clockinWidth) / 2);
                                 }
-                                clockinInputStream = ImageUtil.getImageStream(clockinBufferedImage);
 
                                 baseInputStream = ImageUtil.getImageStream(baseBufferedImage);
                                 //合并图片

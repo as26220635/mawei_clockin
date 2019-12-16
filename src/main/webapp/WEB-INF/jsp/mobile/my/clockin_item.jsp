@@ -40,6 +40,10 @@
         font-size: 14px;
         color: rgba(0,0,0,.5);
     }
+
+    .viewer-title{
+        display: none;
+    }
 </style>
 <div id="weuiCellsItems" class="container container-page">
     <%@ include file="/WEB-INF/jsp/mobile/common/common_top.jspf" %>
@@ -123,7 +127,7 @@
             ajax.del('${BASE_URL}my/clockin/delete/${detail.ID}', {}, function (data) {
                 $.hideLoading();
                 if (data.code == 1) {
-                    $.toast('删除成功', 2000, function () {
+                    $.toast('删除成功', 1000, function () {
                         backHtml();
                     });
                 } else {

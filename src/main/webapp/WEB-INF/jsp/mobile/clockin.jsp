@@ -723,6 +723,7 @@
     });
 </script>
 <script>
+    isLocate = true;
     var locateTimeOut;
     <%--每5秒定位一次--%>
     getPosition();
@@ -740,7 +741,9 @@
                     switchClockinBtn(3);
                 }
             }, {enableHighAccuracy: true})
-            getPosition();
+            if (isLocate){
+                getPosition();
+            }
         }, 10000);
     }
 </script>

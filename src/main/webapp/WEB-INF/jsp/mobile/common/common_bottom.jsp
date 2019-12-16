@@ -19,7 +19,7 @@
 <script src="${BASE_URL}resources/assets/weui/viewerjs/viewer.min.js?ver=${VERSION}"></script>
 <script src="${BASE_URL}resources/assets/weui/viewerjs/jquery-viewer.min.js?ver=${VERSION}"></script>
 <%--视频播放--%>
-<script src="${BASE_URL}resources/assets/weui/DPlayer.min.js?ver=${VERSION}"></script>
+<%--<script src="${BASE_URL}resources/assets/weui/DPlayer.min.js?ver=${VERSION}"></script>--%>
 <%--微信jssdk--%>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 <%--通用组件--%>

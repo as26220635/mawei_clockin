@@ -55,6 +55,10 @@
             margin: auto !important;
         }
     </style>
+    <script>
+        //是否定位
+        var isLocate = false;
+    </script>
 </head>
 <body>
 <div class="page tabbar js_show">
@@ -111,6 +115,10 @@
     // 加载内容到指定容器
     $.pjax({url: this.href, container: '#${CONTAINER}', replace: true});
 
+    $(document).on('pjax:click', function (options) {
+        isLocate = false;
+    })
+
     //pjax完成回调后的操作
     $(document).on('ready pjax:end', function (event) {
         removeMap();
@@ -141,6 +149,7 @@
     function goHome() {
         loadUrl('${BASE_URL}clockin');
     }
+
     //后退
     function backHtml() {
         window.history.back();
