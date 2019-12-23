@@ -4596,9 +4596,9 @@
         <option value="余庚鑫 &lt;851758629@qq.com&gt;" />
       </list>
     </option>
-    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="MIXED" />
+    <option name="UPDATE_TYPE" value="MERGE" />
   </component>
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="e8cc2dc9-6812-4648-8643-1b29961eeea0" />
@@ -5485,10 +5485,10 @@
       <screen x="0" y="0" width="1549" height="831" />
     </state>
     <state x="455" y="142" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1549.831@0.0.1549.831" timestamp="1577092814574" />
-    <state x="379" y="8" key="CommitChangelistDialog2" timestamp="1577093098222">
+    <state x="379" y="8" key="CommitChangelistDialog2" timestamp="1577093139171">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state x="379" y="8" key="CommitChangelistDialog2/0.0.1549.831@0.0.1549.831" timestamp="1577093098222" />
+    <state x="379" y="8" key="CommitChangelistDialog2/0.0.1549.831@0.0.1549.831" timestamp="1577093139171" />
     <state width="525" height="445" key="DebuggerActiveHint" timestamp="1576329538112">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
@@ -5497,10 +5497,10 @@
       <screen x="0" y="0" width="1549" height="831" />
     </state>
     <state x="93" y="93" width="1363" height="645" key="DiffContextDialog/0.0.1549.831@0.0.1549.831" timestamp="1576297197964" />
-    <state x="555" y="172" key="FileChooserDialogImpl" timestamp="1575795811061">
+    <state x="555" y="172" key="FileChooserDialogImpl" timestamp="1577093164216">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state x="555" y="172" key="FileChooserDialogImpl/0.0.1549.831@0.0.1549.831" timestamp="1575795811061" />
+    <state x="555" y="172" key="FileChooserDialogImpl/0.0.1549.831@0.0.1549.831" timestamp="1577093164216" />
     <state x="619" y="348" key="Github.Dialog.Accounts.Choose" timestamp="1576331895729">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
