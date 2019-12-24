@@ -160,7 +160,7 @@
 <script>
     editMenuTitle('前端管理管理');
     //保存
-    $('#save').unbind('click').click(function () {
+    function save(){
         var $form = $('#addAndEditForm');
         //验证
         if (!validator.formValidate($form)) {
@@ -172,7 +172,7 @@
         ajax.put('${BASE_URL}${Url.MOBILE_BOTTOM_MENU_BASE_URL}', params, function (data) {
             ajaxReturn.data(data, null, null, null);
         })
-    });
+    }
 
     $('a[data-typeCode]').on('click', function () {
         var $this = $(this);

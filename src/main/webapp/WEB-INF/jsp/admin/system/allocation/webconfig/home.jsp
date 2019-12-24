@@ -78,7 +78,7 @@
 <script>
     editMenuTitle('网站配置');
     //保存
-    $('#save').unbind('click').click(function () {
+    function save(){
         var $form = $('#addAndEditForm');
         //验证
         if (!validator.formValidate($form)) {
@@ -90,7 +90,7 @@
         ajax.put('${BASE_URL}${Url.WEBCONFIG_BASE_URL}', params, function (data) {
             ajaxReturn.data(data, null, null, null);
         })
-    });
+    }
 
     validator.init({
         //验证表单

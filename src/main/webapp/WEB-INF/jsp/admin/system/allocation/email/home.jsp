@@ -84,7 +84,7 @@
 
 <script>
     //保存邮件配置
-    $('#save').unbind('click').click(function () {
+    function save(){
         var $form = $('#addAndEditForm');
         //验证
         if (!validator.formValidate($form)) {
@@ -96,7 +96,7 @@
         ajax.put('${BASE_URL}${Url.EMAIL_BASE_URL}', params, function (data) {
             ajaxReturn.data(data, null, null, null);
         })
-    });
+    }
 
     //刷新缓存
     $('#cache').on('click', function () {

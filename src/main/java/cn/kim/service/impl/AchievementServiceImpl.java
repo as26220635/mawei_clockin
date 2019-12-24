@@ -385,7 +385,7 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
         //查询所有成就墙
         paramMap.clear();
         paramMap.put("IS_STATUS", STATUS_SUCCESS);
-        List<Map<String, Object>> achievementList = baseDao.selectList(NameSpace.AchievementMapper, "selectAchievement", paramMap);
+        List<Map<String, Object>> achievementList = baseDao.selectList(NameSpace.AchievementFixedMapper, "selectAchievement", paramMap);
 
         List<Tree> achievementTree = Lists.newArrayList();
         if (!isEmpty(achievementList)) {

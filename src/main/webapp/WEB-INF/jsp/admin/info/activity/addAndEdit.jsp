@@ -62,8 +62,7 @@
 </c:if>
 <%@ include file="/WEB-INF/jsp/admin/component/setTitleParams.jsp" %>
 <script>
-    //保存
-    $('#save').unbind('click').click(function () {
+    function save(){
         var $form = $('#addAndEditForm');
         //验证
         if (!validator.formValidate($form)) {
@@ -90,7 +89,7 @@
         </c:otherwise>
         </c:choose>
 
-    });
+    }
 
     validator.init({
         //验证表单
