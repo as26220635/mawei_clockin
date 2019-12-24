@@ -39,7 +39,7 @@
 
             <div class="form-group has-feedback">
                 <input type="text" id="username" name="username" class="form-control" placeholder="账号..." minlength="2"
-                       maxlength="16" required>
+                       maxlength="16" value="${username}" required>
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
