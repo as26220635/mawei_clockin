@@ -8,17 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7327bc50-4349-42c0-91dd-1fd1c7b41fa8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/common/annotation/SystemControllerLog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/common/annotation/SystemControllerLog.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/LogAspect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/LogAspect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/AllocationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/AllocationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/EchartsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/EchartsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/WechatServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/WechatServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/component/ui/tabs.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/component/ui/tabs.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/common_bottom.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/common_bottom.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/common_css.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/common_css.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -73,47 +63,68 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/EchartsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
+            <state relative-caret-position="968">
               <caret line="184" column="36" lean-forward="true" selection-start-line="184" selection-start-column="36" selection-end-line="184" selection-end-column="36" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/component/ui/tabs.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/static/create/js/component.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="1683" column="32" selection-start-line="1683" selection-start-column="32" selection-end-line="1683" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/annotation/SystemControllerLog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5">
-              <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/LogAspect.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/tag.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="250">
-              <caret line="130" column="27" selection-start-line="130" selection-start-column="27" selection-end-line="130" selection-end-column="27" />
+              <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/eu/ProcessType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/activity/addAndEdit.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="35" column="94" selection-start-line="35" selection-start-column="94" selection-end-line="35" selection-end-column="94" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/attr/TableName.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/common_top.jspf">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1420" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_list.jsp">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/LogAspect.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="352">
+              <caret line="215" column="78" lean-forward="true" selection-start-line="215" selection-start-column="78" selection-end-line="215" selection-end-column="78" />
             </state>
           </provider>
         </entry>
@@ -121,39 +132,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/LogUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="25">
+            <state relative-caret-position="210">
               <caret line="63" column="23" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="23" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/BaseData.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/attr/MagicValue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="343" column="24" selection-start-line="343" selection-start-column="24" selection-end-line="343" selection-end-column="24" />
-              <folding>
-                <element signature="e#9155#9156#0" expanded="true" />
-                <element signature="e#9197#9198#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/TextUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="278" column="28" selection-start-line="278" selection-start-column="28" selection-end-line="278" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/BaseDataController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="100" column="33" selection-start-line="100" selection-start-column="33" selection-end-line="100" selection-end-column="33" />
+            <state relative-caret-position="280">
+              <caret line="78" column="31" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -172,7 +161,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>upload</find>
       <find>CacheUtil.clear</find>
       <find>border</find>
       <find>favicon.ico</find>
@@ -201,6 +189,8 @@
       <find>echarts</find>
       <find>bar</find>
       <find>echarts/bar</find>
+      <find>SessionUtil</find>
+      <find>isRepeatVisit</find>
     </findStrings>
     <replaceStrings>
       <replace>${LOG_HOME}</replace>
@@ -280,8 +270,9 @@
         <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/annotation/SystemControllerLog.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/component/ui/tabs.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/LogAspect.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/EchartsController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/tag.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/LogAspect.java" />
       </list>
     </option>
   </component>
@@ -344,301 +335,34 @@
               <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
               <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
               <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="aspect" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="weui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="weui" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="jquery-form" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="plugins" type="462c0819:PsiDirectoryNode" />
-              <item name="jquery-form" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="component" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="component" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="info" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="admin" type="462c0819:PsiDirectoryNode" />
-              <item name="system" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="achievement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="activity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="clockin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -991,7 +715,7 @@
       <workItem from="1577116441100" duration="64000" />
       <workItem from="1577150336138" duration="50000" />
       <workItem from="1577180991142" duration="4000000" />
-      <workItem from="1577233701825" duration="7286000" />
+      <workItem from="1577233701825" duration="7929000" />
     </task>
     <task id="LOCAL-00001" summary="打卡功能">
       <created>1575172911042</created>
@@ -1301,11 +1025,25 @@
       <option name="project" value="LOCAL" />
       <updated>1577197557397</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="修改">
+      <created>1577257579129</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1577257579129</updated>
+    </task>
+    <task id="LOCAL-00046" summary="修改">
+      <created>1577257727226</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1577257727226</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11286000" />
+    <option name="totallyTimeSpent" value="11929000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1563" height="845" extended-state="6" />
@@ -1333,7 +1071,7 @@
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.329927" />
       <window_info anchor="bottom" id="Debug" order="15" weight="0.7051095" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1369,7 +1107,7 @@
       <window_info anchor="bottom" id="Messages" order="11" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.329927" />
       <window_info anchor="bottom" id="Debug" order="15" visible="true" weight="0.7051095" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1600,7 +1338,6 @@
     <MESSAGE value="添加统计" />
     <MESSAGE value="修改" />
     <option name="LAST_COMMIT_MESSAGE" value="修改" />
-    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="230" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576323325709">
@@ -1740,6 +1477,18 @@
     </state>
     <state x="437" y="152" width="672" height="676" key="search.everywhere.popup/0.0.1549.831@0.0.1549.831" timestamp="1576322071329" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/LogAspect.java</url>
+          <line>106</line>
+          <properties />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
@@ -1749,43 +1498,6 @@
     <SUITE FILE_PATH="coverage/mawei_clockin$Tomcat_8_5_37.ic" NAME="Tomcat 8.5.37 Coverage Results" MODIFIED="1574783793926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/OperatorMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/shiro/CustomRealm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="72" column="59" lean-forward="true" selection-start-line="72" selection-start-column="59" selection-end-line="72" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/ManagerService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/ManagerServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="41" column="77" selection-start-line="41" selection-start-column="59" selection-end-line="41" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ManagerMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="1" selection-start-line="1" selection-end-line="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/RoleMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ValidateMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ValueRecordMapper.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -2063,24 +1775,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_list.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/common_top.jspf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1420" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/eu/ProcessType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/attr/TableName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/activity/addAndEdit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="35" column="94" selection-start-line="35" selection-start-column="94" selection-end-line="35" selection-end-column="94" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/tag.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/EchartsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="968">
+          <caret line="184" column="36" lean-forward="true" selection-start-line="184" selection-start-column="36" selection-end-line="184" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/attr/MagicValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="78" column="31" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/LogUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
+        <state relative-caret-position="210">
           <caret line="63" column="23" selection-start-line="63" selection-start-column="23" selection-end-line="63" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/LogAspect.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="130" column="27" selection-start-line="130" selection-start-column="27" selection-end-line="130" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/EchartsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="184" column="36" lean-forward="true" selection-start-line="184" selection-start-column="36" selection-end-line="184" selection-end-column="36" />
+        <state relative-caret-position="352">
+          <caret line="215" column="78" lean-forward="true" selection-start-line="215" selection-start-column="78" selection-end-line="215" selection-end-column="78" />
         </state>
       </provider>
     </entry>

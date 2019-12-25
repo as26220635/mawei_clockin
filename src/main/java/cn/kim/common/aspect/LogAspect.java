@@ -201,9 +201,9 @@ public class LogAspect extends BaseData {
         }
         String key = "USER_ID:" + userId;
         //判断缓存中是否存在
-        Object val = SessionUtil.get(key);
+        String val = toString(SessionUtil.get(key));
         String str = isEmpty(val) ? null : toString(val);
-        if (isEmpty(str)) {
+        if (isEmpty(val) || !val.startsWith(event + Attribute.COMPLEX_SPLIT)) {
             SessionUtil.set(key, event + Attribute.COMPLEX_SPLIT + System.currentTimeMillis());
             return false;
         }
@@ -217,7 +217,7 @@ public class LogAspect extends BaseData {
             return true;
         }
 
-        SessionUtil.remove(userId);
+        SessionUtil.remove(key);
         return false;
     }
 
