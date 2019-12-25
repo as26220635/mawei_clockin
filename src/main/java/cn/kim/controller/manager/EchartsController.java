@@ -1,7 +1,9 @@
 package cn.kim.controller.manager;
 
 import cn.kim.common.annotation.NotEmptyLogin;
+import cn.kim.common.annotation.SystemControllerLog;
 import cn.kim.common.attr.TableViewName;
+import cn.kim.common.eu.UseType;
 import cn.kim.exception.CustomException;
 import cn.kim.service.AchievementService;
 import cn.kim.service.WechatService;
@@ -53,6 +55,7 @@ public class EchartsController extends BaseController {
      * @throws Exception
      */
     @GetMapping("/bar")
+    @SystemControllerLog(useType = UseType.SEE, isEcharts = true, event = "查看柱形图")
     @NotEmptyLogin
     public String bar(@RequestParam Map<String, Object> mapParam, Model model) throws Exception {
         String v = toString(mapParam.get("v"));
@@ -122,6 +125,7 @@ public class EchartsController extends BaseController {
      * @throws Exception
      */
     @GetMapping("/pie")
+    @SystemControllerLog(useType = UseType.SEE, isEcharts = true, event = "查看饼图")
     @NotEmptyLogin
     public String pie(@RequestParam Map<String, Object> mapParam, Model model) throws Exception {
         String v = toString(mapParam.get("v"));

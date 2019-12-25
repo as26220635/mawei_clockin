@@ -114,6 +114,9 @@
             <if test="whereClause != null and whereClause != ''">
                 ${whereClause}
             </if>
+            <if test="ID != null and ID != ''">
+                AND ID = #{ID}
+            </if>
         </where>
         <if test="limit != null">
             <if test="offset != null">
@@ -127,41 +130,6 @@
 
     <select id="selectWechatRankCount" parameterType="java.util.Map" resultType="java.lang.Integer">
         SELECT COUNT(1) FROM BUS_WECHAT
-    </select>
-
-    <!--查询自己的排名 -->
-    <select id="selectWechatRankByWechatId" parameterType="java.util.Map" resultType="java.util.Map">
-        SELECT BW.*
-        FROM(
-            SELECT CAST(@RANK := @RANK +1 AS SIGNED) AS WECHAT_RANK,BW.*
-            FROM
-            (SELECT @RANK := 0) r,
-            (SELECT
-                BW.ID,BW.BW_USERNAME,BW.BW_AVATAR,
-                IFNULL(BWD.CLOCKIN_COUNT,0) CLOCKIN_COUNT,
-                IFNULL(BWP.BWP_NUMBER,0) BWP_NUMBER
-            FROM BUS_WECHAT BW
-            LEFT JOIN (SELECT BAD.BW_ID,COUNT(1) CLOCKIN_COUNT FROM BUS_ACHIEVEMENT_DETAIL BAD  INNER JOIN BUS_ACHIEVEMENT BA ON BA.ID = BAD.BA_ID AND BA.IS_STATUS = 1 WHERE BAD.ID =(SELECT MAX(EAD.ID) FROM BUS_ACHIEVEMENT_DETAIL EAD WHERE EAD.BA_ID = BAD.BA_ID AND EAD.BW_ID = BAD.BW_ID GROUP BY EAD.BA_ID,EAD.BW_ID) GROUP BY BAD.BW_ID
-            )BWD ON BWD.BW_ID = BW.ID
-            LEFT JOIN BUS_ACHIEVEMENT_DETAIL EAD ON EAD.BW_ID = BW.ID AND EAD.ID = (SELECT MIN(EAD.ID) FROM BUS_ACHIEVEMENT_DETAIL EAD WHERE EAD.BW_ID = BW.ID GROUP BY EAD.BW_ID)
-            LEFT JOIN BUS_WECHAT_PRAISE BWP ON BWP.BW_ID = BW.ID
-            ORDER BY BWD.CLOCKIN_COUNT DESC,IFNULL(BWP.BWP_NUMBER,0) DESC,EAD.BAD_ENTERTIME ASC,BW.BW_ENTRYTIME ASC)BW
-        )BW
-         LEFT JOIN(
-                SELECT ID,GROUP_CONCAT(IMG_PATHS ORDER BY BA_ENTRYTIME ASC) IMG_PATHS
-                FROM(
-                    SELECT BW.ID,BA.BA_ENTRYTIME,CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATHS
-                    FROM bus_wechat BW
-                    INNER JOIN bus_achievement BA ON BA.IS_STATUS = 1
-                    LEFT JOIN (SELECT BW.ID,BAD.BA_ID FROM bus_wechat BW
-                    INNER JOIN bus_achievement_detail BAD ON BAD.BW_ID = BW.ID
-                    GROUP BY BW.ID,BAD.BA_ID)BAD ON BA.ID = BAD.BA_ID AND BW.ID = BAD.ID
-                    LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID AND SF.SF_SDI_CODE = (CASE WHEN BAD.BA_ID IS NOT NULL THEN 2 ELSE 1 END)
-                    ORDER BY BA.BA_ENTRYTIME ASC
-                )IMG
-                GROUP BY ID
-        )IMG ON IMG.ID = BW.ID
-        WHERE BW.ID = #{ID}
     </select>
 
     <!--查询点亮图标 -->

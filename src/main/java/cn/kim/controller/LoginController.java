@@ -223,7 +223,7 @@ public class LoginController extends BaseController {
 
         //放入seesion
         SessionUtil.set(MagicValue.SESSION_WECHAT_USER, user);
-        SessionUtil.set(Constants.SESSION_USERNAME, activeUser);
+        AuthcUtil.setCurrentUser(activeUser);
         //跳转前台
         WebUtils.issueRedirect(request, response, "/clockin", null, true);
     }

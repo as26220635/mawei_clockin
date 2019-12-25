@@ -136,7 +136,7 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
         Map<String, Object> resultMap = Maps.newHashMapWithExpectedSize(2);
 
         resultMap.put("ID", BW_ID);
-        Map<String, Object> myRank = baseDao.selectOne(NameSpace.WechatMapper, "selectWechatRankByWechatId", resultMap);
+        Map<String, Object> myRank = baseDao.selectOne(NameSpace.WechatMapper, "selectWechatRank", resultMap);
 
         //设置点亮图标
         setWechatRankAchievement(myRank);

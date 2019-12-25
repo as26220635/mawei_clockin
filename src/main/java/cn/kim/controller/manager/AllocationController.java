@@ -34,7 +34,7 @@ public class AllocationController extends BaseController {
 
     @GetMapping("/email")
     @RequiresPermissions("SYSTEM:ALLOCATION_EMAIL")
-    @SystemControllerLog(useType = UseType.USE, event = "查看邮箱配置", isSuccess = true)
+    @SystemControllerLog(useType = UseType.SEE, event = "查看邮箱配置", isSuccess = true)
     @Token(save = true)
     public String emailHome(Model model) throws Exception {
         //邮箱登录名
@@ -102,7 +102,7 @@ public class AllocationController extends BaseController {
 
     @GetMapping("/webConfig")
     @RequiresPermissions("SYSTEM:ALLOCATION_WEBCONFIG")
-    @SystemControllerLog(useType = UseType.USE, event = "查看网站配置", isSuccess = true)
+    @SystemControllerLog(useType = UseType.SEE, event = "查看网站配置", isSuccess = true)
     @Token(save = true)
     public String webConfig(Model model) throws Exception {
         //网站头标题
@@ -150,7 +150,7 @@ public class AllocationController extends BaseController {
 
     @GetMapping("/mobileBottomMenu")
     @RequiresPermissions("SYSTEM:ALLOCATION_MOBILE_BOTTOM_MENU")
-    @SystemControllerLog(useType = UseType.USE, event = "查看前端管理", isSuccess = true)
+    @SystemControllerLog(useType = UseType.SEE, event = "查看前端管理", isSuccess = true)
     @Token(save = true)
     public String mobileBottomMenu(Model model) throws Exception {
         model.addAttribute("WECHAT_BASE_URL", AllocationUtil.get("WECHAT_BASE_URL"));

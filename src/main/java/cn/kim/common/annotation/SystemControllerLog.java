@@ -27,6 +27,13 @@ public @interface SystemControllerLog {
     boolean isDataGrid() default false;
 
     /**
+     * 是否是查看图表
+     *
+     * @return
+     */
+    boolean isEcharts() default false;
+
+    /**
      * 是否成功
      *
      * @return

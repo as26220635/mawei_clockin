@@ -3,9 +3,6 @@ package cn.kim.common.aspect;
 import cn.kim.common.BaseData;
 import cn.kim.common.annotation.SystemControllerLog;
 import cn.kim.common.attr.Attribute;
-import cn.kim.common.attr.CacheName;
-import cn.kim.common.attr.Tips;
-import cn.kim.common.eu.UseType;
 import cn.kim.entity.ActiveUser;
 import cn.kim.entity.AnnotationParam;
 import cn.kim.entity.ResultState;
@@ -13,9 +10,6 @@ import cn.kim.service.MenuService;
 import cn.kim.util.*;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.log4j.Log4j2;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.shiro.cache.Cache;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -82,6 +76,8 @@ public class LogAspect extends BaseData {
         boolean isSuccess = systemControllerLog.isSuccess();
         //是否是配置列表
         boolean isDataGrid = systemControllerLog.isDataGrid();
+        //是否是图表
+        boolean isEcharts = systemControllerLog.isEcharts();
         //是否是导出
         boolean isExport = systemControllerLog.isExport();
 
@@ -104,14 +100,33 @@ public class LogAspect extends BaseData {
                 String menuId = toString(idDecrypt(params.get(0).getValue()));
                 //查询菜单
                 Map<String, Object> menu = menuService.queryMenuById(menuId);
-                message = "查看" + toString(menu.get("SM_NAME"));
+                message = "查看:" + toString(menu.get("SM_NAME"));
 
                 //判断是否2分钟内重复记录日志,重复的话直接返回
                 if (isRepeatVisit(activeUser.getId(), message)) {
                     return object;
                 }
             }
-        } else if (isExport) {
+        } else if (isEcharts) {
+            code = Attribute.STATUS_SUCCESS;
+            //记录查看的列表
+            Object[] objs = pjp.getArgs();
+            MethodSignature signature = (MethodSignature) pjp.getSignature();
+            Method method = signature.getMethod();
+
+            //得到标注@PathVariable注解的参数
+            List<AnnotationParam> params = AnnotationUtil.getAnnotationParams(RequestParam.class, method, objs);
+            if (!isEmpty(params)) {
+                Map<String, Object> map = (Map<String, Object>) toMap(params.get(0).getValue());
+                //查询菜单
+                message = "查看:" + toString(map.get("SFD_NAME")) + ",视图:" + toString(map.get("v")) + ",动作:" + toString(map.get("action"));
+
+                //判断是否2分钟内重复记录日志,重复的话直接返回
+                if (isRepeatVisit(activeUser.getId(), message)) {
+                    return object;
+                }
+            }
+        }else if (isExport) {
             code = Attribute.STATUS_SUCCESS;
             //导出excel
             Object[] objs = pjp.getArgs();

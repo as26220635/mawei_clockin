@@ -25,7 +25,7 @@
                             <c:forEach items="${SFD_LIST}" var="SFD" varStatus="status">
                                 <li class="<c:if test="${status.index == 0}">active</c:if>">
                                     <a id="${SFD.ID}" href="#${SFD.ID}CONTENT" data-toggle="tab"
-                                       onclick="switchTab('${BASE_URL}${SFD.SM_URL}')">${SFD.SFD_NAME}</a>
+                                       onclick="switchTab('${BASE_URL}${SFD.SM_URL}','${SFD.SFD_NAME}')">${SFD.SFD_NAME}</a>
                                 </li>
                             </c:forEach>
                         </ul>
@@ -52,7 +52,7 @@
         </c:when>
         <c:otherwise>
         setMenuActive('admin-dataGrid-${MENU.SM_PARENTID}');
-        editMenuTitle('${EXTRA.TITLE}-' +  getMenuTitle());
+        editMenuTitle('${EXTRA.TITLE}-' + getMenuTitle());
         </c:otherwise>
         </c:choose>
     }, 50);
@@ -63,9 +63,9 @@
     </c:if>
     <%--切换标签--%>
 
-    function switchTab(url) {
+    function switchTab(url, SFD_NAME) {
         showLoadingContentDiv();
-        ajax.getHtml(url, {'X-PJAX': true}, function (html) {
+        ajax.getHtml(url, {'X-PJAX': true, SFD_NAME: SFD_NAME}, function (html) {
             $('#tabContent').html(html);
             removeLoadingDiv();
         });
