@@ -77,6 +77,7 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
                 }
             }
 
+            achievementEnd.put("ID", "BUS_ACHIEVEMENT_END");
             achievementEnd.put("BA_NAME", "最终成就");
             achievementEnd.put("BAD_COUNT", isComplete);
             list.add(achievementEnd);
