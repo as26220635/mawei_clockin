@@ -140,28 +140,38 @@ public class MobileConfig {
 
         paramMap.put("SF_TABLE_ID", "1");
         Map<String, Object> icon = baseDao.selectOne(NameSpace.FileMapper, "selectFile", paramMap);
-        FileUtil.filePathTobase64(icon, "FILE_PATH");
-        config.put("MOBILE_BOTTOM_MENU_CLOCKIN_ICON", icon.get("FILE_PATH"));
+        if (!ValidateUtil.isEmpty(icon)) {
+            FileUtil.filePathTobase64(icon, "FILE_PATH");
+            config.put("MOBILE_BOTTOM_MENU_CLOCKIN_ICON", icon.get("FILE_PATH"));
+        }
 
         paramMap.put("SF_TABLE_ID", "2");
         icon = baseDao.selectOne(NameSpace.FileMapper, "selectFile", paramMap);
-        FileUtil.filePathTobase64(icon, "FILE_PATH");
-        config.put("MOBILE_BOTTOM_MENU_ACTIVITY_ICON", icon.get("FILE_PATH"));
+        if (!ValidateUtil.isEmpty(icon)) {
+            FileUtil.filePathTobase64(icon, "FILE_PATH");
+            config.put("MOBILE_BOTTOM_MENU_ACTIVITY_ICON", icon.get("FILE_PATH"));
+        }
 
         paramMap.put("SF_TABLE_ID", "3");
         icon = baseDao.selectOne(NameSpace.FileMapper, "selectFile", paramMap);
-        FileUtil.filePathTobase64(icon, "FILE_PATH");
-        config.put("MOBILE_BOTTOM_MENU_RANK_ICON", icon.get("FILE_PATH"));
+        if (!ValidateUtil.isEmpty(icon)) {
+            FileUtil.filePathTobase64(icon, "FILE_PATH");
+            config.put("MOBILE_BOTTOM_MENU_RANK_ICON", icon.get("FILE_PATH"));
+        }
 
         paramMap.put("SF_TABLE_ID", "4");
         icon = baseDao.selectOne(NameSpace.FileMapper, "selectFile", paramMap);
-        FileUtil.filePathTobase64(icon, "FILE_PATH");
-        config.put("MOBILE_BOTTOM_MENU_ACHIEVEMENT_ICON", icon.get("FILE_PATH"));
+        if (!ValidateUtil.isEmpty(icon)) {
+            FileUtil.filePathTobase64(icon, "FILE_PATH");
+            config.put("MOBILE_BOTTOM_MENU_ACHIEVEMENT_ICON", icon.get("FILE_PATH"));
+        }
 
         paramMap.put("SF_TABLE_ID", "5");
         icon = baseDao.selectOne(NameSpace.FileMapper, "selectFile", paramMap);
-        FileUtil.filePathTobase64(icon, "FILE_PATH");
-        config.put("MOBILE_BOTTOM_MENU_MY_ICON", icon.get("FILE_PATH"));
+        if (!ValidateUtil.isEmpty(icon)) {
+            FileUtil.filePathTobase64(icon, "FILE_PATH");
+            config.put("MOBILE_BOTTOM_MENU_MY_ICON", icon.get("FILE_PATH"));
+        }
 
         config.put("MOBILE_CLOCKIN_UPLOAD_IMG", MOBILE_CLOCKIN_UPLOAD_IMG);
         config.put("MOBILE_CLOCKIN_UPLOAD_VIDEO", MOBILE_CLOCKIN_UPLOAD_VIDEO);

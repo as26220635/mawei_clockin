@@ -57,8 +57,6 @@
         z-index: 105;
     }
 
-    .clockin-check-area #clockin {
-    }
 
     .clockin-check-area {
         width: 100%;
@@ -67,6 +65,13 @@
         margin: auto 0;
         z-index: 102;
         text-align: center;
+    }
+
+    .clockin-check-area #clockin {
+        width: 283px;
+        height: auto;
+        margin-top: -53px;
+        margin-left: 16px;
     }
 
     #clockinAddressArea {
@@ -269,7 +274,8 @@
     <div id="map"></div>
     <div class="clockin-check-area-block">
         <div class="clockin-check-area">
-            <a id="clockin" href="javascript:;" class="weui-btn weui-btn_primary weui-btn_loading">不在打卡范围内</a>
+            <%--            <a id="clockin" href="javascript:;" class="weui-btn weui-btn_primary weui-btn_loading">不在打卡范围内</a>--%>
+            <img id="clockin" src="${BASE_URL}resources/assets/images/main/not_range.png">
         </div>
         <div id="clockinAddressArea" class="clockin-check-area">
             <div id="clockinAddress" class="weui-btn weui-btn_disabled weui-btn_default"></div>
@@ -472,7 +478,7 @@
     //打卡点坐标
     var geolocaltionPoint = {
         <c:forEach items="${achievementList}" var="achievement">
-        '${achievement.ID}': [${achievement.BA_LONGITUDE}, ${achievement.BA_LATITUDE}, ${achievement.BA_RANGE}, ${achievement.BAD_COUNT}],
+        '${achievement.ID}': [${achievement.BA_LONGITUDE}, ${achievement.BA_LATITUDE}, ${achievement.BA_RANGE}, ${achievement.BAD_COUNT}, '${achievement.IMG_PATH_BTN}'],
         </c:forEach>
     };
     //打卡点圆
@@ -690,18 +696,20 @@
     }
 
     function switchClockinBtn(val) {
-        if (val == 1) {
+        var src = $('#clockin').attr('src');
+        var changeSrc = src;
+        if (val == 1 || val == 4) {
+            var clockinGeolocaltionPoint = $('#clockinGeolocaltionPoint').val();
+            var point = geolocaltionPoint[clockinGeolocaltionPoint];
+
             $('#clockin').removeClass('weui-btn_loading').removeClass('disabled');
-            $('#clockin').text('打卡');
-        } else if (val == 3) {
-            $('#clockin').addClass('weui-btn_loading').addClass('disabled');
-            $('#clockin').text('定位失败');
-        } else if (val == 4) {
-            $('#clockin').addClass('weui-btn_loading').addClass('disabled');
-            $('#clockin').text('当前成就打卡完成');
+            changeSrc = '${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}' + point[4];
         } else {
             $('#clockin').addClass('weui-btn_loading').addClass('disabled');
-            $('#clockin').text('不在打卡范围内');
+            changeSrc = '${BASE_URL}resources/assets/images/main/not_range.png';
+        }
+        if (changeSrc != src) {
+            $('#clockin').attr('src', changeSrc);
         }
     }
 
@@ -709,7 +717,7 @@
 </script>
 <script>
     <%--打卡--%>
-    $('#clockin').click(function () {
+    $('#clockin').unbind('click').on('click', function () {
         var clockinGeolocaltionPoint = $('#clockinGeolocaltionPoint').val();
         var point = geolocaltionPoint[clockinGeolocaltionPoint];
         if (clockinGeolocaltionPoint != undefined && clockinGeolocaltionPoint != '') {
@@ -741,7 +749,7 @@
                     switchClockinBtn(3);
                 }
             }, {enableHighAccuracy: true})
-            if (isLocate){
+            if (isLocate) {
                 getPosition();
             }
         }, 10000);

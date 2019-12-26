@@ -7,26 +7,49 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7327bc50-4349-42c0-91dd-1fd1c7b41fa8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/kim/common/mybatis/DummyReadWriteLock.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/cn/kim/common/mybatis/RedisCache.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/not_range.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/not_range2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/util/CacheUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/util/CacheUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementFixedMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementFixedMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ActivityMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ActivityMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AllocationMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AllocationMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AuthorizationMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AuthorizationMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ButtonMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ButtonMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ConfigureMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ConfigureMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/DbMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/DbMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/DictMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/DictMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/FormatMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/FormatMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/MainImageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/MainImageMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/MenuMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/MenuMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ProcessFixedMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ProcessFixedMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ValidateMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ValidateMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/redis/spring-redisson.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/redis/spring-redisson.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/common/attr/MobileConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/common/attr/MobileConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/common/mybatis/RedisCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/common/mybatis/RedisCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/czbwg-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/czbwg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/czgzy-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/czgzy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/hghgy-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/hghgy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/jtlsy-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/jtlsy.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/lxt-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/lxt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/magz-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/magz.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/mczx-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/mczx.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/ndgmjyjd-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/achievement/ndgmjyjd.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/achievement-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/achievement.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/activity-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/activity.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/clockin-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/clockin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/map-min.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/map.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/map_1-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/map_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/map_2-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/map_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/map_3-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/map_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/my-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/my.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/rank-min.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/rank.png" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -80,7 +103,71 @@
     <favorites_list name="mawei_clockin" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="625" column="23" lean-forward="true" selection-start-line="625" selection-start-column="23" selection-end-line="625" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="625">
+              <caret line="43" column="122" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="122" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MIndexController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="120" column="71" selection-start-line="120" selection-start-column="60" selection-end-line="120" selection-end-column="82" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="218">
+              <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="129">
+              <caret line="57" column="38" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="12" column="119" selection-start-line="12" selection-start-column="119" selection-end-line="12" selection-end-column="119" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/remote/impl/PraiseRemoteServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="50">
+              <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -94,11 +181,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>nonceStr</find>
-      <find>DefaultRolloverStrategy</find>
-      <find>LOG_HOME</find>
-      <find>log4j</find>
-      <find>resetPwd</find>
       <find>NameSpace.AchievementMapper, &quot;selectAchievement&quot;,</find>
       <find>$('#save').unbind('click').click</find>
       <find>$('#save').click</find>
@@ -124,6 +206,11 @@
       <find>org.mybatis.caches.redis</find>
       <find>put</find>
       <find>wrapper</find>
+      <find>clockin-check-area</find>
+      <find>lockin-check-area</find>
+      <find>selectMAchievement</find>
+      <find>clockin</find>
+      <find>resources/assets/images/main/not_range.png</find>
     </findStrings>
     <replaceStrings>
       <replace>${LOG_HOME}</replace>
@@ -190,7 +277,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/activity/addAndEdit.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/system/allocation/webconfig/home.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/system/allocation/email/home.jsp" />
@@ -220,8 +306,13 @@
         <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementFixedMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/log4j2.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/CacheUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/mybatis/RedisCache.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/mybatis/RedisCache.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/attr/MobileConfig.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp" />
       </list>
     </option>
   </component>
@@ -343,6 +434,25 @@
               <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="kim" type="462c0819:PsiDirectoryNode" />
+              <item name="remote" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="kim" type="462c0819:PsiDirectoryNode" />
+              <item name="remote" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -412,6 +522,15 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -432,6 +551,38 @@
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="jsp" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="my" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -454,7 +605,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="editorconfig.notification" value="true;" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/static" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -470,12 +621,12 @@
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\static\plugins\jquery-image-maps" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile\clockin" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\assets\weui" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\assets\images\main" />
+      <recent name="G:\xm\mawei_clockin\src\main\static" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile\achievement" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\admin\info\achievement" />
+      <recent name="G:\xm\mawei_clockin\src\main\resources\cn\kim\mapper" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cn.kim.controller.manager" />
@@ -484,12 +635,12 @@
       <recent name="cn.kim.service" />
       <recent name="cn.kim.remote.impl" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\xm\mawei_clockin\src\main\static" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile\achievement" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\admin\info\achievement" />
-      <recent name="G:\xm\mawei_clockin\src\main\resources\cn\kim\mapper" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\static\plugins\echarts" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\static\plugins\jquery-image-maps" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile\clockin" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\assets\weui" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -786,7 +937,7 @@
       <workItem from="1577180991142" duration="4000000" />
       <workItem from="1577233701825" duration="9210000" />
       <workItem from="1577338620527" duration="6408000" />
-      <workItem from="1577370025135" duration="845000" />
+      <workItem from="1577370025135" duration="4334000" />
     </task>
     <task id="LOCAL-00001" summary="打卡功能">
       <created>1575172911042</created>
@@ -1117,14 +1268,22 @@
       <option name="project" value="LOCAL" />
       <updated>1577258191088</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="修改redis缓存">
+      <created>1577370992301</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1577370992301</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20463000" />
+    <option name="totallyTimeSpent" value="23952000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1563" height="845" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29036546" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1145,11 +1304,11 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.329927" />
-      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.329927" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
       <window_info anchor="bottom" id="Version Control" order="14" weight="0.329927" />
-      <window_info anchor="bottom" id="Debug" order="15" weight="0.6832117" />
+      <window_info anchor="bottom" id="Debug" order="15" weight="0.57226276" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24983388" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1162,7 +1321,7 @@
       <window_info anchor="right" id="Theme Preview" order="9" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.28637874" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.29036546" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1181,11 +1340,11 @@
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" weight="0.329927" />
-      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.329927" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
       <window_info anchor="bottom" id="Version Control" order="14" weight="0.329927" />
-      <window_info anchor="bottom" id="Debug" order="15" visible="true" weight="0.6832117" />
+      <window_info anchor="bottom" id="Debug" order="15" visible="true" weight="0.57226276" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24983388" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1414,7 +1573,8 @@
     <MESSAGE value="log4j2" />
     <MESSAGE value="添加统计" />
     <MESSAGE value="修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改" />
+    <MESSAGE value="修改redis缓存" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改redis缓存" />
   </component>
   <component name="WindowStateProjectService">
     <state x="230" y="72" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576323325709">
@@ -1554,18 +1714,6 @@
     </state>
     <state x="437" y="152" width="672" height="676" key="search.everywhere.popup/0.0.1549.831@0.0.1549.831" timestamp="1576322071329" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/LogAspect.java</url>
-          <line>106</line>
-          <properties />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
@@ -1575,111 +1723,6 @@
     <SUITE FILE_PATH="coverage/mawei_clockin$Tomcat_8_5_37.ic" NAME="Tomcat 8.5.37 Coverage Results" MODIFIED="1574783793926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/WechatServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="274">
-          <caret line="137" column="35" selection-start-line="137" selection-start-column="35" selection-end-line="137" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1453">
-          <caret line="134" selection-start-line="134" selection-end-line="134" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/DictController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="43" column="63" lean-forward="true" selection-start-line="43" selection-start-column="3" selection-end-line="43" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/BaseDataController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="100" column="33" selection-start-line="100" selection-start-column="33" selection-end-line="100" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/BaseData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="343" column="24" selection-start-line="343" selection-start-column="24" selection-end-line="343" selection-end-column="24" />
-          <folding>
-            <element signature="e#9155#9156#0" expanded="true" />
-            <element signature="e#9197#9198#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/static/create/js/component.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="1683" column="32" selection-start-line="1683" selection-start-column="32" selection-end-line="1683" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/TextUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="278" column="28" selection-start-line="278" selection-start-column="28" selection-end-line="278" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/annotation/SystemControllerLog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5">
-          <caret line="16" column="7" lean-forward="true" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/component/ui/tabs.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="65" column="28" selection-start-line="65" selection-start-column="28" selection-end-line="65" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/EchartsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4150">
-          <caret line="184" column="36" selection-start-line="184" selection-start-column="36" selection-end-line="184" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/tag.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/eu/ProcessType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/activity/addAndEdit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="875">
-          <caret line="35" column="94" selection-start-line="35" selection-start-column="94" selection-end-line="35" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/attr/TableName.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/common_top.jspf">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_list.jsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1694,13 +1737,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1950">
           <caret line="78" column="31" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/LogAspect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="47" column="20" lean-forward="true" selection-start-line="47" selection-start-column="20" selection-end-line="47" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -1739,24 +1775,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/dao/impl/BaseDaoImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
-          <caret line="46" column="37" selection-start-line="46" selection-start-column="37" selection-end-line="46" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/DictServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="49">
           <caret line="42" column="52" selection-start-line="42" selection-start-column="52" selection-end-line="42" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/WebAppConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1852,13 +1874,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.5.3/mybatis-3.5.3.jar!/org/apache/ibatis/cache/decorators/LoggingCache.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="45" selection-start-line="45" selection-end-line="45" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.5.3/mybatis-3.5.3.jar!/org/apache/ibatis/cache/decorators/TransactionalCache.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
@@ -1884,13 +1899,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1775">
           <caret line="71" column="30" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/CacheUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1000">
-          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1923,10 +1931,59 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/activity-min.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/redisson/redisson/3.11.6/redisson-3.11.6-sources.jar!/org/redisson/spring/cache/NullValue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/MyServletContextListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/WebAppConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="33" column="13" selection-start-line="33" selection-start-column="13" selection-end-line="33" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/ConfigLoad.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AllocationServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/dao/impl/BaseDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="36" column="40" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/mybatis/mybatis/3.5.3/mybatis-3.5.3.jar!/org/apache/ibatis/cache/decorators/LoggingCache.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/mybatis/RedisCache.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        <state relative-caret-position="154">
+          <caret line="37" column="78" selection-start-line="37" selection-start-column="78" selection-end-line="37" selection-end-column="78" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#680#681#0" expanded="true" />
@@ -1934,6 +1991,100 @@
             <element signature="e#1040#1041#0" expanded="true" />
             <element signature="e#1092#1093#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/DataInitialization.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="59" column="25" selection-start-line="59" selection-start-column="25" selection-end-line="59" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/attr/MobileConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4">
+          <caret line="153" selection-start-line="153" selection-end-line="153" />
+          <folding>
+            <element signature="e#6853#6854#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/CacheUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="27" column="9" lean-forward="true" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/LogAspect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="106" column="29" selection-start-line="106" selection-start-column="29" selection-end-line="106" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="27" column="30" selection-start-line="27" selection-start-column="30" selection-end-line="27" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="43" column="122" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="122" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MIndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="120" column="71" selection-start-line="120" selection-start-column="60" selection-end-line="120" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="57" column="38" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/remote/impl/LogRemoteServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/remote/impl/PraiseRemoteServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="21" column="23" lean-forward="true" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="12" column="119" selection-start-line="12" selection-start-column="119" selection-end-line="12" selection-end-column="119" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="625" column="23" lean-forward="true" selection-start-line="625" selection-start-column="23" selection-end-line="625" selection-end-column="23" />
         </state>
       </provider>
     </entry>

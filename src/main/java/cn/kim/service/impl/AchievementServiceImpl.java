@@ -52,7 +52,12 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
 
     @Override
     public List<Map<String, Object>> selectMAchievementList(String BW_ID) {
-        return baseDao.selectList(NameSpace.AchievementMapper, "selectMAchievement", BW_ID);
+        List<Map<String, Object>> list = baseDao.selectList(NameSpace.AchievementMapper, "selectMAchievement", BW_ID);
+
+        //文件路径加密
+        FileUtil.filePathTobase64(list, "IMG_PATH_BTN");
+
+        return list;
     }
 
     @Override

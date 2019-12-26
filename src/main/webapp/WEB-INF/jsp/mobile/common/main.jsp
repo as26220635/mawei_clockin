@@ -23,7 +23,7 @@
         }
 
         .weui-tabbar__icon {
-            height: 42px;
+            height: 55px;
             width: 55px;
         }
 

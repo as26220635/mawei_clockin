@@ -34,7 +34,8 @@ public final class RedisCache implements Cache {
 
     @Override
     public Object getObject(Object o) {
-        return CacheUtil.get(id, o);
+        Object val = CacheUtil.get(id, o);
+        return val instanceof org.redisson.spring.cache.NullValue ? null : val;
     }
 
     @Override

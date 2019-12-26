@@ -6,9 +6,11 @@
     <select id="selectMAchievement" parameterType="java.lang.String" resultType="java.util.Map">
         SELECT
             BA.*,
-            IFNULL(BAD.BAD_COUNT,0) BAD_COUNT
+            IFNULL(BAD.BAD_COUNT,0) BAD_COUNT,
+            CONCAT(BSF.SF_PATH,'@@@',BSF.SF_NAME) IMG_PATH_BTN
         FROM BUS_ACHIEVEMENT BA
         LEFT JOIN (SELECT BA_ID,COUNT(1) BAD_COUNT FROM BUS_ACHIEVEMENT_DETAIL WHERE BW_ID = #{ID} GROUP BY BA_ID)BAD ON BAD.BA_ID = BA.ID
+        LEFT JOIN SYS_FILE BSF ON BSF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND BSF.SF_TABLE_ID = BA.ID AND BSF.SF_SDI_CODE = 0
         WHERE BA.IS_STATUS = 1
     </select>
 
