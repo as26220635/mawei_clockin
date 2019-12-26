@@ -34,7 +34,6 @@
         <spring.version>5.2.2.RELEASE</spring.version>
         <mybatis.version>3.5.3</mybatis.version>
         <mybatis-spring.version>2.0.3</mybatis-spring.version>
-        <mybatis-redis.version>1.0.0-beta2</mybatis-redis.version>
         <mysql.version>8.0.11</mysql.version>
         <redisson.version>3.11.6</redisson.version>
         <fst.version>2.57</fst.version>
@@ -153,13 +152,6 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
             <version>${mybatis-spring.version}</version>
-        </dependency>
-
-        <!--mybatis-redis 缓存-->
-        <dependency>
-            <groupId>org.mybatis.caches</groupId>
-            <artifactId>mybatis-redis</artifactId>
-            <version>${mybatis-redis.version}</version>
         </dependency>
 
         <!-- mysql连接 -->

@@ -20,8 +20,8 @@ import java.util.Collection;
 public class CacheUtil {
 
     @Autowired
-    private SpringCacheManagerWrapper shiroCacheManager;
-    private static CacheUtil cacheUtil;
+    public SpringCacheManagerWrapper shiroCacheManager;
+    public static CacheUtil cacheUtil;
 
     public void setCacheManager(SpringCacheManagerWrapper shiroCacheManager) {
         this.shiroCacheManager = shiroCacheManager;
@@ -37,7 +37,7 @@ public class CacheUtil {
         return cacheUtil.shiroCacheManager;
     }
 
-    public static void put(String cacheName, String key, Object value) {
+    public static void put(String cacheName, Object key, Object value) {
         Cache cache = cacheUtil.shiroCacheManager.getCache(cacheName);
         cache.put(key, value);
     }
@@ -46,14 +46,14 @@ public class CacheUtil {
         return cacheUtil.shiroCacheManager.getCache(cacheName);
     }
 
-    public static Object get(String cacheName, String key) {
+    public static Object get(String cacheName, Object key) {
         Cache cache = cacheUtil.shiroCacheManager.getCache(cacheName);
         return cache.get(key);
     }
 
-    public static void remove(String cacheName, String key) {
+    public static Object remove(String cacheName, Object key) {
         Cache cache = cacheUtil.shiroCacheManager.getCache(cacheName);
-        cache.remove(key);
+        return cache.remove(key);
     }
 
     public static void clear(String cacheName) {
@@ -91,7 +91,7 @@ public class CacheUtil {
      * @param key
      * @return
      */
-    public static Object getParam(String key) {
+    public static Object getParam(Object key) {
         return get(CacheName.VALUE_COLLECTION, key);
     }
 
@@ -101,7 +101,7 @@ public class CacheUtil {
      * @param key
      * @param value
      */
-    public static void setParam(@NotNull String key, Object value) {
+    public static void setParam(@NotNull Object key, Object value) {
         put(CacheName.VALUE_COLLECTION, key, value);
     }
 }
