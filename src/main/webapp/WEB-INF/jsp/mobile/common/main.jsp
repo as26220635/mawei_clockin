@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,">
     <%--    <meta http-equiv="Access-Control-Allow-Origin" content="*" />--%>
     <%--    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">--%>
     <title>${WEBCONFIG_HEAD_TITLE}</title>
@@ -23,8 +23,8 @@
         }
 
         .weui-tabbar__icon {
-            height: 55px;
-            width: 55px;
+            height: 52px;
+            width: 52px;
         }
 
         .weui-bar__item_on {
@@ -53,6 +53,15 @@
             -webkit-transform: translate(0%, -50%);
             transform: translate(0%, -50%);
             margin: auto !important;
+        }
+
+        .weui-grid__gray {
+            -webkit-filter: grayscale(100%);
+            -moz-filter: grayscale(100%);
+            -ms-filter: grayscale(100%);
+            -o-filter: grayscale(100%);
+            filter: grayscale(100%);
+            filter: gray;
         }
     </style>
     <script>

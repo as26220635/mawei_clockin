@@ -1,16 +1,20 @@
 package cn.kim.common;
 
+import cn.kim.common.attr.CacheName;
+import cn.kim.common.eu.NameSpace;
 import cn.kim.remote.LogRemoteInterface;
 import cn.kim.remote.LogRemoteInterfaceAsync;
 import cn.kim.remote.PraiseRemoteInterface;
 import cn.kim.remote.PraiseRemoteInterfaceAsync;
 import cn.kim.remote.impl.LogRemoteServiceImpl;
 import cn.kim.remote.impl.PraiseRemoteServiceImpl;
+import com.google.common.collect.Maps;
 import org.redisson.Redisson;
 import org.redisson.api.RRemoteService;
 import org.redisson.api.RedissonClient;
 import org.redisson.api.RemoteInvocationOptions;
 import org.redisson.config.Config;
+import org.redisson.spring.cache.CacheConfig;
 import org.redisson.spring.cache.RedissonSpringCacheManager;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
@@ -23,6 +27,8 @@ import org.springframework.scheduling.TaskScheduler;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by 余庚鑫 on 2018/3/22.
@@ -49,7 +55,28 @@ public class WebAppConfig {
 
     @Bean("cacheManager")
     public CacheManager cacheManager(RedissonClient redissonClient) throws IOException {
-        return new RedissonSpringCacheManager(redissonClient, "classpath:redis/spring-cache-config.yaml");
+        Map<String, CacheConfig> config = Maps.newHashMapWithExpectedSize(16);
+        //shiro
+        config.put(CacheName.SHIRO_AUTHORIZATIONCACHE, new CacheConfig(3600000, 1800000));
+        config.put(CacheName.SHIRO_AUTHENTICATIONCACHE, new CacheConfig(3600000, 1800000));
+        config.put(CacheName.SHIRO_ACTIVESESSIONCACHE, new CacheConfig(3600000, 1800000));
+        //密码锁定
+        config.put(CacheName.PASSWORD_RETRY_CACHE, new CacheConfig(600000, 600000));
+        //前端搜索
+        config.put(CacheName.ACHIEVEMENT_CACHE, new CacheConfig(0, 0));
+        //字典
+        config.put(CacheName.DICT_CACHE, new CacheConfig(0, 0));
+        //数据缓存
+        config.put(CacheName.VALUE_COLLECTION, new CacheConfig(0, 0));
+        //微信点赞
+        config.put(CacheName.WECHAT_PRAISE, new CacheConfig(0, 0));
+        config.put(CacheName.WECHAT_PRAISE_POINTS, new CacheConfig(0, 0));
+        //数据库缓存
+        for (NameSpace e : NameSpace.values()) {
+            config.put(e.getValue(), new CacheConfig(0, 0));
+        }
+
+        return new RedissonSpringCacheManager(redissonClient, config);
     }
 
     @Bean("remoteService")

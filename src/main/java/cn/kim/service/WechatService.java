@@ -87,4 +87,9 @@ public interface WechatService extends BaseService {
      * @return
      */
     List<Map<String,Object>> selectWechatLoginStatistic();
+
+    /**
+     * 更新排名
+     */
+    Map<String, Object> updateWechatRank();
 }

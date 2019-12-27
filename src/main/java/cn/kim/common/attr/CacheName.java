@@ -8,6 +8,7 @@ public class CacheName {
      * shiro缓存
      */
     public static final String SHIRO_AUTHORIZATIONCACHE = "shiro-authorizationCache";
+    public static final String SHIRO_AUTHENTICATIONCACHE = "shiro-authenticationCache";
     public static final String SHIRO_ACTIVESESSIONCACHE = "shiro-activeSessionCache";
     /**
      * 登录密码错误验证

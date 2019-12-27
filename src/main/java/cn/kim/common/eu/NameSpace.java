@@ -43,6 +43,8 @@ public enum NameSpace {
     AuthorizationMapper("cn.kim.mapper.AuthorizationMapper"),
     //微信
     WechatMapper("cn.kim.mapper.WechatMapper"),
+    //微信排名
+    WechatRankMapper("cn.kim.mapper.WechatRankMapper"),
     //首页图片
     MainImageMapper("cn.kim.mapper.MainImageMapper"),
     //成就墙

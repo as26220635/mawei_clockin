@@ -1,11 +1,13 @@
 package cn.kim.controller.mobile;
 
 import cn.kim.common.annotation.WechaNotEmptyLogin;
+import cn.kim.common.attr.MagicValue;
 import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.DataTablesView;
 import cn.kim.entity.ResultState;
 import cn.kim.entity.WechatUser;
 import cn.kim.service.WechatService;
+import cn.kim.util.AllocationUtil;
 import cn.kim.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,6 +39,7 @@ public class MRankController extends BaseController {
 
         model.addAttribute("count", count);
         model.addAttribute("myRank", resultMap.get("myRank"));
+        model.addAttribute("updateDate", AllocationUtil.get(MagicValue.WECHAT_RANK_UPDATE_DATE));
         setWechatUserToModel(model);
         return "mobile/rank";
     }
@@ -54,6 +57,7 @@ public class MRankController extends BaseController {
         DataTablesView<?> dataTablesView = wechatService.selectRank(toInt(CommonUtil.getStrat(page, pageSize)), pageSize, BW_USERNAME);
 
         model.addAttribute("detailList", dataTablesView.getData());
+        model.addAttribute("total",dataTablesView.getRecordsTotal());
         return "mobile/rank/rank_data";
     }
 

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.kim.mapper.WechatRankMapper">
+    <cache type="cn.kim.common.mybatis.RedisCache"/>
+
+    <!--根据id查询排名 -->
+    <select id="selectWechatRankById" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+            BW.ID,BW.BW_AVATAR,BW.BW_USERNAME,
+            IFNULL(BWR.BWR_RANK,'0') BWR_RANK,
+            IFNULL(BWR.BWR_LAST_TIME,'') BWR_LAST_TIME,
+            IFNULL(BWR.BWR_CLOCKIN_COUNT,0) BWR_CLOCKIN_COUNT,
+            IFNULL(BWR.BWP_NUMBER,0) BWP_NUMBER,
+            BWR.BWR_LIGHT_ICON
+        FROM BUS_WECHAT BW
+        LEFT JOIN BUS_WECHAT_RANK BWR ON BWR.BW_ID = BW.ID
+        WHERE BW.ID = #{ID}
+    </select>
+
+    <!--查询点亮图标 -->
+    <select id="selectWechatRankAchievement" parameterType="java.lang.String" resultType="java.lang.String">
+            SELECT GROUP_CONCAT(IMG.IMG_PATHS ORDER BY IMG.BA_ENTRYTIME ASC) IMG_PATHS
+            FROM(
+                SELECT BW.ID,BA.BA_ENTRYTIME,CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATHS
+                FROM bus_wechat BW
+                INNER JOIN bus_achievement BA ON BA.IS_STATUS = 1
+                LEFT JOIN (SELECT BW.ID,BAD.BA_ID FROM bus_wechat BW
+                INNER JOIN bus_achievement_detail BAD ON BAD.BW_ID = BW.ID
+                GROUP BY BW.ID,BAD.BA_ID)BAD ON BA.ID = BAD.BA_ID AND BW.ID = BAD.ID
+                LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID AND SF.SF_SDI_CODE = (CASE WHEN BAD.BA_ID IS NOT NULL THEN 2 ELSE 1 END)
+                ORDER BY BA.BA_ENTRYTIME ASC
+            )IMG
+            WHERE IMG.ID = #{BW_ID}
+            GROUP BY IMG.ID
+    </select>
+
+    <!--查询排名 -->
+    <select id="selectWechatRank" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM V_WECHAT_RANK
+        <where>
+            <if test="whereClause != null and whereClause != ''">
+                ${whereClause}
+            </if>
+            <if test="ID != null and ID != ''">
+                AND ID = #{ID}
+            </if>
+        </where>
+        <if test="limit != null">
+            <if test="offset != null">
+                limit ${offset}, ${limit}
+            </if>
+            <if test="offset == null">
+                limit ${limit}
+            </if>
+        </if>
+    </select>
+
+    <select id="selectWechatRankCount" parameterType="java.util.Map" resultType="java.lang.Integer">
+        SELECT COUNT(1) FROM V_WECHAT_RANK
+        <where>
+            <if test="whereClause != null and whereClause != ''">
+                ${whereClause}
+            </if>
+            <if test="ID != null and ID != ''">
+                AND ID = #{ID}
+            </if>
+        </where>
+    </select>
+</mapper>

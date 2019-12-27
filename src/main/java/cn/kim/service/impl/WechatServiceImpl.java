@@ -11,9 +11,11 @@ import cn.kim.exception.CustomException;
 import cn.kim.remote.LogRemoteInterfaceAsync;
 import cn.kim.remote.PraiseRemoteInterfaceAsync;
 import cn.kim.service.WechatService;
+import cn.kim.util.AllocationUtil;
 import cn.kim.util.CacheUtil;
 import cn.kim.util.FileUtil;
 import com.alibaba.fastjson.JSON;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -127,8 +129,19 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
      * @param rank
      */
     public void setWechatRankAchievement(Map<String, Object> rank) {
-        String IMG_PATHS = baseDao.selectOne(NameSpace.WechatMapper, "selectWechatRankAchievement", toString(rank.get("ID")));
-        rank.put("IMG_PATHS", IMG_PATHS);
+//        String IMG_PATHS = baseDao.selectOne(NameSpace.WechatRankMapper, "selectWechatRankAchievement", toString(rank.get("ID")));
+//        rank.put("IMG_PATHS", IMG_PATHS);
+        String BWR_LIGHT_ICON = toString(rank.get("BWR_LIGHT_ICON"));
+        List<Integer> iconStatusList = Lists.newLinkedList();
+        for (String icon : BWR_LIGHT_ICON.split(",")) {
+            String[] iconArray = icon.split("@@@");
+            if (iconArray.length ==3){
+                iconStatusList.add(0);
+            }else{
+                iconStatusList.add(1);
+            }
+        }
+        rank.put("iconStatusList", iconStatusList);
     }
 
     @Override
@@ -136,12 +149,15 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
         Map<String, Object> resultMap = Maps.newHashMapWithExpectedSize(2);
 
         resultMap.put("ID", BW_ID);
-        Map<String, Object> myRank = baseDao.selectOne(NameSpace.WechatMapper, "selectWechatRank", resultMap);
+        Map<String, Object> myRank = baseDao.selectOne(NameSpace.WechatRankMapper, "selectWechatRankById", resultMap);
 
-        //设置点亮图标
-        setWechatRankAchievement(myRank);
+        //设置点赞数
+        Object BWP_NUMBER = CacheUtil.get(CacheName.WECHAT_PRAISE, BW_ID);
+        myRank.put("BWP_NUMBER", isEmpty(BWP_NUMBER) ? 0 : BWP_NUMBER);
+
         //文件路径加密
-        FileUtil.filePathTobase64(myRank, "IMG_PATHS");
+        setWechatRankAchievement(myRank);
+        FileUtil.filePathTobase64(myRank, "BWR_LIGHT_ICON");
 
         resultMap.clear();
         resultMap.put("myRank", myRank);
@@ -191,7 +207,7 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
 
     @Override
     public Integer selectRankCount() {
-        return baseDao.selectOne(NameSpace.WechatMapper, "selectWechatRankCount");
+        return baseDao.selectOne(NameSpace.WechatRankMapper, "selectWechatRankCount");
     }
 
     @Override
@@ -209,23 +225,28 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
         querySet.setOffset(offset);
         querySet.setLimit(limit);
 
-        List<Map<String, Object>> dataList = baseDao.selectList(NameSpace.WechatMapper, "selectWechatRank", querySet.getWhereMap());
+        List<Map<String, Object>> dataList = baseDao.selectList(NameSpace.WechatRankMapper, "selectWechatRank", querySet.getWhereMap());
         //获得点赞记录
         for (Map<String, Object> data : dataList) {
-            Object praise = CacheUtil.get(CacheName.WECHAT_PRAISE_POINTS, wechatUser.getId() + "@@@" + data.get("ID"));
+            Object praise = CacheUtil.get(CacheName.WECHAT_PRAISE_POINTS, wechatUser.getId() + "@@@" + data.get("BW_ID"));
             //点赞
             if (!isEmpty(praise)) {
                 data.put("isPraise", true);
             } else {
                 data.put("isPraise", false);
             }
-            //设置点亮图标
-            setWechatRankAchievement(data);
+            //设置点赞数
+            Object BWP_NUMBER = CacheUtil.get(CacheName.WECHAT_PRAISE, data.get("BW_ID"));
+            data.put("BWP_NUMBER", isEmpty(BWP_NUMBER) ? 0 : BWP_NUMBER);
         }
         //文件路径加密
-        FileUtil.filePathTobase64(dataList, "IMG_PATHS");
+        setWechatRankAchievement(dataList);
+        FileUtil.filePathTobase64(dataList, "BWR_LIGHT_ICON");
 
         dataTablesView.setData(dataList);
+
+        int count = baseDao.selectOne(NameSpace.WechatRankMapper, "selectWechatRankCount", querySet.getWhereMap());
+        dataTablesView.setRecordsTotal(count);
 
         return dataTablesView;
     }
@@ -299,5 +320,47 @@ public class WechatServiceImpl extends BaseServiceImpl implements WechatService 
     public List<Map<String, Object>> selectWechatLoginStatistic() {
         List<Map<String, Object>> list = baseDao.selectList(NameSpace.WechatMapper, "selectWechatLoginStatistic");
         return list;
+    }
+
+    @Override
+    @Transactional
+    public Map<String, Object> updateWechatRank() {
+        Map<String, Object> resultMap = Maps.newHashMapWithExpectedSize(5);
+        int status = STATUS_ERROR;
+        String desc = SAVE_ERROR;
+        try {
+            Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(2);
+
+            List<Map<String, Object>> rankList = baseDao.selectList(NameSpace.WechatMapper, "selectWechatSaveRank");
+
+            paramMap.clear();
+            baseDao.delete(NameSpace.WechatMapper, "deleteWechatRank", paramMap);
+
+            for (Map<String, Object> rank : rankList) {
+                paramMap.clear();
+                paramMap.put("ID", getId());
+                paramMap.put("BW_ID", rank.get("ID"));
+                paramMap.put("BW_USERNAME", rank.get("BW_USERNAME"));
+                paramMap.put("BW_AVATAR", rank.get("BW_AVATAR"));
+                paramMap.put("BWR_RANK", rank.get("WECHAT_RANK"));
+                paramMap.put("BWR_LAST_TIME", rank.get("BAD_ENTERTIME"));
+                paramMap.put("BWR_CLOCKIN_COUNT", rank.get("CLOCKIN_COUNT"));
+                paramMap.put("BWP_NUMBER", rank.get("BWP_NUMBER"));
+                paramMap.put("BWR_LIGHT_ICON", rank.get("BWR_LIGHT_ICON"));
+                baseDao.insert(NameSpace.WechatMapper, "insertWechatRank", paramMap);
+            }
+
+            //清空缓存
+            CacheUtil.clear(NameSpace.WechatRankMapper.getValue());
+            AllocationUtil.put(MagicValue.WECHAT_RANK_UPDATE_DATE, getDate());
+
+            status = STATUS_SUCCESS;
+            desc = SAVE_SUCCESS;
+        } catch (Exception e) {
+            desc = catchException(e, baseDao, resultMap);
+        }
+        resultMap.put(MagicValue.STATUS, status);
+        resultMap.put(MagicValue.DESC, desc);
+        return resultMap;
     }
 }

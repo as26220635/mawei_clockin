@@ -10,9 +10,11 @@
 
 <c:forEach items="${detailList}" var="detail">
     <a  class="weui-media-box weui-media-box_appmsg" href="${BASE_URL}activity/item/${detail.ID}" data-pjax="#${CONTAINER}">
-        <div class="weui-media-box__hd">
-            <img class="weui-media-box__thumb" src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${detail.IMG_PATH}" alt="">
-        </div>
+        <c:if test="${not empty detail.IMG_PATH}}">
+            <div class="weui-media-box__hd">
+                <img class="weui-media-box__thumb" src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${detail.IMG_PATH}" alt="">
+            </div>
+        </c:if>
         <div class="weui-media-box__bd">
             <h4 class="weui-media-box__title">${detail.BA_TITLE}</h4>
             <p class="weui-media-box__desc">${detail.BA_ENTRY_TIME}</p>

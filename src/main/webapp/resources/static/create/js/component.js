@@ -1623,8 +1623,8 @@ ajax = {
         $.ajaxSetup({
             //禁止缓存
             cache: false,
-            //120秒超时
-            timeout: 120000,
+            //1200秒超时
+            timeout: 1200000,
             complete: function (XMLHttpRequest, textStatus) {
                 // 通过XMLHttpRequest取得响应头，sessionstatus，
                 var sessionstatus = XMLHttpRequest.getResponseHeader("sessionstatus");

@@ -84,4 +84,9 @@ public class MagicValue {
     public static final int RECODE_TYPE_INSERT = 1;
     public static final int RECODE_TYPE_UPDATE = 2;
     public static final int RECODE_TYPE_DELETE = 3;
+
+    /**
+     * 排名更新时间
+     */
+    public static final String WECHAT_RANK_UPDATE_DATE = "WECHAT_RANK_UPDATE_DATE";
 }

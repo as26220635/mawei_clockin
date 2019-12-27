@@ -18,15 +18,6 @@
         height: 88px;
         margin: auto;
     }
-
-    .weui-grid__gray {
-        -webkit-filter: grayscale(100%);
-        -moz-filter: grayscale(100%);
-        -ms-filter: grayscale(100%);
-        -o-filter: grayscale(100%);
-        filter: grayscale(100%);
-        filter: gray;
-    }
 </style>
 
 <div class="container container-page">
@@ -48,8 +39,8 @@
                 </c:when>
                 <c:otherwise>
                     <a href="javascript:;" class="weui-grid">
-                        <div class="weui-grid__icon">
-                            <img src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${achievement.IMG_PATH}">
+                        <div class="weui-grid__icon weui-grid__gray">
+                            <img src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${achievement.IMG_PATH_IN}">
                         </div>
                         <p class="weui-grid__label">${achievement.BA_NAME}</p>
                     </a>
