@@ -11,6 +11,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
 /**
@@ -103,12 +104,26 @@ public class AESUtil {
                 String originalString = new String(original, "utf-8");
                 return originalString;
             } catch (Exception e) {
-                System.out.println(e.toString());
                 return null;
             }
         } catch (Exception ex) {
             return null;
         }
+    }
+
+    /**
+     * 获得SecretKey
+     * @param aesKey
+     * @return
+     * @throws NoSuchAlgorithmException
+     */
+    public static SecretKey getSecretKey(String aesKey) throws NoSuchAlgorithmException {
+        //1.构造密钥生成器，指定为AES算法,不区分大小写
+        KeyGenerator keygen = KeyGenerator.getInstance("AES");
+        SecureRandom secureRandom = SecureRandom.getInstance("SHA1PRNG");
+        secureRandom.setSeed(aesKey.getBytes());
+        keygen.init(128, secureRandom);
+        return keygen.generateKey();
     }
 
     /**
@@ -131,17 +146,13 @@ public class AESUtil {
         if (!ValidateUtil.isEmpty(SessionUtil.getSession())) {
             aesKey = TextUtil.toString(SessionUtil.getSession().getId());
         }
-        return encode(content, aesKey);
+        String e = encode(content, aesKey);
+        return e;
     }
 
     public static String encode(Object content, String aesKey) throws InvalidKeyException {
         try {
-            //1.构造密钥生成器，指定为AES算法,不区分大小写
-            KeyGenerator keygen = KeyGenerator.getInstance("AES");
-            //2.根据ecnodeRules规则初始化密钥生成器
-            keygen.init(128, new SecureRandom(aesKey.getBytes()));
-            //3.产生原始对称密钥
-            SecretKey originalKey = keygen.generateKey();
+            SecretKey originalKey = getSecretKey(aesKey);
             //4.获得原始对称密钥的字节数组
             byte[] raw = originalKey.getEncoded();
             //5.根据字节数组生成AES密钥
@@ -188,13 +199,7 @@ public class AESUtil {
 
     public static String dncode(String content, String aesKey) throws InvalidKeyException {
         try {
-            //1.构造密钥生成器，指定为AES算法,不区分大小写
-            KeyGenerator keygen = KeyGenerator.getInstance("AES");
-            //2.根据ecnodeRules规则初始化密钥生成器
-            //生成一个128位的随机源,根据传入的字节数组
-            keygen.init(128, new SecureRandom(aesKey.getBytes()));
-            //3.产生原始对称密钥
-            SecretKey originalKey = keygen.generateKey();
+            SecretKey originalKey = getSecretKey(aesKey);
             //4.获得原始对称密钥的字节数组
             byte[] raw = originalKey.getEncoded();
             //5.根据字节数组生成AES密钥

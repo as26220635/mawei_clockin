@@ -6,6 +6,7 @@
     <settings>
         <setting name="cacheEnabled" value="true"/>
         <setting name="callSettersOnNulls" value="true"/>
+        <setting name="logImpl" value="LOG4J2" />
     </settings>
     <!-- 配置别名 -->
     <typeAliases>
