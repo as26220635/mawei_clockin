@@ -30,6 +30,8 @@
     .weui-uploader__file img {
         width: 100%;
         height: 100%;
+        -webkit-user-select: auto;
+        -webkit-touch-callout: default;
     }
 
     .weui-form__opr-area {

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="cn.kim.common.attr.WebConfig" %>
+<%@ page import="cn.kim.common.attr.MobileConfig" %>
 <%@ page import="cn.kim.common.attr.Attribute " %>
 <%@ page import="cn.kim.common.attr.AttributePath" %>
 <%@ page import="cn.kim.common.attr.TableName " %>

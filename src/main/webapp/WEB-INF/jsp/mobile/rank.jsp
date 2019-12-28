@@ -264,7 +264,8 @@
                     </c:if>
                 </div>
             </div>
-            <div class="weui-cell__ft ${fns:trueOrFalse(myRank.BWR_RANK <= 3, 'strong' ,'')}">${myRank.BWR_CLOCKIN_COUNT}
+            <div class="weui-cell__ft ${fns:trueOrFalse(myRank.BWR_RANK <= 3, 'strong' ,'')}">
+                <span>${myRank.BWR_CLOCKIN_COUNT}</span>
                 <a href="javascript:;" class="paw-button">
                     <div class="text">
                         <span class="paw-number">${myRank.BWP_NUMBER}</span>

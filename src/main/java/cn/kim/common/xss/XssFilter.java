@@ -26,8 +26,12 @@ public class XssFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response,
                          FilterChain chain) throws IOException, ServletException {
-        chain.doFilter(new XssHttpServletRequestWrapper(
-                (HttpServletRequest) request), response);
+        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
+        //不是主界面url，就返回
+        if (httpServletRequest.getServletPath().equals("/favicon.ico")) {
+            return;
+        }
+        chain.doFilter(new XssHttpServletRequestWrapper(httpServletRequest), response);
     }
 
 

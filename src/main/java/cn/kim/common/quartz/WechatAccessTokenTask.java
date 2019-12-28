@@ -32,36 +32,40 @@ public class WechatAccessTokenTask extends BaseData {
             }
         }
 
+        try {
 //        https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET
-        String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential";
+            String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential";
 
-        Map<String, String> params = Maps.newHashMapWithExpectedSize(2);
-        params.put("appid", toString(AllocationUtil.get("WECHAT_CLIENT_ID")));
-        params.put("secret", toString(AllocationUtil.get("WECHAT_CLIENT_SECRET")));
-        HttpClient httpClient = new HttpClient();
-        Map<String, Object> resultMap = httpClient.get(url, params);
-        if (isSuccess(resultMap)) {
-            JSONObject object = JSONObject.parseObject(toString(resultMap.get(MagicValue.DESC)));
-
-            String access_token = object.getString("access_token");
-            int expires_in = object.getInteger("expires_in");
-            //缓存参数
-            AllocationUtil.put("WECHAT_ACCESS_TOKEN", access_token);
-            AllocationUtil.put("WECHAT_ACCESS_TOKEN_EXPIRES_IN", expires_in);
-            //过期时间戳
-            AllocationUtil.put("WECHAT_ACCESS_TOKEN_EXPIRES_STAMP", DateUtil.moveDate(Calendar.SECOND, true, new Date(), expires_in).getTime());
-
-            //获取ticket
-            url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi";
-            params.clear();
-            params.put("access_token", access_token);
-            resultMap = httpClient.get(url, params);
+            Map<String, String> params = Maps.newHashMapWithExpectedSize(2);
+            params.put("appid", toString(AllocationUtil.get("WECHAT_CLIENT_ID")));
+            params.put("secret", toString(AllocationUtil.get("WECHAT_CLIENT_SECRET")));
+            HttpClient httpClient = new HttpClient();
+            Map<String, Object> resultMap = httpClient.get(url, params);
             if (isSuccess(resultMap)) {
-                object = JSONObject.parseObject(toString(resultMap.get(MagicValue.DESC)));
-                String ticket = object.getString("ticket");
+                JSONObject object = JSONObject.parseObject(toString(resultMap.get(MagicValue.DESC)));
+                System.out.println(object.toJSONString());
+                String access_token = object.getString("access_token");
+                int expires_in = object.getInteger("expires_in");
                 //缓存参数
-                AllocationUtil.put("WECHAT_TICKET", ticket);
+                AllocationUtil.put("WECHAT_ACCESS_TOKEN", access_token);
+                AllocationUtil.put("WECHAT_ACCESS_TOKEN_EXPIRES_IN", expires_in);
+                //过期时间戳
+                AllocationUtil.put("WECHAT_ACCESS_TOKEN_EXPIRES_STAMP", DateUtil.moveDate(Calendar.SECOND, true, new Date(), expires_in).getTime());
+
+                //获取ticket
+                url = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?type=jsapi";
+                params.clear();
+                params.put("access_token", access_token);
+                resultMap = httpClient.get(url, params);
+                if (isSuccess(resultMap)) {
+                    object = JSONObject.parseObject(toString(resultMap.get(MagicValue.DESC)));
+                    String ticket = object.getString("ticket");
+                    //缓存参数
+                    AllocationUtil.put("WECHAT_TICKET", ticket);
+                }
             }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }

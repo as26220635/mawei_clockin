@@ -657,4 +657,9 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
         resultMap.put(MagicValue.DESC, desc);
         return resultMap;
     }
+
+    @Override
+    public Map<String, Object> generateShareImage(Map<String, Object> mapParam) {
+        return null;
+    }
 }

@@ -10,9 +10,10 @@
 <html>
 <head>
     <%@ include file="/WEB-INF/jsp/common/common_meta.jsp" %>
-    <%@ include file="/WEB-INF/jsp/common/common_config.jsp" %>
+<%--    <%@ include file="/WEB-INF/jsp/common/common_config.jsp" %>--%>
     <title>${WEBCONFIG_HEAD_TITLE}</title>
-    <%@ include file="/WEB-INF/jsp/mobile/common/common_css.jsp" %>
+<%--    <%@ include file="/WEB-INF/jsp/mobile/common/common_css.jsp" %>--%>
+    <link href="https://cdn.bootcss.com/weui/2.1.3/style/weui.min.css" rel="stylesheet">
     <style>
         .share-img {
             width: 100%;
@@ -49,7 +50,7 @@
     </div>
 </div>
 
-<script src="${BASE_URL}resources/static/dist/js/jquery-3.2.1.min.js?ver=${VERSION}"></script>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script>
     function addcss(e) {
         var t = document.createElement("style"), d = document.head || document.getElementsByTagName("head")[0];
@@ -68,10 +69,10 @@
         d.appendChild(t)
     }
     function isfollowqr() {
-        var e = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : "http://open.weixin.qq.com/qr/code?username=${MobileConfig.MOBILE_OFFICIAL_USERNAME}",
+        var e = "http://open.weixin.qq.com/qr/code?username=${MobileConfig.MOBILE_OFFICIAL_USERNAME}",
             o = !(arguments.length > 1 && void 0 !== arguments[1]) || arguments[1],
-            i = arguments.length > 2 && void 0 !== arguments[2] ? arguments[2] : "关注公众号",
-            d = arguments.length > 3 && void 0 !== arguments[3] ? arguments[3] : "感谢关注",
+            i = "关注公众号",
+            d = "感谢关注",
             n = document.createElement("div");
         n.classList.add("weui-model");
         var t = 1 == o ? '<span class="close" onclick="$(\'.weui-model\').remove();"></span>' : "",

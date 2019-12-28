@@ -1,5 +1,11 @@
 package cn.kim.util;
 
+import cn.kim.common.attr.AttributePath;
+import lombok.extern.log4j.Log4j2;
+import net.coobird.thumbnailator.Thumbnails;
+import org.apache.poi.util.IOUtils;
+import org.apache.poi.util.POILogger;
+import org.springframework.web.multipart.MultipartFile;
 import sun.misc.BASE64Encoder;
 
 import javax.imageio.IIOImage;
@@ -16,10 +22,13 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by 余庚鑫 on 2017/3/5.
  */
+@Log4j2
 public class ImageUtil {
     /**
      * 截图工具，根据截取的比例进行缩放裁剪
@@ -174,6 +183,123 @@ public class ImageUtil {
     }
 
     /**
+     * 添加背景图片
+     *
+     * @param baseInputStream
+     * @param clockinInputStream
+     * @param imgShare
+     * @return
+     */
+    public static MultipartFile addBackgroud(InputStream baseInputStream, InputStream clockinInputStream, Map<String, Object> imgShare) {
+        return null;
+    }
+
+    /**
+     * 添加背景图片
+     *
+     * @param srcImg
+     * @param waterImg
+     * @param x
+     * @param y
+     * @param alpha
+     * @return
+     * @throws IOException
+     */
+    public static ByteArrayOutputStream addBackground(BufferedImage image, BufferedImage waterImage, BufferedImage backgroundImage, int waterMaxWidth, int waterMaxHeight, int waterX, int waterY, int backgroundMaxWidth, int backgroundMaxHeight, int backgroundX, int backgroundY) throws IOException {
+        // 加载目标图片
+        ByteArrayOutputStream out = null;
+        try {
+            int width = image.getWidth(null);
+            int height = image.getHeight(null);
+
+            // 将目标图片加载到内存。
+            BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            Graphics2D g = bufferedImage.createGraphics();
+//        // 增加下面代码使得背景变成白色
+//        g.setPaint(Color.WHITE);
+//        g.setBackground(Color.WHITE);
+//        g.clearRect(0, 0, width, height);
+//        g.drawLine(0, 0, width, height);
+            //补充多余部分背景
+            float backgroundRate = getRate(backgroundImage, backgroundMaxWidth, backgroundMaxHeight);
+            int backgroundWidth = (int) (backgroundImage.getWidth(null) * backgroundRate);
+            int backgroundHeight = (int) (backgroundImage.getHeight(null) * backgroundRate);
+
+            g.drawImage(backgroundImage, backgroundX, backgroundY, backgroundWidth, backgroundHeight, null);
+
+            //添加主要图片
+            float waterRate = getRate(waterImage, waterMaxWidth, waterMaxHeight);
+            int waterWidth = (int) (waterImage.getWidth(null) * waterRate);
+            int waterHeight = (int) (waterImage.getHeight(null) * waterRate);
+            g.drawImage(waterImage, waterX, waterY, waterWidth, waterHeight, null);
+
+            //主图片
+            g.drawImage(image, 0, 0, width, height, null);
+            g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
+            // 关闭画笔。
+            g.dispose();
+
+            // 保存目标图片。
+            out = new ByteArrayOutputStream();
+            ImageIO.write(bufferedImage, "jpeg", out);
+
+//            ImageOutputStream ios = ImageIO.createImageOutputStream(out);
+//            Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("jpeg");
+//            ImageWriter writer = iter.next();
+//            ImageWriteParam iwp = writer.getDefaultWriteParam();
+//            iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+//            iwp.setCompressionQuality(0.8f);
+//            writer.setOutput(ios);
+//            writer.write(null, new IIOImage(bufferedImage, null, null), iwp);
+//            writer.dispose();
+        } catch (IOException e) {
+            throw e;
+        } finally {
+            closeQuietly(image);
+            closeQuietly(waterImage);
+            closeQuietly(backgroundImage);
+        }
+
+        return out;
+    }
+
+    /**
+     * 获取缩放比例
+     *
+     * @param image
+     * @param maxWidth
+     * @param maxHeight
+     * @return
+     */
+    public static float getRate(Image image, int maxWidth, int maxHeight) {
+        int width = image.getWidth(null);
+        int height = image.getHeight(null);
+        float rate1 = (float) maxWidth / width;
+        float rate2 = (float) maxHeight / height;
+
+        //控制缩放大小
+        float rate = rate1 < rate2 ? rate1 : rate2;
+        return rate;
+    }
+
+    /**
+     * 获取图片最小比例
+     *
+     * @param width
+     * @param height
+     * @param minWith
+     * @param minHeight
+     * @return
+     */
+    public static float getMinRate(int width, int height, int minWith, int minHeight) {
+        float rate1 = (float) minWith / width;
+        float rate2 = (float) minHeight / height;
+
+        float rate = rate1 > rate2 ? rate1 : rate2;
+        return rate;
+    }
+
+    /**
      * 添加文字
      *
      * @param srcImgSteram
@@ -216,8 +342,8 @@ public class ImageUtil {
 
         // 设置RenderingHints(渲染提示)，以达到文字抗锯齿的功效,(key,value)形式赋值
         RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        rh.put(RenderingHints.KEY_COLOR_RENDERING,RenderingHints.VALUE_COLOR_RENDER_QUALITY);
-        rh.put(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
+        rh.put(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY);
+        rh.put(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_LCD_HRGB);
         g.setRenderingHints(rh);
 
         //设置水印的坐标
@@ -411,4 +537,22 @@ public class ImageUtil {
         return bufferedImage;
     }
 
+    /**
+     * 关闭图片
+     *
+     * @param image
+     */
+    public static void closeQuietly(final java.awt.Image image) {
+        // no need to log a NullPointerException here
+        if (image == null || image.getGraphics() == null) {
+            return;
+        }
+
+        try {
+            image.flush();
+            image.getGraphics().dispose();
+        } catch (Exception exc) {
+            log.error("Unable to close resource: " + exc);
+        }
+    }
 }

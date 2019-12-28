@@ -358,6 +358,8 @@
         var maxSize = 1024 * 1024;
         // 图片最大宽度
         var maxWidth = 1000;
+        // 图片最大高度
+        var maxHeight = 1000;
         // 最大上传图片数量
         var imgTotal = 0;
         // 记录当前已上传数量
@@ -385,16 +387,22 @@
                     var img = new Image();
                     img.onload = function () {
                         // 不要超出最大宽度
-                        var w = Math.min(maxWidth, img.width);
-                        // 高度按比例计算
-                        var h = img.height * (w / img.width);
+                        var w = img.width;
+                        var h = img.height;
+                        if (w > maxWidth) {
+                            var w = maxWidth;
+                            var h = img.height * (w / img.width);
+                        } else if (h > maxHeight) {
+                            var h = maxHeight;
+                            var w = img.width * (h / img.height);
+                        }
                         var canvas = document.createElement('canvas');
                         var ctx = canvas.getContext('2d');
                         // 设置 canvas 的宽度和高度
                         canvas.width = w;
                         canvas.height = h;
                         ctx.drawImage(img, 0, 0, w, h);
-                        var base64 = canvas.toDataURL('image/png');
+                        var base64 = canvas.toDataURL('image/jpeg');
 
                         // 插入到预览区
                         $uploaderFiles.append($(tmpl.replace('#url#', base64).replace('#imgid#', "uploadImg" + imgCount).replace('#imgname#', "uploadImg").replace('#url#', base64)));

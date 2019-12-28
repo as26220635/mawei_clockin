@@ -20,6 +20,7 @@ import java.util.Map;
 public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
     public XssHttpServletRequestWrapper(HttpServletRequest servletRequest) {
         super(servletRequest);
+
         //打印URL
         String url = "";
 //        url = servletRequest.getScheme() +"://" + servletRequest.getServerName()

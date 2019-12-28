@@ -38,7 +38,6 @@ public class PjaxInterceptor implements HandlerInterceptor {
         }
 
         String path = request.getServletPath();
-        //不是主界面url，就返回
         if (path.startsWith("/share/") || path.contains(LoginController.OAUTH_PATH) || path.contains(LayoutController.LAYOUT_PATH) || path.contains(MyHomeController.LAYOUT_PATH) || path.contains(ManagerController.LAYOUT_PATH) || path.contains("error/") || path.equals("/admin") || path.equals("/admin/")) {
             return true;
         }

@@ -144,4 +144,11 @@ public interface AchievementService extends BaseService {
      * @return
      */
     Map<String, Object> changeAchievementShare(Map<String, Object> mapParam);
+
+    /**
+     * 生成分享图片
+     * @param mapParam
+     * @return
+     */
+    Map<String, Object> generateShareImage(Map<String, Object> mapParam);
 }

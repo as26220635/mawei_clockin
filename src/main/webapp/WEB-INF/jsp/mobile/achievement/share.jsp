@@ -99,7 +99,6 @@
             $('.weui-share').remove();
         }
     }
-
     //调用分享
     weixinShare(defaults.title, defaults.desc, defaults.link, defaults.imgUrl, defaults.success, defaults.cancel);
 </script>
