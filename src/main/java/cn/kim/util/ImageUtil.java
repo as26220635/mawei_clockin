@@ -22,6 +22,7 @@ import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -183,14 +184,147 @@ public class ImageUtil {
     }
 
     /**
-     * 添加背景图片
+     * 合成图片
+     * 默认会有模糊的背景作为补充
      *
      * @param baseInputStream
      * @param clockinInputStream
-     * @param imgShare
+     * @param imgShare           背景图片     基准高度BAS_HEIGHT 基准宽度BAS_WIDTH x1 BAS_X1 x2 BAS_X2 y1 BAS_Y1  y2 BAS_Y2
      * @return
      */
-    public static MultipartFile addBackgroud(InputStream baseInputStream, InputStream clockinInputStream, Map<String, Object> imgShare) {
+    public static MultipartFile addShareImage(InputStream baseInputStream, InputStream clockinInputStream, Map<String, Object> imgShare) {
+        return addShareImage(baseInputStream, clockinInputStream, imgShare, null);
+    }
+
+    /**
+     * 合成图片
+     * 默认会有模糊的背景作为补充
+     *
+     * @param baseInputStream
+     * @param clockinInputStream
+     * @param imgShare           背景图片     基准高度BAS_HEIGHT 基准宽度BAS_WIDTH x1 BAS_X1 x2 BAS_X2 y1 BAS_Y1  y2 BAS_Y2
+     * @param textShare          文字信息     BAS_TEXT 文字 基准高度BAS_HEIGHT 基准宽度BAS_WIDTH x1 BAS_X1 x2 BAS_X2 y1 BAS_Y1  y2 BAS_Y2
+     * @return
+     */
+    public static MultipartFile addShareImage(InputStream baseInputStream, InputStream clockinInputStream, Map<String, Object> imgShare, List<Map<String, Object>> textShareList) {
+        BufferedImage baseBufferedImage = null;
+        BufferedImage clockinBufferedImage = null;
+        BufferedImage backgroundImage = null;
+        InputStream backgroundInputStream = null;
+        ByteArrayOutputStream clockinOut = null;
+        ByteArrayOutputStream backgroundOut = null;
+        ByteArrayOutputStream out = null;
+        try {
+            if (baseInputStream != null && clockinInputStream != null) {
+                baseBufferedImage = ImageIO.read(baseInputStream);
+                clockinBufferedImage = ImageIO.read(clockinInputStream);
+
+                int baseHeight = baseBufferedImage.getHeight();
+                int baseWidth = baseBufferedImage.getWidth();
+
+                int clockinHeight = clockinBufferedImage.getHeight();
+                int clockinWidth = clockinBufferedImage.getWidth();
+
+                int shareHeight = TextUtil.toBigDecimal(imgShare.get("BAS_HEIGHT")).intValue();
+                int shareWidth = TextUtil.toBigDecimal(imgShare.get("BAS_WIDTH")).intValue();
+                int x1 = TextUtil.toInt(imgShare.get("BAS_X1"));
+                int y1 = TextUtil.toInt(imgShare.get("BAS_Y1"));
+                int x2 = TextUtil.toInt(imgShare.get("BAS_X2"));
+                int y2 = TextUtil.toInt(imgShare.get("BAS_Y2"));
+
+                //计算 上传图片需要压缩到的大小
+                int maxHeight = Math.round((y2 - y1) * baseHeight / shareHeight);
+                int maxWidth = Math.round((x2 - x1) * baseWidth / shareWidth);
+
+                //左侧的偏移量
+                int x = Math.round(x1 * baseHeight / shareHeight);
+                //上侧的偏移量
+                int y = Math.round(y1 * baseWidth / shareWidth);
+
+                //水平居中
+                if (((float) clockinHeight / maxHeight > (float) clockinWidth / maxWidth) || ((float) clockinHeight / maxHeight >= (float) clockinWidth / maxWidth && maxWidth > maxHeight)) {
+                    float scale = (float) maxHeight / clockinHeight;
+                    clockinWidth = (int) (clockinWidth * scale);
+                    clockinHeight = (int) (clockinHeight * scale);
+                    x = x + ((maxWidth - clockinWidth) / 2);
+                }
+                //垂直居中
+                if (((float) clockinWidth / maxWidth > (float) clockinHeight / maxHeight) || ((float) clockinWidth / maxWidth >= (float) clockinHeight / maxHeight && maxWidth < maxHeight)) {
+                    float scale = (float) maxWidth / clockinWidth;
+                    clockinHeight = (int) (clockinHeight * scale);
+                    clockinWidth = (int) (clockinWidth * scale);
+                    y = y + ((maxHeight - clockinHeight) / 2);
+                }
+
+                //获取背景模糊图片
+                backgroundOut = new ByteArrayOutputStream();
+                Thumbnails.of(clockinBufferedImage).scale(0.5f).outputQuality(0.5f).outputFormat("jpeg").toOutputStream(backgroundOut);
+                backgroundInputStream = FileUtil.parse(backgroundOut);
+                backgroundInputStream = FileUtil.parse(GaussianBlurUtil.blur(backgroundInputStream, 5));
+                backgroundImage = ImageIO.read(backgroundInputStream);
+
+                //计算背景模糊图片需要的宽高
+                float backgroudRate1 = (float) maxWidth / clockinWidth;
+                float backgroudRate2 = (float) maxHeight / clockinHeight;
+                float backgroudRate = Math.max(backgroudRate1, backgroudRate1);
+
+                int backgroundWidth = (int) (clockinWidth * backgroudRate);
+                int backgroundHeight = (int) (clockinHeight * backgroudRate);
+                int backgroundX = Math.round(x1 * baseHeight / shareHeight);
+                int backgroundY = Math.round(y1 * baseWidth / shareWidth);
+                if (backgroudRate1 > backgroudRate2) {
+                    backgroundY = y + ((maxHeight - backgroundHeight) / 2);
+                } else {
+                    backgroundX = x + ((maxWidth - backgroundWidth) / 2);
+                }
+
+                //合并图片
+                out = ImageUtil.addBackground(baseBufferedImage, clockinBufferedImage, backgroundImage, maxWidth, maxHeight, x, y, backgroundWidth, backgroundHeight, backgroundX, backgroundY);
+
+                //添加文字
+                if (!ValidateUtil.isEmpty(textShareList)) {
+                    for (Map<String, Object> textShare : textShareList) {
+                        if (!ValidateUtil.isEmpty(textShare) && !ValidateUtil.isEmpty(textShare.get("BAS_TEXT"))) {
+                            int fontSize = 35;
+                            //获得文本偏移参数
+                            shareHeight = TextUtil.toBigDecimal(textShare.get("BAS_HEIGHT")).intValue();
+                            shareWidth = TextUtil.toBigDecimal(textShare.get("BAS_WIDTH")).intValue();
+                            x1 = TextUtil.toInt(textShare.get("BAS_X1"));
+                            y1 = TextUtil.toInt(textShare.get("BAS_Y1"));
+                            x2 = TextUtil.toInt(textShare.get("BAS_X2"));
+                            y2 = TextUtil.toInt(textShare.get("BAS_Y2"));
+
+                            //左侧的偏移量
+                            x1 = Math.round(x1 * baseHeight / shareHeight);
+                            x2 = Math.round(x2 * baseHeight / shareHeight);
+                            //上侧的偏移量
+                            y1 = Math.round(y1 * baseWidth / shareWidth) + fontSize;
+                            y2 = Math.round(y2 * baseWidth / shareWidth) + fontSize;
+
+                            String waterMarkContent = TextUtil.toString(textShare.get("BAS_TEXT"));
+                            out = ImageUtil.addWaterMarkText(FileUtil.parse(out), waterMarkContent, x1, y1, x2, y2);
+                        }
+                    }
+                }
+
+                //转为base64
+                String base64 = " data:image/png;base64," + ImageUtil.imgToBase64(out);
+
+                return FileUtil.base64ToMultipart(base64);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            IOUtils.closeQuietly(baseInputStream);
+            IOUtils.closeQuietly(clockinInputStream);
+            IOUtils.closeQuietly(backgroundInputStream);
+            IOUtils.closeQuietly(clockinOut);
+            IOUtils.closeQuietly(backgroundOut);
+            IOUtils.closeQuietly(out);
+            ImageUtil.closeQuietly(baseBufferedImage);
+            ImageUtil.closeQuietly(clockinBufferedImage);
+            ImageUtil.closeQuietly(backgroundImage);
+        }
         return null;
     }
 
@@ -278,7 +412,7 @@ public class ImageUtil {
         float rate2 = (float) maxHeight / height;
 
         //控制缩放大小
-        float rate = Math.min(rate1,rate2);
+        float rate = Math.min(rate1, rate2);
         return rate;
     }
 
@@ -295,7 +429,7 @@ public class ImageUtil {
         float rate1 = (float) minWith / width;
         float rate2 = (float) minHeight / height;
 
-        float rate = Math.max(rate1,rate2);
+        float rate = Math.max(rate1, rate2);
         return rate;
     }
 
@@ -377,23 +511,7 @@ public class ImageUtil {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-        // 为了保证原质量输出，我们用ImageWriter输出图片
-        // 获取ImageWriter对象
-        Iterator writers = ImageIO.getImageWritersByFormatName("jpg");
-        ImageWriter writer = (ImageWriter) writers.next();
-        // 指定输出路径
-        ImageOutputStream ios = ImageIO.createImageOutputStream(out);
-        // 修改ImageWriteParam，原质量输出图片
-        ImageWriteParam imageWriteParam = writer.getDefaultWriteParam();
-        imageWriteParam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-        imageWriteParam.setCompressionQuality(1);
-        // 将BufferedImage转换为IIOImage,进而输出图片
-        IIOImage iio_image = new IIOImage(bufImg, null, null);
-        // 输出
-        writer.setOutput(ios);
-        writer.write(null, iio_image, imageWriteParam);
-
-//        ImageIO.write(bufImg, "PNG", out);
+        ImageIO.write(bufImg, "jpeg", out);
         return out;
     }
 

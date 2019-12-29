@@ -551,29 +551,20 @@
             geolocation = new BMap.Geolocation();
             geolocation.getCurrentPosition(function (r) {
                 if (this.getStatus() == BMAP_STATUS_SUCCESS) {
-                    //var mk = new BMap.Marker(r.point);
-                    //map.addOverlay(mk);
-                    // panTo()方法将让地图平滑移动至新中心点
+                    //用户拒绝地理位置授权
+                    if (r.accuracy == null) {
+                        handleError(BMAP_STATUS_PERMISSION_DENIED);
+                        return;
+                    }
                     map.panTo(r.point);
                     // 定位中心点，放大倍数
                     map.centerAndZoom(r.point, map.getZoom());
                     checkPoint(r.point);
                 } else {
                     switchClockinBtn(3);
-                    // $.toast("获取定位失败", "forbidden");
+                    handleError(this.getStatus());
                 }
             }, {enableHighAccuracy: true});
-
-            // 添加带有定位的导航控件
-            // var navigationControl = new BMap.NavigationControl({
-            //     // 靠左上角位置
-            //     anchor: BMAP_ANCHOR_TOP_LEFT,
-            //     // LARGE类型
-            //     type: BMAP_NAVIGATION_CONTROL_LARGE,
-            //     // 启用显示定位
-            //     enableGeolocation: true
-            // });
-            // map.addControl(navigationControl);
 
             // 添加定位控件
             var geolocationControl = new BMap.GeolocationControl();
@@ -679,17 +670,20 @@
     }
 
     function handleError(value) {
-        switch (value.code) {
-            case 1:
+        switch (value) {
+            case BMAP_STATUS_PERMISSION_DENIED:
                 $.toast("位置服务被拒绝", "forbidden");
                 break;
-            case 2:
-                $.toast("获取定位失败,请确认是否打开GPS", "forbidden");
+            case BMAP_STATUS_UNKNOWN_LOCATION:
+                $.toast("获取位置失败,请确认是否打开GPS", "forbidden");
                 break;
-            case 3:
+            case BMAP_STATUS_UNKNOWN_ROUTE:
+                $.toast("获取位置失败,请确认是否打开GPS", "forbidden");
+                break;
+            case BMAP_STATUS_TIMEOUT:
                 $.toast("获取定位获取信息超时", "forbidden");
                 break;
-            case 4:
+            default:
                 $.toast("未知错误", "forbidden");
                 break;
         }
@@ -724,7 +718,7 @@
             if (point[3] > 0) {
                 //查看打卡详细
                 loadUrl('${BASE_URL}my/clockin/' + point[5]);
-            }else{
+            } else {
                 //调用打卡功能
                 loadUrl('${BASE_URL}clockin/in/${wechatUser.id}/' + clockinGeolocaltionPoint + '?clockinAddress=' + encodeURIComponent($('#clockinAddress').text().replace('地点:', '')));
             }
@@ -745,9 +739,14 @@
         locateTimeOut = setTimeout(function () {
             geolocation.getCurrentPosition(function (r) {
                 if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                    if (r.accuracy == null) {
+                        handleError(BMAP_STATUS_PERMISSION_DENIED);
+                        return;
+                    }
                     checkPoint(r.point);
                 } else {
                     switchClockinBtn(3);
+                    handleError(this.getStatus());
                 }
             }, {enableHighAccuracy: true})
             if (isLocate) {

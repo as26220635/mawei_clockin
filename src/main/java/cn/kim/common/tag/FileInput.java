@@ -159,6 +159,9 @@ public class FileInput extends BaseTagSupport {
 
         //循环插入
         FuncUtil.forEach(dictType.getInfos(), (index, info) -> {
+            if (info.getIsStatus() == Attribute.STATUS_ERROR){
+                return;
+            }
             int required = info.getSdiRequired();
             String boxClass = required == Attribute.STATUS_SUCCESS ? " box-danger " : " box-success ";
             String aClass = (index == 0 ? "" : " collapsed ") + (required == Attribute.STATUS_SUCCESS ? " text-red " : " text-black ");
