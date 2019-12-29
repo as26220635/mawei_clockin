@@ -260,7 +260,7 @@ public class ImageUtil {
                 backgroundOut = new ByteArrayOutputStream();
                 Thumbnails.of(clockinBufferedImage).scale(0.5f).outputQuality(0.5f).outputFormat("jpeg").toOutputStream(backgroundOut);
                 backgroundInputStream = FileUtil.parse(backgroundOut);
-                backgroundInputStream = FileUtil.parse(GaussianBlurUtil.blur(backgroundInputStream, 5));
+                backgroundInputStream = FileUtil.parse(GaussianBlurUtil.blur(backgroundInputStream, 7));
                 backgroundImage = ImageIO.read(backgroundInputStream);
 
                 //计算背景模糊图片需要的宽高
