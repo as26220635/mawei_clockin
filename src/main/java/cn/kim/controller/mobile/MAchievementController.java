@@ -54,7 +54,6 @@ public class MAchievementController extends BaseController {
     public String achievement(Model model) throws Exception {
         WechatUser wechatUser = getWechatUser();
         List<Map<String, Object>> list = achievementService.selectMAchievementListByWechat(wechatUser.getId());
-//        IMG_PATH
         int clockinCount = (int) list.stream().filter(m -> toInt(m.get("BAD_COUNT")) > 0).count();
 
         model.addAttribute("achievementList", list);

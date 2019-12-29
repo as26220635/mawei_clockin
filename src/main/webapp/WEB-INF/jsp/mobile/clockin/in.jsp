@@ -74,10 +74,11 @@
         margin-bottom: 10px;
     }
 
-    .weui-form__opr-area{
+    .weui-form__opr-area {
         text-align: center;
     }
-    .weui-btn{
+
+    .weui-btn {
         display: inline;
         width: 45%;
         margin-left: 5px;
@@ -248,7 +249,7 @@
         }
     });
 
-    $('#cancelBtn').on('click',function () {
+    $('#cancelBtn').on('click', function () {
         backHtml();
     });
 
@@ -302,7 +303,7 @@
         ajax.fileProgress(url, $form, function (event, position, total, percentComplete) {
             //进度条
             $('#' + progressId).css('width', percentComplete + '%');
-            if (percentComplete == 100){
+            if (percentComplete == 100) {
                 $.closeModal();
                 $.showLoading(progressText + '保存中');
             }
@@ -357,9 +358,9 @@
         // 1024KB，也就是 1MB
         var maxSize = 1024 * 1024;
         // 图片最大宽度
-        var maxWidth = 1000;
+        var maxWidth = 1500;
         // 图片最大高度
-        var maxHeight = 1000;
+        var maxHeight = 1500;
         // 最大上传图片数量
         var imgTotal = 0;
         // 记录当前已上传数量
@@ -390,12 +391,14 @@
                         var w = img.width;
                         var h = img.height;
                         if (w > maxWidth) {
-                            var w = maxWidth;
-                            var h = img.height * (w / img.width);
-                        } else if (h > maxHeight) {
-                            var h = maxHeight;
-                            var w = img.width * (h / img.height);
+                            w = maxWidth;
+                            h = img.height * (w / img.width);
                         }
+                        if (h > maxHeight) {
+                            h = maxHeight;
+                            w = img.width * (h / img.height);
+                        }
+
                         var canvas = document.createElement('canvas');
                         var ctx = canvas.getContext('2d');
                         // 设置 canvas 的宽度和高度
