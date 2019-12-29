@@ -308,7 +308,7 @@ public class ImageUtil {
                 }
 
                 //转为base64
-                String base64 = " data:image/png;base64," + ImageUtil.imgToBase64(out);
+                String base64 = " data:image/jpeg;base64," + ImageUtil.imgToBase64(out);
 
                 return FileUtil.base64ToMultipart(base64);
             }
@@ -331,11 +331,17 @@ public class ImageUtil {
     /**
      * 添加背景图片
      *
-     * @param srcImg
-     * @param waterImg
-     * @param x
-     * @param y
-     * @param alpha
+     * @param image
+     * @param waterImage
+     * @param backgroundImage
+     * @param waterMaxWidth
+     * @param waterMaxHeight
+     * @param waterX
+     * @param waterY
+     * @param backgroundMaxWidth
+     * @param backgroundMaxHeight
+     * @param backgroundX
+     * @param backgroundY
      * @return
      * @throws IOException
      */
@@ -375,17 +381,17 @@ public class ImageUtil {
 
             // 保存目标图片。
             out = new ByteArrayOutputStream();
-            ImageIO.write(bufferedImage, "jpeg", out);
+//            ImageIO.write(bufferedImage, "jpeg", out);
 
-//            ImageOutputStream ios = ImageIO.createImageOutputStream(out);
-//            Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("jpeg");
-//            ImageWriter writer = iter.next();
-//            ImageWriteParam iwp = writer.getDefaultWriteParam();
-//            iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-//            iwp.setCompressionQuality(0.8f);
-//            writer.setOutput(ios);
-//            writer.write(null, new IIOImage(bufferedImage, null, null), iwp);
-//            writer.dispose();
+            ImageOutputStream ios = ImageIO.createImageOutputStream(out);
+            Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("jpeg");
+            ImageWriter writer = iter.next();
+            ImageWriteParam iwp = writer.getDefaultWriteParam();
+            iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+            iwp.setCompressionQuality(0.95f);
+            writer.setOutput(ios);
+            writer.write(null, new IIOImage(bufferedImage, null, null), iwp);
+            writer.dispose();
         } catch (IOException e) {
             throw e;
         } finally {
