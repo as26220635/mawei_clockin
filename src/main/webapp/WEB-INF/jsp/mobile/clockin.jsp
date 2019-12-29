@@ -478,7 +478,7 @@
     //打卡点坐标
     var geolocaltionPoint = {
         <c:forEach items="${achievementList}" var="achievement">
-        '${achievement.ID}': [${achievement.BA_LONGITUDE}, ${achievement.BA_LATITUDE}, ${achievement.BA_RANGE}, ${achievement.BAD_COUNT}, '${achievement.IMG_PATH_BTN}'],
+        '${achievement.ID}': [${achievement.BA_LONGITUDE}, ${achievement.BA_LATITUDE}, ${achievement.BA_RANGE}, ${achievement.BAD_COUNT}, '${achievement.IMG_PATH_BTN}', '${achievement.BAD_ID}'],
         </c:forEach>
     };
     //打卡点圆
@@ -722,11 +722,12 @@
         var point = geolocaltionPoint[clockinGeolocaltionPoint];
         if (clockinGeolocaltionPoint != undefined && clockinGeolocaltionPoint != '') {
             if (point[3] > 0) {
-                $.toast("不能重复打卡", "forbidden");
-                return;
+                //查看打卡详细
+                loadUrl('${BASE_URL}my/clockin/' + point[5]);
+            }else{
+                //调用打卡功能
+                loadUrl('${BASE_URL}clockin/in/${wechatUser.id}/' + clockinGeolocaltionPoint + '?clockinAddress=' + encodeURIComponent($('#clockinAddress').text().replace('地点:', '')));
             }
-            //调用打卡功能
-            loadUrl('${BASE_URL}clockin/in/${wechatUser.id}/' + clockinGeolocaltionPoint + '?clockinAddress=' + encodeURIComponent($('#clockinAddress').text().replace('地点:', '')));
         }
     });
 </script>

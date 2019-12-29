@@ -278,7 +278,7 @@ public class ImageUtil {
         float rate2 = (float) maxHeight / height;
 
         //控制缩放大小
-        float rate = rate1 < rate2 ? rate1 : rate2;
+        float rate = Math.min(rate1,rate2);
         return rate;
     }
 
@@ -295,7 +295,7 @@ public class ImageUtil {
         float rate1 = (float) minWith / width;
         float rate2 = (float) minHeight / height;
 
-        float rate = rate1 > rate2 ? rate1 : rate2;
+        float rate = Math.max(rate1,rate2);
         return rate;
     }
 

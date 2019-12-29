@@ -174,14 +174,14 @@ public class MAchievementController extends BaseController {
 
                                 //水平居中
                                 if ((clockinHeight / maxHeight > clockinWidth / maxWidth) || (clockinHeight / maxHeight >= clockinWidth / maxWidth && maxWidth > maxHeight)) {
-                                    float scale = (float) (maxHeight * 1.0 / clockinHeight);
+                                    float scale = (float) maxHeight / clockinHeight;
                                     clockinWidth = (int) (clockinWidth * scale);
                                     clockinHeight = (int) (clockinHeight * scale);
                                     x = x + ((maxWidth - clockinWidth) / 2);
                                 }
                                 //垂直居中
                                 if ((clockinWidth / maxWidth > clockinHeight / maxHeight) || (clockinWidth / maxWidth > clockinHeight / maxHeight && maxWidth < maxHeight)) {
-                                    float scale = (float) (maxWidth * 1.0 / clockinWidth);
+                                    float scale = (float) maxWidth / clockinWidth;
                                     clockinHeight = (int) (clockinHeight * scale);
                                     clockinWidth = (int) (clockinWidth * scale);
                                     y = y + ((maxHeight - clockinHeight) / 2);
@@ -195,12 +195,15 @@ public class MAchievementController extends BaseController {
                                 backgroundImage = ImageIO.read(backgroundInputStream);
 
                                 //计算背景模糊图片需要的宽高
-                                float backgroudRate = ImageUtil.getMinRate(clockinWidth, clockinHeight, maxWidth, maxHeight);
+                                float backgroudRate1 = (float) maxWidth / clockinWidth;
+                                float backgroudRate2 = (float) maxHeight / clockinHeight;
+                                float backgroudRate = Math.max(backgroudRate1, backgroudRate1);
+
                                 int backgroundWidth = (int) (clockinWidth * backgroudRate);
                                 int backgroundHeight = (int) (clockinHeight * backgroudRate);
                                 int backgroundX = Math.round(x1 * baseHeight / shareHeight);
                                 int backgroundY = Math.round(y1 * baseWidth / shareWidth);
-                                if (clockinHeight / shareHeight > clockinWidth / shareWidth) {
+                                if (backgroudRate1 > backgroudRate2) {
                                     backgroundY = y + ((maxHeight - backgroundHeight) / 2);
                                 } else {
                                     backgroundX = x + ((maxWidth - backgroundWidth) / 2);
