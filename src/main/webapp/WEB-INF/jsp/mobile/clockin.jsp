@@ -198,6 +198,10 @@
             top: 90%;
         }
 
+        .clockin-check-area {
+            top: calc(70% + 40px);
+        }
+
         @keyframes marquee {
             0% {
                 transform: translateX(600px);
@@ -232,6 +236,10 @@
 
         #clockinAreaCheckDiv {
             top: 86%;
+        }
+
+        .clockin-check-area {
+            top: calc(70% + 40px);
         }
 
         @keyframes marquee {
