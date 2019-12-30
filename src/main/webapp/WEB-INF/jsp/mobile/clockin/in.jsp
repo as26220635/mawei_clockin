@@ -386,6 +386,8 @@
                 reader.onload = function (e) {
                     var img = new Image();
                     img.onload = function () {
+                        //质量
+                        var quality = 1;
                         //获得方向
                         var orient = getPhotoOrientation(img);
                         // 不要超出最大宽度
@@ -404,6 +406,8 @@
                             ctx.rotate(90 * Math.PI / 180);
                             ctx.drawImage(this, 0, -h);
                             ctx.restore();
+
+                            quality = 0.5;
                         } else if (orient == 8) {
                             canvas.width = h;
                             canvas.height = w;
@@ -411,6 +415,8 @@
                             ctx.rotate(-90 * Math.PI / 180);
                             ctx.drawImage(this, -w, 0);
                             ctx.restore();
+
+                            quality = 0.5;
                         } else if (orient == 3) {
                             canvas.width = h;
                             canvas.height = w;
@@ -418,6 +424,8 @@
                             ctx.rotate(180 * Math.PI / 180);
                             ctx.drawImage(this, -w, -h);
                             ctx.restore();
+
+                            quality = 0.5;
                         }else{
                             if (w > maxWidth) {
                                 w = maxWidth;
@@ -433,7 +441,7 @@
                             ctx.drawImage(this, 0, 0, w, h);
                         }
 
-                        var base64 = canvas.toDataURL('image/jpeg');
+                        var base64 = canvas.toDataURL('image/jpeg', quality);
 
                         // 插入到预览区
                         $uploaderFiles.append($(tmpl.replace('#url#', base64).replace('#imgid#', "uploadImg" + imgCount).replace('#imgname#', "uploadImg").replace('#url#', base64)));
