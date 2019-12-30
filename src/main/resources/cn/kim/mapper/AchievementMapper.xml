@@ -10,7 +10,7 @@
             BAD.BAD_ID,
             CONCAT(BSF.SF_PATH,'@@@',BSF.SF_NAME) IMG_PATH_BTN
         FROM BUS_ACHIEVEMENT BA
-        LEFT JOIN (SELECT BA_ID,COUNT(1) BAD_COUNT,MAX(ID) BAD_ID FROM BUS_ACHIEVEMENT_DETAIL WHERE BW_ID = #{ID} GROUP BY BA_ID)BAD ON BAD.BA_ID = BA.ID
+        LEFT JOIN (SELECT BA_ID,COUNT(1) BAD_COUNT,MAX(ID) BAD_ID FROM BUS_ACHIEVEMENT_DETAIL WHERE BW_ID = #{ID} AND BAD_IS_DELETE = 0  GROUP BY BA_ID)BAD ON BAD.BA_ID = BA.ID
         LEFT JOIN SYS_FILE BSF ON BSF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND BSF.SF_TABLE_ID = BA.ID AND BSF.SF_SDI_CODE = 0
         WHERE BA.IS_STATUS = 1
     </select>
@@ -19,11 +19,12 @@
     <select id="selectMAchievementListByWechat" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT
             BA.*,
+            BAD.BAD_ID,
             IFNULL(BAD.BAD_COUNT,0) BAD_COUNT,
             CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATH,
             CONCAT(SFI.SF_PATH,'@@@',SFI.SF_NAME) IMG_PATH_IN
         FROM BUS_ACHIEVEMENT BA
-        LEFT JOIN (SELECT BA_ID,COUNT(1) BAD_COUNT FROM BUS_ACHIEVEMENT_DETAIL WHERE BW_ID = #{ID} GROUP BY BA_ID)BAD ON BAD.BA_ID = BA.ID
+        LEFT JOIN (SELECT BA_ID,COUNT(1) BAD_COUNT,MAX(ID) BAD_ID FROM BUS_ACHIEVEMENT_DETAIL WHERE BW_ID = #{ID} AND BAD_IS_DELETE = 0  GROUP BY BA_ID)BAD ON BAD.BA_ID = BA.ID
         LEFT JOIN SYS_FILE SF ON SF.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SF.SF_TABLE_ID = BA.ID AND SF.SF_SDI_CODE = 1
         LEFT JOIN SYS_FILE SFI ON SFI.SF_TABLE_NAME = 'BUS_ACHIEVEMENT' AND SFI.SF_TABLE_ID = BA.ID AND SFI.SF_SDI_CODE = 2
         WHERE BA.IS_STATUS = 1
@@ -42,6 +43,13 @@
         GROUP BY CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME),CONCAT(SFI.SF_PATH,'@@@',SFI.SF_NAME)
     </select>
 
+    <select id="selectAchievementShareFile" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT SF.*,CONCAT(SF.SF_PATH,'@@@',SF.SF_NAME) IMG_PATH
+        FROM BUS_ACHIEVEMENT_DETAIL BAD
+        INNER JOIN SYS_FILE SF ON SF.SF_SDI_CODE = BAD.ID AND SF.SF_TABLE_NAME = #{SF_TABLE_NAME} AND SF.SF_TABLE_ID = #{SF_TABLE_ID} AND SF.SF_SDT_CODE = #{SF_SDT_CODE}
+        WHERE BAD.ID = #{SF_SDI_CODE}
+    </select>
+
     <!--查询-->
     <select id="selectAchievementDetail" parameterType="java.util.Map" resultType="java.util.Map">
         SELECT BAD.*,BW.BW_USERNAME
@@ -56,6 +64,9 @@
                 </if>
                 <if test ="BW_ID != NULL and BW_ID != ''">
                     AND BW_ID = #{BW_ID}
+                </if>
+                <if test ="BAD_IS_DELETE != NULL">
+                    AND BAD_IS_DELETE = #{BAD_IS_DELETE}
                 </if>
             </where>
         )BAD
@@ -95,6 +106,7 @@
             <if test="BAD_ADDRESS != null">BAD_REMARKS=#{BAD_ADDRESS},</if>
             <if test="BAD_REMARKS != null">BAD_REMARKS=#{BAD_REMARKS},</if>
             <if test="BAD_ENTERTIME != null">BAD_ENTERTIME=#{BAD_ENTERTIME},</if>
+            <if test="BAD_IS_DELETE != null">BAD_IS_DELETE=#{BAD_IS_DELETE},</if>
         </set>
         <where>
             ID=#{ID}

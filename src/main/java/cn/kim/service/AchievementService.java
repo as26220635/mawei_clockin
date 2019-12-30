@@ -146,6 +146,14 @@ public interface AchievementService extends BaseService {
     List<Map<String, Object>> selectAchievementShareList(Map<String, Object> mapParam);
 
     /**
+     * 查询成就墙分享图片
+     *
+     * @param mapParam
+     * @return
+     */
+    Map<String, Object> selectAchievementShareFile(Map<String, Object> mapParam);
+
+    /**
      * 变更成就墙分享区域
      *
      * @param mapParam

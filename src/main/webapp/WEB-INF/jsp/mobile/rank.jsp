@@ -60,7 +60,7 @@
     }
 
     .weui-cell__desc {
-        width: 115px;
+        width: 140px;
     }
 
     .weui-cell__achievement {

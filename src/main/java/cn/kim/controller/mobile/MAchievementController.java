@@ -73,9 +73,9 @@ public class MAchievementController extends BaseController {
      * @return
      * @throws Exception
      */
-    @GetMapping("/achievement/share/{BA_ID}/{BW_ID}")
+    @GetMapping("/achievement/share/{BAD_ID}/{BA_ID}/{BW_ID}")
     @WechaNotEmptyLogin
-    public String share(@PathVariable("BA_ID") String BA_ID, @PathVariable("BW_ID") String BW_ID, @RequestParam Map<String, Object> extraMap, Model model) throws Exception {
+    public String share(@PathVariable("BAD_ID") String BAD_ID, @PathVariable("BA_ID") String BA_ID, @PathVariable("BW_ID") String BW_ID, @RequestParam Map<String, Object> extraMap, Model model) throws Exception {
 
         RLock lock = redissonClient.getFairLock("share" + BW_ID);
         try {
@@ -88,8 +88,8 @@ public class MAchievementController extends BaseController {
                 paramMap.put("SF_TABLE_NAME", TableName.BUS_WECHAT);
                 paramMap.put("SF_TABLE_ID", BW_ID);
                 paramMap.put("SF_SDT_CODE", TableName.BUS_ACHIEVEMENT_SHARE);
-                paramMap.put("SF_SDI_CODE", BA_ID);
-                Map<String, Object> fileMap = fileService.selectFile(paramMap);
+                paramMap.put("SF_SDI_CODE", BAD_ID);
+                Map<String, Object> fileMap = achievementService.selectAchievementShareFile(paramMap);
 
                 paramMap.clear();
                 paramMap.put("ID", BA_ID);
@@ -115,6 +115,7 @@ public class MAchievementController extends BaseController {
                     paramMap.clear();
                     paramMap.put("BA_ID", BA_ID);
                     paramMap.put("BW_ID", BW_ID);
+                    paramMap.put("BAD_IS_DELETE", STATUS_ERROR);
                     Map<String, Object> achievementDetail = achievementService.selectAchievementDetail(paramMap);
 
                     paramMap.clear();
@@ -143,7 +144,7 @@ public class MAchievementController extends BaseController {
                             configure.put("SF_TABLE_NAME", TableName.BUS_WECHAT);
                             configure.put("SF_TABLE_ID", BW_ID);
                             configure.put("SF_SDT_CODE", TableName.BUS_ACHIEVEMENT_SHARE);
-                            configure.put("SF_SDI_CODE", BA_ID);
+                            configure.put("SF_SDI_CODE", BAD_ID);
                             configure.put("SF_TYPE_CODE", TableName.BUS_ACHIEVEMENT_DETAIL);
 
                             Map<String, Object> result = FileUtil.saveImgFile(shareFile, configure);
@@ -163,7 +164,7 @@ public class MAchievementController extends BaseController {
                 }
 
                 model.addAttribute("achievement", achievement);
-                model.addAttribute("shareFeedbackParam", TextUtil.base64Encrypt(BA_ID + "@@@" + BW_ID));
+                model.addAttribute("shareFeedbackParam", TextUtil.base64Encrypt(BAD_ID + "@@@" + BA_ID + "@@@" + BW_ID));
 
                 int action = toInt(extraMap.get("action"));
                 if (action == 1) {
@@ -194,21 +195,22 @@ public class MAchievementController extends BaseController {
     @GetMapping("/share/{param}")
     public String shareFeedback(@PathVariable("param") String param, @RequestParam Map<String, Object> extraMap, Model model) throws Exception {
         String[] params = TextUtil.base64Decrypt(param).split("@@@");
-        String BA_ID = params[0];
-        String BW_ID = params[1];
+        String BAD_ID = params[0];
+        String BA_ID = params[1];
+        String BW_ID = params[2];
 
         Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(4);
         paramMap.put("SF_TABLE_NAME", TableName.BUS_WECHAT);
         paramMap.put("SF_TABLE_ID", BW_ID);
         paramMap.put("SF_SDT_CODE", TableName.BUS_ACHIEVEMENT_SHARE);
-        paramMap.put("SF_SDI_CODE", BA_ID);
-        Map<String, Object> fileMap = fileService.selectFile(paramMap);
+        paramMap.put("SF_SDI_CODE", BAD_ID);
+        Map<String, Object> fileMap = achievementService.selectAchievementShareFile(paramMap);
 
-        paramMap.clear();
-        paramMap.put("ID", BA_ID);
-        Map<String, Object> achievement = achievementService.selectAchievement(paramMap);
+//        paramMap.clear();
+//        paramMap.put("ID", BA_ID);
+//        Map<String, Object> achievement = achievementService.selectAchievement(paramMap);
 
-        model.addAttribute("IMG_PATH", fileMap.get("FILE_PATH"));
+        model.addAttribute("IMG_PATH", fileMap.get("IMG_PATH"));
         return "mobile/achievement/shareFeedback";
     }
 }

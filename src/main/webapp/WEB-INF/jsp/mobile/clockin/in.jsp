@@ -334,7 +334,7 @@
             if (data.code == 1) {
                 $.toast('打卡成功', 1000, function () {
                     // backHtml();
-                    loadUrl('${BASE_URL}achievement/share/${BA_ID}/${BW_ID}?action=1');
+                    loadUrl('${BASE_URL}achievement/share/' + data.id + '/${BA_ID}/${BW_ID}?action=1');
                 });
             } else {
                 $.toast("打卡失败", "forbidden");

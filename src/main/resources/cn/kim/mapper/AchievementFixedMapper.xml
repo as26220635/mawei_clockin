@@ -91,7 +91,6 @@
     </select>
 
     <!--插入-->
-    <!--插入-->
     <insert id="insertAchievementShare" parameterType="java.util.Map">
         INSERT INTO BUS_ACHIEVEMENT_SHARE
         <trim prefix="(" suffix=")" suffixOverrides="," >

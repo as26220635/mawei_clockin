@@ -36,7 +36,7 @@
             <c:choose>
                 <c:when test="${achievement.BAD_COUNT > 0}">
 <%--                    href="${BASE_URL}achievement/share/${achievement.ID}/${wechatUser.id}?action=2" data-pjax="#${CONTAINER}"--%>
-                    <a class="weui-grid"  href="${BASE_URL}achievement/share/${achievement.ID}/${wechatUser.id}?action=2" data-pjax="#${CONTAINER}">
+                    <a class="weui-grid"  href="${BASE_URL}achievement/share/${achievement.BAD_ID}/${achievement.ID}/${wechatUser.id}?action=2" data-pjax="#${CONTAINER}">
                         <div class="weui-grid__icon">
                             <img src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${achievement.IMG_PATH_IN}">
                         </div>

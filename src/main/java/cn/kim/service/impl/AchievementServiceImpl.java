@@ -218,6 +218,7 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
         paramMap.put("ID", mapParam.get("ID"));
         paramMap.put("BA_ID", mapParam.get("BA_ID"));
         paramMap.put("BW_ID", mapParam.get("BW_ID"));
+        paramMap.put("BAD_IS_DELETE", mapParam.get("BAD_IS_DELETE"));
         return baseDao.selectOne(NameSpace.AchievementMapper, "selectAchievementDetail", paramMap);
     }
 
@@ -323,17 +324,20 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             Map<String, Object> oldMap = selectAchievementDetail(paramMap);
             //记录日志
             paramMap.put(MagicValue.SVR_TABLE_NAME, TableName.BUS_ACHIEVEMENT_DETAIL);
-            baseDao.delete(NameSpace.AchievementMapper, "deleteAchievementDetail", paramMap);
+//            baseDao.delete(NameSpace.AchievementMapper, "deleteAchievementDetail", paramMap);
+            //伪删除
+            paramMap.put("BAD_IS_DELETE", STATUS_SUCCESS);
+            baseDao.update(NameSpace.AchievementMapper, "updateAchievementDetail", paramMap);
 
             //删除附件
-            paramMap.clear();
-            paramMap.put("SF_TABLE_ID", id);
-            paramMap.put("SF_TABLE_NAME", TableName.BUS_ACHIEVEMENT_DETAIL);
-            List<Map<String, Object>> fileList = baseDao.selectList(NameSpace.FileMapper, "selectFile", paramMap);
-            for (Map<String, Object> file : fileList) {
-                fileService.deleteFile(toString(file.get("ID")));
-            }
-            deleteFile(id, TableName.BUS_ACHIEVEMENT_DETAIL);
+//            paramMap.clear();
+//            paramMap.put("SF_TABLE_ID", id);
+//            paramMap.put("SF_TABLE_NAME", TableName.BUS_ACHIEVEMENT_DETAIL);
+//            List<Map<String, Object>> fileList = baseDao.selectList(NameSpace.FileMapper, "selectFile", paramMap);
+//            for (Map<String, Object> file : fileList) {
+//                fileService.deleteFile(toString(file.get("ID")));
+//            }
+//            deleteFile(id, TableName.BUS_ACHIEVEMENT_DETAIL);
 
 
             //删除分享图片
@@ -552,6 +556,20 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
         paramMap.put("BA_ID", mapParam.get("BA_ID"));
         paramMap.put("BAS_PARENTID", mapParam.get("BAS_PARENTID"));
         return baseDao.selectList(NameSpace.AchievementFixedMapper, "selectAchievementShare", paramMap);
+    }
+
+    @Override
+    public Map<String, Object> selectAchievementShareFile(Map<String, Object> mapParam) {
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(4);
+        paramMap.put("SF_TABLE_NAME", mapParam.get("SF_TABLE_NAME"));
+        paramMap.put("SF_TABLE_ID", mapParam.get("SF_TABLE_ID"));
+        paramMap.put("SF_SDT_CODE", mapParam.get("SF_SDT_CODE"));
+        paramMap.put("SF_SDI_CODE", mapParam.get("SF_SDI_CODE"));
+
+        Map<String, Object> map = baseDao.selectOne(NameSpace.AchievementMapper, "selectAchievementShareFile", paramMap);
+        //文件路径加密
+        FileUtil.filePathTobase64(map, "IMG_PATH");
+        return map;
     }
 
     @Override

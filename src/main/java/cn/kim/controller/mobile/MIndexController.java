@@ -157,6 +157,7 @@ public class MIndexController extends BaseController {
         mapParam.clear();
         mapParam.put("BA_ID", BA_ID);
         mapParam.put("BW_ID", BW_ID);
+        mapParam.put("BAD_IS_DELETE", STATUS_ERROR);
         Map<String, Object> detail = achievementService.selectAchievementDetail(mapParam);
         if (!isEmpty(detail)) {
             model.addAttribute("isClockin", 1);
@@ -238,7 +239,6 @@ public class MIndexController extends BaseController {
                     FileUtil.saveFileInfo(configure);
                 }
             }
-
             return resultState(resultMap);
         });
     }
