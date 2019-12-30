@@ -8,6 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/jsp/common/tag.jsp" %>
 <style>
+    .page__hd{
+        background: url("${BASE_URL}resources/assets/images/main/activity.jpg");
+        background-size: 100%;
+        background-size: cover;
+        height: 55px;
+    }
     .weui-grid__icon {
         width: 100px;
         height: 100px;
@@ -29,7 +35,7 @@
 
 <div class="container container-page" id="activityContainer">
     <div class="page__hd">
-        <h1 class="page__title">活动信息</h1>
+<%--        <h1 class="page__title">活动信息</h1>--%>
     </div>
     <div class="weui-panel weui-panel_access">
         <div class="weui-panel__bd">

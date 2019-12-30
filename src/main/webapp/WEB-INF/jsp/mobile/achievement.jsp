@@ -8,6 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/jsp/common/tag.jsp" %>
 <style>
+    .page__hd{
+        background: url("${BASE_URL}resources/assets/images/main/achievement.jpg");
+        background-size: 100%;
+        background-size: cover;
+        height: 55px;
+    }
     .weui-grid__icon {
         width: 100px;
         height: 100px;
@@ -22,10 +28,10 @@
 
 <div class="container container-page">
     <div class="page__hd">
-        <h1 class="page__title">成就墙</h1>
-        <p class="page__desc">已收集${clockinCount}/${achievementList.size()}个成就</p>
+<%--        <h1 class="page__title">成就墙</h1>--%>
+<%--        <p class="page__desc">已收集${clockinCount}/${achievementList.size()}个成就</p>--%>
     </div>
-    <div class="weui-grids">
+    <div class="weui-grids weui-cells">
         <c:forEach items="${achievementList}" var="achievement">
             <c:choose>
                 <c:when test="${achievement.BAD_COUNT > 0}">

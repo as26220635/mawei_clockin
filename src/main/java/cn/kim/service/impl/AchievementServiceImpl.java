@@ -337,16 +337,16 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
 
 
             //删除分享图片
-            paramMap.clear();
-            paramMap.put("SF_TABLE_ID", oldMap.get("BW_ID"));
-            paramMap.put("SF_TABLE_NAME", TableName.BUS_WECHAT);
-            paramMap.put("SF_SDT_CODE", TableName.BUS_ACHIEVEMENT_SHARE);
-            paramMap.put("SF_SDI_CODE", oldMap.get("BA_ID"));
-            fileList = baseDao.selectList(NameSpace.FileMapper, "selectFile", paramMap);
-            for (Map<String, Object> file : fileList) {
-                fileService.deleteFile(toString(file.get("ID")));
-                FileUtil.delServiceFile(toString(file.get("ID")));
-            }
+//            paramMap.clear();
+//            paramMap.put("SF_TABLE_ID", oldMap.get("BW_ID"));
+//            paramMap.put("SF_TABLE_NAME", TableName.BUS_WECHAT);
+//            paramMap.put("SF_SDT_CODE", TableName.BUS_ACHIEVEMENT_SHARE);
+//            paramMap.put("SF_SDI_CODE", oldMap.get("BA_ID"));
+//            fileList = baseDao.selectList(NameSpace.FileMapper, "selectFile", paramMap);
+//            for (Map<String, Object> file : fileList) {
+//                fileService.deleteFile(toString(file.get("ID")));
+//                FileUtil.delServiceFile(toString(file.get("ID")));
+//            }
 
             resultMap.put(MagicValue.LOG, "删除打卡信息,信息:" + formatColumnName(TableName.BUS_ACHIEVEMENT_DETAIL, oldMap));
             status = STATUS_SUCCESS;

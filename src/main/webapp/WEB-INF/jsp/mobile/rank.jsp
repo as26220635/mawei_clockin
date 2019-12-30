@@ -8,6 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/WEB-INF/jsp/common/tag.jsp" %>
 <style>
+    .page__hd{
+        background: url("${BASE_URL}resources/assets/images/main/rank.jpg");
+        background-size: 100%;
+        background-size: cover;
+        height: 55px;
+    }
     .weui-grid__icon {
         width: 100px;
         height: 100px;
@@ -54,7 +60,7 @@
     }
 
     .weui-cell__desc {
-        width: 140px;
+        width: 115px;
     }
 
     .weui-cell__achievement {
@@ -221,13 +227,13 @@
 </style>
 <div class="container container-page" id="rankContainer">
     <div class="page__hd">
-        <h1 class="page__title">排行榜</h1>
-        <p class="page__desc">
-<%--            排名每10分钟更新--%>
-            <c:if test="${not empty updateDate}">
-                更新时间:${updateDate}
-            </c:if>
-        </p>
+<%--        <h1 class="page__title">排行榜</h1>--%>
+<%--        <p class="page__desc">--%>
+<%--&lt;%&ndash;            排名每10分钟更新&ndash;%&gt;--%>
+<%--            <c:if test="${not empty updateDate}">--%>
+<%--                更新时间:${updateDate}--%>
+<%--            </c:if>--%>
+<%--        </p>--%>
     </div>
     <div class="weui-cells">
         <div class="weui-search-bar" id="searchBar">

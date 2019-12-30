@@ -7,6 +7,8 @@
 <script type="text/javascript" src="${BASE_URL}resources/assets/weui/zepto.weui.min.js?ver=${VERSION}"></script>
 <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="https://res.wx.qq.com/open/libs/weuijs/1.2.1/weui.min.js"></script>
+<%--图片旋转--%>
+<script type="text/javascript" src="${BASE_URL}resources/assets/weui/exif.js?ver=${VERSION}"></script>
 <%--pjax--%>
 <script src="${BASE_URL}resources/mobile/plugins/jquery-pjax-master/jquery.pjax.js?ver=${VERSION}"
         type="text/javascript"></script>

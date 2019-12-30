@@ -748,7 +748,7 @@ public class CommonUtil {
                 BeanUtil.idDecryptReflect(obj);
             }
         } catch (Exception e) {
-            throw new InvalidKeyException("无效的KEY!");
+//            throw new InvalidKeyException("无效的KEY!");
         }
         return obj;
     }

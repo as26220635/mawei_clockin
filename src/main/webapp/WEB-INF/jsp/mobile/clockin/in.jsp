@@ -373,7 +373,6 @@
             imgCount = parseInt($uploaderCount.attr("data-val"));//从显示上传数的$uploaderCount获取当前的数量
             for (var i = 0, len = files.length; i < len; ++i) {
                 var file = files[i];
-
                 if (url) {
                     src = url.createObjectURL(file);
                 } else {
@@ -387,24 +386,53 @@
                 reader.onload = function (e) {
                     var img = new Image();
                     img.onload = function () {
+                        //获得方向
+                        var orient = getPhotoOrientation(img);
                         // 不要超出最大宽度
                         var w = img.width;
                         var h = img.height;
-                        if (w > maxWidth) {
-                            w = maxWidth;
-                            h = img.height * (w / img.width);
-                        }
-                        if (h > maxHeight) {
-                            h = maxHeight;
-                            w = img.width * (h / img.height);
-                        }
 
                         var canvas = document.createElement('canvas');
                         var ctx = canvas.getContext('2d');
                         // 设置 canvas 的宽度和高度
                         canvas.width = w;
                         canvas.height = h;
-                        ctx.drawImage(img, 0, 0, w, h);
+                        if (orient == 6) {
+                            canvas.width = h;
+                            canvas.height = w;
+                            ctx.save();
+                            ctx.rotate(90 * Math.PI / 180);
+                            ctx.drawImage(this, 0, -h);
+                            ctx.restore();
+                        } else if (orient == 8) {
+                            canvas.width = h;
+                            canvas.height = w;
+                            ctx.save();
+                            ctx.rotate(-90 * Math.PI / 180);
+                            ctx.drawImage(this, -w, 0);
+                            ctx.restore();
+                        } else if (orient == 3) {
+                            canvas.width = h;
+                            canvas.height = w;
+                            ctx.save();
+                            ctx.rotate(180 * Math.PI / 180);
+                            ctx.drawImage(this, -w, -h);
+                            ctx.restore();
+                        }else{
+                            if (w > maxWidth) {
+                                w = maxWidth;
+                                h = img.height * (w / img.width);
+                            }
+                            if (h > maxHeight) {
+                                h = maxHeight;
+                                w = img.width * (h / img.height);
+                            }
+
+                            canvas.width = w;
+                            canvas.height = h;
+                            ctx.drawImage(this, 0, 0, w, h);
+                        }
+
                         var base64 = canvas.toDataURL('image/jpeg');
 
                         // 插入到预览区
@@ -444,6 +472,15 @@
             } else {
                 $('.weui-uploader__input-box').show();
             }
+        }
+
+        //获取图片方向
+        function getPhotoOrientation(img) {
+            var orient;
+            EXIF.getData(img, function () {
+                orient = EXIF.getTag(this, 'Orientation');
+            });
+            return orient;
         }
     });
 </script>

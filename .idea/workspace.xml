@@ -7,8 +7,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7327bc50-4349-42c0-91dd-1fd1c7b41fa8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/achievement.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/activity.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/avatarFrame.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/assets/images/main/rank.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/assets/weui/exif.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/util/ImageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/util/ImageUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/util/CommonUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/util/CommonUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/activity.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/activity.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/common_bottom.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/common_bottom.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -46,25 +58,55 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/ImageUtil.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="100">
-              <caret line="246" column="102" selection-start-line="246" selection-start-column="102" selection-end-line="246" selection-end-column="102" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="303">
+              <caret line="62" column="22" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="138" column="65" selection-start-line="138" selection-start-column="65" selection-end-line="138" selection-end-column="65" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="225">
+              <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/activity.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-425">
+              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="125">
+              <caret line="32" column="10" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="46" column="108" lean-forward="true" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="108" />
             </state>
           </provider>
         </entry>
@@ -83,7 +125,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>BUS_ACHIEVEMENT_FILE</find>
       <find>achievement</find>
       <find>photo</find>
       <find>fileService.selectFile</find>
@@ -94,7 +135,7 @@
       <find>onEditClick</find>
       <find>water</find>
       <find>selectAchievementShare</find>
-      <find></find>
+      <find />
       <find>#clockinAreaImg</find>
       <find>8px</find>
       <find>--background</find>
@@ -113,6 +154,7 @@
       <find>clockin</find>
       <find>isLocate</find>
       <find>deleteAchievementDetail</find>
+      <find>getPhotoOrientation</find>
     </findStrings>
     <replaceStrings>
       <replace>${LOG_HOME}</replace>
@@ -186,10 +228,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/demo/MD5test/AESTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/CommonUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/AESUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/log4j2.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/config.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/mybatis/sqlMapConfig.xml" />
@@ -200,7 +238,6 @@
         <option value="$PROJECT_DIR$/src/main/static/sqlView.txt" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/xss/XssHttpServletRequestWrapper.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/interceptor/PjaxInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/spring/applicationContext-application.xml" />
         <option value="$USER_HOME$/Desktop/config.properties" />
@@ -208,7 +245,6 @@
         <option value="G:/项目记录/马尾青春打卡/server.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/quartz/WechatAccessTokenTask.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank/rank_data.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_item.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/GaussianBlurUtil.java" />
@@ -224,19 +260,25 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/tag.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/shareFeedback.jsp" />
         <option value="$PROJECT_DIR$/src/main/demo/initSqlMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementFixedMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/share/detail.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/share/home.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/info/AchievementController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/MainImageServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/share.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/common_bottom.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/CommonUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/ImageUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/activity.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp" />
       </list>
     </option>
   </component>
@@ -278,8 +320,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="76" />
-    <option name="width" value="1539" />
+    <option name="x" value="75" />
+    <option name="width" value="1540" />
     <option name="height" value="1071" />
   </component>
   <component name="ProjectId" id="1UgwJzx1Pa6dFbqyq2wzMiD5vzu" />
@@ -291,6 +333,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -364,48 +407,141 @@
               <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
               <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="clockin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="jsp" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
               <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="mawei_clockin-1.0-SNAPSHOT" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
               <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
+              <item name="mawei_clockin-1.0-SNAPSHOT" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
               <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
+              <item name="mawei_clockin-1.0-SNAPSHOT" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
               <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="cn" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="mawei_clockin-1.0-SNAPSHOT" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -423,7 +559,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="editorconfig.notification" value="true;" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/share" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/target/mawei_clockin-1.0-SNAPSHOT/resources/assets/images/main" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -439,12 +575,12 @@
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\static\plugins\jquery-image-maps" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile\clockin" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\xm\mawei_clockin\target\mawei_clockin-1.0-SNAPSHOT\resources\assets\images\main" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\assets\images\main" />
+      <recent name="G:\xm\mawei_clockin\target\mawei_clockin-1.0-SNAPSHOT\resources\assets\weui" />
       <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\assets\weui" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\admin\info\achievement\share" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cn.kim.common.quartz" />
@@ -453,12 +589,12 @@
       <recent name="cn.kim.service.impl" />
       <recent name="cn.kim.service" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\admin\info\achievement\share" />
-      <recent name="G:\xm\mawei_clockin\target\mawei_clockin-1.0-SNAPSHOT\.well-known\pki-validation" />
-      <recent name="G:\xm\mawei_clockin\target\mawei_clockin-1.0-SNAPSHOT" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\.well-known\pki-validation" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\assets\images\main" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\static\plugins\jquery-image-maps" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile\clockin" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -779,21 +915,8 @@
       <workItem from="1577607157391" duration="3005000" />
       <workItem from="1577617683308" duration="2477000" />
       <workItem from="1577626394905" duration="1482000" />
-      <workItem from="1577668197398" duration="22078000" />
-    </task>
-    <task id="LOCAL-00014" summary="修改">
-      <created>1575458808759</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1575458808759</updated>
-    </task>
-    <task id="LOCAL-00015" summary="修改">
-      <created>1575513115541</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1575513115541</updated>
+      <workItem from="1577668197398" duration="25903000" />
+      <workItem from="1577701921989" duration="2073000" />
     </task>
     <task id="LOCAL-00016" summary="修改">
       <created>1575517818644</created>
@@ -1124,7 +1247,21 @@
       <option name="project" value="LOCAL" />
       <updated>1577695518967</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="修改">
+      <created>1577695858930</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1577695858930</updated>
+    </task>
+    <task id="LOCAL-00064" summary="修改">
+      <created>1577696026233</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1577696026234</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1154,7 +1291,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133716000" />
+    <option name="totallyTimeSpent" value="139614000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1167,6 +1304,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1563" height="845" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49927008" visible="true" weight="0.30166113" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1228,7 +1366,7 @@
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.329927" />
       <window_info anchor="bottom" id="Database Changes" order="13" weight="0.329927" />
       <window_info anchor="bottom" id="Version Control" order="14" weight="0.329927" />
-      <window_info anchor="bottom" id="Debug" order="15" sideWeight="0.49966776" weight="0.57664233" />
+      <window_info anchor="bottom" id="Debug" order="15" sideWeight="0.49966776" visible="true" weight="0.57664233" />
       <window_info anchor="right" id="Preview" order="0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.24983388" />
@@ -1611,57 +1749,6 @@
     <SUITE FILE_PATH="coverage/mawei_clockin$Tomcat_8_5_37.ic" NAME="Tomcat 8.5.37 Coverage Results" MODIFIED="1574783793926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ValueRecordMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1320" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/log4j2.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatRankMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-375" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/wechat/home.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="37" column="10" selection-start-line="37" selection-start-column="10" selection-end-line="37" selection-end-column="10" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="5388" column="4" selection-start-line="5388" selection-start-column="4" selection-end-line="5388" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/FileUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="1107" column="30" selection-start-line="1107" selection-start-column="30" selection-end-line="1107" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/ValidateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="49" column="26" selection-start-line="49" selection-start-column="26" selection-end-line="49" selection-end-column="26" />
-          <folding>
-            <element signature="e#1953#1954#0" expanded="true" />
-            <element signature="e#2008#2009#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/tag/FileInput.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -1848,16 +1935,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="335" column="34" lean-forward="true" selection-start-line="335" selection-start-column="34" selection-end-line="335" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementFixedMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="218">
@@ -1900,48 +1977,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="79" column="20" lean-forward="true" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/share.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-22">
           <caret line="59" column="30" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="133" column="16" selection-start-line="133" selection-start-column="8" selection-end-line="133" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-223">
-          <caret line="243" selection-start-line="243" selection-end-line="243" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#1;n#div#4;n#div#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="107" column="24" selection-start-line="107" selection-start-column="24" selection-end-line="107" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="325" column="80" selection-start-line="325" selection-start-column="57" selection-end-line="325" selection-end-column="80" />
         </state>
       </provider>
     </entry>
@@ -1952,24 +1991,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MActivityController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="25">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MIndexController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
           <caret line="230" column="3" lean-forward="true" selection-start-line="230" selection-start-column="3" selection-end-line="230" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MMyController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="102" column="68" lean-forward="true" selection-start-line="102" selection-start-column="68" selection-end-line="102" selection-end-column="68" />
         </state>
       </provider>
     </entry>
@@ -1980,9 +2005,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/common_js.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MActivityController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/assets/weui/exif.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1560">
+          <caret line="975" column="44" lean-forward="true" selection-start-line="975" selection-start-column="44" selection-end-line="975" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="3053" column="4" selection-start-line="3053" selection-start-column="4" selection-end-line="3053" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/ImageUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9800">
+          <caret line="418" column="43" selection-start-line="418" selection-start-column="43" selection-end-line="418" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/common_bottom.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/CommonUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17750">
+          <caret line="750" column="43" selection-start-line="750" selection-start-column="43" selection-end-line="750" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
+        <state relative-caret-position="2625">
           <caret line="138" column="65" selection-start-line="138" selection-start-column="65" selection-end-line="138" selection-end-column="65" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1990,13 +2063,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/ImageUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MMyController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="246" column="102" selection-start-line="246" selection-start-column="102" selection-end-line="246" selection-end-column="102" />
+        <state relative-caret-position="2050">
+          <caret line="102" column="63" selection-start-line="102" selection-start-column="63" selection-end-line="102" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2575">
+          <caret line="107" column="24" selection-start-line="107" selection-start-column="24" selection-end-line="107" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8050">
+          <caret line="348" column="15" selection-start-line="348" selection-start-column="15" selection-end-line="348" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="25">
+          <caret line="416" column="39" selection-start-line="416" selection-start-column="39" selection-end-line="416" selection-end-column="39" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="46" column="108" lean-forward="true" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/activity.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-425">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="32" column="10" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="62" column="22" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="22" />
         </state>
       </provider>
     </entry>

@@ -29,15 +29,25 @@
         margin-top: 10px;
         font-size: 20px;
     }
+
+    .weui-icon-avatar-frame {
+        background-color: transparent;
+        position: absolute !important;
+        margin-left: -68px;
+        margin-top: -8px;
+        width: 75px !important;
+        height: 75px !important;
+    }
 </style>
 
 <div class="container container-page">
     <div class="weui-cells weui-icon-home">
         <div class="weui-avatar">
             <img src="${wechatUser.avatar}">
+            <img class="weui-icon-avatar-frame" src="${BASE_URL}resources/assets/images/main/avatarFrame.png">
             <div id="iconName">${wechatUser.username}</div>
-<%--            <img src="${BASE_URL}resources/assets/images/main/map.jpg">--%>
-<%--            <div id="iconName">as26220635</div>--%>
+            <%--            <img src="${BASE_URL}resources/assets/images/main/map.jpg">--%>
+            <%--            <div id="iconName">as26220635</div>--%>
         </div>
     </div>
     <div class="weui-cells">
@@ -50,7 +60,8 @@
         </a>
         <c:choose>
             <c:when test="${not empty CONTACT_SERVICE_IMG_PATH}">
-                <a class="weui-cell weui-cell_access" href="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${CONTACT_SERVICE_IMG_PATH}">
+                <a class="weui-cell weui-cell_access"
+                   href="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${CONTACT_SERVICE_IMG_PATH}">
                     <div class="weui-cell__bd">
                         <p>联系客服</p>
                     </div>
