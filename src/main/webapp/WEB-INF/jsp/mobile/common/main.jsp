@@ -239,20 +239,20 @@
                         cancel: cancel,
                     }
 
-                    if (wx.updateAppMessageShareData) {
-                        wx.updateAppMessageShareData({
-                            title: defaults.title,
-                            desc: defaults.desc,
-                            link: defaults.link,
-                            imgUrl: defaults.imgUrl,
-                            success: function () {
-                                defaults.success();
-                            },
-                            cancel: function () {
-                                defaults.cancel();
-                            }
-                        });
-                    } else {
+                    // if (wx.updateAppMessageShareData) {
+                    //     wx.updateAppMessageShareData({
+                    //         title: defaults.title,
+                    //         desc: defaults.desc,
+                    //         link: defaults.link,
+                    //         imgUrl: defaults.imgUrl,
+                    //         success: function () {
+                    //             defaults.success();
+                    //         },
+                    //         cancel: function () {
+                    //             defaults.cancel();
+                    //         }
+                    //     });
+                    // } else {
                         wx.onMenuShareAppMessage({
                             title: defaults.title,
                             desc: defaults.desc,
@@ -267,21 +267,21 @@
                                 defaults.cancel();
                             }
                         });
-                    }
+                    // }
                     //分享给朋友圈
-                    if (wx.updateTimelineShareData) {
-                        wx.updateTimelineShareData({
-                            title: defaults.title,
-                            link: defaults.link,
-                            imgUrl: defaults.imgUrl,
-                            success: function () {
-                                defaults.success();
-                            },
-                            cancel: function () {
-                                defaults.cancel();
-                            }
-                        });
-                    } else {
+                    // if (wx.updateTimelineShareData) {
+                    //     wx.updateTimelineShareData({
+                    //         title: defaults.title,
+                    //         link: defaults.link,
+                    //         imgUrl: defaults.imgUrl,
+                    //         success: function () {
+                    //             defaults.success();
+                    //         },
+                    //         cancel: function () {
+                    //             defaults.cancel();
+                    //         }
+                    //     });
+                    // } else {
                         wx.onMenuShareTimeline({
                             title: defaults.title,
                             link: defaults.link,
@@ -293,7 +293,7 @@
                                 defaults.cancel();
                             }
                         });
-                    }
+                    // }
 
                 });
             } else {
