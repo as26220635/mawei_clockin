@@ -1,9 +1,6 @@
 package cn.kim.service.impl;
 
-import cn.kim.common.attr.MagicValue;
-import cn.kim.common.attr.ParamTypeResolve;
-import cn.kim.common.attr.TableName;
-import cn.kim.common.attr.Tips;
+import cn.kim.common.attr.*;
 import cn.kim.common.eu.NameSpace;
 import cn.kim.entity.DataTablesView;
 import cn.kim.entity.QuerySet;
@@ -14,6 +11,7 @@ import cn.kim.service.AchievementSearchService;
 import cn.kim.service.AchievementService;
 import cn.kim.service.FileService;
 import cn.kim.util.CacheUtil;
+import cn.kim.util.DictUtil;
 import cn.kim.util.FileUtil;
 import cn.kim.util.TextUtil;
 import com.alibaba.fastjson.JSONArray;
@@ -540,9 +538,19 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
     }
 
     @Override
-    public List<Map<String, Object>> selectAchievementShare(Map<String, Object> mapParam) {
+    public Map<String, Object> selectAchievementShare(Map<String, Object> mapParam) {
         Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
         paramMap.put("BA_ID", mapParam.get("BA_ID"));
+        paramMap.put("BAS_PARENTID", mapParam.get("BAS_PARENTID"));
+        paramMap.put("BAS_TYPE", mapParam.get("BAS_TYPE"));
+        return baseDao.selectOne(NameSpace.AchievementFixedMapper, "selectAchievementShare", paramMap);
+    }
+
+    @Override
+    public List<Map<String, Object>> selectAchievementShareList(Map<String, Object> mapParam) {
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
+        paramMap.put("BA_ID", mapParam.get("BA_ID"));
+        paramMap.put("BAS_PARENTID", mapParam.get("BAS_PARENTID"));
         return baseDao.selectList(NameSpace.AchievementFixedMapper, "selectAchievementShare", paramMap);
     }
 
@@ -556,6 +564,7 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(10);
             //主图片ID
             String BA_ID = toString(mapParam.get("BA_ID"));
+            String BAS_PARENTID = isEmpty(mapParam.get("BAS_PARENTID")) ? "0" : toString(mapParam.get("BAS_PARENTID"));
             paramMap.put("ID", BA_ID);
             Map<String, Object> achievement = selectAchievement(paramMap);
 
@@ -573,6 +582,7 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
             //查询原本区域
             paramMap.clear();
             paramMap.put("BA_ID", BA_ID);
+            paramMap.put("BAS_PARENTID", BAS_PARENTID);
             List<Map<String, Object>> oldSharelist = baseDao.selectList(NameSpace.AchievementFixedMapper, "selectAchievementShare", paramMap);
 
             //查出那些需要删除更新和添加
@@ -615,6 +625,7 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
                 paramMap.clear();
                 paramMap.put("ID", getId());
                 paramMap.put("BA_ID", BA_ID);
+                paramMap.put("BAS_PARENTID", BAS_PARENTID);
                 paramMap.put("BAS_INDEX", insertMap.get("BAS_INDEX"));
                 paramMap.put("BAS_HEIGHT", BAS_HEIGHT);
                 paramMap.put("BAS_WIDTH", BAS_WIDTH);
@@ -622,6 +633,8 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
                 paramMap.put("BAS_Y1", areaMapInfo[1]);
                 paramMap.put("BAS_X2", areaMapInfo[2]);
                 paramMap.put("BAS_Y2", areaMapInfo[3]);
+                paramMap.put("BAS_TYPE", DictUtil.getDictCode(DictTypeCode.BUS_ACHIEVEMENT_SHARE_TYPE, insertMap.get("BAS_TYPE")));
+                paramMap.put("BAS_TEXT", insertMap.get("BAS_TEXT"));
                 baseDao.insert(NameSpace.AchievementFixedMapper, "insertAchievementShare", paramMap);
             }
             //更新
@@ -629,6 +642,7 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
                 String[] areaMapInfo = toString(updateMap.get("areaMapInfo")).split(",");
                 paramMap.clear();
                 paramMap.put("ID", updateMap.get("ID"));
+                paramMap.put("BAS_PARENTID", BAS_PARENTID);
                 paramMap.put("BAS_INDEX", updateMap.get("BAS_INDEX"));
                 paramMap.put("BAS_HEIGHT", BAS_HEIGHT);
                 paramMap.put("BAS_WIDTH", BAS_WIDTH);
@@ -636,6 +650,8 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
                 paramMap.put("BAS_Y1", areaMapInfo[1]);
                 paramMap.put("BAS_X2", areaMapInfo[2]);
                 paramMap.put("BAS_Y2", areaMapInfo[3]);
+                paramMap.put("BAS_TYPE", DictUtil.getDictCode(DictTypeCode.BUS_ACHIEVEMENT_SHARE_TYPE, updateMap.get("BAS_TYPE")));
+                paramMap.put("BAS_TEXT", updateMap.get("BAS_TEXT"));
                 baseDao.update(NameSpace.AchievementFixedMapper, "updateAchievementShare", paramMap);
             }
             //删除

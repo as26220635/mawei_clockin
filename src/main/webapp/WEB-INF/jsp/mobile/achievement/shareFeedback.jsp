@@ -43,11 +43,11 @@
 
 <div>
     <img class="share-img" src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${IMG_PATH}">
-    <div class="weui-msg__opr-area">
-        <p class="weui-btn-area">
-            <a href="javascript:;" class="weui-btn weui-btn_primary" id="shareBtn" onclick="isfollowqr()">关注<br/>公众号</a>
-        </p>
-    </div>
+<%--    <div class="weui-msg__opr-area">--%>
+<%--        <p class="weui-btn-area">--%>
+<%--            <a href="javascript:;" class="weui-btn weui-btn_primary" id="shareBtn" onclick="isfollowqr()">关注<br/>公众号</a>--%>
+<%--        </p>--%>
+<%--    </div>--%>
 </div>
 
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>

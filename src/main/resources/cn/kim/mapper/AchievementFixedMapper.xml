@@ -81,15 +81,23 @@
             <if test ="BA_ID != NULL and BA_ID != ''">
                 AND BA_ID = #{BA_ID}
             </if>
+            <if test ="BAS_PARENTID != NULL and BAS_PARENTID != ''">
+                AND BAS_PARENTID = #{BAS_PARENTID}
+            </if>
+            <if test ="BAS_TYPE != NULL and BAS_TYPE != ''">
+                AND BAS_TYPE = #{BAS_TYPE}
+            </if>
         </where>
     </select>
 
+    <!--插入-->
     <!--插入-->
     <insert id="insertAchievementShare" parameterType="java.util.Map">
         INSERT INTO BUS_ACHIEVEMENT_SHARE
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="ID != null">ID,</if>
             <if test="BA_ID != null">BA_ID,</if>
+            <if test="BAS_PARENTID != null">BAS_PARENTID,</if>
             <if test="BAS_INDEX != null">BAS_INDEX,</if>
             <if test="BAS_HEIGHT != null">BAS_HEIGHT,</if>
             <if test="BAS_WIDTH != null">BAS_WIDTH,</if>
@@ -97,10 +105,13 @@
             <if test="BAS_Y1 != null">BAS_Y1,</if>
             <if test="BAS_X2 != null">BAS_X2,</if>
             <if test="BAS_Y2 != null">BAS_Y2,</if>
+            <if test="BAS_TYPE != null">BAS_TYPE,</if>
+            <if test="BAS_TEXT != null">BAS_TEXT,</if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="ID != null">#{ID},</if>
             <if test="BA_ID != null">#{BA_ID},</if>
+            <if test="BAS_PARENTID != null">#{BAS_PARENTID},</if>
             <if test="BAS_INDEX != null">#{BAS_INDEX},</if>
             <if test="BAS_HEIGHT != null">#{BAS_HEIGHT},</if>
             <if test="BAS_WIDTH != null">#{BAS_WIDTH},</if>
@@ -108,6 +119,8 @@
             <if test="BAS_Y1 != null">#{BAS_Y1},</if>
             <if test="BAS_X2 != null">#{BAS_X2},</if>
             <if test="BAS_Y2 != null">#{BAS_Y2},</if>
+            <if test="BAS_TYPE != null">#{BAS_TYPE},</if>
+            <if test="BAS_TEXT != null">#{BAS_TEXT},</if>
         </trim>
     </insert>
 
@@ -117,6 +130,7 @@
         <set>
             <if test="ID != null">ID=#{ID},</if>
             <if test="BA_ID != null">BA_ID=#{BA_ID},</if>
+            <if test="BAS_PARENTID != null">BAS_PARENTID=#{BAS_PARENTID},</if>
             <if test="BAS_INDEX != null">BAS_INDEX=#{BAS_INDEX},</if>
             <if test="BAS_HEIGHT != null">BAS_HEIGHT=#{BAS_HEIGHT},</if>
             <if test="BAS_WIDTH != null">BAS_WIDTH=#{BAS_WIDTH},</if>
@@ -124,6 +138,8 @@
             <if test="BAS_Y1 != null">BAS_Y1=#{BAS_Y1},</if>
             <if test="BAS_X2 != null">BAS_X2=#{BAS_X2},</if>
             <if test="BAS_Y2 != null">BAS_Y2=#{BAS_Y2},</if>
+            <if test="BAS_TYPE != null">BAS_TYPE=#{BAS_TYPE},</if>
+            <if test="BAS_TEXT != null">BAS_TEXT=#{BAS_TEXT},</if>
         </set>
         <where>
             ID=#{ID}

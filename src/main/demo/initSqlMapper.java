@@ -8,9 +8,9 @@ public class initSqlMapper {
 
     public static void main(String[] args) throws IOException {
         //字段
-        String str = "ID\tBW_ID\tBW_USERNAME\tBW_AVATAR\tBWR_RANK\tBWR_LAST_TIME\tBWR_CLOCKIN_COUNT\tBWP_NUMBER";
+        String str = "ID\tBA_ID\tBAS_PARENTID\tBAS_INDEX\tBAS_HEIGHT\tBAS_WIDTH\tBAS_X1\tBAS_Y1\tBAS_X2\tBAS_Y2\tBAS_TYPE\tBAS_TEXT";
         //表名
-        String tablename = "bus_wechat_rank";
+        String tablename = "bus_achievement_share";
         creatsql(str, tablename);
     }
 

@@ -7,8 +7,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7327bc50-4349-42c0-91dd-1fd1c7b41fa8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/kim/common/attr/DictTypeCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/share/detail.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/demo/initSqlMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/demo/initSqlMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/common/attr/Url.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/common/attr/Url.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/info/AchievementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/info/AchievementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/MainImageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/MainImageServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/util/ImageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/util/ImageUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementFixedMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementFixedMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/share/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/share/home.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/tag.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/tag.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/share.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/share.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/shareFeedback.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/shareFeedback.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -46,31 +63,31 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/ImageUtil.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-271">
-              <caret line="277" column="24" lean-forward="true" selection-start-line="277" selection-start-column="24" selection-end-line="277" selection-end-column="24" />
+            <state relative-caret-position="263">
+              <caret line="822" column="27" lean-forward="true" selection-start-line="822" selection-start-column="27" selection-end-line="822" selection-end-column="27" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#div#1;n#div#4;n#div#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/GaussianBlurUtil.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-232">
-              <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+            <state relative-caret-position="192">
+              <caret line="133" column="16" selection-start-line="133" selection-start-column="8" selection-end-line="133" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/FileController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MIndexController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1575">
-              <caret line="102" selection-start-line="102" selection-end-line="102" />
+            <state relative-caret-position="78">
+              <caret line="136" selection-start-line="136" selection-end-line="136" />
             </state>
           </provider>
         </entry>
@@ -89,36 +106,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Http11Protocol</find>
-      <find>shiro-authenticationCache</find>
-      <find>authenticationCache</find>
-      <find>1000</find>
-      <find>setComposite</find>
-      <find>clockinOut</find>
-      <find>shareHeight</find>
-      <find>4.3</find>
-      <find />
-      <find>clo</find>
-      <find>RRemoteService</find>
-      <find>baseHeight</find>
-      <find>out</find>
-      <find>MobileConfig</find>
-      <find>weui-uploader__file</find>
-      <find>backgroundOut</find>
-      <find>backgroundInputStream</find>
-      <find>clockinInputStream</find>
-      <find>backgroundImage</find>
-      <find>maxIdle</find>
-      <find>selectMAchievement</find>
-      <find>selectMAchievementListByWechat</find>
-      <find>size</find>
-      <find>handleError</find>
-      <find>getGeolocation</find>
-      <find>BMAP_STATUS_PERMISSION_DENIED</find>
-      <find>baseInputStream</find>
-      <find>maxWidth</find>
-      <find>jpeg</find>
-      <find>T&amp;useSSL=false</find>
+      <find>model.show({</find>
+      <find>BUS_ACHIEVEMENT_FILE</find>
+      <find>achievement</find>
+      <find>photo</find>
+      <find>fileService.selectFile</find>
+      <find>position_container</find>
+      <find>ACHIEVEMENT_SHARE_UPDATE_URL</find>
+      <find>imgShare</find>
+      <find>getCenter</find>
+      <find>onEditClick</find>
+      <find>water</find>
+      <find>selectAchievementShare</find>
+      <find></find>
+      <find>#clockinAreaImg</find>
+      <find>8px</find>
+      <find>--background</find>
+      <find>min-height</find>
+      <find>screen and (min-height</find>
+      <find>(min-heigh</find>
+      <find>92</find>
+      <find>screen and (min-height: 660px) and (min-height: 780px)</find>
+      <find>calc(52vh)</find>
+      <find>clockin-check-area</find>
+      <find>clockinGeolocaltionPoint</find>
+      <find>switchBtn</find>
+      <find>switchClockinBtn</find>
+      <find>geolocaltionPoint</find>
+      <find>geolocaltionPointOverlap</find>
+      <find>clockin</find>
+      <find>isLocate</find>
     </findStrings>
     <replaceStrings>
       <replace>${LOG_HOME}</replace>
@@ -128,6 +145,8 @@
       <replace>FB5C5C</replace>
       <replace>49cd2059-b7e7-435b-9b4a-b6bc8d115981</replace>
       <replace>5.2</replace>
+      <replace>avatar</replace>
+      <replace>clockinShare</replace>
     </replaceStrings>
     <dirStrings>
       <dir>G:\xm\mawei_clockin\src\main\webapp\WEB-INF</dir>
@@ -190,15 +209,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/WebAppConfig.java" />
-        <option value="G:/项目记录/马尾青春打卡/mawei_clockin/webapps/ROOT/WEB-INF/classes/db.properties" />
-        <option value="G:/项目记录/马尾青春打卡/mawei_clockin/conf/server.xml" />
-        <option value="G:/项目记录/马尾青春打卡/mawei_clockin/webapps/ROOT/WEB-INF/classes/config.properties" />
-        <option value="$USER_HOME$/Desktop/profile" />
-        <option value="G:/项目记录/fzdigit.txt" />
-        <option value="$USER_HOME$/Desktop/redis.conf" />
-        <option value="G:/项目记录/马尾青春打卡/redis.conf" />
-        <option value="$USER_HOME$/Desktop/spring-redisson.yaml" />
         <option value="$PROJECT_DIR$/src/main/demo/MD5test/AESTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/CommonUtil.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/AESUtil.java" />
@@ -215,10 +225,6 @@
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/interceptor/PjaxInterceptor.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/share.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/spring/applicationContext-application.xml" />
         <option value="$USER_HOME$/Desktop/config.properties" />
         <option value="$USER_HOME$/Desktop/server.xml" />
@@ -228,19 +234,32 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_item.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/tag.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/GaussianBlurUtil.java" />
         <option value="$PROJECT_DIR$/src/main/resources/spring/applicationContext-dao.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/xss/XssFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/shareFeedback.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/spring/applicationContext-shiro.xml" />
         <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/tag/FileInput.java" />
         <option value="$PROJECT_DIR$/src/main/resources/db.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/attr/DictTypeCode.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/mainImage/area/home.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/attr/Url.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/tag.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/shareFeedback.jsp" />
+        <option value="$PROJECT_DIR$/src/main/demo/initSqlMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementFixedMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/share/detail.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/share/home.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/info/AchievementController.java" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/ImageUtil.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/MainImageServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/share.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp" />
       </list>
     </option>
   </component>
@@ -282,8 +301,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="53" />
-    <option name="width" value="1547" />
+    <option name="x" value="76" />
+    <option name="width" value="1539" />
     <option name="height" value="1071" />
   </component>
   <component name="ProjectId" id="1UgwJzx1Pa6dFbqyq2wzMiD5vzu" />
@@ -318,6 +337,13 @@
               <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="demo" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -336,16 +362,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="kim" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="tag" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
@@ -363,7 +379,8 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="remote" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="manager" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
@@ -372,8 +389,19 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="remote" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
+              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="kim" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="mobile" type="462c0819:PsiDirectoryNode" />
+              <item name="home" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
@@ -391,7 +419,8 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
@@ -413,13 +442,6 @@
               <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -470,7 +492,7 @@
               <item name="jsp" type="462c0819:PsiDirectoryNode" />
               <item name="admin" type="462c0819:PsiDirectoryNode" />
               <item name="info" type="462c0819:PsiDirectoryNode" />
-              <item name="wechat" type="462c0819:PsiDirectoryNode" />
+              <item name="achievement" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
@@ -480,7 +502,10 @@
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="info" type="462c0819:PsiDirectoryNode" />
+              <item name="achievement" type="462c0819:PsiDirectoryNode" />
+              <item name="share" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
@@ -512,17 +537,6 @@
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="jsp" type="462c0819:PsiDirectoryNode" />
               <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="activity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
               <item name="clockin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -534,25 +548,14 @@
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="jsp" type="462c0819:PsiDirectoryNode" />
               <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="rank" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="ProjectViewState">
@@ -569,7 +572,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="editorconfig.notification" value="true;" />
     <property name="ignore_missing_gitignore" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/target/mawei_clockin-1.0-SNAPSHOT/.well-known/pki-validation" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/share" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -585,12 +588,12 @@
     <property name="settings.editor.selected.configurable" value="settings.github" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="G:\xm\mawei_clockin\target\mawei_clockin-1.0-SNAPSHOT\.well-known\pki-validation" />
-      <recent name="G:\xm\mawei_clockin\target\mawei_clockin-1.0-SNAPSHOT" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\.well-known\pki-validation" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp" />
-      <recent name="G:\xm\mawei_clockin\src\main\resources\cn\kim\mapper" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\static\plugins\jquery-image-maps" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile\clockin" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\assets\weui" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="cn.kim.common.quartz" />
@@ -599,12 +602,12 @@
       <recent name="cn.kim.service.impl" />
       <recent name="cn.kim.service" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\static\plugins\jquery-image-maps" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile\clockin" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources" />
-      <recent name="G:\xm\mawei_clockin\src\main\webapp\resources\assets\weui" />
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\admin\info\achievement\share" />
+      <recent name="G:\xm\mawei_clockin\target\mawei_clockin-1.0-SNAPSHOT\.well-known\pki-validation" />
+      <recent name="G:\xm\mawei_clockin\target\mawei_clockin-1.0-SNAPSHOT" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp\.well-known\pki-validation" />
+      <recent name="G:\xm\mawei_clockin\src\main\webapp" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -924,14 +927,8 @@
       <workItem from="1577458782816" duration="53367000" />
       <workItem from="1577607157391" duration="3005000" />
       <workItem from="1577617683308" duration="2477000" />
-      <workItem from="1577626394905" duration="1387000" />
-    </task>
-    <task id="LOCAL-00010" summary="主页区域管理">
-      <created>1575368918982</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1575368918982</updated>
+      <workItem from="1577626394905" duration="1482000" />
+      <workItem from="1577668197398" duration="19042000" />
     </task>
     <task id="LOCAL-00011" summary="主页区域管理">
       <created>1575369331264</created>
@@ -1269,7 +1266,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577609569215</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="文件">
+      <created>1577630754074</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1577630754076</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1299,7 +1303,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111543000" />
+    <option name="totallyTimeSpent" value="130680000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1311,10 +1315,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1563" height="845" extended-state="7" />
-    <editor active="true" />
+    <frame x="-7" y="-7" width="1563" height="845" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49927008" weight="0.29833886" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49927008" weight="0.30166113" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1337,20 +1340,21 @@
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.329927" />
       <window_info anchor="bottom" id="Database Changes" order="13" weight="0.329927" />
       <window_info anchor="bottom" id="Version Control" order="14" weight="0.329927" />
-      <window_info anchor="bottom" id="Debug" order="15" sideWeight="0.49966776" weight="0.57226276" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.24983388" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" weight="0.32956812" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Word Book" order="6" side_tool="true" />
-      <window_info anchor="right" id="Database" order="7" weight="0.32956812" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="bottom" id="Debug" order="15" sideWeight="0.49966776" weight="0.57664233" />
+      <window_info anchor="right" id="Preview" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.24983388" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="4" weight="0.32956812" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Word Book" order="7" side_tool="true" />
+      <window_info active="true" anchor="right" id="Database" order="8" visible="true" weight="0.32956812" />
+      <window_info anchor="right" id="Palette&#9;" order="9" />
+      <window_info anchor="right" id="Theme Preview" order="10" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49927008" visible="true" weight="0.29833886" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49927008" weight="0.30166113" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1373,17 +1377,18 @@
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.329927" />
       <window_info anchor="bottom" id="Database Changes" order="13" weight="0.329927" />
       <window_info anchor="bottom" id="Version Control" order="14" weight="0.329927" />
-      <window_info anchor="bottom" id="Debug" order="15" sideWeight="0.49966776" weight="0.57226276" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.24983388" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" weight="0.32956812" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Capture Analysis" order="5" />
-      <window_info anchor="right" id="Word Book" order="6" side_tool="true" />
-      <window_info anchor="right" id="Database" order="7" weight="0.32956812" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="bottom" id="Debug" order="15" sideWeight="0.49966776" visible="true" weight="0.57664233" />
+      <window_info anchor="right" id="Preview" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.24983388" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="4" weight="0.32956812" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Word Book" order="7" side_tool="true" />
+      <window_info anchor="right" id="Database" order="8" weight="0.32956812" />
+      <window_info anchor="right" id="Palette&#9;" order="9" />
+      <window_info anchor="right" id="Theme Preview" order="10" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1755,133 +1760,6 @@
     <SUITE FILE_PATH="coverage/mawei_clockin$Tomcat_8_5_37.ic" NAME="Tomcat 8.5.37 Coverage Results" MODIFIED="1574783793926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/applicationContext-shiro.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/spring/applicationContext-dao.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="41" column="24" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MIndexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="120" column="68" selection-start-line="120" selection-start-column="68" selection-end-line="120" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_list.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_item.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-239">
-          <caret line="36" column="26" selection-start-line="36" selection-start-column="26" selection-end-line="36" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_data.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="11" column="69" selection-start-line="11" selection-start-column="69" selection-end-line="11" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MRankController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="28" column="37" selection-start-line="28" selection-start-column="37" selection-end-line="28" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="63" column="37" selection-start-line="63" selection-start-column="37" selection-end-line="63" selection-end-column="37" />
-          <folding>
-            <element signature="e#27638#27639#0" expanded="true" />
-            <element signature="e#27665#27666#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="35" column="30" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ActivityMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="23" lean-forward="true" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AllocationMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AuthorizationMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ButtonMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ConfigureMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/DataGridMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1295" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/DbMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/DictMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/FileMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/FormatMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/LogMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/MainImageMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ManagerMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/MenuMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/OperatorMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ProcessFixedMapper.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/ProcessMapper.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1917,34 +1795,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1954">
-          <caret line="267" column="17" selection-start-line="267" selection-start-column="17" selection-end-line="267" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-446">
-          <caret line="356" column="20" selection-start-line="356" selection-start-column="20" selection-end-line="356" selection-end-column="20" />
-          <folding>
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="5388" column="4" selection-start-line="5388" selection-start-column="4" selection-end-line="5388" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="680" column="29" selection-start-line="680" selection-start-column="29" selection-end-line="680" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -1969,27 +1823,6 @@
           <folding>
             <element signature="e#1953#1954#0" expanded="true" />
             <element signature="e#2008#2009#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/BaseData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="364" column="31" selection-start-line="364" selection-start-column="31" selection-end-line="364" selection-end-column="31" />
-          <folding>
-            <element signature="e#9597#9598#0" expanded="true" />
-            <element signature="e#9647#9648#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2154">
-          <caret line="150" column="27" lean-forward="true" selection-start-line="150" selection-start-column="27" selection-end-line="150" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2022,6 +1855,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/GaussianBlurUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/FileController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1575">
@@ -2029,19 +1869,270 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/GaussianBlurUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/attr/DictTypeCode.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-232">
-          <caret line="40" column="40" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+        <state relative-caret-position="250">
+          <caret line="10" column="57" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/clockin/addAndEdit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="13" column="45" lean-forward="true" selection-end-line="46" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/mainImage/addAndEdit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-450" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/system/dict/addAndEdit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="27" column="78" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="27" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/system/format/addAndEdit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="25" column="7" lean-forward="true" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/system/menu/addAndEdit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="36" column="65" lean-forward="true" selection-start-line="35" selection-start-column="12" selection-end-line="36" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/tag.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="48" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/demo/initSqlMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="8" column="16" lean-forward="true" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/mainImage/area/home.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="159" column="31" lean-forward="true" selection-start-line="144" selection-start-column="28" selection-end-line="159" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/static/create/js/component.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="659" column="45" selection-start-line="659" selection-start-column="36" selection-end-line="659" selection-end-column="45" />
+          <folding>
+            <element signature="n#style#0;n#i#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#1;n#form#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/attr/TableName.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="148" column="7" lean-forward="true" selection-start-line="148" selection-start-column="7" selection-end-line="148" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/addAndEdit.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="59" column="19" lean-forward="true" selection-start-line="55" selection-start-column="4" selection-end-line="59" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/attr/Url.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="305" column="59" selection-start-line="305" selection-start-column="31" selection-end-line="305" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/BaseData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="299" column="21" selection-start-line="299" selection-start-column="21" selection-end-line="299" selection-end-column="21" />
+          <folding>
+            <element signature="e#8215#8216#0" expanded="true" />
+            <element signature="e#8260#8261#0" expanded="true" />
+            <element signature="e#9597#9598#0" expanded="true" />
+            <element signature="e#9647#9648#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/shareFeedback.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="530">
+          <caret line="49" column="14" selection-start-line="45" selection-start-column="10" selection-end-line="49" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/home.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="89" column="101" selection-start-line="84" selection-start-column="8" selection-end-line="89" selection-end-column="101" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/FileService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="24" column="23" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="335" column="34" lean-forward="true" selection-start-line="335" selection-start-column="34" selection-end-line="335" selection-end-column="34" />
+          <folding>
+            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementFixedMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="74" column="16" selection-start-line="74" selection-start-column="16" selection-end-line="74" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/share/detail.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="16" column="15" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/DictUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29">
+          <caret line="168" column="34" lean-forward="true" selection-start-line="168" selection-start-column="34" selection-end-line="168" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="540" column="31" selection-start-line="540" selection-start-column="31" selection-end-line="540" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="137" column="24" selection-start-line="137" selection-start-column="24" selection-end-line="137" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="114" selection-start-line="114" selection-end-line="114" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/info/AchievementController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="141" column="129" selection-start-line="141" selection-start-column="129" selection-end-line="141" selection-end-column="129" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/ImageUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-271">
-          <caret line="277" column="24" lean-forward="true" selection-start-line="277" selection-start-column="24" selection-end-line="277" selection-end-column="24" />
+        <state relative-caret-position="166">
+          <caret line="436" column="16" lean-forward="true" selection-start-line="436" selection-start-column="16" selection-end-line="436" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/MainImageServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="115" column="43" lean-forward="true" selection-start-line="115" selection-start-column="43" selection-end-line="115" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/share/home.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="203" column="20" selection-start-line="203" selection-start-column="20" selection-end-line="203" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="79" column="20" lean-forward="true" selection-start-line="79" selection-start-column="8" selection-end-line="79" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/share.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-22">
+          <caret line="59" column="30" selection-start-line="59" selection-start-column="4" selection-end-line="59" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MIndexController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="136" selection-start-line="136" selection-end-line="136" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="133" column="16" selection-start-line="133" selection-start-column="8" selection-end-line="133" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="822" column="27" lean-forward="true" selection-start-line="822" selection-start-column="27" selection-end-line="822" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#1;n#div#4;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>

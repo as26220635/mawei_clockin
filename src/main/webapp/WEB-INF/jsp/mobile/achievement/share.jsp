@@ -32,7 +32,7 @@
         -webkit-border-radius: 50px;
         border-radius: 50px;
         position: fixed;
-        bottom: 8%;
+        bottom: 5%;
         right: 5%;
         z-index: 888;
         box-shadow: 2px 2px 2px #888888;
@@ -62,7 +62,7 @@
 
         <img class="share-img" src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${IMG_PATH}">
 
-        <a href="javascript:;" class="weui-btn weui-btn_primary" id="shareBtn">分享</a>
+<%--        <a href="javascript:;" class="weui-btn weui-btn_primary" id="shareBtn">分享</a>--%>
 </div>
 <script>
     hideBottpmMenu();
@@ -82,9 +82,9 @@
 
     var defaults = {
         //标题
-        title: '${WEBCONFIG_HEAD_TITLE}',
+        title: '红色领航  青春打卡',
         //描述
-        desc: '打卡位置:${achievement.BA_NAME}',
+        desc: '快来一起加入我们吧～',
         //分享页面地址,不能为空，这里可以传递参数！！！！！！！
         link: '${WebConfig.WEBCONFIG_SERVER_URL}/share/${shareFeedbackParam}',
         //分享是封面图片，不能为空
@@ -92,7 +92,7 @@
         success: function () {
             //分享成功触发
             $('.weui-share').remove();
-            $.toast("分享成功");
+            // $.toast("分享成功");
         },
         cancel: function () {
             //分享取消触发，需要时可以调用

@@ -9,6 +9,7 @@ import cn.kim.entity.CxfFileWrapper;
 import cn.kim.entity.WechatUser;
 import cn.kim.service.AchievementService;
 import cn.kim.service.FileService;
+import cn.kim.service.WechatService;
 import cn.kim.util.FileUtil;
 import cn.kim.util.GaussianBlurUtil;
 import cn.kim.util.ImageUtil;
@@ -40,6 +41,9 @@ import java.util.concurrent.TimeUnit;
  */
 @Controller
 public class MAchievementController extends BaseController {
+
+    @Autowired
+    private WechatService wechatService;
 
     @Autowired
     private AchievementService achievementService;
@@ -92,10 +96,21 @@ public class MAchievementController extends BaseController {
                 Map<String, Object> achievement = achievementService.selectAchievement(paramMap);
 
                 if (isEmpty(fileMap)) {
+                    paramMap.clear();
+                    paramMap.put("ID", BW_ID);
+                    Map<String, Object> wechat = wechatService.selectWechat(paramMap);
                     //没有图片就生成一张
                     paramMap.clear();
                     paramMap.put("BA_ID", BA_ID);
-                    List<Map<String, Object>> shareList = achievementService.selectAchievementShare(paramMap);
+                    paramMap.put("BAS_PARENTID", "0");
+                    paramMap.put("BAS_TYPE", "1");
+                    Map<String, Object> avatarShare = achievementService.selectAchievementShare(paramMap);
+
+                    paramMap.clear();
+                    paramMap.put("BA_ID", BA_ID);
+                    paramMap.put("BAS_PARENTID", "0");
+                    paramMap.put("BAS_TYPE", "3");
+                    Map<String, Object> imgShare = achievementService.selectAchievementShare(paramMap);
 
                     paramMap.clear();
                     paramMap.put("BA_ID", BA_ID);
@@ -109,28 +124,19 @@ public class MAchievementController extends BaseController {
                     paramMap.put("SF_SDI_CODE", Attribute.DEFAULT);
                     List<Map<String, Object>> clockinFileList = fileService.selectFileList(paramMap);
 
-                    if (!isEmpty(shareList) && !isEmpty(achievement.get("SF_ID")) && !isEmpty(achievementDetail) && !isEmpty(clockinFileList)) {
-                        //图片区域
-                        Map<String, Object> imgShare = shareList.get(0);
-                        //文本区域
-                        List<Map<String, Object>> textShareList = Lists.newArrayList();
-                        if (shareList.size() > 1) {
-                            for (int i = 0; i < shareList.size(); i++) {
-                                if (i > 0) {
-                                    textShareList.add(shareList.get(i));
-                                }
-                            }
-                        }
+                    if (!isEmpty(achievement.get("SF_ID")) && !isEmpty(achievementDetail) && !isEmpty(clockinFileList)) {
 
                         //获取背景图片
                         Map<String, Object> baseFileMap = fileService.selectFile(toString(achievement.get("SF_ID")));
                         CxfFileWrapper baseFileWrapper = FileUtil.getCxfFileWrapper(baseFileMap);
+                        //获取头像
+                        BufferedImage avatarImage = ImageUtil.getRemoteBufferedImage(toString(wechat.get("BW_AVATAR")));
                         //获取上传图片中的一张
                         Map<String, Object> clockinFileMap = clockinFileList.get(new Random().nextInt(clockinFileList.size()));
                         CxfFileWrapper clockinFileWrapper = FileUtil.getCxfFileWrapper(clockinFileMap);
 
                         //生成分享图片
-                        MultipartFile shareFile = ImageUtil.addShareImage(baseFileWrapper.getFile().getInputStream(), clockinFileWrapper.getFile().getInputStream(), imgShare, textShareList);
+                        MultipartFile shareFile = ImageUtil.addShareImage(baseFileWrapper.getFile().getInputStream(), avatarImage, clockinFileWrapper.getFile().getInputStream(), imgShare, avatarShare);
                         if (!isEmpty(shareFile)) {
                             //保存图片上传
                             Map<String, Object> configure = Maps.newHashMapWithExpectedSize(6);

@@ -3,11 +3,15 @@ package cn.kim.controller.manager.info;
 import cn.kim.common.annotation.SystemControllerLog;
 import cn.kim.common.annotation.Token;
 import cn.kim.common.annotation.Validate;
+import cn.kim.common.attr.DictTypeCode;
+import cn.kim.common.attr.TableName;
 import cn.kim.common.eu.UseType;
 import cn.kim.controller.manager.BaseController;
 import cn.kim.entity.ResultState;
 import cn.kim.service.AchievementService;
+import cn.kim.service.FileService;
 import cn.kim.service.MenuService;
+import cn.kim.util.DictUtil;
 import cn.kim.util.TextUtil;
 import com.google.common.collect.Maps;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -33,6 +37,9 @@ public class AchievementController extends BaseController {
 
     @Autowired
     private AchievementService achievementService;
+
+    @Autowired
+    private FileService fileService;
 
 
     @GetMapping("/add")
@@ -98,7 +105,7 @@ public class AchievementController extends BaseController {
     }
 
     /**
-     * 区域管理
+     * 成就墙分享
      *
      * @param model
      * @param mapParam
@@ -117,10 +124,12 @@ public class AchievementController extends BaseController {
         map.put("ID", mapParam.get("BA_ID"));
         Map<String, Object> achievement = achievementService.selectAchievement(map);
 
+        String BAS_PARENTID = toString(mapParam.get("BAS_PARENTID"));
         //查询区域
         map.clear();
         map.put("BA_ID", mapParam.get("BA_ID"));
-        List<Map<String, Object>> shareList = achievementService.selectAchievementShare(map);
+        map.put("BAS_PARENTID", isEmpty(BAS_PARENTID) ? "0" : BAS_PARENTID);
+        List<Map<String, Object>> shareList = achievementService.selectAchievementShareList(map);
 
         List<Map<String, Object>> areaInfoList = new LinkedList<>();
         for (Map<String, Object> share : shareList) {
@@ -129,17 +138,53 @@ public class AchievementController extends BaseController {
             areaMap.put("ID", share.get("ID"));
             areaMap.put("index", share.get("BAS_INDEX"));
             areaMap.put("BAS_INDEX", share.get("BAS_INDEX"));
+            areaMap.put("BAS_PARENTID", share.get("BAS_PARENTID"));
+            areaMap.put("BAS_TYPE", toString(DictUtil.getDictName(DictTypeCode.BUS_ACHIEVEMENT_SHARE_TYPE, share.get("BAS_TYPE"))));
+            areaMap.put("BAS_TEXT", toString(share.get("BAS_TEXT")));
             areaMap.put("areaTitle", "区域" + share.get("BAS_INDEX"));
             areaMap.put("areaMapInfo", TextUtil.joinValue(",", share.get("BAS_X1"), share.get("BAS_Y1"), share.get("BAS_X2"), share.get("BAS_Y2")));
             areaInfoList.add(areaMap);
         }
 
         idEncrypt(areaInfoList);
+
+        //子类
+        if (!isEmpty(BAS_PARENTID)){
+            map.clear();
+            map.put("SF_TABLE_ID", BAS_PARENTID);
+            map.put("SF_TABLE_NAME", TableName.BUS_ACHIEVEMENT_SHARE);
+            Map<String, Object> file = fileService.selectFile(map);
+            if (!isEmpty(file)){
+                achievement.put("SF_ID", file.get("ID"));
+            }else{
+                achievement.remove("SF_ID");
+            }
+        }
+
         model.addAttribute("achievement", achievement);
         model.addAttribute("areaInfoList", TextUtil.toJSONString(areaInfoList));
+        model.addAttribute("BAS_PARENTID", mapParam.get("BAS_PARENTID"));
         model.addAttribute("MENU", menu);
         model.addAttribute("EXTRA", mapParam);
         return "admin/info/achievement/share/home";
+    }
+
+    /**
+     * 分享图片详细
+     *
+     * @param ID
+     * @param mapParam
+     * @param model
+     * @return
+     * @throws Exception
+     */
+    @GetMapping("/share/updateHtml/{ID}")
+    @RequiresPermissions("MOBILE:ACHIEVEMENT_SHARE")
+    public String updateShareHtmlDetail(@PathVariable("ID") String ID, @RequestParam Map<String, Object> mapParam, Model model) throws Exception {
+        mapParam.put("BAS_TYPE", DictUtil.getDictCode(DictTypeCode.BUS_ACHIEVEMENT_SHARE_TYPE, mapParam.get("BAS_TYPE")));
+        model.addAttribute("share", mapParam);
+        model.addAttribute("ID", ID);
+        return "admin/info/achievement/share/detail";
     }
 
     @PutMapping("/share/update")

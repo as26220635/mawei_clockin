@@ -302,6 +302,7 @@ public class Url {
     /**
      * 成就墙分享管理
      */
+    public static final String ACHIEVEMENT_SHARE_HTML_UPDATE_URL = ACHIEVEMENT_BASE_URL + "share/updateHtml";
     public static final String ACHIEVEMENT_SHARE_UPDATE_URL = ACHIEVEMENT_BASE_URL + "share/update";
     /**
      * 打卡记录

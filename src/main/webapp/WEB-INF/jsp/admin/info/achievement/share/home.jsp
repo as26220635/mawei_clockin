@@ -30,6 +30,7 @@
                                 <form id="addAndEditForm">
                                     <input type="hidden" name="${SUBMIT_TOKEN_NAME}" value="${token}">
                                     <input type="hidden" name="BA_ID" value="${achievement.ID}">
+                                    <input type="hidden" name="BAS_PARENTID" value="${BAS_PARENTID}">
 
                                     <div class="hot_area" id="areaContent">
                                         <!-- 可添加热区数量与还可添加热区数量实时显示（可选）：-->
@@ -80,6 +81,11 @@
         //对应上面thead里面的序列
         columns: [
             {
+                data: 'BAS_PARENTID',
+                title: '父ID',
+                visible: false,
+            },
+            {
                 data: 'BAS_INDEX',
                 title: '索引',
                 width: '100px',
@@ -92,24 +98,128 @@
                 className: 'text-center dataTable-column-min-width'
             },
             {
+                data: 'BAS_TYPE',
+                title: '类型',
+                width: '70px',
+                className: 'text-center dataTable-column-min-width'
+            },
+            {
+                data: 'BAS_TEXT',
+                visible: false,
+                title: '文本',
+                width: '250px',
+                className: 'text-left dataTable-column-min-width'
+            },
+            {
+                data: 'SF_ID',
+                visible: false,
+                title: '图片',
+                width: '60px',
+                className: 'text-center dataTable-column-min-width',
+                render: function (data, type, full, meta) {
+                    if (data == null) {
+                        return '';
+                    }
+                    return '<img src="${BASE_URL}${AttributePath.FILE_PREVIEW_URL}' + data + '"  style="width:50px;height:auto;" data-action="zoom"/>';
+                }
+            },
+            {
                 data: 'ID',
                 title: '操作',
                 width: '100px',
                 className: 'text-center dataTable-column-min-width',
                 render: function (data, type, row, meta) {
                     var html = '<div class="dataTable-column-min-width-operation">';
+                    html += '<button class="btn btn-xs btn-info" id="edit">编辑</button>';
+                    // html += '<button class="btn btn-xs btn-success" id="share">分享图片</button>';
                     html += '<button class="btn btn-xs btn-danger" id="del">删除</button>';
                     html += '</div>';
                     return html;
                 }
             },
         ],
+        endCallback: function () {
+            onEditClick();
+            // onShareClick();
+        },
     });
+
+    function onEditClick() {
+        //修改
+        objTable.find('tbody').unbind('click').on('click', '#edit', function () {
+            var $this = $(this);
+            var data = tableView.rowData($dataGrid, $this);
+            var id = data.ID;
+            var BAS_INDEX = data.BAS_INDEX;
+            var BAS_TYPE = data.BAS_TYPE;
+            // var BAS_TEXT = data.BAS_TEXT;
+
+            ajax.getHtml('${BASE_URL}${Url.ACHIEVEMENT_SHARE_HTML_UPDATE_URL}/' + id, {
+                    BAS_TYPE: BAS_TYPE,
+                    // BAS_TEXT: BAS_TEXT
+                }, function (html) {
+                    model.show({
+                        title: '修改索引:' + BAS_INDEX,
+                        content: html,
+                        footerModel: model.footerModel.ADMIN,
+                        isConfirm: true,
+                        confirm: function ($model) {
+                            $dataGrid.rows($this.parents('tr')).every(function () {
+                                var d = this.data();
+                                d.BAS_TYPE = $('#BAS_TYPE').select2("data")[0].text;
+                                d.BAS_TEXT = $('#BAS_TEXT').val();
+                                this.invalidate();
+                            }).draw();
+                            $($model).modal('hide');
+                            <%--ajax.get('${BASE_URL}${AttributePath.FILE_INFO_URL}' + id + '/${TableName.BUS_ACHIEVEMENT_SHARE}', {}, function (data) {--%>
+                            <%--    if (data.code == STATUS_SUCCESS) {--%>
+                            <%--        var file = data.data;--%>
+                            <%--        //更新数据--%>
+                            <%--        $dataGrid.rows($this.parents('tr')).every(function () {--%>
+                            <%--            var d = this.data();--%>
+                            <%--            d.BAS_TYPE = $('#BAS_TYPE').select2("data")[0].text;--%>
+                            <%--            d.BAS_TEXT = $('#BAS_TEXT').val();--%>
+                            <%--            d.SF_ID = file.ID;--%>
+                            <%--            this.invalidate();--%>
+                            <%--        }).draw();--%>
+                            <%--        deleteFun();--%>
+                            <%--        $($model).modal('hide');--%>
+                            <%--    }--%>
+                            <%--});--%>
+                        },
+                    });
+                }
+            );
+        });
+    }
+
+    function onShareClick() {
+        //修改
+        objTable.find('tbody').unbind('click').on('click', '#share', function () {
+            var $this = $(this);
+            var data = tableView.rowData($dataGrid, $this);
+            var ID = data.ID;
+            var BAS_INDEX = data.BAS_INDEX;
+            if (data.IS_INSERT == 1) {
+                demo.showNotify(ALERT_WARNING, '请保存后使用');
+                return;
+            }
+
+            var param = {
+                BA_ID: '${achievement.ID}',
+                BAS_PARENTID: ID,
+                TITLE: '索引:' + BAS_INDEX,
+                IS_BACK: 1,
+            };
+            //切换主界面
+            loadUrl('${BASE_URL}${fns:getUrlByMenuCode("MOBILE:ACHIEVEMENT_SHARE")}' + urlEncode(param));
+        });
+    }
 </script>
 <script>
     $(function () {
         var setting = {
-            maxAmount: 2,
+            maxAmount: 3,
             tag: 'tr',
             addBtn: 'addBtn',
             params: {
@@ -133,6 +243,8 @@
                             'IS_INSERT': 1
                         }).draw().node();
                         $($row).attr('ref', index);
+                        onEditClick();
+                        onShareClick();
                         deleteFun = delFun;
                         deleteFun();
                     } else {
@@ -207,7 +319,11 @@
                 ajax.put('${BASE_URL}${Url.ACHIEVEMENT_SHARE_UPDATE_URL}', params, function (data) {
                     ajaxReturn.data(data, $model, null, null, {
                         success: function () {
-                            refresh();
+                            if ('${EXTRA.IS_BACK}' == '1') {
+                                backHtml();
+                            } else {
+                                refresh();
+                            }
                         }
                     });
                 });

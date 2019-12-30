@@ -1,6 +1,7 @@
 package cn.kim.util;
 
 import cn.kim.common.attr.AttributePath;
+import com.google.common.collect.Maps;
 import lombok.extern.log4j.Log4j2;
 import net.coobird.thumbnailator.Thumbnails;
 import org.apache.poi.util.IOUtils;
@@ -14,6 +15,7 @@ import javax.imageio.ImageWriteParam;
 import javax.imageio.ImageWriter;
 import javax.imageio.stream.ImageOutputStream;
 import java.awt.*;
+import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
@@ -189,11 +191,11 @@ public class ImageUtil {
      *
      * @param baseInputStream
      * @param clockinInputStream
-     * @param imgShare           背景图片     基准高度BAS_HEIGHT 基准宽度BAS_WIDTH x1 BAS_X1 x2 BAS_X2 y1 BAS_Y1  y2 BAS_Y2
+     * @param clockinShare       背景图片     基准高度BAS_HEIGHT 基准宽度BAS_WIDTH x1 BAS_X1 x2 BAS_X2 y1 BAS_Y1  y2 BAS_Y2
      * @return
      */
-    public static MultipartFile addShareImage(InputStream baseInputStream, InputStream clockinInputStream, Map<String, Object> imgShare) {
-        return addShareImage(baseInputStream, clockinInputStream, imgShare, null);
+    public static MultipartFile addShareImage(InputStream baseInputStream, BufferedImage avatarImage, InputStream clockinInputStream, Map<String, Object> clockinShare, Map<String, Object> avatarShare) {
+        return addShareImage(baseInputStream, avatarImage, clockinInputStream, clockinShare, avatarShare, null);
     }
 
     /**
@@ -202,11 +204,11 @@ public class ImageUtil {
      *
      * @param baseInputStream
      * @param clockinInputStream
-     * @param imgShare           背景图片     基准高度BAS_HEIGHT 基准宽度BAS_WIDTH x1 BAS_X1 x2 BAS_X2 y1 BAS_Y1  y2 BAS_Y2
+     * @param clockinShare       背景图片     基准高度BAS_HEIGHT 基准宽度BAS_WIDTH x1 BAS_X1 x2 BAS_X2 y1 BAS_Y1  y2 BAS_Y2
      * @param textShare          文字信息     BAS_TEXT 文字 基准高度BAS_HEIGHT 基准宽度BAS_WIDTH x1 BAS_X1 x2 BAS_X2 y1 BAS_Y1  y2 BAS_Y2
      * @return
      */
-    public static MultipartFile addShareImage(InputStream baseInputStream, InputStream clockinInputStream, Map<String, Object> imgShare, List<Map<String, Object>> textShareList) {
+    public static MultipartFile addShareImage(InputStream baseInputStream, BufferedImage avatarImage, InputStream clockinInputStream, Map<String, Object> clockinShare, Map<String, Object> avatarShare, List<Map<String, Object>> textShareList) {
         BufferedImage baseBufferedImage = null;
         BufferedImage clockinBufferedImage = null;
         BufferedImage backgroundImage = null;
@@ -219,42 +221,24 @@ public class ImageUtil {
                 baseBufferedImage = ImageIO.read(baseInputStream);
                 clockinBufferedImage = ImageIO.read(clockinInputStream);
 
-                int baseHeight = baseBufferedImage.getHeight();
                 int baseWidth = baseBufferedImage.getWidth();
+                int baseHeight = baseBufferedImage.getHeight();
 
-                int clockinHeight = clockinBufferedImage.getHeight();
-                int clockinWidth = clockinBufferedImage.getWidth();
+                Map<String, Integer> clockinMap = getCenter(clockinBufferedImage, clockinShare, baseWidth, baseHeight);
 
-                int shareHeight = TextUtil.toBigDecimal(imgShare.get("BAS_HEIGHT")).intValue();
-                int shareWidth = TextUtil.toBigDecimal(imgShare.get("BAS_WIDTH")).intValue();
-                int x1 = TextUtil.toInt(imgShare.get("BAS_X1"));
-                int y1 = TextUtil.toInt(imgShare.get("BAS_Y1"));
-                int x2 = TextUtil.toInt(imgShare.get("BAS_X2"));
-                int y2 = TextUtil.toInt(imgShare.get("BAS_Y2"));
+                int clockinHeight = clockinMap.get("height");
+                int clockinWidth = clockinMap.get("width");
 
-                //计算 上传图片需要压缩到的大小
-                int maxHeight = Math.round((y2 - y1) * baseHeight / shareHeight);
-                int maxWidth = Math.round((x2 - x1) * baseWidth / shareWidth);
-
-                //左侧的偏移量
-                int x = Math.round(x1 * baseHeight / shareHeight);
-                //上侧的偏移量
-                int y = Math.round(y1 * baseWidth / shareWidth);
-
-                //水平居中
-                if (((float) clockinHeight / maxHeight > (float) clockinWidth / maxWidth) || ((float) clockinHeight / maxHeight >= (float) clockinWidth / maxWidth && maxWidth > maxHeight)) {
-                    float scale = (float) maxHeight / clockinHeight;
-                    clockinWidth = (int) (clockinWidth * scale);
-                    clockinHeight = (int) (clockinHeight * scale);
-                    x = x + ((maxWidth - clockinWidth) / 2);
-                }
-                //垂直居中
-                if (((float) clockinWidth / maxWidth > (float) clockinHeight / maxHeight) || ((float) clockinWidth / maxWidth >= (float) clockinHeight / maxHeight && maxWidth < maxHeight)) {
-                    float scale = (float) maxWidth / clockinWidth;
-                    clockinHeight = (int) (clockinHeight * scale);
-                    clockinWidth = (int) (clockinWidth * scale);
-                    y = y + ((maxHeight - clockinHeight) / 2);
-                }
+                int maxWidth = clockinMap.get("maxWidth");
+                int maxHeight = clockinMap.get("maxHeight");
+                int shareWidth = clockinMap.get("shareWidth");
+                int shareHeight = clockinMap.get("shareHeight");
+                int x1 = clockinMap.get("x1");
+                int y1 = clockinMap.get("y1");
+                int x2 = clockinMap.get("x2");
+                int y2 = clockinMap.get("y2");
+                int x = clockinMap.get("x");
+                int y = clockinMap.get("y");
 
                 //获取背景模糊图片
                 backgroundOut = new ByteArrayOutputStream();
@@ -278,8 +262,15 @@ public class ImageUtil {
                     backgroundX = x + ((maxWidth - backgroundWidth) / 2);
                 }
 
+                //获取头像参数
+                Map<String, Integer> avatarMap = getCenter(avatarImage, avatarShare, baseWidth, baseHeight);
+                int avatarMaxWidth = avatarMap.get("maxWidth");
+                int avatarMaxHeight = avatarMap.get("maxHeight");
+                int avatarX = avatarMap.get("x");
+                int avatarY = avatarMap.get("y");
+
                 //合并图片
-                out = ImageUtil.addBackground(baseBufferedImage, clockinBufferedImage, backgroundImage, maxWidth, maxHeight, x, y, backgroundWidth, backgroundHeight, backgroundX, backgroundY);
+                out = ImageUtil.addBackground(baseBufferedImage, avatarImage, clockinBufferedImage, backgroundImage, avatarMaxWidth, avatarMaxHeight, avatarX, avatarY, maxWidth, maxHeight, x, y, backgroundWidth, backgroundHeight, backgroundX, backgroundY);
 
                 //添加文字
                 if (!ValidateUtil.isEmpty(textShareList)) {
@@ -329,11 +320,78 @@ public class ImageUtil {
     }
 
     /**
+     * 获取居中的位置
+     *
+     * @param clockinBufferedImage
+     * @param clockinShare
+     * @param baseWidth
+     * @param baseHeight
+     * @return
+     */
+    public static Map<String, Integer> getCenter(BufferedImage clockinBufferedImage, Map<String, Object> clockinShare, int baseWidth, int baseHeight) {
+        Map<String, Integer> resultMap = Maps.newHashMapWithExpectedSize(12);
+
+        int shareHeight = TextUtil.toBigDecimal(clockinShare.get("BAS_HEIGHT")).intValue();
+        int shareWidth = TextUtil.toBigDecimal(clockinShare.get("BAS_WIDTH")).intValue();
+        int x1 = TextUtil.toInt(clockinShare.get("BAS_X1"));
+        int y1 = TextUtil.toInt(clockinShare.get("BAS_Y1"));
+        int x2 = TextUtil.toInt(clockinShare.get("BAS_X2"));
+        int y2 = TextUtil.toInt(clockinShare.get("BAS_Y2"));
+
+        int clockinHeight = clockinBufferedImage.getHeight();
+        int clockinWidth = clockinBufferedImage.getWidth();
+
+        //计算 上传图片需要压缩到的大小
+        int maxHeight = Math.round((y2 - y1) * baseHeight / shareHeight);
+        int maxWidth = Math.round((x2 - x1) * baseWidth / shareWidth);
+
+        resultMap.put("height", clockinHeight);
+        resultMap.put("width", clockinWidth);
+        resultMap.put("shareHeight", shareHeight);
+        resultMap.put("shareWidth", shareWidth);
+        resultMap.put("maxHeight", maxHeight);
+        resultMap.put("maxWidth", maxWidth);
+        resultMap.put("x1", x1);
+        resultMap.put("y1", y1);
+        resultMap.put("x2", x2);
+        resultMap.put("y2", y2);
+
+        //左侧的偏移量
+        int x = Math.round(x1 * baseHeight / shareHeight);
+        //上侧的偏移量
+        int y = Math.round(y1 * baseWidth / shareWidth);
+
+        //水平居中
+        if (((float) clockinHeight / maxHeight > (float) clockinWidth / maxWidth) || ((float) clockinHeight / maxHeight >= (float) clockinWidth / maxWidth && maxWidth > maxHeight)) {
+            float scale = (float) maxHeight / clockinHeight;
+            clockinWidth = (int) (clockinWidth * scale);
+            clockinHeight = (int) (clockinHeight * scale);
+            x = x + ((maxWidth - clockinWidth) / 2);
+        }
+        //垂直居中
+        if (((float) clockinWidth / maxWidth > (float) clockinHeight / maxHeight) || ((float) clockinWidth / maxWidth >= (float) clockinHeight / maxHeight && maxWidth < maxHeight)) {
+            float scale = (float) maxWidth / clockinWidth;
+            clockinHeight = (int) (clockinHeight * scale);
+            clockinWidth = (int) (clockinWidth * scale);
+            y = y + ((maxHeight - clockinHeight) / 2);
+        }
+
+        resultMap.put("x", x);
+        resultMap.put("y", y);
+        return resultMap;
+    }
+
+    /**
      * 添加背景图片
      *
      * @param image
+     * @param avatarImage
      * @param waterImage
      * @param backgroundImage
+     * @param avatarMaxWidth
+     * @param avatarMaxHeight
+     * @param avatarX
+     * @param avatarY
      * @param waterMaxWidth
      * @param waterMaxHeight
      * @param waterX
@@ -345,7 +403,7 @@ public class ImageUtil {
      * @return
      * @throws IOException
      */
-    public static ByteArrayOutputStream addBackground(BufferedImage image, BufferedImage waterImage, BufferedImage backgroundImage, int waterMaxWidth, int waterMaxHeight, int waterX, int waterY, int backgroundMaxWidth, int backgroundMaxHeight, int backgroundX, int backgroundY) throws IOException {
+    public static ByteArrayOutputStream addBackground(BufferedImage image, BufferedImage avatarImage, BufferedImage waterImage, BufferedImage backgroundImage, int avatarMaxWidth, int avatarMaxHeight, int avatarX, int avatarY, int waterMaxWidth, int waterMaxHeight, int waterX, int waterY, int backgroundMaxWidth, int backgroundMaxHeight, int backgroundX, int backgroundY) throws IOException {
         // 加载目标图片
         ByteArrayOutputStream out = null;
         try {
@@ -375,23 +433,30 @@ public class ImageUtil {
 
             //主图片
             g.drawImage(image, 0, 0, width, height, null);
-            g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
+
+            //头像
+            float avatarRate = getRate(avatarImage, avatarMaxWidth, avatarMaxHeight);
+            int avatarWidth = (int) (avatarImage.getWidth(null) * avatarRate);
+            int avatarHeight = (int) (avatarImage.getHeight(null) * avatarRate);
+            g.drawImage(convertCircular(avatarImage), avatarX, avatarY, avatarWidth, avatarHeight, null);
+
+//            g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
             // 关闭画笔。
             g.dispose();
 
             // 保存目标图片。
             out = new ByteArrayOutputStream();
-//            ImageIO.write(bufferedImage, "jpeg", out);
+            ImageIO.write(bufferedImage, "jpeg", out);
 
-            ImageOutputStream ios = ImageIO.createImageOutputStream(out);
-            Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("jpeg");
-            ImageWriter writer = iter.next();
-            ImageWriteParam iwp = writer.getDefaultWriteParam();
-            iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-            iwp.setCompressionQuality(0.95f);
-            writer.setOutput(ios);
-            writer.write(null, new IIOImage(bufferedImage, null, null), iwp);
-            writer.dispose();
+//            ImageOutputStream ios = ImageIO.createImageOutputStream(out);
+//            Iterator<ImageWriter> iter = ImageIO.getImageWritersByFormatName("jpeg");
+//            ImageWriter writer = iter.next();
+//            ImageWriteParam iwp = writer.getDefaultWriteParam();
+//            iwp.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+//            iwp.setCompressionQuality(0.95f);
+//            writer.setOutput(ios);
+//            writer.write(null, new IIOImage(bufferedImage, null, null), iwp);
+//            writer.dispose();
         } catch (IOException e) {
             throw e;
         } finally {
@@ -453,6 +518,28 @@ public class ImageUtil {
         Font font = new Font("黑体", Font.PLAIN, 35);
         Color color = new Color(0, 0, 0, 255);
         return addWaterMarkText(srcImgSteram, waterMarkContent, color, font, x1, y1, x2, y2);
+    }
+
+    /**
+     * 图片转为圆形
+     *
+     * @param bi1
+     * @return
+     * @throws IOException
+     */
+    public static BufferedImage convertCircular(BufferedImage bi1) throws IOException {
+        // 透明底的图片
+        BufferedImage bi2 = new BufferedImage(bi1.getWidth(), bi1.getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
+        Ellipse2D.Double shape = new Ellipse2D.Double(0, 0, bi1.getWidth(), bi1.getHeight());
+        Graphics2D g2 = bi2.createGraphics();
+        g2.setClip(shape);
+        // 使用 setRenderingHint 设置抗锯齿
+        g2.drawImage(bi1, 0, 0, null);
+        // 设置颜色
+        g2.setBackground(Color.green);
+        g2.dispose();
+
+        return bi2;
     }
 
     /**

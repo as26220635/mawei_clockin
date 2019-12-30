@@ -43,6 +43,12 @@
             }
         }
 
+        @media screen and (min-width: 960px) {
+            .weui-tab__container {
+                height: 95%;
+            }
+        }
+
         @media screen and (max-width: 330px) {
             .weui-tab__container {
                 height: 88%;

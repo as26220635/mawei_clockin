@@ -100,6 +100,7 @@ public class MainImageServiceImpl extends BaseServiceImpl implements MainImageSe
         String desc = SAVE_ERROR;
         try {
             Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(2);
+            String id = toString(mapParam.get("ID"));
             //作废其他启用记录
             int IS_STATUS = toInt(mapParam.get("IS_STATUS"));
             paramMap.clear();
@@ -107,7 +108,11 @@ public class MainImageServiceImpl extends BaseServiceImpl implements MainImageSe
             paramMap.put("BMI_PARENTID", 0);
             List<Map<String, Object>> list = baseDao.selectList(NameSpace.MainImageMapper, "selectMainImage", paramMap);
 
-            if (IS_STATUS == STATUS_SUCCESS) {
+            Map<String, Object> oldMap = Maps.newHashMapWithExpectedSize(1);
+            oldMap.put("ID", id);
+            oldMap = selectMainImage(oldMap);
+
+            if (IS_STATUS == STATUS_SUCCESS && "0".equals(toString(oldMap.get("BMI_PARENTID")))) {
                 for (Map<String, Object> main : list) {
                     //作废
                     paramMap.clear();
@@ -115,19 +120,12 @@ public class MainImageServiceImpl extends BaseServiceImpl implements MainImageSe
                     paramMap.put("IS_STATUS", STATUS_ERROR);
                     baseDao.update(NameSpace.MainImageMapper, "updateMainImage", paramMap);
                 }
-            } else {
-                throw new CustomException("只少有一个主页图片启用!");
             }
             //启用当前记录
-            String id = toString(mapParam.get("ID"));
-
             paramMap.clear();
             paramMap.put("ID", id);
             paramMap.put("IS_STATUS", IS_STATUS);
 
-            Map<String, Object> oldMap = Maps.newHashMapWithExpectedSize(1);
-            oldMap.put("ID", id);
-            oldMap = selectMainImage(oldMap);
             //记录日志
             paramMap.put(MagicValue.SVR_TABLE_NAME, TableName.BUS_MAIN_IMAGE);
             baseDao.update(NameSpace.MainImageMapper, "updateMainImage", paramMap);

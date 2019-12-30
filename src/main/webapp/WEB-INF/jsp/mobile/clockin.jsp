@@ -11,17 +11,22 @@
     #clockinArea {
         z-index: 1000;
         position: relative;
-        height: calc(55% - 30px);
+        /*height: calc(50% - 30px);*/
+        /*height: 250px;*/
         background-color: #ffffff;
         text-align: center;
         box-shadow: 0px 1px 30px rgba(136, 136, 136, 0.7);
     }
 
     #clockinAreaImg {
-        width: auto;
-        max-width: 100%;
-        height: calc(100% - 30px) !important;
-        object-fit: contain;
+        /*width: auto;*/
+        /*max-width: 100%;*/
+        /*height: 253px;*/
+        /*height: calc(100% - 30px) !important;*/
+        /*object-fit: contain;*/
+        width: 100%;
+        height: auto;
+        margin-bottom: -3%;
     }
 
     .anchorBL a {
@@ -47,21 +52,28 @@
     }
 
     #map {
-        height: 45%;
+        /*height: calc(100% - 30px) !important;*/
+        /*height: 45%;*/
         -webkit-transition: all 0.5s ease-in-out;
         transition: all 0.5s ease-in-out;
         z-index: 101 !important;
+        /*height: 192px;*/
+        min-height: 190px;
+        /*height: calc(40vh);*/
     }
 
     .BMap_geolocationIcon {
         z-index: 105;
     }
 
+    #switchBtn {
+        z-index: 1005;
+    }
 
     .clockin-check-area {
         width: 100%;
         position: absolute;
-        top: calc(65% + 40px);
+        top: calc(57% + 40px);
         margin: auto 0;
         z-index: 102;
         text-align: center;
@@ -70,18 +82,18 @@
     .clockin-check-area #clockin {
         width: 283px;
         height: auto;
-        margin-top: -53px;
+        margin-top: -70px;
         margin-left: 16px;
     }
 
     #clockinAddressArea {
         margin-top: 50px;
-        pointer-events: none;
     }
 
     #clockinAddress {
         font-size: 13px !important;
         color: #000000;
+        pointer-events: none;
     }
 
     .disabled {
@@ -154,8 +166,29 @@
         }
     }
 
+    @media screen and (min-height: 600px) and (max-height: 700px) {
+        #map {
+            height: calc(45vh);
+        }
+    }
+
+    @media screen and (min-height: 700px) and (max-height: 820px) {
+        #map {
+            height: calc(53vh);
+        }
+    }
+
+    @media screen and (min-height: 820px) and (max-height: 900px) {
+        #map {
+            height: calc(55vh);
+        }
+    }
 
     @media screen and (min-width: 600px) and (max-width: 960px) {
+
+        #map {
+            height: calc(42vh);
+        }
 
         #clockinArea {
             text-align: center;
@@ -189,6 +222,9 @@
     }
 
     @media screen and (min-width: 960px) {
+        #map {
+            height: calc(41vh);
+        }
 
         #clockinArea {
             text-align: center;
@@ -258,8 +294,7 @@
 
     <div id="clockinArea">
         <img id="clockinAreaImg" border="0" usemap="#clockinAreaMap"
-             src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${mainImage.IMG_PATH}"
-             style="height: ${mainImage.BMI_HEIGHT}px;margin-top: ${mainImage.BMI_TOP}px;"/>
+             src="${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${mainImage.IMG_PATH}"/>
         <map name="clockinAreaMap" id="clockinAreaMap">
             <c:forEach items="${areaList}" var="area">
                 <area shape="rect" coords="${area.BIMA_MAPINFO}" data-main-id="${area.BMI_RELATIONID}"/>
@@ -278,6 +313,7 @@
             <img id="clockin" src="${BASE_URL}resources/assets/images/main/not_range.png">
         </div>
         <div id="clockinAddressArea" class="clockin-check-area">
+            <a id="switchBtn" href="javascript:;" class="weui-btn weui-btn_default" style="display: none;">切换</a>
             <div id="clockinAddress" class="weui-btn weui-btn_disabled weui-btn_default"></div>
         </div>
     </div>
@@ -291,9 +327,9 @@
 <script>
     <%--主页图片--%>
     //调整area
-    $('#clockinAreaImg').one('load', function () {
-        adjust('${mainImage.BMI_AREAWIDTH}', '${mainImage.BMI_AREAHEIGHT}');
-    });
+    <%--$('#clockinAreaImg').one('load', function () {--%>
+    <%--    adjust('${mainImage.BMI_AREAWIDTH}', '${mainImage.BMI_AREAHEIGHT}');--%>
+    <%--});--%>
 
 
     function adjust(imageWidth, imageHeigth) {
@@ -481,6 +517,8 @@
         '${achievement.ID}': [${achievement.BA_LONGITUDE}, ${achievement.BA_LATITUDE}, ${achievement.BA_RANGE}, ${achievement.BAD_COUNT}, '${achievement.IMG_PATH_BTN}', '${achievement.BAD_ID}'],
         </c:forEach>
     };
+    var overlapPosition = 0;
+    var geolocaltionPointOverlap = [];
     //打卡点圆
     var circleArray = {};
     var isLoading = false;
@@ -646,14 +684,32 @@
     function isCheckCircleInside(lng, lat) {
         var isCheck = false;
         var pt = new BMap.Point(lng, lat);
+        //是否重叠了
+        var isOverlap = false;
         for (let i in circleArray) {
             if (BMapLib.GeoUtils.isPointInCircle(pt, circleArray[i])) {
-                $('#clockinGeolocaltionPoint').val(i);
+                if (isCheck) {
+                    isOverlap = true;
+                } else {
+                    $('#clockinGeolocaltionPoint').val(i);
+                }
                 isCheck = true;
-                break;
+                geolocaltionPointOverlap.push(i);
+                // break;
             } else {
-                $('#clockinGeolocaltionPoint').val('');
+                if (!isCheck) {
+                    $('#clockinGeolocaltionPoint').val('');
+                }
             }
+        }
+        if (!isCheck) {
+            geolocaltionPointOverlap = [];
+            overlapPosition = 0;
+        }
+        if (isOverlap) {
+            $('#switchBtn').fadeIn();
+        } else {
+            $('#switchBtn').fadeOut();
         }
         return isCheck;
     }
@@ -710,6 +766,21 @@
     loadJScript();
 </script>
 <script>
+    <%--切换打卡地点--%>
+    $('#switchBtn').unbind('click').on('click', function () {
+        if (overlapPosition >= geolocaltionPointOverlap.length - 1) {
+            overlapPosition = 0;
+        } else {
+            overlapPosition++;
+        }
+        $('#clockinGeolocaltionPoint').val(geolocaltionPointOverlap[overlapPosition]);
+        var point = geolocaltionPoint[geolocaltionPointOverlap[overlapPosition]];
+        if (point[3] <= 0) {
+            switchClockinBtn(1);
+        } else {
+            switchClockinBtn(4);
+        }
+    });
     <%--打卡--%>
     $('#clockin').unbind('click').on('click', function () {
         var clockinGeolocaltionPoint = $('#clockinGeolocaltionPoint').val();
