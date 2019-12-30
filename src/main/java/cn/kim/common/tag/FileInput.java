@@ -137,6 +137,7 @@ public class FileInput extends BaseTagSupport {
             DictInfo d = new DictInfo();
             d.setSdiRequired(0);
             d.setSdiName("附件");
+            d.setIsStatus(Attribute.STATUS_SUCCESS);
             infoList.add(d);
 
             dictType.setInfos(infoList);
