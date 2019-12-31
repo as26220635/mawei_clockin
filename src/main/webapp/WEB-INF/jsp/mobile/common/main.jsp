@@ -69,6 +69,13 @@
             filter: grayscale(100%);
             filter: gray;
         }
+        .weui-tabbar__disabled{
+            pointer-events: none;
+        }
+
+        .weui-tabbar__disabled a{
+            pointer-events: none;
+        }
     </style>
     <script>
         //是否定位
@@ -82,7 +89,7 @@
             <div class="weui-tab__panel weui-tab__container" id="${CONTAINER}" style="height: 92%;">
 
             </div>
-            <div class="weui-tabbar">
+            <div class="weui-tabbar" id="tabbar">
                 <c:if test="${bottomMenuConfig.MOBILE_BOTTOM_MENU_CLOCKIN ne Attribute.STATUS_ERROR}">
                     <a id="clockinTabbar" href="${BASE_URL}clockin" class="weui-tabbar__item weui-bar__item_on"
                        data-pjax="#${CONTAINER}">
@@ -131,6 +138,7 @@
     $.pjax({url: this.href, container: '#${CONTAINER}', replace: true});
 
     $(document).on('pjax:click', function (options) {
+        $('#tabbar').addClass('weui-tabbar__disabled');
         isLocate = false;
         removeMap();
     })
@@ -139,6 +147,8 @@
     $(document).on('ready pjax:end', function (event) {
         //pjax
         mainInit.initPjax();
+        console.log(1)
+        $('#tabbar').removeClass('weui-tabbar__disabled');
     });
 
     $('.weui-tabbar__item').on('click', function () {
