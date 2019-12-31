@@ -439,6 +439,7 @@
                             canvas.width = w;
                             canvas.height = h;
                             ctx.drawImage(this, 0, 0, w, h);
+                            quality = 0.9;
                         }
 
                         var base64 = canvas.toDataURL('image/jpeg', quality);
