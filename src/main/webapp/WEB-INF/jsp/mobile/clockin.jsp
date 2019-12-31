@@ -377,7 +377,10 @@
 </script>
 <script>
     $('#clockinArea').viewer({
-        fullscreen: false
+        fullscreen: false,
+        toolbar:false,
+        title:false,
+        navbar:false,
     });
 </script>
 <script>
