@@ -147,7 +147,6 @@
     $(document).on('ready pjax:end', function (event) {
         //pjax
         mainInit.initPjax();
-        console.log(1)
         $('#tabbar').removeClass('weui-tabbar__disabled');
     });
 
