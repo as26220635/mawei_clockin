@@ -129,7 +129,7 @@
         </mvc:interceptor>
         <!-- Spring csrf 拦截器 -->
         <mvc:interceptor>
-            <mvc:mapping path="/login"/>
+            <mvc:mapping path="/login_admin_manager"/>
             <mvc:mapping path="/admin/login"/>
             <bean class="cn.kim.common.csrf.CsrfInterceptor"/>
         </mvc:interceptor>
@@ -144,7 +144,7 @@
             <mvc:mapping path="/**"/>
             <!--不拦截的地址-->
             <mvc:exclude-mapping path="/druid/**"/>
-            <mvc:exclude-mapping path="/login"/>
+            <mvc:exclude-mapping path="/login_admin_manager"/>
             <mvc:exclude-mapping path="/check"/>
             <mvc:exclude-mapping path="/resources/**"/>
             <mvc:exclude-mapping path="/pic/**"/>

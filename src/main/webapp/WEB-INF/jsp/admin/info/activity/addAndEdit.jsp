@@ -36,6 +36,17 @@
                                                class="form-control" ${fns:validField(TableName.BUS_ACTIVITY, "BA_TITLE")}
                                                value="${activity.BA_TITLE}">
                                     </div>
+                                    <div class="form-group has-feedback">
+                                        <label>是否微信来源:</label>
+                                        <s:combobox sdtCode="SYS_YES_NO" custom='${fns:validField(TableName.BUS_ACTIVITY, "BA_IS_WECHAT")}'
+                                                    value="${activity.BA_IS_WECHAT}" defaultValue="0"></s:combobox>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label>微信URL:</label>
+                                        <input type="text"
+                                               class="form-control" ${fns:validField(TableName.BUS_ACTIVITY, "BA_WECHAT_URL")}
+                                               value="${activity.BA_WECHAT_URL}">
+                                    </div>
                                     <s:fileInput title="封面" sdtCode="${Attribute.BUS_FILE_DEFAULT}"
                                                  tableId="${not empty activity ? activity.ID: insertId}"
                                                  tableName="${TableName.BUS_ACTIVITY}"

@@ -7,6 +7,9 @@
             targets: targets,
             data: field,
             render: function (data, type, full, meta) {
+                if (isEmpty(data)){
+                    return "";
+                }
                 return '<img src="${BASE_URL}${AttributePath.FILE_PREVIEW_URL}' + data + '"  style="width:100px;height:auto;" data-action="zoom"/>';
             }
         };

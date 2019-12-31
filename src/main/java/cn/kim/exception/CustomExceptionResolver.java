@@ -51,7 +51,7 @@ public class CustomExceptionResolver implements HandlerExceptionResolver {
             customException = (CustomException) ex;
         } else if (ex instanceof UnknownSessionException) {
             try {
-                request.getRequestDispatcher("/login").forward(request, response);
+                request.getRequestDispatcher(Attribute.LOGIN_URL).forward(request, response);
             } catch (Exception e) {
             }
             return new ModelAndView();

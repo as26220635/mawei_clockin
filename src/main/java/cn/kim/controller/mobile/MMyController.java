@@ -91,7 +91,7 @@ public class MMyController extends BaseController {
 
         model.addAttribute("detail", detail);
         model.addAttribute("fileIds", fileIds);
-        setHeaderTitle(model, "打卡明细");
+        setHeaderTitle(model, "打卡记录");
         return "mobile/my/clockin_item";
     }
 

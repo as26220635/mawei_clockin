@@ -43,11 +43,18 @@
             }
         }
 
-        @media screen and (min-width: 960px) {
+        @media screen and (min-width: 960px) and (max-width: 1100px) {
             .weui-tab__container {
                 height: 95%;
             }
         }
+
+        @media screen and (min-width: 1100px) {
+            .weui-tab__container {
+                height: 91%;
+            }
+        }
+
 
         @media screen and (max-width: 330px) {
             .weui-tab__container {
@@ -69,15 +76,16 @@
             filter: grayscale(100%);
             filter: gray;
         }
-        .weui-tabbar__disabled{
+
+        .weui-tabbar__disabled {
             pointer-events: none;
         }
 
-        .weui-tabbar__disabled a{
+        .weui-tabbar__disabled a {
             pointer-events: none;
         }
 
-        .weui-tabbar__disabled button{
+        .weui-tabbar__disabled button {
             pointer-events: none;
         }
     </style>
@@ -222,14 +230,14 @@
 </script>
 <script>
     function weixinShare(title, desc, link, imgUrl, success, cancel) {
-        let signLink =  /(Android)/i.test(navigator.userAgent) ? location.href.split('#')[0] : window.entryUrl;
+        let signLink = /(Android)/i.test(navigator.userAgent) ? location.href.split('#')[0] : window.entryUrl;
         // 登录微信jssdk
         ajax.get('${BASE_URL}JSSDKConfig', {url: signLink}, function (data) {
             if (data.code == 1) {
                 var message = $.parseJSON(data.message);
 
                 wx.config({
-                    debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                     appId: message.appId, // 必填，公众号的唯一标识
                     timestamp: message.timestamp, // 必填，生成签名的时间戳
                     nonceStr: message.nonceStr, // 必填，生成签名的随机串
@@ -270,20 +278,20 @@
                     //         }
                     //     });
                     // } else {
-                        wx.onMenuShareAppMessage({
-                            title: defaults.title,
-                            desc: defaults.desc,
-                            link: defaults.link,
-                            imgUrl: defaults.imgUrl,
-                            type: '', // 分享类型,music、video或link，不填默认为link
-                            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-                            success: function () {
-                                defaults.success();
-                            },
-                            cancel: function () {
-                                defaults.cancel();
-                            }
-                        });
+                    wx.onMenuShareAppMessage({
+                        title: defaults.title,
+                        desc: defaults.desc,
+                        link: defaults.link,
+                        imgUrl: defaults.imgUrl,
+                        type: '', // 分享类型,music、video或link，不填默认为link
+                        dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+                        success: function () {
+                            defaults.success();
+                        },
+                        cancel: function () {
+                            defaults.cancel();
+                        }
+                    });
                     // }
                     //分享给朋友圈
                     // if (wx.updateTimelineShareData) {
@@ -299,17 +307,17 @@
                     //         }
                     //     });
                     // } else {
-                        wx.onMenuShareTimeline({
-                            title: defaults.title,
-                            link: defaults.link,
-                            imgUrl: defaults.imgUrl,
-                            success: function () {
-                                defaults.success();
-                            },
-                            cancel: function () {
-                                defaults.cancel();
-                            }
-                        });
+                    wx.onMenuShareTimeline({
+                        title: defaults.title,
+                        link: defaults.link,
+                        imgUrl: defaults.imgUrl,
+                        success: function () {
+                            defaults.success();
+                        },
+                        cancel: function () {
+                            defaults.cancel();
+                        }
+                    });
                     // }
 
                 });

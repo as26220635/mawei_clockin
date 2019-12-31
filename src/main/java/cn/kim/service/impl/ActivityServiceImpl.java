@@ -59,6 +59,8 @@ public class ActivityServiceImpl extends BaseServiceImpl implements ActivityServ
             paramMap.put("ID", id);
             paramMap.put("BA_TITLE", mapParam.get("BA_TITLE"));
             paramMap.put("BA_SOURCE", mapParam.get("BA_SOURCE"));
+            paramMap.put("BA_IS_WECHAT", mapParam.get("BA_IS_WECHAT"));
+            paramMap.put("BA_WECHAT_URL", mapParam.get("BA_WECHAT_URL"));
             paramMap.put("BA_CONTENT", unescapeHtml4(mapParam.get("BA_CONTENT")));
             paramMap.put("BA_UPDATE_TIME", getDate());
             paramMap.put("SO_ID", getActiveUser().getId());

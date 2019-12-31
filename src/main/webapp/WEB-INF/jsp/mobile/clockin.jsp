@@ -94,6 +94,7 @@
         font-size: 13px !important;
         color: #000000;
         pointer-events: none;
+        background-color: rgba(255, 255, 255, 0.30);
     }
 
     .disabled {
@@ -188,6 +189,7 @@
 
         #map {
             height: calc(42vh);
+            min-height: 400px;
         }
 
         #clockinArea {
@@ -225,9 +227,10 @@
         }
     }
 
-    @media screen and (min-width: 960px) {
+    @media screen and (min-width: 960px)  and (max-width: 1100px) {
         #map {
             height: calc(41vh);
+            min-height: 440px;
         }
 
         #clockinArea {
@@ -265,6 +268,46 @@
         }
     }
 
+    @media screen and (min-width: 1100px) {
+        #map {
+            height: calc(55vh);
+            min-height: 440px;
+        }
+
+        #clockinArea {
+            text-align: center;
+        }
+
+        #clockinAreaCheckDiv {
+            top: 90%;
+        }
+
+        .clockin-check-area {
+            top: calc(125% + 40px);
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(960px);
+                -webkit-transform: translateX(960px);
+            }
+            100% {
+                transform: translateX(-100%);
+                -webkit-transform: translateX(-100%);
+            }
+        }
+
+        @-webkit-keyframes marquee {
+            0% {
+                transform: translateX(1100px);
+                -webkit-transform: translateX(1100px);
+            }
+            100% {
+                transform: translateX(-100%);
+                -webkit-transform: translateX(-100%);
+            }
+        }
+    }
 
 </style>
 <div class="container container-page" id="clockinContainer">
@@ -331,6 +374,11 @@
     showBottpmMenu();
     switchTabbar('clockinTabbar');
     mainInit.initPjax();
+</script>
+<script>
+    $('#clockinArea').viewer({
+        fullscreen: false
+    });
 </script>
 <script>
     <%--主页图片--%>

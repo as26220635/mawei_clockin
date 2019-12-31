@@ -24,10 +24,10 @@ public class WechatAccessTokenTask extends BaseData {
     @Scheduled(cron = "0 0/10 * * * ?")
     public void getAccessToken() {
         //判断是否授权过期需要重新获取
-        Long WECHAT_ACCESS_TOKEN_EXPIRES_STAMP = toLong(AllocationUtil.get("WECHAT_ACCESS_TOKEN_EXPIRES_STAMP"));
+        Object WECHAT_ACCESS_TOKEN_EXPIRES_STAMP = AllocationUtil.get("WECHAT_ACCESS_TOKEN_EXPIRES_STAMP");
         if (!isEmpty(WECHAT_ACCESS_TOKEN_EXPIRES_STAMP)) {
             //偏移20分钟
-            if (DateUtil.moveDate(Calendar.MINUTE, true, new Date(), 15).getTime() < WECHAT_ACCESS_TOKEN_EXPIRES_STAMP) {
+            if (DateUtil.moveDate(Calendar.MINUTE, true, new Date(), 25).getTime() < toLong(WECHAT_ACCESS_TOKEN_EXPIRES_STAMP)) {
                 return;
             }
         }

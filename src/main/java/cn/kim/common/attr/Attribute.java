@@ -47,7 +47,7 @@ public class Attribute {
     /**
      * 登录地址
      */
-    public static final String LOGIN_URL = "/login";
+    public static final String LOGIN_URL = "/login_admin_manager";
     /*******************    网页链接地址  ******************/
     /***
      * 404

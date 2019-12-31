@@ -73,7 +73,6 @@
     mainInit.initPjax();
 </script>
 <script>
-    console.log('${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${IMG_PATH_THUMBNAIL}')
     $('#shareBtn').unbind('click').on('click', function () {
         var sharetpl = '<div class="weui-share" onclick="$(this).remove();">\n' +
             '<div class="weui-share-box">\n' +

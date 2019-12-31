@@ -53,7 +53,7 @@
     <div class="weui-cells">
         <a class="weui-cell weui-cell_access" href="${BASE_URL}my/clockin" data-pjax="#${CONTAINER}">
             <div class="weui-cell__bd">
-                <p>打卡记录</p>
+                <p>个人空间</p>
             </div>
             <div class="weui-cell__ft">
             </div>

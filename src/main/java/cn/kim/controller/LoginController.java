@@ -1,5 +1,6 @@
 package cn.kim.controller;
 
+import cn.kim.common.attr.Attribute;
 import cn.kim.common.attr.Constants;
 import cn.kim.common.attr.MagicValue;
 import cn.kim.common.attr.MobileConfig;
@@ -92,7 +93,7 @@ public class LoginController extends BaseController {
         return modelAndView;
     }
 
-    @GetMapping("/login")
+    @GetMapping("/login_admin_manager")
     @CsrfToken(create = true)
     public ModelAndView login(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
@@ -115,7 +116,7 @@ public class LoginController extends BaseController {
         return modelAndView;
     }
 
-    @PostMapping(value = "/login")
+    @PostMapping(value = "/login_admin_manager")
     @CsrfToken(remove = true)
     public ModelAndView login(HttpServletRequest request, RedirectAttributes model) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
@@ -153,7 +154,7 @@ public class LoginController extends BaseController {
                 }
 
                 SessionUtil.remove(Constants.SESSION_USERNAME);
-                modelAndView.setViewName("redirect:/login");
+                modelAndView.setViewName("redirect:"+ Attribute.LOGIN_URL);
                 model.addFlashAttribute("loginError", errorTips);
                 model.addFlashAttribute("username", request.getParameter("username"));
                 model.addFlashAttribute("type", request.getParameter("type"));
@@ -189,43 +190,47 @@ public class LoginController extends BaseController {
     @RequestMapping("/oauth/callback/{source}")
     public void login(@PathVariable("source") String source, AuthCallback callback, HttpServletRequest request, HttpServletResponse response) throws Exception {
 //        System.out.println("进入callback：" + source + " callback params：" + JSONObject.toJSONString(callback));
-        AuthRequest authRequest = getAuthRequest(source);
-        AuthResponse res = authRequest.login(callback);
+       try {
+           AuthRequest authRequest = getAuthRequest(source);
+           AuthResponse res = authRequest.login(callback);
 
-        JSONObject data = JSONObject.parseObject(JSONObject.toJSONString(res.getData()));
-        JSONObject token = data.getJSONObject("token");
-        WechatUser user = new WechatUser();
-        user.setUuid(data.getString("uuid"));
-        user.setUsername(data.getString("username"));
-        user.setNickname(data.getString("nickname"));
-        user.setGender(data.getString("gender"));
-        user.setAvatar(data.getString("avatar"));
-        user.setLocation(data.getString("location"));
-        user.setSource(data.getString("source"));
-        user.setAccessToken(token.getString("accessToken"));
-        user.setExpireIn(token.getInteger("expireIn"));
-        user.setOpenId(token.getString("openId"));
-        user.setRefreshToken(token.getString("refreshToken"));
-        user.setIp(HttpUtil.getIpAddr(request));
-        //记录登录
-        Map<String, Object> resultMap = wechatService.wechatLogin(user);
-        if (!isSuccess(resultMap)) {
-            throw new CustomException("微信登录失败!");
-        }
-        user.setId(toString(resultMap.get(MagicValue.ID)));
+           JSONObject data = JSONObject.parseObject(JSONObject.toJSONString(res.getData()));
+           JSONObject token = data.getJSONObject("token");
+           WechatUser user = new WechatUser();
+           user.setUuid(data.getString("uuid"));
+           user.setUsername(data.getString("username"));
+           user.setNickname(data.getString("nickname"));
+           user.setGender(data.getString("gender"));
+           user.setAvatar(data.getString("avatar"));
+           user.setLocation(data.getString("location"));
+           user.setSource(data.getString("source"));
+           user.setAccessToken(token.getString("accessToken"));
+           user.setExpireIn(token.getInteger("expireIn"));
+           user.setOpenId(token.getString("openId"));
+           user.setRefreshToken(token.getString("refreshToken"));
+           user.setIp(HttpUtil.getIpAddr(request));
+           //记录登录
+           Map<String, Object> resultMap = wechatService.wechatLogin(user);
+           if (!isSuccess(resultMap)) {
+               throw new CustomException("微信登录失败!");
+           }
+           user.setId(toString(resultMap.get(MagicValue.ID)));
 
-        //用户类型
-        ActiveUser activeUser = new ActiveUser();
-        //设置类型
-        activeUser.setId(user.getId());
-        activeUser.setUsername(user.getUsername());
-        activeUser.setType(SystemEnum.WECHAT.toString());
+           //用户类型
+           ActiveUser activeUser = new ActiveUser();
+           //设置类型
+           activeUser.setId(user.getId());
+           activeUser.setUsername(user.getUsername());
+           activeUser.setType(SystemEnum.WECHAT.toString());
 
-        //放入seesion
-        SessionUtil.set(MagicValue.SESSION_WECHAT_USER, user);
-        AuthcUtil.setCurrentUser(activeUser);
-        //跳转前台
-        WebUtils.issueRedirect(request, response, "/clockin", null, true);
+           //放入seesion
+           SessionUtil.set(MagicValue.SESSION_WECHAT_USER, user);
+           AuthcUtil.setCurrentUser(activeUser);
+           //跳转前台
+           WebUtils.issueRedirect(request, response, "/clockin", null, true);
+       }catch (Exception e){
+           WebUtils.issueRedirect(request, response, "/oauth/render/wechat", null, true);
+       }
     }
 
     /**

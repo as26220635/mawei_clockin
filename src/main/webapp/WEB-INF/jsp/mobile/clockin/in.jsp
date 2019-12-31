@@ -102,11 +102,11 @@
                 <input type="hidden" name="BAD_ADDRESS" value="${clockinAddress}">
 
                 <div class="weui-cells__group weui-cells__group_form">
-                    <div class="weui-cells__title">概述</div>
+                    <div class="weui-cells__title">我的心情</div>
                     <div class="weui-cells weui-cells_form">
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
-                                <textarea id="BAD_REMARKS" name="BAD_REMARKS" class="weui-textarea" placeholder="概述"
+                                <textarea id="BAD_REMARKS" name="BAD_REMARKS" class="weui-textarea" placeholder="我的心情"
                                           rows="3"
                                           maxlength="200"></textarea>
                                 <div id="remarksCounter" class="weui-textarea-counter"><span>0</span>/200</div>

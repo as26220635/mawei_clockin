@@ -16,9 +16,11 @@
     <!--插入-->
     <insert id="insertActivity" parameterType="java.util.Map">
         INSERT INTO BUS_ACTIVITY
-        <trim prefix="(" suffix=")" suffixOverrides=",">
+        <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="ID != null">ID,</if>
             <if test="BA_TITLE != null">BA_TITLE,</if>
+            <if test="BA_IS_WECHAT != null">BA_IS_WECHAT,</if>
+            <if test="BA_WECHAT_URL != null">BA_WECHAT_URL,</if>
             <if test="BA_SOURCE != null">BA_SOURCE,</if>
             <if test="BA_CONTENT != null">BA_CONTENT,</if>
             <if test="BA_ENTRY_TIME != null">BA_ENTRY_TIME,</if>
@@ -26,9 +28,11 @@
             <if test="SO_ID != null">SO_ID,</if>
             <if test="IS_STATUS != null">IS_STATUS,</if>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides=",">
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="ID != null">#{ID},</if>
             <if test="BA_TITLE != null">#{BA_TITLE},</if>
+            <if test="BA_IS_WECHAT != null">#{BA_IS_WECHAT},</if>
+            <if test="BA_WECHAT_URL != null">#{BA_WECHAT_URL},</if>
             <if test="BA_SOURCE != null">#{BA_SOURCE},</if>
             <if test="BA_CONTENT != null">#{BA_CONTENT},</if>
             <if test="BA_ENTRY_TIME != null">#{BA_ENTRY_TIME},</if>
@@ -44,6 +48,8 @@
         <set>
             <if test="ID != null">ID=#{ID},</if>
             <if test="BA_TITLE != null">BA_TITLE=#{BA_TITLE},</if>
+            <if test="BA_IS_WECHAT != null">BA_IS_WECHAT=#{BA_IS_WECHAT},</if>
+            <if test="BA_WECHAT_URL != null">BA_WECHAT_URL=#{BA_WECHAT_URL},</if>
             <if test="BA_SOURCE != null">BA_SOURCE=#{BA_SOURCE},</if>
             <if test="BA_CONTENT != null">BA_CONTENT=#{BA_CONTENT},</if>
             <if test="BA_ENTRY_TIME != null">BA_ENTRY_TIME=#{BA_ENTRY_TIME},</if>

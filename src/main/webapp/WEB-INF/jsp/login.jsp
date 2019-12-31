@@ -34,7 +34,7 @@
     <div class="login-box-body">
         <p class="login-box-msg">登录到${WEBCONFIG_LOGIN_TITLE}</p>
 
-        <form class="form" method="post" action="${BASE_URL}login" id="submitForm">
+        <form class="form" method="post" action="${BASE_URL}login_admin_manager" id="submitForm">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
             <div class="form-group has-feedback">
