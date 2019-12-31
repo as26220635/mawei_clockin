@@ -122,8 +122,14 @@
         SELECT COUNT(*)
         FROM V_ACHIEVEMENT_DETAIL
         <where>
+            <if test="whereClause != null and whereClause != ''">
+                ${whereClause}
+            </if>
             <if test="BW_ID != null and BW_ID != ''">
                 AND BW_ID = #{BW_ID}
+            </if>
+            <if test="BAD_IS_DELETE != null">
+                AND BAD_IS_DELETE = #{BAD_IS_DELETE}
             </if>
         </where>
     </select>
@@ -134,6 +140,9 @@
         <where>
             <if test="whereClause != null and whereClause != ''">
                 ${whereClause}
+            </if>
+            <if test="BAD_IS_DELETE != null">
+                AND BAD_IS_DELETE = #{BAD_IS_DELETE}
             </if>
         </where>
         <if test="orderByClause != null and orderByClause != ''">

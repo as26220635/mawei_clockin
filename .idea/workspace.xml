@@ -8,16 +8,9 @@
   <component name="ChangeListManager">
     <list default="true" id="7327bc50-4349-42c0-91dd-1fd1c7b41fa8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MIndexController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MIndexController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementFixedMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementFixedMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -80,14 +73,144 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="432" column="60" lean-forward="true" selection-start-line="421" selection-start-column="27" selection-end-line="432" selection-end-column="60" />
+            <state relative-caret-position="353">
+              <caret line="443" column="77" selection-start-line="443" selection-start-column="77" selection-end-line="443" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MMyController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="71" column="77" selection-start-line="71" selection-start-column="77" selection-end-line="71" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_data.jsp">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="83" column="22" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="78">
+              <caret line="243" selection-start-line="243" selection-end-line="243" />
               <folding>
-                <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
+                <element signature="docComment;class#AchievementServiceImpl#0" />
+                <element signature="method#selectAchievement#0;class#AchievementServiceImpl#0" />
+                <element signature="method#selectMAchievementList#0;class#AchievementServiceImpl#0" />
+                <element signature="method#selectMAchievementListByWechat#0;class#AchievementServiceImpl#0" />
+                <element signature="e#2396#2863#1" />
+                <element signature="e#2486#2645#1" />
+                <element signature="e#2549#2631#1" />
+                <element signature="e#3022#3031#0" />
+                <element signature="method#insertAndUpdateAchievement#0;class#AchievementServiceImpl#0" />
+                <element signature="e#3298#5134#0" />
+                <element signature="e#3998#4475#1" />
+                <element signature="e#4481#4946#1" />
+                <element signature="e#5155#5224#0" />
+                <element signature="e#5358#5367#0" />
+                <element signature="method#changeAchievementStatus#0;class#AchievementServiceImpl#0" />
+                <element signature="e#5631#6573#0" />
+                <element signature="e#6594#6663#0" />
+                <element signature="e#6797#6806#0" />
+                <element signature="method#deleteAchievement#0;class#AchievementServiceImpl#0" />
+                <element signature="e#7066#7937#0" />
+                <element signature="e#7113#7191#1" />
+                <element signature="e#7958#8027#0" />
+                <element signature="method#selectAchievementDetail#0;class#AchievementServiceImpl#0" />
+                <element signature="method#selectMAchievementDetailById#0;class#AchievementServiceImpl#0" />
+                <element signature="e#10071#10080#0" />
+                <element signature="method#insertAndUpdateAchievementDetail#0;class#AchievementServiceImpl#0" />
+                <element signature="e#10353#11943#0" />
+                <element signature="e#10990#11346#1" />
+                <element signature="e#11352#11825#1" />
+                <element signature="e#11964#12033#0" />
+                <element signature="e#12167#12176#0" />
+                <element signature="method#deleteAchievementDetail#0;class#AchievementServiceImpl#0" />
+                <element signature="e#12442#14568#0" />
+                <element signature="e#12489#12567#1" />
+                <element signature="e#12972#13067#0" />
+                <element signature="e#13252#13258#0" />
+                <element signature="e#14589#14658#0" />
+                <element signature="method#selectAchievementTree#0;class#AchievementServiceImpl#0" />
+                <element signature="e#15727#15825#1" />
+                <element signature="e#16517#17808#1" />
+                <element signature="e#16555#17796#0" />
+                <element signature="e#16916#17054#1" />
+                <element signature="e#17150#17676#1" />
+                <element signature="e#17421#17613#1" />
+                <element signature="docComment;method#getAchievementChildrenId#0;class#AchievementServiceImpl#0" />
+                <element signature="method#getAchievementChildrenId#0;class#AchievementServiceImpl#0" />
+                <element signature="e#18336#18653#1" />
+                <element signature="e#18393#18643#1" />
+                <element signature="e#18568#18629#1" />
+                <element signature="docComment;method#updateAchievementMainImage#0;class#AchievementServiceImpl#0" />
+                <element signature="method#updateAchievementMainImage#0;class#AchievementServiceImpl#0" />
+                <element signature="e#19031#21864#0" />
+                <element signature="e#19993#20689#1" />
+                <element signature="e#20070#20675#1" />
+                <element signature="e#20124#20657#1" />
+                <element signature="e#20234#20635#1" />
+                <element signature="e#20767#21406#1" />
+                <element signature="e#20844#21392#1" />
+                <element signature="e#20898#21374#1" />
+                <element signature="e#21008#21352#1" />
+                <element signature="e#21885#21954#0" />
+                <element signature="method#selectAchievementClockinStatistic#0;class#AchievementServiceImpl#0" />
+                <element signature="method#selectAchievementShare#0;class#AchievementServiceImpl#0" />
+                <element signature="method#selectAchievementShareList#0;class#AchievementServiceImpl#0" />
+                <element signature="method#selectAchievementShareFile#0;class#AchievementServiceImpl#0" />
+                <element signature="e#23886#23895#0" />
+                <element signature="method#changeAchievementShare#0;class#AchievementServiceImpl#0" />
+                <element signature="e#24158#29414#0" />
+                <element signature="e#24897#24962#1" />
+                <element signature="e#25626#25841#1" />
+                <element signature="e#25764#25827#1" />
+                <element signature="e#25922#26748#1" />
+                <element signature="e#26126#26413#1" />
+                <element signature="e#26301#26395#1" />
+                <element signature="e#26444#26502#1" />
+                <element signature="e#26508#26734#1" />
+                <element signature="e#26588#26676#1" />
+                <element signature="e#26839#27837#1" />
+                <element signature="e#27917#28881#1" />
+                <element signature="e#28960#29189#1" />
+                <element signature="e#29435#29504#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-240">
+              <caret line="129" column="17" lean-forward="true" selection-start-line="127" selection-start-column="11" selection-end-line="129" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="217" column="13" lean-forward="true" selection-start-line="185" selection-start-column="8" selection-end-line="217" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -106,8 +229,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>clockinGeolocaltionPoint</find>
-      <find>switchBtn</find>
       <find>switchClockinBtn</find>
       <find>geolocaltionPoint</find>
       <find>geolocaltionPointOverlap</find>
@@ -136,6 +257,8 @@
       <find>FILE_PATH</find>
       <find>sha</find>
       <find>IMG_</find>
+      <find>setRecordsTotal</find>
+      <find>selectAchievementDetailListCount</find>
     </findStrings>
     <replaceStrings>
       <replace>${LOG_HOME}</replace>
@@ -228,7 +351,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/spring/applicationContext-dao.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/xss/XssFilter.java" />
         <option value="$PROJECT_DIR$/src/main/resources/spring/applicationContext-shiro.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/tag/FileInput.java" />
         <option value="$PROJECT_DIR$/src/main/resources/db.properties" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/attr/DictTypeCode.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/mainImage/area/home.jsp" />
@@ -251,15 +373,16 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_item.jsp" />
         <option value="$USER_HOME$/Desktop/db.properties" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp" />
-        <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MIndexController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementFixedMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/tag/FileInput.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" />
         <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml" />
         <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" />
+        <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml" />
       </list>
     </option>
   </component>
@@ -301,8 +424,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="74" />
-    <option name="width" value="1541" />
+    <option name="x" value="73" />
+    <option name="width" value="1543" />
     <option name="height" value="1071" />
   </component>
   <component name="ProjectId" id="1UgwJzx1Pa6dFbqyq2wzMiD5vzu" />
@@ -314,6 +437,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -362,16 +486,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="kim" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="quartz" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
@@ -493,17 +607,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -551,7 +654,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -927,28 +1029,8 @@
       <workItem from="1577626394905" duration="1482000" />
       <workItem from="1577668197398" duration="25903000" />
       <workItem from="1577701921989" duration="2941000" />
-      <workItem from="1577705057907" duration="3154000" />
-    </task>
-    <task id="LOCAL-00018" summary="修改">
-      <created>1575537194420</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1575537194420</updated>
-    </task>
-    <task id="LOCAL-00019" summary="修改">
-      <created>1575537298113</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1575537298113</updated>
-    </task>
-    <task id="LOCAL-00020" summary="修改">
-      <created>1575551132000</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1575551132000</updated>
+      <workItem from="1577705057907" duration="4039000" />
+      <workItem from="1577753236404" duration="1632000" />
     </task>
     <task id="LOCAL-00021" summary="修改">
       <created>1575551189142</created>
@@ -1272,7 +1354,28 @@
       <option name="project" value="LOCAL" />
       <updated>1577704316241</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="修改">
+      <created>1577717813422</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1577717813422</updated>
+    </task>
+    <task id="LOCAL-00068" summary="修改">
+      <created>1577718389055</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1577718389055</updated>
+    </task>
+    <task id="LOCAL-00069" summary="修改">
+      <created>1577718594699</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1577718594699</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1302,7 +1405,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="143636000" />
+    <option name="totallyTimeSpent" value="146153000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1314,47 +1417,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1563" height="845" extended-state="6" />
+    <frame x="-7" y="-7" width="1563" height="845" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49927008" weight="0.30564785" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="Web" order="7" sideWeight="0.5007299" side_tool="true" weight="0.29435217" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.60729927" />
-      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="5" weight="0.329927" />
-      <window_info anchor="bottom" id="Application Servers" order="6" weight="0.329927" />
-      <window_info anchor="bottom" id="Spring" order="7" weight="0.329927" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.329927" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50033224" side_tool="true" weight="0.57226276" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.329927" />
-      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.329927" />
-      <window_info anchor="bottom" id="Database Changes" order="13" weight="0.329927" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.329927" />
-      <window_info anchor="bottom" id="Debug" order="15" sideWeight="0.49966776" weight="0.57664233" />
-      <window_info anchor="right" id="Preview" order="0" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.24983388" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="4" weight="0.32956812" />
-      <window_info anchor="right" id="Palette" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Word Book" order="7" side_tool="true" />
-      <window_info anchor="right" id="Database" order="8" weight="0.32956812" />
-      <window_info anchor="right" id="Palette&#9;" order="9" />
-      <window_info anchor="right" id="Theme Preview" order="10" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49927008" weight="0.30564785" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49927008" weight="0.30963457" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1378,6 +1444,43 @@
       <window_info anchor="bottom" id="Database Changes" order="13" weight="0.329927" />
       <window_info anchor="bottom" id="Version Control" order="14" weight="0.329927" />
       <window_info anchor="bottom" id="Debug" order="15" sideWeight="0.49966776" visible="true" weight="0.57664233" />
+      <window_info anchor="right" id="Preview" order="0" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.24983388" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Maven" order="4" weight="0.32956812" />
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Word Book" order="7" side_tool="true" />
+      <window_info anchor="right" id="Database" order="8" weight="0.32956812" />
+      <window_info anchor="right" id="Palette&#9;" order="9" />
+      <window_info anchor="right" id="Theme Preview" order="10" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49927008" visible="true" weight="0.30963457" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="Capture Tool" order="4" />
+      <window_info id="UI Designer" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info id="Web" order="7" sideWeight="0.5007299" side_tool="true" weight="0.29435217" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.60729927" />
+      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="5" weight="0.329927" />
+      <window_info anchor="bottom" id="Application Servers" order="6" weight="0.329927" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.329927" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.329927" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50033224" side_tool="true" weight="0.57226276" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.329927" />
+      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.329927" />
+      <window_info anchor="bottom" id="Database Changes" order="13" weight="0.329927" />
+      <window_info anchor="bottom" id="Version Control" order="14" weight="0.329927" />
+      <window_info anchor="bottom" id="Debug" order="15" sideWeight="0.49966776" weight="0.57664233" />
       <window_info anchor="right" id="Preview" order="0" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.24983388" />
@@ -1760,20 +1863,6 @@
     <SUITE FILE_PATH="coverage/mawei_clockin$Tomcat_8_5_37.ic" NAME="Tomcat 8.5.37 Coverage Results" MODIFIED="1574783793926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/attr/TableName.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="148" column="7" lean-forward="true" selection-start-line="148" selection-start-column="7" selection-end-line="148" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/addAndEdit.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="59" column="19" lean-forward="true" selection-start-line="55" selection-start-column="4" selection-end-line="59" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/attr/Url.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
@@ -1930,13 +2019,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Desktop/db.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="88" selection-start-line="4" selection-start-column="88" selection-end-line="4" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/Desktop/db.properties" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_item.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -1986,24 +2069,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="117">
-          <caret line="215" column="100" selection-start-line="215" selection-start-column="87" selection-end-line="215" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/quartz/WechatRankTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="31" column="27" lean-forward="true" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MMyController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="87" column="56" selection-start-line="87" selection-start-column="56" selection-end-line="87" selection-end-column="56" />
         </state>
       </provider>
     </entry>
@@ -2039,19 +2108,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="491">
           <caret line="241" column="25" lean-forward="true" selection-start-line="241" selection-start-column="25" selection-end-line="241" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/BaseData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="85" column="29" lean-forward="true" selection-start-line="85" selection-start-column="29" selection-end-line="85" selection-end-column="29" />
-          <folding>
-            <element signature="e#8215#8216#0" expanded="true" />
-            <element signature="e#8260#8261#0" expanded="true" />
-            <element signature="e#9597#9598#0" expanded="true" />
-            <element signature="e#9647#9648#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2093,38 +2149,151 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/tag/FileInput.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="153" column="24" selection-start-line="153" selection-start-column="24" selection-end-line="153" selection-end-column="24" />
+        <state relative-caret-position="78">
+          <caret line="139" column="50" selection-start-line="139" selection-start-column="50" selection-end-line="139" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="46" column="64" selection-start-line="46" selection-start-column="56" selection-end-line="46" selection-end-column="64" />
+        <state relative-caret-position="353">
+          <caret line="443" column="77" selection-start-line="443" selection-start-column="77" selection-end-line="443" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_data.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/BaseData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+          <folding>
+            <element signature="e#8215#8216#0" expanded="true" />
+            <element signature="e#8260#8261#0" expanded="true" />
+            <element signature="e#9597#9598#0" expanded="true" />
+            <element signature="e#9647#9648#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="83" column="22" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MMyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="71" column="77" selection-start-line="71" selection-start-column="77" selection-end-line="71" selection-end-column="77" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="78">
-          <caret line="571" selection-start-line="571" selection-end-line="571" />
+          <caret line="243" selection-start-line="243" selection-end-line="243" />
           <folding>
-            <element signature="e#28803#28804#0" expanded="true" />
-            <element signature="e#28830#28831#0" expanded="true" />
+            <element signature="docComment;class#AchievementServiceImpl#0" />
+            <element signature="method#selectAchievement#0;class#AchievementServiceImpl#0" />
+            <element signature="method#selectMAchievementList#0;class#AchievementServiceImpl#0" />
+            <element signature="method#selectMAchievementListByWechat#0;class#AchievementServiceImpl#0" />
+            <element signature="e#2396#2863#1" />
+            <element signature="e#2486#2645#1" />
+            <element signature="e#2549#2631#1" />
+            <element signature="e#3022#3031#0" />
+            <element signature="method#insertAndUpdateAchievement#0;class#AchievementServiceImpl#0" />
+            <element signature="e#3298#5134#0" />
+            <element signature="e#3998#4475#1" />
+            <element signature="e#4481#4946#1" />
+            <element signature="e#5155#5224#0" />
+            <element signature="e#5358#5367#0" />
+            <element signature="method#changeAchievementStatus#0;class#AchievementServiceImpl#0" />
+            <element signature="e#5631#6573#0" />
+            <element signature="e#6594#6663#0" />
+            <element signature="e#6797#6806#0" />
+            <element signature="method#deleteAchievement#0;class#AchievementServiceImpl#0" />
+            <element signature="e#7066#7937#0" />
+            <element signature="e#7113#7191#1" />
+            <element signature="e#7958#8027#0" />
+            <element signature="method#selectAchievementDetail#0;class#AchievementServiceImpl#0" />
+            <element signature="method#selectMAchievementDetailById#0;class#AchievementServiceImpl#0" />
+            <element signature="e#10071#10080#0" />
+            <element signature="method#insertAndUpdateAchievementDetail#0;class#AchievementServiceImpl#0" />
+            <element signature="e#10353#11943#0" />
+            <element signature="e#10990#11346#1" />
+            <element signature="e#11352#11825#1" />
+            <element signature="e#11964#12033#0" />
+            <element signature="e#12167#12176#0" />
+            <element signature="method#deleteAchievementDetail#0;class#AchievementServiceImpl#0" />
+            <element signature="e#12442#14568#0" />
+            <element signature="e#12489#12567#1" />
+            <element signature="e#12972#13067#0" />
+            <element signature="e#13252#13258#0" />
+            <element signature="e#14589#14658#0" />
+            <element signature="method#selectAchievementTree#0;class#AchievementServiceImpl#0" />
+            <element signature="e#15727#15825#1" />
+            <element signature="e#16517#17808#1" />
+            <element signature="e#16555#17796#0" />
+            <element signature="e#16916#17054#1" />
+            <element signature="e#17150#17676#1" />
+            <element signature="e#17421#17613#1" />
+            <element signature="docComment;method#getAchievementChildrenId#0;class#AchievementServiceImpl#0" />
+            <element signature="method#getAchievementChildrenId#0;class#AchievementServiceImpl#0" />
+            <element signature="e#18336#18653#1" />
+            <element signature="e#18393#18643#1" />
+            <element signature="e#18568#18629#1" />
+            <element signature="docComment;method#updateAchievementMainImage#0;class#AchievementServiceImpl#0" />
+            <element signature="method#updateAchievementMainImage#0;class#AchievementServiceImpl#0" />
+            <element signature="e#19031#21864#0" />
+            <element signature="e#19993#20689#1" />
+            <element signature="e#20070#20675#1" />
+            <element signature="e#20124#20657#1" />
+            <element signature="e#20234#20635#1" />
+            <element signature="e#20767#21406#1" />
+            <element signature="e#20844#21392#1" />
+            <element signature="e#20898#21374#1" />
+            <element signature="e#21008#21352#1" />
+            <element signature="e#21885#21954#0" />
+            <element signature="method#selectAchievementClockinStatistic#0;class#AchievementServiceImpl#0" />
+            <element signature="method#selectAchievementShare#0;class#AchievementServiceImpl#0" />
+            <element signature="method#selectAchievementShareList#0;class#AchievementServiceImpl#0" />
+            <element signature="method#selectAchievementShareFile#0;class#AchievementServiceImpl#0" />
+            <element signature="e#23886#23895#0" />
+            <element signature="method#changeAchievementShare#0;class#AchievementServiceImpl#0" />
+            <element signature="e#24158#29414#0" />
+            <element signature="e#24897#24962#1" />
+            <element signature="e#25626#25841#1" />
+            <element signature="e#25764#25827#1" />
+            <element signature="e#25922#26748#1" />
+            <element signature="e#26126#26413#1" />
+            <element signature="e#26301#26395#1" />
+            <element signature="e#26444#26502#1" />
+            <element signature="e#26508#26734#1" />
+            <element signature="e#26588#26676#1" />
+            <element signature="e#26839#27837#1" />
+            <element signature="e#27917#28881#1" />
+            <element signature="e#28960#29189#1" />
+            <element signature="e#29435#29504#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="432" column="60" lean-forward="true" selection-start-line="421" selection-start-column="27" selection-end-line="432" selection-end-column="60" />
-          <folding>
-            <element signature="n#style#0;n#li#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="-240">
+          <caret line="129" column="17" lean-forward="true" selection-start-line="127" selection-start-column="11" selection-end-line="129" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="217" column="13" lean-forward="true" selection-start-line="185" selection-start-column="8" selection-end-line="217" selection-end-column="13" />
         </state>
       </provider>
     </entry>

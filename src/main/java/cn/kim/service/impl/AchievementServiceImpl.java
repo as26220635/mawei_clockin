@@ -241,6 +241,7 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
 
         //连接名称
         querySet.set(QuerySet.EQ, "BW_ID", BW_ID);
+        querySet.set(QuerySet.EQ, "BAD_IS_DELETE", STATUS_ERROR);
 
         querySet.setOffset(offset);
         querySet.setLimit(limit);
@@ -249,13 +250,17 @@ public class AchievementServiceImpl extends BaseServiceImpl implements Achieveme
         List<Map<String, Object>> dataList = baseDao.selectList(NameSpace.AchievementMapper, "selectMAchievementDetailList", querySet.getWhereMap());
         dataTablesView.setData(dataList);
 
+//        int count = baseDao.selectOne(NameSpace.WechatRankMapper, "selectAchievementDetailListCount", querySet.getWhereMap());
+//        dataTablesView.setRecordsTotal(count);
+
         return dataTablesView;
     }
 
     @Override
     public Integer selectAchievementDetailListCountByWechatId(String BW_ID) {
-        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(1);
+        Map<String, Object> paramMap = Maps.newHashMapWithExpectedSize(2);
         paramMap.put("BW_ID", BW_ID);
+        paramMap.put("BAD_IS_DELETE",STATUS_ERROR);
         return baseDao.selectOne(NameSpace.AchievementMapper, "selectAchievementDetailListCount", paramMap);
     }
 
