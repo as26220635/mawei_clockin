@@ -186,7 +186,7 @@
                 </div>
             </div>
 
-            <div class="weui-form__opr-area">
+            <div id="uploadBtnGroup" class="weui-form__opr-area">
                 <button class="weui-btn weui-btn_primary" href="javascript:" id="submitBtn">确定</button>
                 <button class="weui-btn weui-btn_warn" href="javascript:" id="cancelBtn">取消</button>
             </div>
@@ -332,6 +332,7 @@
         ajax.post('${BASE_URL}clockin/in/upload', params, function (data) {
             $.hideLoading();
             if (data.code == 1) {
+                $('#uploadBtnGroup').addClass('weui-tabbar__disabled');
                 $.toast('打卡成功', 1000, function () {
                     // backHtml();
                     loadUrl('${BASE_URL}achievement/share/' + data.id + '/${BA_ID}/${BW_ID}?action=1');

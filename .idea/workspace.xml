@@ -7,16 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7327bc50-4349-42c0-91dd-1fd1c7b41fa8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/util/FileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/util/FileUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/kim/util/TextUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/kim/util/TextUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/share.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/share.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <ignored path="$PROJECT_DIR$/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,91 +69,6 @@
   <component name="FavoritesManager">
     <favorites_list name="mawei_clockin" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
-              <caret line="220" column="109" lean-forward="true" selection-start-line="220" selection-start-column="109" selection-end-line="220" selection-end-column="109" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="167" column="40" lean-forward="true" selection-start-line="167" selection-start-column="40" selection-end-line="167" selection-end-column="40" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/FileUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="235" column="28" selection-start-line="235" selection-start-column="28" selection-end-line="235" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/TextUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="278" column="26" selection-start-line="278" selection-start-column="26" selection-end-line="278" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/LayoutController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="53">
-              <caret line="49" column="50" lean-forward="true" selection-start-line="49" selection-start-column="50" selection-end-line="49" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/tools/JSSDKConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="29" column="58" lean-forward="true" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/BaseData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="61">
-              <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
-              <folding>
-                <element signature="e#8215#8216#0" expanded="true" />
-                <element signature="e#8260#8261#0" expanded="true" />
-                <element signature="e#9597#9598#0" expanded="true" />
-                <element signature="e#9647#9648#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/share.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="55">
-              <caret line="72" column="90" lean-forward="true" selection-start-line="72" selection-start-column="90" selection-end-line="72" selection-end-column="90" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -167,55 +78,6 @@
         <option value="Class" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>updateAppMessageShareData</find>
-      <find>delete</find>
-      <find>updateAchievementDetail</find>
-      <find>selectMAchievement</find>
-      <find>selectWechatSaveRank</find>
-      <find>BUS_ACHIEVEMENT_DETAIL</find>
-      <find>selectAchievementDetail</find>
-      <find>BA_ID</find>
-      <find>selectAchievementShare</find>
-      <find>BAD_IS_DELETE</find>
-      <find>achievement/share</find>
-      <find>selectMAchievementListByWechat</find>
-      <find>COUNT(1) BAD_COUNT</find>
-      <find>chievement/share/</find>
-      <find>ckin/in/uploa</find>
-      <find>AchievementFixedMapper</find>
-      <find>selectAchievementShareFile</find>
-      <find>FILE_PATH</find>
-      <find>sha</find>
-      <find>IMG_</find>
-      <find>setRecordsTotal</find>
-      <find>selectAchievementDetailListCount</find>
-      <find>BAD_ENTERTIME</find>
-      <find>selectMAchievementDetailList</find>
-      <find>rank</find>
-      <find>tabbar</find>
-      <find>$('#tabbar')</find>
-      <find>JSSDKConfig</find>
-      <find>suffix</find>
-      <find>cachePath</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>${LOG_HOME}</replace>
-      <replace>cn.kim.common.mybatis</replace>
-      <replace>CacheUtil.cacheUtil.shiroCacheManager</replace>
-      <replace>BWR_RANK</replace>
-      <replace>FB5C5C</replace>
-      <replace>49cd2059-b7e7-435b-9b4a-b6bc8d115981</replace>
-      <replace>5.2</replace>
-      <replace>avatar</replace>
-      <replace>clockinShare</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>G:\xm\mawei_clockin\src\main\webapp\WEB-INF</dir>
-      <dir>G:\xm\mawei_clockin\src\main\resources\cn\kim\mapper</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
@@ -232,100 +94,42 @@
     <option name="defaultAccountId" value="e8cc2dc9-6812-4648-8643-1b29961eeea0" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/AESUtil.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" root0="SKIP_INSPECTION" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/entity/WechatUser.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/CommonUtil.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/tools/HttpClient.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MRankController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/FileController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/shiro/cache/Cache.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/webapp/resources/static/plugins/jquery-image-maps/jquery.image-maps5.0.js" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/GaussianBlurUtil.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/LoginController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/shiro/cache/SpringCacheManagerWrapper.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MIndexController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/LogAspect.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/BaseData.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MMyController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/WechaNotEmptyLoginAspect.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/BaseDataController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/AllocationController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/springmvc/BASE64DecodedMultipartFile.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/EchartsController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/ExceptionController.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/annotation/SystemControllerLog.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/WechatServiceImpl.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/annotation/Validate.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/DataGridServiceImpl.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp" root0="SKIP_INSPECTION" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/FileUtil.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementSearchServiceImpl.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/DateUtil.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/MainImageServiceImpl.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/PinyinUtil.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MMyController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/LoginController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/FileController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MRankController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp" root0="SKIP_INSPECTION" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/ImageUtil.java" root0="SKIP_INSPECTION" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$USER_HOME$/Desktop/catalina.sh" />
-        <option value="$PROJECT_DIR$/src/main/static/sqlView.txt" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/xss/XssHttpServletRequestWrapper.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/interceptor/PjaxInterceptor.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring/applicationContext-application.xml" />
-        <option value="$USER_HOME$/Desktop/config.properties" />
-        <option value="$USER_HOME$/Desktop/server.xml" />
-        <option value="G:/项目记录/马尾青春打卡/server.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/quartz/WechatAccessTokenTask.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank/rank_data.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/GaussianBlurUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring/applicationContext-dao.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/xss/XssFilter.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/spring/applicationContext-shiro.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/db.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/attr/DictTypeCode.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/mainImage/area/home.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/attr/Url.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/tag.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/shareFeedback.jsp" />
-        <option value="$PROJECT_DIR$/src/main/demo/initSqlMapper.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/share/detail.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/admin/info/achievement/share/home.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/info/AchievementController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/MainImageServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/common_bottom.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/CommonUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/ImageUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/activity.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_item.jsp" />
-        <option value="$USER_HOME$/Desktop/db.properties" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MIndexController.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementFixedMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/common/tag/FileInput.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" />
-        <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml" />
-        <option value="$PROJECT_DIR$/src/main/webapp/resources/static/create/js/component.js" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/common_config.jsp" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/TextUtil.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/share.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/cn/kim/util/FileUtil.java" />
-      </list>
-    </option>
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/entity/WechatUser.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp" root0="SKIP_INSPECTION" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/ExceptionController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/AESUtil.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/DataGridServiceImpl.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/resources/static/plugins/jquery-image-maps/jquery.image-maps5.0.js" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/BaseDataController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/DateUtil.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/FileUtil.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/shiro/cache/Cache.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/shiro/cache/SpringCacheManagerWrapper.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/LogAspect.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/CommonUtil.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/WechatServiceImpl.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/aspect/WechaNotEmptyLoginAspect.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/PinyinUtil.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/tools/HttpClient.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/MainImageServiceImpl.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/springmvc/BASE64DecodedMultipartFile.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/AllocationController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/EchartsController.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/annotation/SystemControllerLog.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/annotation/Validate.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/BaseData.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="IgnoredFileRootStore">
     <option name="generatedRoots">
@@ -348,269 +152,9 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="mawei_clockin" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="mawei_clockin" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
-        </path>
-      </expand>
-      <select />
-    </treeState>
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="73" />
-    <option name="width" value="1543" />
-    <option name="height" value="1071" />
-  </component>
   <component name="ProjectId" id="1UgwJzx1Pa6dFbqyq2wzMiD5vzu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
-  </component>
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="kim" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="mapper" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="create" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="create" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="achievement" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mawei_clockin" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mawei_clockin" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="webapp" type="462c0819:PsiDirectoryNode" />
-              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
-              <item name="jsp" type="462c0819:PsiDirectoryNode" />
-              <item name="mobile" type="462c0819:PsiDirectoryNode" />
-              <item name="my" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -663,18 +207,6 @@
       <recent name="G:\xm\mawei_clockin\src\main\webapp\WEB-INF\jsp\mobile" />
       <recent name="G:\xm\mawei_clockin\src\main\webapp\resources" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Tomcat Server.http">
     <configuration name="initSqlMapper" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -888,6 +420,11 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
                 <item name="Not Started" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
               <path>
@@ -988,28 +525,10 @@
       <workItem from="1577753236404" duration="2153000" />
       <workItem from="1577755698293" duration="1170000" />
       <workItem from="1577757498360" duration="23000" />
-      <workItem from="1577760882645" duration="3423000" />
-    </task>
-    <task id="LOCAL-00024" summary="文件">
-      <created>1575795053691</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1575795053691</updated>
-    </task>
-    <task id="LOCAL-00025" summary="文件">
-      <created>1575796334403</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1575796334403</updated>
-    </task>
-    <task id="LOCAL-00026" summary="更新">
-      <created>1575852618991</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1575852618991</updated>
+      <workItem from="1577760882645" duration="6267000" />
+      <workItem from="1577778983308" duration="3862000" />
+      <workItem from="1577787674540" duration="3000" />
+      <workItem from="1577787706254" duration="364000" />
     </task>
     <task id="LOCAL-00027" summary="更新">
       <created>1575852629568</created>
@@ -1333,7 +852,28 @@
       <option name="project" value="LOCAL" />
       <updated>1577756621460</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="修改">
+      <created>1577764387104</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1577764387105</updated>
+    </task>
+    <task id="LOCAL-00074" summary="修改">
+      <created>1577772730472</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1577772730472</updated>
+    </task>
+    <task id="LOCAL-00075" summary="修改">
+      <created>1577786202760</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1577786202760</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1362,9 +902,6 @@
       <configuration name="AESTest.AESTest" configurationId="JUnit" />
     </history-entry>
   </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="151290000" />
-  </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
@@ -1373,84 +910,6 @@
       <are-packages-shown value="true" />
       <is-autoscroll-to-source value="true" />
     </todo-panel>
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1563" height="845" extended-state="6" />
-    <editor active="true" />
-    <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49927008" weight="0.3215947" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="Web" order="7" sideWeight="0.5007299" side_tool="true" weight="0.29435217" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.60729927" />
-      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="5" weight="0.329927" />
-      <window_info anchor="bottom" id="Application Servers" order="6" weight="0.329927" />
-      <window_info anchor="bottom" id="Spring" order="7" weight="0.329927" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.329927" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50099665" side_tool="true" weight="0.57664233" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.329927" />
-      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.329927" />
-      <window_info anchor="bottom" id="Database Changes" order="13" weight="0.329927" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.329927" />
-      <window_info anchor="bottom" id="Debug" order="15" sideWeight="0.49900332" weight="0.57664233" />
-      <window_info anchor="right" id="Preview" order="0" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.24983388" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="4" weight="0.32956812" />
-      <window_info anchor="right" id="Palette" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Word Book" order="7" side_tool="true" />
-      <window_info anchor="right" id="Database" order="8" weight="0.32956812" />
-      <window_info anchor="right" id="Palette&#9;" order="9" />
-      <window_info anchor="right" id="Theme Preview" order="10" />
-    </layout>
-    <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49927008" weight="0.3215947" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Designer" order="2" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Capture Tool" order="4" />
-      <window_info id="UI Designer" order="5" />
-      <window_info id="Favorites" order="6" side_tool="true" />
-      <window_info id="Web" order="7" sideWeight="0.5007299" side_tool="true" weight="0.29435217" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.60729927" />
-      <window_info anchor="bottom" id="Cvs" order="3" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="4" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="5" weight="0.329927" />
-      <window_info anchor="bottom" id="Application Servers" order="6" weight="0.329927" />
-      <window_info anchor="bottom" id="Spring" order="7" weight="0.329927" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.329927" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50099665" side_tool="true" weight="0.57664233" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.329927" />
-      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.329927" />
-      <window_info anchor="bottom" id="Database Changes" order="13" weight="0.329927" />
-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.329927" />
-      <window_info anchor="bottom" id="Debug" order="15" sideWeight="0.49900332" visible="true" weight="0.57664233" />
-      <window_info anchor="right" id="Preview" order="0" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="2" weight="0.24983388" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="4" weight="0.32956812" />
-      <window_info anchor="right" id="Palette" order="5" />
-      <window_info anchor="right" id="Capture Analysis" order="6" />
-      <window_info anchor="right" id="Word Book" order="7" side_tool="true" />
-      <window_info anchor="right" id="Database" order="8" weight="0.32956812" />
-      <window_info anchor="right" id="Palette&#9;" order="9" />
-      <window_info anchor="right" id="Theme Preview" order="10" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1472,12 +931,6 @@
           <value>
             <State>
               <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -1511,12 +964,6 @@
           <value>
             <State>
               <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -1550,12 +997,6 @@
           <value>
             <State>
               <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -1589,12 +1030,6 @@
           <value>
             <State>
               <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -1687,10 +1122,10 @@
       <screen x="0" y="0" width="1549" height="831" />
     </state>
     <state x="455" y="142" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1549.831@0.0.1549.831" timestamp="1577092814574" />
-    <state x="379" y="8" key="CommitChangelistDialog2" timestamp="1577093230582">
+    <state x="379" y="8" key="CommitChangelistDialog2" timestamp="1577786201177">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state x="379" y="8" key="CommitChangelistDialog2/0.0.1549.831@0.0.1549.831" timestamp="1577093230582" />
+    <state x="379" y="8" key="CommitChangelistDialog2/0.0.1549.831@0.0.1549.831" timestamp="1577786201177" />
     <state width="525" height="445" key="DebuggerActiveHint" timestamp="1576329538112">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
@@ -1707,70 +1142,70 @@
       <screen x="0" y="0" width="1549" height="831" />
     </state>
     <state x="619" y="348" key="Github.Dialog.Accounts.Choose/0.0.1549.831@0.0.1549.831" timestamp="1577093204376" />
-    <state width="1506" height="254" key="GridCell.Tab.0.bottom" timestamp="1576331989291">
+    <state width="1253" height="329" key="GridCell.Tab.0.bottom" timestamp="1577787842284">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1506" height="254" key="GridCell.Tab.0.bottom/0.0.1549.831@0.0.1549.831" timestamp="1576331989291" />
-    <state width="1506" height="254" key="GridCell.Tab.0.center" timestamp="1576331989291">
+    <state width="1253" height="329" key="GridCell.Tab.0.bottom/0.0.1549.831@0.0.1549.831" timestamp="1577787842284" />
+    <state width="1253" height="329" key="GridCell.Tab.0.center" timestamp="1577787842284">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1506" height="254" key="GridCell.Tab.0.center/0.0.1549.831@0.0.1549.831" timestamp="1576331989291" />
-    <state width="1506" height="254" key="GridCell.Tab.0.left" timestamp="1576331989291">
+    <state width="1253" height="329" key="GridCell.Tab.0.center/0.0.1549.831@0.0.1549.831" timestamp="1577787842284" />
+    <state width="1253" height="329" key="GridCell.Tab.0.left" timestamp="1577787842284">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1506" height="254" key="GridCell.Tab.0.left/0.0.1549.831@0.0.1549.831" timestamp="1576331989291" />
-    <state width="1506" height="254" key="GridCell.Tab.0.right" timestamp="1576331989291">
+    <state width="1253" height="329" key="GridCell.Tab.0.left/0.0.1549.831@0.0.1549.831" timestamp="1577787842284" />
+    <state width="1253" height="329" key="GridCell.Tab.0.right" timestamp="1577787842284">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1506" height="254" key="GridCell.Tab.0.right/0.0.1549.831@0.0.1549.831" timestamp="1576331989291" />
-    <state width="1506" height="254" key="GridCell.Tab.1.bottom" timestamp="1576331989291">
+    <state width="1253" height="329" key="GridCell.Tab.0.right/0.0.1549.831@0.0.1549.831" timestamp="1577787842284" />
+    <state width="1253" height="329" key="GridCell.Tab.1.bottom" timestamp="1577787842285">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1506" height="254" key="GridCell.Tab.1.bottom/0.0.1549.831@0.0.1549.831" timestamp="1576331989291" />
-    <state width="1506" height="254" key="GridCell.Tab.1.center" timestamp="1576331989291">
+    <state width="1253" height="329" key="GridCell.Tab.1.bottom/0.0.1549.831@0.0.1549.831" timestamp="1577787842285" />
+    <state width="1253" height="329" key="GridCell.Tab.1.center" timestamp="1577787842285">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1506" height="254" key="GridCell.Tab.1.center/0.0.1549.831@0.0.1549.831" timestamp="1576331989291" />
-    <state width="1506" height="254" key="GridCell.Tab.1.left" timestamp="1576331989291">
+    <state width="1253" height="329" key="GridCell.Tab.1.center/0.0.1549.831@0.0.1549.831" timestamp="1577787842285" />
+    <state width="1253" height="329" key="GridCell.Tab.1.left" timestamp="1577787842284">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1506" height="254" key="GridCell.Tab.1.left/0.0.1549.831@0.0.1549.831" timestamp="1576331989291" />
-    <state width="1506" height="254" key="GridCell.Tab.1.right" timestamp="1576331989291">
+    <state width="1253" height="329" key="GridCell.Tab.1.left/0.0.1549.831@0.0.1549.831" timestamp="1577787842284" />
+    <state width="1253" height="329" key="GridCell.Tab.1.right" timestamp="1577787842285">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1506" height="254" key="GridCell.Tab.1.right/0.0.1549.831@0.0.1549.831" timestamp="1576331989291" />
-    <state width="1253" height="331" key="GridCell.Tab.2.bottom" timestamp="1576331989283">
+    <state width="1253" height="329" key="GridCell.Tab.1.right/0.0.1549.831@0.0.1549.831" timestamp="1577787842285" />
+    <state width="1253" height="329" key="GridCell.Tab.2.bottom" timestamp="1577787842285">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1253" height="331" key="GridCell.Tab.2.bottom/0.0.1549.831@0.0.1549.831" timestamp="1576331989283" />
-    <state width="1253" height="331" key="GridCell.Tab.2.center" timestamp="1576331989282">
+    <state width="1253" height="329" key="GridCell.Tab.2.bottom/0.0.1549.831@0.0.1549.831" timestamp="1577787842285" />
+    <state width="1253" height="329" key="GridCell.Tab.2.center" timestamp="1577787842285">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1253" height="331" key="GridCell.Tab.2.center/0.0.1549.831@0.0.1549.831" timestamp="1576331989282" />
-    <state width="1253" height="331" key="GridCell.Tab.2.left" timestamp="1576331989282">
+    <state width="1253" height="329" key="GridCell.Tab.2.center/0.0.1549.831@0.0.1549.831" timestamp="1577787842285" />
+    <state width="1253" height="329" key="GridCell.Tab.2.left" timestamp="1577787842285">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1253" height="331" key="GridCell.Tab.2.left/0.0.1549.831@0.0.1549.831" timestamp="1576331989282" />
-    <state width="1253" height="331" key="GridCell.Tab.2.right" timestamp="1576331989283">
+    <state width="1253" height="329" key="GridCell.Tab.2.left/0.0.1549.831@0.0.1549.831" timestamp="1577787842285" />
+    <state width="1253" height="329" key="GridCell.Tab.2.right" timestamp="1577787842285">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1253" height="331" key="GridCell.Tab.2.right/0.0.1549.831@0.0.1549.831" timestamp="1576331989283" />
-    <state width="1253" height="331" key="GridCell.Tab.3.bottom" timestamp="1576331989283">
+    <state width="1253" height="329" key="GridCell.Tab.2.right/0.0.1549.831@0.0.1549.831" timestamp="1577787842285" />
+    <state width="1253" height="329" key="GridCell.Tab.3.bottom" timestamp="1577787842285">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1253" height="331" key="GridCell.Tab.3.bottom/0.0.1549.831@0.0.1549.831" timestamp="1576331989283" />
-    <state width="1253" height="331" key="GridCell.Tab.3.center" timestamp="1576331989283">
+    <state width="1253" height="329" key="GridCell.Tab.3.bottom/0.0.1549.831@0.0.1549.831" timestamp="1577787842285" />
+    <state width="1253" height="329" key="GridCell.Tab.3.center" timestamp="1577787842285">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1253" height="331" key="GridCell.Tab.3.center/0.0.1549.831@0.0.1549.831" timestamp="1576331989283" />
-    <state width="1253" height="331" key="GridCell.Tab.3.left" timestamp="1576331989283">
+    <state width="1253" height="329" key="GridCell.Tab.3.center/0.0.1549.831@0.0.1549.831" timestamp="1577787842285" />
+    <state width="1253" height="329" key="GridCell.Tab.3.left" timestamp="1577787842285">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1253" height="331" key="GridCell.Tab.3.left/0.0.1549.831@0.0.1549.831" timestamp="1576331989283" />
-    <state width="1253" height="331" key="GridCell.Tab.3.right" timestamp="1576331989283">
+    <state width="1253" height="329" key="GridCell.Tab.3.left/0.0.1549.831@0.0.1549.831" timestamp="1577787842285" />
+    <state width="1253" height="329" key="GridCell.Tab.3.right" timestamp="1577787842285">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state width="1253" height="331" key="GridCell.Tab.3.right/0.0.1549.831@0.0.1549.831" timestamp="1576331989283" />
+    <state width="1253" height="329" key="GridCell.Tab.3.right/0.0.1549.831@0.0.1549.831" timestamp="1577787842285" />
     <state x="562" y="126" key="RollbackChangesDialog" timestamp="1576297198312">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
@@ -1779,10 +1214,10 @@
       <screen x="0" y="0" width="1549" height="831" />
     </state>
     <state x="288" y="27" width="1007" height="712" key="SettingsEditor/0.0.1549.831@0.0.1549.831" timestamp="1576294523079" />
-    <state x="367" y="150" key="Vcs.Push.Dialog.v2" timestamp="1577093199723">
+    <state x="367" y="150" key="Vcs.Push.Dialog.v2" timestamp="1577786204523">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
-    <state x="367" y="150" key="Vcs.Push.Dialog.v2/0.0.1549.831@0.0.1549.831" timestamp="1577093199723" />
+    <state x="367" y="150" key="Vcs.Push.Dialog.v2/0.0.1549.831@0.0.1549.831" timestamp="1577786204523" />
     <state width="781" height="422" key="XDebugger.FullValuePopup" timestamp="1576329538108">
       <screen x="0" y="0" width="1549" height="831" />
     </state>
@@ -1812,24 +1247,6 @@
     </state>
     <state x="437" y="152" width="672" height="676" key="search.everywhere.popup/0.0.1549.831@0.0.1549.831" timestamp="1576322071329" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cn/kim/util/FileUtil.java</url>
-          <line>235</line>
-          <properties />
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java</url>
-          <line>156</line>
-          <properties />
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
@@ -1837,394 +1254,6 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/mawei_clockin$http.ic" NAME="http Coverage Results" MODIFIED="1575508538184" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/mawei_clockin$Tomcat_8_5_37.ic" NAME="Tomcat 8.5.37 Coverage Results" MODIFIED="1574783793926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="3053" column="4" selection-start-line="3053" selection-start-column="4" selection-end-line="3053" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/ImageUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9800">
-          <caret line="418" column="43" selection-start-line="418" selection-start-column="43" selection-end-line="418" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/common_bottom.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/CommonUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17750">
-          <caret line="750" column="43" selection-start-line="750" selection-start-column="43" selection-end-line="750" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="46" column="108" lean-forward="true" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="108" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="9" column="7" lean-forward="true" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/activity.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-425">
-          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.properties">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/db.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
-          <caret line="4" column="88" lean-forward="true" selection-start-line="4" selection-start-column="75" selection-end-line="4" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Desktop/db.properties" />
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_item.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="113" selection-start-line="113" selection-end-line="113" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/rank.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="62" column="18" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MActivityController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-709">
-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementSearchServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1207">
-          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/WechatService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="455">
-          <caret line="93" column="24" selection-start-line="93" selection-start-column="24" selection-end-line="93" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/static/sqlView.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="212" selection-start-line="212" selection-end-line="216" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/quartz/WechatRankTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="31" column="27" lean-forward="true" selection-start-line="31" selection-start-column="27" selection-end-line="31" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/attr/Attribute.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/manager/info/ClockinController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="56" column="56" selection-start-line="56" selection-start-column="56" selection-end-line="56" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/FileServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="31" column="31" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/FileService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="24" column="24" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MIndexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="241" column="25" lean-forward="true" selection-start-line="241" selection-start-column="25" selection-end-line="241" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/entity/ResultState.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="37" column="89" lean-forward="true" selection-start-line="37" selection-start-column="89" selection-end-line="37" selection-end-column="89" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementFixedMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="92" selection-start-line="92" selection-end-line="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/eu/NameSpace.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="51" column="4" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/tag/FileInput.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="139" column="50" selection-start-line="139" selection-start-column="50" selection-end-line="139" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/clockin/in.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="443" column="77" selection-start-line="443" selection-start-column="77" selection-end-line="443" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/my/clockin_data.jsp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/AchievementService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="83" column="22" selection-start-line="83" selection-start-column="22" selection-end-line="83" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MMyController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="71" column="77" selection-start-line="71" selection-start-column="77" selection-end-line="71" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/AchievementMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-240">
-          <caret line="129" column="17" lean-forward="true" selection-start-line="127" selection-start-column="11" selection-end-line="129" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/cn/kim/mapper/WechatMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="217" column="13" lean-forward="true" selection-start-line="185" selection-start-column="8" selection-end-line="217" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/AchievementServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1154">
-          <caret line="249" column="122" selection-start-line="249" selection-start-column="94" selection-end-line="249" selection-end-column="122" />
-          <folding>
-            <element signature="docComment;class#AchievementServiceImpl#0" />
-            <element signature="method#selectMAchievementList#0;class#AchievementServiceImpl#0" />
-            <element signature="method#selectMAchievementListByWechat#0;class#AchievementServiceImpl#0" />
-            <element signature="e#2396#2863#1" />
-            <element signature="e#2486#2645#1" />
-            <element signature="e#2549#2631#1" />
-            <element signature="e#3022#3031#0" />
-            <element signature="method#insertAndUpdateAchievement#0;class#AchievementServiceImpl#0" />
-            <element signature="e#3298#5134#0" />
-            <element signature="e#3998#4475#1" />
-            <element signature="e#4481#4946#1" />
-            <element signature="e#5155#5224#0" />
-            <element signature="e#5358#5367#0" />
-            <element signature="method#changeAchievementStatus#0;class#AchievementServiceImpl#0" />
-            <element signature="e#5631#6573#0" />
-            <element signature="e#6594#6663#0" />
-            <element signature="e#6797#6806#0" />
-            <element signature="method#deleteAchievement#0;class#AchievementServiceImpl#0" />
-            <element signature="e#7066#7937#0" />
-            <element signature="e#7113#7191#1" />
-            <element signature="e#7958#8027#0" />
-            <element signature="method#selectAchievementDetail#0;class#AchievementServiceImpl#0" />
-            <element signature="method#selectMAchievementDetailById#0;class#AchievementServiceImpl#0" />
-            <element signature="method#insertAndUpdateAchievementDetail#0;class#AchievementServiceImpl#0" />
-            <element signature="method#deleteAchievementDetail#0;class#AchievementServiceImpl#0" />
-            <element signature="method#selectAchievementTree#0;class#AchievementServiceImpl#0" />
-            <element signature="docComment;method#getAchievementChildrenId#0;class#AchievementServiceImpl#0" />
-            <element signature="method#getAchievementChildrenId#0;class#AchievementServiceImpl#0" />
-            <element signature="docComment;method#updateAchievementMainImage#0;class#AchievementServiceImpl#0" />
-            <element signature="method#updateAchievementMainImage#0;class#AchievementServiceImpl#0" />
-            <element signature="method#selectAchievementClockinStatistic#0;class#AchievementServiceImpl#0" />
-            <element signature="method#selectAchievementShare#0;class#AchievementServiceImpl#0" />
-            <element signature="method#selectAchievementShareList#0;class#AchievementServiceImpl#0" />
-            <element signature="method#selectAchievementShareFile#0;class#AchievementServiceImpl#0" />
-            <element signature="method#changeAchievementShare#0;class#AchievementServiceImpl#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/ValidateServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/service/impl/WechatServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="239" column="58" selection-start-line="239" selection-start-column="58" selection-end-line="239" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MRankController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="34" selection-start-line="34" selection-end-line="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/tag.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-220" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/common/common_config.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/resources/static/create/js/component.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3325">
-          <caret line="133" column="4" selection-start-line="133" selection-start-column="4" selection-end-line="133" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/common/BaseData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="95" lean-forward="true" selection-start-line="95" selection-end-line="95" />
-          <folding>
-            <element signature="e#8215#8216#0" expanded="true" />
-            <element signature="e#8260#8261#0" expanded="true" />
-            <element signature="e#9597#9598#0" expanded="true" />
-            <element signature="e#9647#9648#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/LayoutController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="49" column="50" lean-forward="true" selection-start-line="49" selection-start-column="50" selection-end-line="49" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/tools/JSSDKConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="29" column="58" lean-forward="true" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_191/src.zip!/java/lang/Float.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="449" column="24" selection-start-line="449" selection-start-column="24" selection-end-line="449" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/net/coobird/thumbnailator/0.4.8/thumbnailator-0.4.8-sources.jar!/net/coobird/thumbnailator/Thumbnails.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="2621" column="20" selection-start-line="2621" selection-start-column="20" selection-end-line="2621" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/common/main.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="220" column="109" lean-forward="true" selection-start-line="220" selection-start-column="109" selection-end-line="220" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/mobile/achievement/share.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="55">
-          <caret line="72" column="90" lean-forward="true" selection-start-line="72" selection-start-column="90" selection-end-line="72" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/controller/mobile/MAchievementController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="167" column="40" lean-forward="true" selection-start-line="167" selection-start-column="40" selection-end-line="167" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/TextUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="278" column="26" selection-start-line="278" selection-start-column="26" selection-end-line="278" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/cn/kim/util/FileUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="235" column="28" selection-start-line="235" selection-start-column="28" selection-end-line="235" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
   </component>
   <component name="masterDetails">
     <states>

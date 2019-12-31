@@ -76,6 +76,10 @@
         .weui-tabbar__disabled a{
             pointer-events: none;
         }
+
+        .weui-tabbar__disabled button{
+            pointer-events: none;
+        }
     </style>
     <script>
         //是否定位

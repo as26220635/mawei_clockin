@@ -11,6 +11,9 @@
     .share-img {
         width: 100%;
         height: auto;
+        overflow-x:scroll;
+        -webkit-overflow-scrolling: touch;
+        min-height: 630px;
     }
 
     .weui-msg__share {
