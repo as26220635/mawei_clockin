@@ -147,20 +147,27 @@ public class MAchievementController extends BaseController {
                             configure.put("SF_SDI_CODE", BAD_ID);
                             configure.put("SF_TYPE_CODE", TableName.BUS_ACHIEVEMENT_DETAIL);
 
+                            configure.put("isThumbnail", true);
+                            configure.put("scale", 0.1f);
+
                             Map<String, Object> result = FileUtil.saveImgFile(shareFile, configure);
 
                             fileMap = Maps.newHashMapWithExpectedSize(1);
                             fileMap.put("IMG_PATH", result.get("location"));
+                            fileMap.put("IMG_PATH_THUMBNAIL", result.get("locationThumbnail"));
                         }
                     }
                 } else {
                     //读取生成的图片
                     fileMap.put("IMG_PATH", toString(fileMap.get("SF_PATH") + "@@@" + toString(fileMap.get("SF_NAME"))));
+                    fileMap.put("IMG_PATH_THUMBNAIL", toString(fileMap.get("SF_PATH") + "@@@" + FileUtil.fileNameAddStr(toString(fileMap.get("SF_NAME")), "-thumbnail")));
                     FileUtil.filePathTobase64(fileMap, "IMG_PATH");
+                    FileUtil.filePathTobase64(fileMap, "IMG_PATH_THUMBNAIL");
                 }
 
                 if (!isEmpty(fileMap)) {
                     model.addAttribute("IMG_PATH", fileMap.get("IMG_PATH"));
+                    model.addAttribute("IMG_PATH_THUMBNAIL", fileMap.get("IMG_PATH_THUMBNAIL"));
                 }
 
                 model.addAttribute("achievement", achievement);

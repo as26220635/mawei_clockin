@@ -259,6 +259,14 @@ public class TextUtil {
         }
     }
 
+    public static Float toFloat(Object l) {
+        try {
+            return ValidateUtil.isEmpty(l) ? null : Float.parseFloat(l.toString());
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public static double toDouble(String obj) {
         try {
             return ValidateUtil.isEmpty(obj) ? 0 : Double.parseDouble(obj);

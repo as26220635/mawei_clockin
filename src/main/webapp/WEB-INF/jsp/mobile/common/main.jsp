@@ -148,6 +148,9 @@
         //pjax
         mainInit.initPjax();
         $('#tabbar').removeClass('weui-tabbar__disabled');
+        if (typeof window.entryUrl === 'undefined' || window.entryUrl === '') {
+            window.entryUrl = location.href.split('#')[0]
+        }
     });
 
     $('.weui-tabbar__item').on('click', function () {
@@ -215,8 +218,9 @@
 </script>
 <script>
     function weixinShare(title, desc, link, imgUrl, success, cancel) {
+        let signLink =  /(Android)/i.test(navigator.userAgent) ? location.href.split('#')[0] : window.entryUrl;
         // 登录微信jssdk
-        ajax.get('${BASE_URL}JSSDKConfig', {url: location.href.split('#')[0]}, function (data) {
+        ajax.get('${BASE_URL}JSSDKConfig', {url: signLink}, function (data) {
             if (data.code == 1) {
                 var message = $.parseJSON(data.message);
 

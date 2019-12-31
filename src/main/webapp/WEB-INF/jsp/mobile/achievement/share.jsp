@@ -70,6 +70,7 @@
     mainInit.initPjax();
 </script>
 <script>
+    console.log('${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${IMG_PATH_THUMBNAIL}')
     $('#shareBtn').unbind('click').on('click', function () {
         var sharetpl = '<div class="weui-share" onclick="$(this).remove();">\n' +
             '<div class="weui-share-box">\n' +
@@ -88,7 +89,7 @@
         //分享页面地址,不能为空，这里可以传递参数！！！！！！！
         link: '${WebConfig.WEBCONFIG_SERVER_URL}/share/${shareFeedbackParam}',
         //分享是封面图片，不能为空
-        imgUrl: '${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${IMG_PATH}',
+        imgUrl: '${WEBCONFIG_FILE_SERVER_URL}${Url.FILE_SERVER_PREVIEW_URL}${IMG_PATH_THUMBNAIL}',
         success: function () {
             //分享成功触发
             $('.weui-share').remove();

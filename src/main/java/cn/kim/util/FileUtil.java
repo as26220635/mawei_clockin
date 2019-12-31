@@ -1,5 +1,6 @@
 package cn.kim.util;
 
+import cn.kim.common.annotation.Validate;
 import cn.kim.common.attr.Attribute;
 import cn.kim.common.attr.AttributePath;
 import cn.kim.common.attr.ConfigProperties;
@@ -25,6 +26,7 @@ import sun.misc.BASE64Decoder;
 import javax.activation.DataHandler;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.soap.Text;
 import java.io.*;
 import java.math.BigInteger;
 import java.net.ConnectException;
@@ -174,17 +176,21 @@ public class FileUtil {
                     }
                 }
 
+                //是否生成缩略图
+                boolean isThumbnail = TextUtil.toBoolean(configure.get("isThumbnail"));
                 //文件服务器存储路径
                 String filepath = typeCode + File.separator + (ValidateUtil.isEmpty(extendName) ? "" : extendName + File.separator) + DateUtil.getDate(DateUtil.FORMAT2) + File.separator;
+                //文件后缀
+                String suffix = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
                 //保存缓存文件
                 //保存的ID也是名称
                 String id = Sequence.getId();
-                //文件后缀
-                String suffix = originalFilename.substring(originalFilename.lastIndexOf(".") + 1);
+                String thumbnailId = id + "-thumbnail." + suffix;
                 //文件缓存路径
                 String cacheDir = AttributePath.SERVICE_PATH_DEFAULT + filepath;
                 // + "." + suffix;
                 String cachePath = cacheDir + id;
+                String cacheThumbnailPath = cacheDir + thumbnailId;
                 //创建文件夹
                 createDir(cacheDir);
 
@@ -222,6 +228,13 @@ public class FileUtil {
                     //签发1分钟的有效token
                     boolean isUpload = uploadCxfFile(TokenUtil.baseKey(UUID.randomUUID(), fileTableNAME), id + "." + suffix, filepath, fileBytes);
                     if (isUpload) {
+                        //上传缩略图
+                        if (isThumbnail) {
+                            float scale = ValidateUtil.isEmpty(configure.get("scale")) ? 1f : TextUtil.toFloat(configure.get("scale"));
+                            Thumbnails.of(cachePath).scale(scale).toFile(cacheThumbnailPath);
+                            fileBytes = toByteArray(cacheThumbnailPath);
+                            uploadCxfFile(TokenUtil.baseKey(UUID.randomUUID(), fileTableNAME), thumbnailId, filepath, fileBytes);
+                        }
                         //保存记录到数据库
                         Map<String, Object> fileMap = Maps.newHashMapWithExpectedSize(13);
                         fileMap.put("ID", id);
@@ -252,7 +265,9 @@ public class FileUtil {
                         resultMap.put("uploadPath", filepath);
                         //文件服务器路径
                         resultMap.put("location", TextUtil.toString(fileMap.get("SF_PATH")) + "@@@" + TextUtil.toString(fileMap.get("SF_NAME")));
+                        resultMap.put("locationThumbnail", TextUtil.toString(fileMap.get("SF_PATH")) + "@@@" + thumbnailId);
                         FileUtil.filePathTobase64(resultMap, "location");
+                        FileUtil.filePathTobase64(resultMap, "locationThumbnail");
                     } else {
                         throw new FileUploadException("文件上传附件服务器失败!");
                     }
@@ -260,10 +275,8 @@ public class FileUtil {
                     throw e;
                 } finally {
                     //删除缓存文件
-                    try {
-                        newFile.delete();
-                    } catch (Exception e) {
-                    }
+                    FileUtil.deleteFile(cachePath);
+                    FileUtil.deleteFile(cacheThumbnailPath);
                 }
             } else {
                 resultMap.put("code", Attribute.STATUS_ERROR);
