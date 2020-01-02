@@ -339,6 +339,7 @@
                 });
             } else {
                 $.toast("打卡失败", "forbidden");
+                $('input[name="${SUBMIT_TOKEN_NAME}"]').val(data.token);
             }
         });
     }
