@@ -36,6 +36,7 @@
                  maxFileCount="${fns:trueOrFalse(detail.BAD_FILETYPE eq 1 , 9 , 1)}"
                  multiple="${fns:trueOrFalse(detail.BAD_FILETYPE eq 1 , true , false)}"
                  allowFile="${fns:trueOrFalse(detail.BAD_FILETYPE eq 1 , FileInput.IMAGE , FileInput.VIDEO)}"
+                 showRemove="${fns:trueOrFalse(empty detail ,true , false)}"
     ></s:fileInput>
 </form>
 
