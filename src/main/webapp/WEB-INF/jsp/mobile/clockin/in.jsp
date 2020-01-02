@@ -218,7 +218,7 @@
     $('#submitBtn').click(function () {
         var $form = $('#addAndEditForm');
         if ($('#BAD_REMARKS').val() == '') {
-            $.toast("请输入概述", "forbidden");
+            $.toast("请输入我的心情", "forbidden");
             return;
         }
         var BAD_FILETYPE = $('#BAD_FILETYPE').val();
