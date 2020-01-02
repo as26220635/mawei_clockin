@@ -252,6 +252,9 @@
             <a href="javascript:" class="weui-search-bar__search-btn" id="searchBtn">搜索</a>
         </div>
 
+        <div class="weui-cell">
+            <p style="margin:auto;font-size: 13px;">排行数据延迟1分钟,更新时间 ${updateDate}</p>
+        </div>
         <div class="weui-cell weui-cell_example">
             <div class="weui-cell__rank">
                 ${myRank.BWR_RANK}
