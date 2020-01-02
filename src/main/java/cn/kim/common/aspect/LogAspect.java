@@ -100,6 +100,9 @@ public class LogAspect extends BaseData {
                 String menuId = toString(idDecrypt(params.get(0).getValue()));
                 //查询菜单
                 Map<String, Object> menu = menuService.queryMenuById(menuId);
+                if (isEmpty(menu)){
+                    return object;
+                }
                 message = "查看:" + toString(menu.get("SM_NAME"));
 
                 //判断是否2分钟内重复记录日志,重复的话直接返回
