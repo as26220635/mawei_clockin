@@ -381,6 +381,13 @@
         toolbar:false,
         title:false,
         navbar:false,
+        rotatable:false,
+        scalable:false,
+        keyboard:false,
+        toggleOnDblclick:false,
+        <%--url:function (src) {--%>
+        <%--    return '${BASE_URL}resources/assets/images/main/mawei_map.jpg';--%>
+        <%--}--%>
     });
 </script>
 <script>
