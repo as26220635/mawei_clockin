@@ -94,6 +94,7 @@ public class FileController extends BaseController implements LastModified {
 
         ServletOutputStream os = null;
         InputStream is = null;
+        InputStream ins=null;
         byte[] b = null;
         BufferedInputStream bis = null;
         InputStream inputStream = null;
@@ -137,7 +138,7 @@ public class FileController extends BaseController implements LastModified {
 
             byte[] bt = FileUtil.toByteArray(inputStream);
 
-            InputStream ins = new ByteArrayInputStream(bt);
+            ins = new ByteArrayInputStream(bt);
             bis = new BufferedInputStream(ins);
             b = new byte[1024];
             int len = 0;
@@ -153,6 +154,8 @@ public class FileController extends BaseController implements LastModified {
         } finally {
             IOUtils.closeQuietly(inputStream);
             IOUtils.closeQuietly(is);
+            IOUtils.closeQuietly(ins);
+            IOUtils.closeQuietly(bis);
             IOUtils.closeQuietly(os);
         }
     }
