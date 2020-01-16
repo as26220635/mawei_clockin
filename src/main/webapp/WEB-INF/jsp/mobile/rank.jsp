@@ -257,7 +257,9 @@
         </div>
         <div class="weui-cell weui-cell_example">
             <div class="weui-cell__rank">
-                ${myRank.BWR_RANK}
+                <c:if test="${not empty myRank}">
+                    ${fns:trueOrFalse(myRank.BWR_RANK > 99, "99+", myRank.BWR_RANK)}
+                </c:if>
             </div>
             <div class="weui-cell__hd weui-avatar-circle">
                 <img src="${myRank.BW_AVATAR}"
